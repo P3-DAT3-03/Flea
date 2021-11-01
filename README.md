@@ -4,6 +4,8 @@ FLEA - Flea Location EstablishingApplication
 # Development environment
 
  - Net 5.0
+ - PostgreSQL 
+ - EntityFramework (ORM)
 
 # Development guidelines
 
