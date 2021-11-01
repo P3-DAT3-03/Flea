@@ -21,17 +21,17 @@
     align-items: center;
 }
 
-    .top-row ::deep a, .top-row .btn-link {
+    /*.top-row ::deep a, .top-row .btn-link {
         white-space: nowrap;
         margin-left: 1.5rem;
-    }
+    }*/
 
     .top-row a:first-child {
         overflow: hidden;
         text-overflow: ellipsis;
     }
 
-@media (max-width: 640.98px) {
+@media (max-width: 640px) {
     .top-row:not(.auth) {
         display: none;
     }
@@ -51,7 +51,7 @@
     }
 
     .sidebar {
-        width: 250px;
+        width: auto;
         height: 100vh;
         position: sticky;
         top: 0;
