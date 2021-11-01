@@ -1,0 +1,536 @@
+﻿openapi: 3.0.2
+info:
+  title:  BankoCenter Denmark Event Management
+  version: '1.0'
+  description: An api for managing data needed to run BankoCenter Denmark flea markts.
+
+# Authors note this is pain plz oh god help me
+
+# Things that needs to be looked at
+
+## Currently a reservation has not field 
+## for when a customer is checked in.
+
+## Were kind of missing the search for customer event
+## I guess we will search for every customer based on Name or Phone number.
+
+## Were also missing a event for getting x latest 'Events'
+
+## Comments was this not requirements?
+
+paths:
+  /Event:
+    # Get event
+    get:
+      tags:
+        - Event
+      operationId: GetEvent
+      description: Returns a customer based on some unique identifier
+      parameters:
+        - $ref: "#/components/parameters/ObjectIdParams"
+      responses:
+        200:
+          $ref: "#/components/responses/Event"
+        default:
+          $ref: "#/components/responses/UnexpectedError"
+    # Create event
+    post:
+      tags:
+        - Event
+      operationId: CreateEvent
+      description: Creates a customer.
+      parameters:
+        - $ref: "#/components/parameters/EventParams"
+      responses:
+        200:
+          $ref: "#/components/responses/Success"
+        default:
+          $ref: "#/components/responses/UnexpectedError"
+    # Edit event
+    put:
+      tags:
+        - Event
+      operationId: EditEvent
+      description: Returns ok to the user if the api is up and running.
+      parameters:
+        - $ref: "#/components/parameters/EventParams"
+      responses:
+        200:
+          $ref: "#/components/responses/Success"
+        default:
+          $ref: "#/components/responses/UnexpectedError"
+    # Delete event
+    delete:
+      tags:
+        - Event
+      operationId: DeleteEvent
+      description: Returns ok to the user if the api is up and running.
+      parameters:
+        - $ref: "#/components/parameters/ObjectIdParams"
+      responses:
+        200:
+          $ref: "#/components/responses/Success"
+        default:
+          $ref: "#/components/responses/UnexpectedError"
+
+  /Latest/Events:
+    get:
+      tags:
+        - Event
+      operationId: GetLatestEvent
+      description: Returns the n latest events.
+      parameters:
+        - in: header
+          name: Count
+          schema:
+            type: integer
+          required: true
+        - in: header
+          name: Offset
+          schema:
+            type: integer
+      responses:
+        200:
+          description: A array of customes
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Event"
+        default:
+          $ref: "#/components/responses/UnexpectedError"
+  
+  /Cluster:
+    # Get cluster
+    get:
+      tags:
+        - Cluster
+      operationId: GetClustor
+      description: Returns a customer based on some unique identifier
+      parameters:
+        - $ref: "#/components/parameters/ObjectIdParams"
+      responses:
+        200:
+          $ref: "#/components/responses/Cluster"
+        default:
+          $ref: "#/components/responses/UnexpectedError"
+    # Create cluster
+    post:
+      tags:
+        - Cluster
+      operationId: CreateClustor
+      description: Creates a customer. # Should we return a instance of the new customer?
+      parameters:
+        - $ref: "#/components/parameters/ClusterParams"
+      responses:
+        200:
+          $ref: "#/components/responses/Success"
+        default:
+          $ref: "#/components/responses/UnexpectedError"
+    # Edit cluster
+    put:
+      tags:
+        - Cluster
+      operationId: EditClustor
+      description: Returns ok to the user if the api is up and running.
+      parameters:
+        - $ref: "#/components/parameters/ClusterParams"
+      responses:
+        200:
+          $ref: "#/components/responses/Success"
+        default:
+          $ref: "#/components/responses/UnexpectedError"
+    # Delete cluster
+    delete:
+      tags:
+        - Cluster
+      operationId: DeleteClustor
+      description: Returns ok to the user if the api is up and running.
+      parameters:
+        - $ref: "#/components/parameters/ObjectIdParams"
+      responses:
+        200:
+          $ref: "#/components/responses/Success"
+        default:
+          $ref: "#/components/responses/UnexpectedError"
+
+  /Table:
+    # Get table
+    get:
+      tags:
+        - Table
+      operationId: GetTable
+      description: Returns a customer based on some unique identifier
+      parameters:
+        - $ref: "#/components/parameters/ObjectIdParams"
+      responses:
+        200:
+          $ref: "#/components/responses/Table"
+        default:
+          $ref: "#/components/responses/UnexpectedError"
+    # Create table
+    post:
+      tags:
+        - Table
+      operationId: CreateTable
+      description: Creates a customer. # Should we return a instance of the new customer?
+      parameters:
+        - $ref: "#/components/parameters/TableParams"
+      responses:
+        200:
+          $ref: "#/components/responses/Success"
+        default:
+          $ref: "#/components/responses/UnexpectedError"
+    # Edit table
+    put:
+      tags:
+        - Table
+      operationId: EditTable
+      description: Returns ok to the user if the api is up and running.
+      parameters:
+        - $ref: "#/components/parameters/TableParams"
+      responses:
+        200:
+          $ref: "#/components/responses/Success"
+        default:
+          $ref: "#/components/responses/UnexpectedError"
+    # Delete table
+    delete:
+      tags:
+        - Table
+      operationId: DeleteTable
+      description: Returns ok to the user if the api is up and running.
+      parameters:
+        - $ref: "#/components/parameters/ObjectIdParams"
+      responses:
+        200:
+          $ref: "#/components/responses/Success"
+        default:
+          $ref: "#/components/responses/UnexpectedError"
+
+  /Reservation:
+    # Get reservation
+    get:
+      tags:
+        - Reservation
+      operationId: GetReservation
+      description: Returns a customer based on some unique identifier
+      parameters:
+        - $ref: "#/components/parameters/ObjectIdParams"
+      responses:
+        200:
+          $ref: "#/components/responses/Success"
+        default:
+          $ref: "#/components/responses/UnexpectedError"
+    # Create reservation
+    post:
+      tags:
+        - Reservation
+      operationId: CreateReservation
+      description: Creates a customer. # Should we return a instance of the new customer?
+      parameters:
+        - $ref: "#/components/parameters/ReservationParams"
+      responses:
+        200:
+          $ref: "#/components/responses/Success"
+        default:
+          $ref: "#/components/responses/UnexpectedError"
+    # Edit reservation
+    put:
+      tags:
+        - Reservation
+      operationId: EditReservation
+      description: Returns ok to the user if the api is up and running.
+      parameters:
+        - $ref: "#/components/parameters/ReservationParams"
+      responses:
+        200:
+          $ref: "#/components/responses/Success"
+        default:
+          $ref: "#/components/responses/UnexpectedError"
+    # Delete reservation
+    delete:
+      tags:
+        - Reservation
+      operationId: DeleteReservation
+      description: Returns ok to the user if the api is up and running.
+      parameters:
+        - $ref: "#/components/parameters/ObjectIdParams"
+      responses:
+        200:
+          $ref: "#/components/responses/Reservation"
+        default:
+          $ref: "#/components/responses/UnexpectedError"
+
+  /Customer:
+    # Get customer
+    get:
+      tags:
+        - Customer
+      operationId: GetCustomer
+      description: Returns a customer based on some unique identifier
+      parameters:
+        - $ref: "#/components/parameters/ObjectIdParams"
+      responses:
+        200:
+          $ref: "#/components/responses/Customer"
+        default:
+          $ref: "#/components/responses/UnexpectedError"
+    # Create customer
+    post:
+      tags:
+        - Customer
+      operationId: CreateCustomer
+      description: Creates a customer. # Should we return a instance of the new customer?
+      parameters:
+        - $ref: "#/components/parameters/CustomerParams"
+      responses:
+        200:
+          $ref: "#/components/responses/Success"
+        default:
+          $ref: "#/components/responses/UnexpectedError"
+    # Edit customer
+    put:
+      tags:
+        - Customer
+      operationId: EditCustomer
+      description: Returns ok to the user if the api is up and running.
+      parameters:
+        - $ref: "#/components/parameters/CustomerParams"
+      responses:
+        200:
+          $ref: "#/components/responses/Success"
+        default:
+          $ref: "#/components/responses/UnexpectedError"
+    # Delete customer
+    delete:
+      tags:
+        - Customer
+      operationId: DeleteCustomer
+      description: Returns ok to the user if the api is up and running.
+      parameters:
+        - $ref: "#/components/parameters/ObjectIdParams"
+      responses:
+        200:
+          $ref: "#/components/responses/Success"
+        default:
+          $ref: "#/components/responses/UnexpectedError"
+  
+  /Search/Customers:
+    get:
+      tags:
+        - Customer
+      operationId: GetCustomers
+      description: Returns a array of matching customers based on Name or PhoneNumber
+      parameters:
+        - in: header
+          name: Name
+          schema:
+            type: string
+        - in: header
+          name: PhoneNumber
+          schema:
+            type: string
+      responses:
+        200:
+          description: A array of customes
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Customer"
+        default:
+          $ref: "#/components/responses/UnexpectedError"
+
+components:
+  schemas:
+    Event:
+      type: object
+      properties:
+        ID:
+          type: integer
+        Name:
+          type: string
+        Date:
+          type: string
+          format: date
+        Clusters:
+          type: array
+          items:
+            $ref: "#/components/schemas/Cluster"
+        PreviousEventID:
+          type: integer
+    Cluster:
+      type: object
+      properties:
+        ID:
+          type: integer
+        Name:
+          type: string
+        Tables:
+          type: array
+          items:
+            $ref: "#/components/schemas/Table"
+        CustomerCount:
+          type: integer
+    Table:
+      type: object
+      properties:
+        ID:
+          type: integer
+        Reservation:
+          $ref: "#/components/schemas/Reservation"
+        Type:
+          type: string
+    Reservation:
+      type: object
+      properties:
+        ID:
+          type: integer
+        Priority:
+          type: integer
+        TableCount:
+          type: integer
+        Paid:
+          type: boolean
+        Comments:
+          type: array
+          items:
+            type: string
+    Customer:
+      type: object
+      properties:
+        ID:
+          type: integer
+        Name:
+          type: string
+        PhoneNumber:
+          type: string
+    Result:
+      type: object
+      properties:
+        success:
+          type: boolean
+        message:
+          type: string
+      required:
+        - success
+        - message
+  
+  parameters:
+    EventParams:
+      in: header
+      name: Event
+      schema:
+        $ref: "#/components/schemas/Event"
+      required: true
+      description: The event object in json.
+    ClusterParams:
+      in: header
+      name: Cluster
+      schema:
+        $ref: "#/components/schemas/Cluster"
+      required: true
+      description: The cluster object in json.
+    TableParams:
+      in: header
+      name: Table
+      schema:
+        $ref: "#/components/schemas/Table"
+      required: true
+      description: The table object in json.
+    ReservationParams:
+      in: header
+      name: Reservation
+      schema:
+        $ref: "#/components/schemas/Reservation"
+      required: true
+      description: The reservation object in json.
+    CustomerParams:
+      in: header
+      name: Customer
+      schema:
+        $ref: "#/components/schemas/Customer"
+      required: true
+      description: The customer object in json.
+    
+    ObjectIdParams:
+      in: header
+      name: ObjectID
+      schema:
+        type: integer
+      required: true
+      description: Numeric ID of the object to get
+  
+  responses:
+    Event:
+      description: A event object
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Event"
+    
+    Cluster:
+      description: A cluster object
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Cluster"
+    
+    
+    Table:
+      description: A table object
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Table"
+    
+    
+    Reservation:
+      description: A reservation object
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Reservation"
+    
+    
+    Customer:
+      description: A customer object
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Customer"
+    
+    NotFound:
+      description: The specified resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Result"
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Result"
+    BadRequest:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Result"
+    UnexpectedError:
+      description: A unexpected error
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Result"
+    Success:
+      description: A action was completed successfully
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Result"
+
