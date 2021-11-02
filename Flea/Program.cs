@@ -3,7 +3,9 @@ using System.Net.Http;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Text;
+using Flea.Models;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -16,6 +18,10 @@ namespace Flea
         {
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
             builder.RootComponents.Add<App>("#app");
+            builder.Services.AddDbContext<BingoContext>(options =>
+            {
+                options.UseNpgsql(builder.Configuration["ConnectionString"]);
+            });
 
             builder.Services.AddScoped(sp => new HttpClient
                 { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
