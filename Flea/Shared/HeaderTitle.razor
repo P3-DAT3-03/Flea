@@ -1,0 +1,11 @@
+@code {
+    [Parameter]
+    public string Value { get; set; }
+    
+    protected override Task OnInitializedAsync()
+    {
+        MainLayout.HeaderTitle = Value;
+        return base.OnInitializedAsync();
+    }
+
+}
