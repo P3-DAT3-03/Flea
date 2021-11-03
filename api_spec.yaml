@@ -494,6 +494,10 @@ paths:
                 type: integer
               Paid:
                 type: boolean
+              Arrived:
+                type: boolean
+              ProductType:
+                type: string
               Comments:
                 type: array
                 items:
@@ -534,6 +538,10 @@ paths:
                 type: integer
               Paid:
                 type: boolean
+              Arrived:
+                type: boolean
+              ProductType:
+                type: string
               Comments:
                 type: array
                 items:
@@ -809,6 +817,10 @@ components:
           type: integer
         Paid:
           type: boolean
+        Arrived:
+          type: boolean
+        ProductType:
+          type: string
         Comments:
           type: array
           items:
