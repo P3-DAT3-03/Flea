@@ -436,3 +436,4 @@ MigrationBackup/
 FodyWeavers.xsd
 
 appsettings.json
+.DS_Store

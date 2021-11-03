@@ -1,0 +1,34 @@
+@inject NavigationManager _navigationManager
+
+<li class="list-item list-item--tappable">
+    <div class="tabbar tabbar--top tabbar--material">
+        <label class="tabbar__item tabbar--material__item">
+            <input type="radio" name="tabbar-material-c" checked="checked" @onclick="Navigate">
+            <button class="tabbar__button tabbar--material__button">
+                <i class="tabbar__icon tabbar--material__icon">
+                    <span class="@IconClass">@Icon</span>
+                </i>
+                <div class="tabbar__label tabbar--material__label">@ChildContent</div>
+            </button>
+        </label>
+    </div>
+</li>
+
+@code {
+
+    private void Navigate()
+    {
+        _navigationManager.NavigateTo(Href);
+    }
+    [Parameter]
+    public string Icon { get; set; }
+
+    [Parameter]
+    public string IconClass { get; set; } = "material-icons-outlined";
+
+    [Parameter]
+    public string Href { get; set; }
+    
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+}
