@@ -1,0 +1,34 @@
+@page "/CustomerOverview"
+@foreach (var (key, value) in Customers)
+{
+    <ul class="list"style="background-color: #0d0d0d">
+        <UserListItem Id="@key" Name="@value.Name" TeleNumber="@value.TeleNumber" OnDelete="@DeleteCustomerInformation" OnEdit="@EditCustomerInformation">
+        </UserListItem >
+    </ul>
+}
+
+@code
+{
+    class Customer
+    {
+        public string Name { get; set; }
+        public int TeleNumber { get; set; }
+    }
+
+    private Dictionary<int, Customer> Customers = new()
+    {
+        {1, new Customer() {Name = "Sebastian Aaholm", TeleNumber = 24823423}},
+        {2, new Customer() {Name = "Jens Jensen", TeleNumber = 4541341}},
+        {3, new Customer() {Name = "Hans Nielsen", TeleNumber = 8888888}},
+    };
+
+    public void DeleteCustomerInformation(int id)
+    {
+        Customers.Remove(id);
+    }
+
+    public void EditCustomerInformation(int id)
+    {
+        Console.WriteLine("Write the function here hehe");
+    }
+}
