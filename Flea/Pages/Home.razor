@@ -1,0 +1,45 @@
+@page "/Home"
+
+<style>
+    body {background-color: #1f1f21}
+</style>
+
+<button type="button" @onclick="AddEventItem">Tilføj nyt loppemarked</button>
+
+@if (DummyEventDB.Count == 0)
+{
+    <h2>Der er ingen loppemarkeder at vise...</h2>
+}
+else
+{
+    foreach (DummyEvent e in DummyEventDB)
+    {
+        <ul>
+            <EventListItem Date="@e.Date" RemainingTables="@e.RemainingTables" MissingPayments="@e.MissingPayments">
+            </EventListItem>
+        </ul>
+    }
+}
+
+@code {
+
+    class DummyEvent
+    {
+        public DummyEvent(string date, int remainingTables, int missingPayments)
+        {
+            Date = date;
+            RemainingTables = remainingTables;
+            MissingPayments = missingPayments;
+        }
+        public string Date { get; }
+        public int RemainingTables { get; }
+        public int MissingPayments { get; }
+    }
+
+    private List<DummyEvent> DummyEventDB = new();
+
+    public void AddEventItem()
+    {
+        DummyEventDB.Add(new DummyEvent("28. Oktober, 2021", 130, 23));
+    }
+}
