@@ -138,3 +138,8 @@ a, .btn-link {
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
 }
+/*.checked+.tabbar--material__button:after*/
+.tabbar--material__button:after{
+    background-color: #ffa101;
+}
+
