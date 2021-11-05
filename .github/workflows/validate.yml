@@ -1,0 +1,43 @@
+name: Validation
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+  workflow_dispatch:
+
+jobs:
+  DotNet:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 5.0.x
+    - name: Restore dependencies
+      run: dotnet restore
+    - name: Build
+      run: dotnet build --no-restore
+    - name: Test
+      run: dotnet test --no-build --verbosity normal --collect:"XPlat Code Coverage"
+    - name: Codecov
+      uses: codecov/codecov-action@v2.1.0
+  OpenAPI:
+      runs-on: ubuntu-latest
+      steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Get OpenAPI files
+        id: getfiles
+        run:  |
+          FILES="$(find -type f -iname "*.yaml")"
+          echo "::set-output name=file_list::$FILES"
+      - name: Validate
+        uses: mbowman100/swagger-validator-action@master
+        with:
+          files: ${{ steps.getfiles.outputs.file_list }}
