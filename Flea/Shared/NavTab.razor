@@ -3,7 +3,7 @@
 <li class="list-item list-item--tappable">
     <div class="tabbar tabbar--top tabbar--material">
         <label class="tabbar__item tabbar--material__item">
-            <input type="radio" name="tabbar-material-c" checked="checked" @onclick="Navigate">
+            <input type="radio" name="tabbar-material-c" checked="@IsChecked()" @onclick="Navigate">
             <button class="tabbar__button tabbar--material__button">
                 <i class="tabbar__icon tabbar--material__icon">
                     <span class="@IconClass">@Icon</span>
@@ -15,11 +15,6 @@
 </li>
 
 @code {
-
-    private void Navigate()
-    {
-        _navigationManager.NavigateTo(Href);
-    }
     [Parameter]
     public string Icon { get; set; }
 
@@ -31,4 +26,24 @@
     
     [Parameter]
     public RenderFragment ChildContent { get; set; }
+
+    private void Navigate()
+    {
+        _navigationManager.NavigateTo(Href);
+    }
+
+    private bool IsChecked()
+    {
+        var getPath = "/" + _navigationManager.ToBaseRelativePath(_navigationManager.Uri);
+        if (getPath == "/")
+        {
+            getPath = "/Home";
+        }
+
+        if (Href == getPath)
+        {
+            return true;
+        }
+        return false;
+    }
 }
