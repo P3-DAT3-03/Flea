@@ -1,0 +1,7 @@
+- name: Articles
+  href: articles/
+- name: Documentation
+  href: api/
+  homepage: api/index.md
+- name: Rest Api
+  href: /Flea/OpenAPI/index.html

@@ -1,16 +1,18 @@
-﻿<!-- Flea logo -->
+﻿@inject NavigationManager _navigationManager
+@using Flea.Pages
+
+<!-- Flea logo -->
 <div class="logo">
-    <img src="./loppe.svg"/>
+    <img src="./loppe.svg" alt="Du blind, så det kan være lige møj"/>
 </div>
 
 <!-- NavBar -->
 <div>
     <ul class="list">
-        <!--(Insert Href when page is created) -->
-        <NavTab Href="/" Icon="home">Hjem</NavTab>
+        <NavTab Href="/Home" Icon="home">Hjem</NavTab>
         <NavTab Href="/Booking" Icon="description">Book</NavTab>
-        <NavTab Href="/counter" Icon="place">Placér</NavTab>
-        <NavTab Href="/" Icon="storefront">Market</NavTab>
-        <NavTab Href="/" Icon="person_outline">Loppe</NavTab>
+        <NavTab Href="/Placing" Icon="place">Placér</NavTab>
+        <NavTab Href="/Market" Icon="storefront">Market</NavTab>
+        <NavTab Href="/Customer" Icon="person_outline">Loppe</NavTab>
     </ul>
-</div> 
+</div>
