@@ -1,5 +1,9 @@
 @page "/CustomerOverview"
-@foreach (var (key, value) in Customers)
+<li class="TopLine-item">
+    <input @onchange="Searchbar" type="search" value="" placeholder="Søg efter kunde" class="search-input" style="width: 280px;">
+    <button class="button" @onclick="NewCustomer">Tilføj Ny Loppe</button>
+</li>
+@foreach (var (key, value) in ShownCustomers)
 {
     <ul class="list"style="background-color: #0d0d0d">
         <UserListItem Id="@key" Name="@value.Name" TeleNumber="@value.TeleNumber" OnDelete="@DeleteCustomerInformation" OnEdit="@EditCustomerInformation">
@@ -9,26 +13,71 @@
 
 @code
 {
+    private string _search = "";
+    
+    //dummy data
     class Customer
     {
         public string Name { get; set; }
-        public int TeleNumber { get; set; }
+        public string TeleNumber { get; set; }
     }
-
+    //dummy data
     private Dictionary<int, Customer> Customers = new()
     {
-        {1, new Customer() {Name = "Sebastian Aaholm", TeleNumber = 24823423}},
-        {2, new Customer() {Name = "Jens Jensen", TeleNumber = 4541341}},
-        {3, new Customer() {Name = "Hans Nielsen", TeleNumber = 8888888}},
+        {1, new Customer() {Name = "Sebastian Aaholm", TeleNumber = "24823423"}},
+        {2, new Customer() {Name = "Jens Jensen", TeleNumber = "4541341"}},
+        {3, new Customer() {Name = "Hans Nielsen", TeleNumber = "8888888"}},
     };
-
+    
+    private Dictionary<int, Customer> ShownCustomers = new();
+    
+    //Delete the customer
     public void DeleteCustomerInformation(int id)
     {
         Customers.Remove(id);
     }
-
+    
+    ///Edits the customer
     public void EditCustomerInformation(int id)
     {
         Console.WriteLine("Write the function here hehe");
+    }
+    
+    // Makes a new Customer
+    public void NewCustomer()
+    {
+        Console.WriteLine("Write the function here haha");
+    }
+
+    ///The searchbar function, it works WOW
+    public void Searchbar(ChangeEventArgs e)
+    {
+        var input = e.Value?.ToString()?? "";
+        if (input == "")
+        {
+            ShownCustomers = Customers;
+        }
+        else if (Char.IsDigit(input[0]))
+        {///Finds by phonenumbers
+            
+            var results = from c
+                in Customers
+                where c.Value.TeleNumber.Contains(input)
+                select c;
+            ShownCustomers= results.ToDictionary(x => x.Key, x => x.Value);
+        }
+        else
+        {///Finds by name
+            var results = from c
+                in Customers
+                where c.Value.Name.Contains(input)
+                select c;
+            ShownCustomers= results.ToDictionary(x => x.Key, x => x.Value);
+        }
+    }
+    
+    protected override void OnInitialized()
+    {
+        ShownCustomers = Customers;
     }
 }

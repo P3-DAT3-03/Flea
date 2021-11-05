@@ -1,3 +1,4 @@
+
 <li class="list-item">
     <div class="list-item__center">ID: @Id.ToString().PadLeft(4,'0') @Name @TeleNumber
         <button class="button" @onclick="Delete">Slet</button>
@@ -14,7 +15,7 @@
     public string Name { get; set; }
 
     [Parameter]
-    public int TeleNumber { get; set; }
+    public string TeleNumber { get; set; }
     
     [Parameter]
     public EventCallback<int> OnDelete { get; set; }
@@ -31,5 +32,4 @@
     {
         await OnEdit.InvokeAsync(Id);
     }
-   
 }
