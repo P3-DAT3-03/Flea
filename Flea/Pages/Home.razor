@@ -1,7 +1,68 @@
 @page "/"
 @page "/Home"
-<h1>Home</h1>
+<button class="btn btn-primary" @onclick="@ModalShow">Show Dialog!</button>
+@if (showModal)
+{
+    <div class="modal fade show" id="myModal" style="display: block" aria-modal="true" >
+        <div class="modal-dialog">
+            <div class="modal-content" style="background-color: aliceblue !important">
 
-@code {
-    
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Confirm action</h4>
+                    <button type="button" class="close" @onclick="@ModalCancel">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <h1>hsdlfjklds</h1>
+
+                    <form>
+                        <input />
+                    </form>
+                    <!--<-->@*EditForm EditContext=@EmployeeContext OnValidSubmit="@HandleValidSubmit">
+                        <label>Employee Name :</label>
+                        <div>
+                            <InputText />
+                        </div>
+
+                        <button type="submit">Submit</button>
+                    </EditForm>*@
+
+
+                    <p>This is the modal content! asdlfhjklasdjfsdahlfjkasdfkhgasdlkjflkjasdlfkj</p>
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn" @onclick="@ModalCancel">Cancel</button>
+                    <button type="button" class="btn btn-danger" @onclick=@ModalOk>Delete</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+}
+<hr />
+@code
+{
+    bool showModal = false;
+    public EditContext EmployeeContext { get; set; }
+
+    void ModalShow() => showModal = true;
+    void ModalCancel() => showModal = false;
+    void ModalOk()
+    {
+        Console.WriteLine("Modal ok");
+        showModal = false;
+    }
+
+
+
+    private void HandleValidSubmit()
+    {
+        Console.WriteLine("HandleValidSubmit called");
+
+        // Process the valid form
+    }
 }
