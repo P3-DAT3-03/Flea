@@ -4,7 +4,10 @@
     body {background-color: #1f1f21}
 </style>
 
-<button type="button" @onclick="AddEventItem">Tilføj nyt loppemarked</button>
+<li class="TopLine-item">
+    <input @bind-value="SearchTerm" @bind-value:event="oninput" placeholder="Søg efter loppemarked..."/>
+    <button type="button" @onclick="AddEventItem">Tilføj nyt loppemarked</button>
+</li>
 
 @if (DummyEventDB.Count == 0)
 {
@@ -12,7 +15,7 @@
 }
 else
 {
-    foreach (DummyEvent e in DummyEventDB)
+    foreach (DummyEvent e in FilteredDummyEvents)
     {
         <ul>
             <EventListItem Date="@e.Date" RemainingTables="@e.RemainingTables" MissingPayments="@e.MissingPayments">
@@ -38,8 +41,15 @@ else
 
     private List<DummyEvent> DummyEventDB = new();
 
+    string SearchTerm { get; set; } = "";
+
+    List<DummyEvent> FilteredDummyEvents => 
+        DummyEventDB.Where(i => i.Date.ToLower().Contains(SearchTerm.ToLower())).ToList();
+
     public void AddEventItem()
     {
-        DummyEventDB.Add(new DummyEvent("28. Oktober, 2021", 130, 23));
+        DummyEventDB.Add(new DummyEvent("28. Februar, 2021", 130, 23));
+        //DummyEventDB.Add(new DummyEvent("17. Oktober, 2022", 130, 23));
+        //DummyEventDB.Add(new DummyEvent("28. Oktober, 2021", 130, 23));
     }
 }
