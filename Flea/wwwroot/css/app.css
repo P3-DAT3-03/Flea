@@ -122,27 +122,91 @@ a, .btn-link {
     }
 
 
-/*To make navbar transparent so it match sidebar color*/
+/* TopBar - To make navbar transparent so it match sidebar color*/
 .list, .tabbar--material{
     background-color: transparent;
 }
     
-/*To edit li padding in navbar*/
+/* SideBar - To edit li padding in SideBar*/
 .list-item{
     padding: 0;
 }
 
-/*To edit logo*/
+/* SideBar - To edit logo*/
 .logo{
     padding-left: 1rem;
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
 }
-/*.checked+.tabbar--material__button:after*/
+
+/* To change color of the line under the different tabs*/
 .tabbar--material__button:after{
     background-color: #ffa101;
 }
 
+/* Change color on the main page*/
 .page{
     color: #0d0d0d;
 }
+
+/* Reservation search field*/
+.search-input{
+    border-color: #ffffff;
+    border-radius: 20px 20px 20px 20px;
+    border-style: solid;
+    border-width: 1px;
+    width: 50%;
+    height: 40px;
+    margin-bottom: 50px;
+    vertical-align: baseline;
+}
+
+/* Reservation grid for each booking*/
+.grid-container-res{
+    color: white;
+    background-color: #484848;
+    padding: 10px;
+    border-radius: 20px;
+    display: grid;
+    grid-template-columns: 30% 12.5% 15% 15% auto;
+    grid-gap: 10px;
+    margin-bottom: 20px;
+}
+
+/* Reservation create new booking button*/
+.res-new-booking {
+    border-radius: 20px;
+    border: 2px solid #ffffff;
+    height: 40px;
+    float: right;
+    width: 30%;
+}
+
+/* Reservation delete button for each booking*/
+.res-del-button{
+    background: #ff0000;
+    border: 1px solid currentColor;
+    border-radius: 20px;
+}
+
+/* Reservation edit button for each booking*/
+.res-edit-button{
+    background: transparent;
+    border: 1px solid currentColor;
+    border-radius: 20px;
+}
+
+/* Reservation to allign txt for name, phonenumber, stande etc.
+   in grid columns */
+.res-txt {
+    display: flex;
+    align-items: center;
+}
+
+
+
+
+
+
+
+
