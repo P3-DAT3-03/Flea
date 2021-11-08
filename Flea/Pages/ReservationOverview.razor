@@ -1,0 +1,103 @@
+@page "/ReservationOverview"
+
+<div>
+    <input class="search-input" type="search" value="" placeholder="Søg efter booking" @oninput="Searchbar">
+    <button class="button res-new-booking" @onclick="NewReservation">Opret ny booking</button>
+    
+    @foreach (var value in _shownReservation)
+    {
+        <div>
+            <ReservationUserListItem Name="@value.Name" Stande="@value.Stande"
+                                 PaymentStatus="@value.PaymentStatus"
+                                 OnDelete="@DeleteReservationInformation" 
+                                 OnEdit="@EditReservationInformation"/>
+        </div>
+    }
+</div>
+
+@code
+{
+    // Dummy data ---
+    class Reservation
+    {
+        public string Name { get; set; }
+        public int Stande { get; set; }
+        public bool PaymentStatus { get; set; }
+    }
+    
+    private List<Reservation> _reservations = new()
+    {
+        {new Reservation() {Name = "Sebastian Aaholm", Stande = 3, PaymentStatus = false}},
+        {new Reservation() {Name = "Jens Jensen", Stande = 3, PaymentStatus = true}},
+        {new Reservation() {Name = "Hans Nielsen", Stande = 10, PaymentStatus = false}},
+    };
+    // ---
+    
+    private List<Reservation> _shownReservation = new();
+
+    // Delete the reservation
+    public void DeleteReservationInformation(string name)
+    {
+        var nameFound = _reservations.Find(r => r.Name == name);
+        
+        if (nameFound != null)
+        {
+            _reservations.Remove(nameFound);
+            _shownReservation.Remove((nameFound));
+        }
+    }
+    
+    // Edits the reservation
+    public void EditReservationInformation(string id)
+    {
+        Console.WriteLine("Write the function here hehe");
+    }
+    
+    // Makes a new Customer
+    public void NewReservation()
+    {
+        Console.WriteLine("Write the function here haha");
+    }
+
+    // The searchbar function, it works WOW
+    public void Searchbar(ChangeEventArgs e)
+    {
+        // If you search with nothing in the bar
+        var input = e.Value?.ToString()?.ToLower()?? "";
+        if (input == "")
+        {
+            _shownReservation = _reservations;
+        }
+        else if (Char.IsDigit(input[0]))
+        {// Finds by stande
+
+            var results = from c
+                in _reservations
+                where c.Stande.ToString().Contains(input)
+                select c;
+            _shownReservation= results.ToList();
+        }
+        else if (input.Contains("betalt"))
+        {
+            var results = from c
+                in _reservations
+                where c.PaymentStatus != input.Contains("ej")
+                select c;
+            _shownReservation = results.ToList();
+        }
+        else
+            
+        {// Finds by name
+            var results = from c
+                in _reservations
+                where c.Name.ToLower().Contains(input)
+                select c;
+            _shownReservation = results.ToList();
+        }
+    }
+    
+    protected override void OnInitialized()
+    {
+        _shownReservation = _reservations;
+    }
+}
