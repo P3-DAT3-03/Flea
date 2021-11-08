@@ -129,6 +129,19 @@ references:
   commentId: T:Flea.Models.Customer
   fullName: Flea.Models.Customer
   nameWithType: Customer
+- uid: Flea.Models.Customer.#ctor(System.String,System.Int32)
+  name: Customer(String, Int32)
+  href: api/Flea.Models.Customer.html#Flea_Models_Customer__ctor_System_String_System_Int32_
+  commentId: M:Flea.Models.Customer.#ctor(System.String,System.Int32)
+  fullName: Flea.Models.Customer.Customer(System.String, System.Int32)
+  nameWithType: Customer.Customer(String, Int32)
+- uid: Flea.Models.Customer.#ctor*
+  name: Customer
+  href: api/Flea.Models.Customer.html#Flea_Models_Customer__ctor_
+  commentId: Overload:Flea.Models.Customer.#ctor
+  isSpec: "True"
+  fullName: Flea.Models.Customer.Customer
+  nameWithType: Customer.Customer
 - uid: Flea.Models.Customer.Name
   name: Name
   href: api/Flea.Models.Customer.html#Flea_Models_Customer_Name
@@ -245,6 +258,19 @@ references:
   commentId: T:Flea.Models.Reservation
   fullName: Flea.Models.Reservation
   nameWithType: Reservation
+- uid: Flea.Models.Reservation.#ctor(System.Int32,System.Int32,System.Boolean,System.String,Flea.Models.Customer)
+  name: Reservation(Int32, Int32, Boolean, String, Customer)
+  href: api/Flea.Models.Reservation.html#Flea_Models_Reservation__ctor_System_Int32_System_Int32_System_Boolean_System_String_Flea_Models_Customer_
+  commentId: M:Flea.Models.Reservation.#ctor(System.Int32,System.Int32,System.Boolean,System.String,Flea.Models.Customer)
+  fullName: Flea.Models.Reservation.Reservation(System.Int32, System.Int32, System.Boolean, System.String, Flea.Models.Customer)
+  nameWithType: Reservation.Reservation(Int32, Int32, Boolean, String, Customer)
+- uid: Flea.Models.Reservation.#ctor*
+  name: Reservation
+  href: api/Flea.Models.Reservation.html#Flea_Models_Reservation__ctor_
+  commentId: Overload:Flea.Models.Reservation.#ctor
+  isSpec: "True"
+  fullName: Flea.Models.Reservation.Reservation
+  nameWithType: Reservation.Reservation
 - uid: Flea.Models.Reservation.Comments
   name: Comments
   href: api/Flea.Models.Reservation.html#Flea_Models_Reservation_Comments
@@ -284,6 +310,19 @@ references:
   isSpec: "True"
   fullName: Flea.Models.Reservation.Priority
   nameWithType: Reservation.Priority
+- uid: Flea.Models.Reservation.ReservationOwner
+  name: ReservationOwner
+  href: api/Flea.Models.Reservation.html#Flea_Models_Reservation_ReservationOwner
+  commentId: P:Flea.Models.Reservation.ReservationOwner
+  fullName: Flea.Models.Reservation.ReservationOwner
+  nameWithType: Reservation.ReservationOwner
+- uid: Flea.Models.Reservation.ReservationOwner*
+  name: ReservationOwner
+  href: api/Flea.Models.Reservation.html#Flea_Models_Reservation_ReservationOwner_
+  commentId: Overload:Flea.Models.Reservation.ReservationOwner
+  isSpec: "True"
+  fullName: Flea.Models.Reservation.ReservationOwner
+  nameWithType: Reservation.ReservationOwner
 - uid: Flea.Models.Reservation.TableCount
   name: TableCount
   href: api/Flea.Models.Reservation.html#Flea_Models_Reservation_TableCount
