@@ -1,3 +1,4 @@
+@page "/"
 @page "/Home"
 
 <style>
@@ -9,13 +10,18 @@
     <button type="button" @onclick="AddEventItem">Tilføj nyt loppemarked</button>
 </li>
 
+<!-- Creates event items for each event that matches the user's search term -->
 @if (DummyEventDB.Count == 0)
 {
     <h2>Der er ingen loppemarkeder at vise...</h2>
 }
+else if (FilteredEvents.Count == 0)
+{
+    <h2>Der er ingen loppemarkeder, som matcher søgekriterierne...</h2>
+}
 else
 {
-    foreach (DummyEvent e in FilteredDummyEvents)
+    foreach (DummyEvent e in FilteredEvents)
     {
         <ul>
             <EventListItem Date="@e.Date" RemainingTables="@e.RemainingTables" MissingPayments="@e.MissingPayments">
@@ -25,7 +31,7 @@ else
 }
 
 @code {
-
+    // Placeholder event class. Replace with Event.cs in Model
     class DummyEvent
     {
         public DummyEvent(string date, int remainingTables, int missingPayments)
@@ -38,12 +44,15 @@ else
         public int RemainingTables { get; }
         public int MissingPayments { get; }
     }
-
+    
+    // Placeholder event database. 
     private List<DummyEvent> DummyEventDB = new();
 
+    // SearchTerm is initialised as empty string to avoid null errors.
     string SearchTerm { get; set; } = "";
 
-    List<DummyEvent> FilteredDummyEvents => 
+    // List of events from database that match the search term.
+    List<DummyEvent> FilteredEvents => 
         DummyEventDB.Where(i => i.Date.ToLower().Contains(SearchTerm.ToLower())).ToList();
 
     public void AddEventItem()
