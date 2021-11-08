@@ -2,7 +2,6 @@
 {
     public class Table
     {
-        /*table class contains a pointer TableReservation, to a reservation object or null and TableType thats a enum*/
         public enum TableType
         {
             table,

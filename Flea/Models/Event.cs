@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Linq;
 
 namespace Flea.Models
@@ -10,6 +10,8 @@ namespace Flea.Models
         public Cluster[] Clusters { get; set; }
         public Event PreviousEvent { get; set; }
 
+
+        /* the constructor creates the event and all the needed clusters in the bingo fleamarket formet*/
         public Event(string name, DateTime dateTime)
         {
             DateTime = dateTime;

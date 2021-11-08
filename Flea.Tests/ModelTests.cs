@@ -38,7 +38,10 @@ namespace Flea.Tests
             const int tableCount = 4;
             const bool paid = false;
             const string comment = "Ole er meget gammel og grim";
-            Reservation OleReservation = new Reservation(priority, tableCount, paid, comment);
+            const string name = "Ole";
+            const int number = 88888888;
+            Customer Ole = new Customer(name, number);
+            Reservation OleReservation = new Reservation(priority, tableCount, paid, comment, Ole);
             OleReservation.Tables.Add(new Table());
             Assert.AreEqual(OleReservation.TableCount, tableCount, "reservation does not have the right tablecount based on input");
         }
@@ -58,7 +61,10 @@ namespace Flea.Tests
             const int reservedTableCount = 4;
             const bool paid = false;
             const string comment = "Ole er meget gammel og grim";
-            Reservation OleReservation = new Reservation(priority, reservedTableCount, paid, comment);
+            const string name = "Ole";
+            const int number = 88888888;
+            Customer Ole = new Customer(name, number);
+            Reservation OleReservation = new Reservation(priority, reservedTableCount, paid, comment, Ole);
             Cluster m = new Cluster("m", 4, tableAmount);
             Assert.AreEqual(m.CustomerCount, 4);
 
