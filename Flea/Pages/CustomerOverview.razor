@@ -1,6 +1,6 @@
 @page "/CustomerOverview"
 <li class="TopLine-item">
-    <input @onchange="Searchbar" type="search" value="" placeholder="Søg efter kunde" class="search-input" style="width: 280px;">
+    <input @oninput="Searchbar" type="search" value="" placeholder="Søg efter kunde" class="search-input" style="width: 280px;">
     <button class="button" @onclick="NewCustomer">Tilføj Ny Loppe</button>
 </li>
 @foreach (var (key, value) in ShownCustomers)
