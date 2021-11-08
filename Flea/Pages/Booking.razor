@@ -6,7 +6,7 @@
     
     @foreach (var value in _shownReservation)
     {
-        <div><ReservationListItem Name="@value.Name" Stande="@value.Stande" PaymentStatus="@value.PaymentStatus" OnDelete="@DeleteReservationInformation" OnEdit="@EditReservationInformation"/></div>
+        <div><ReservationOverview Name="@value.Name" Stande="@value.Stande" PaymentStatus="@value.PaymentStatus" OnDelete="@DeleteReservationInformation" OnEdit="@EditReservationInformation"/></div>
     }
 </div>
 
