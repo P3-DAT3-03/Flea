@@ -1,38 +1,18 @@
-﻿<div class="top-row pl-4 navbar navbar-dark">
-    <a class="navbar-brand" href="">Flea</a>
-    <button class="navbar-toggler" @onclick="ToggleNavMenu">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+﻿@inject NavigationManager _navigationManager
+@using Flea.Pages
+
+<!-- Flea logo -->
+<div class="logo">
+    <img src="./loppe.svg" alt="Du blind, så det kan være lige møj"/>
 </div>
 
-<div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
-    <ul class="nav flex-column">
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                <span class="oi oi-home" aria-hidden="true"></span> Home
-            </NavLink>
-        </li>
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="counter">
-                <span class="oi oi-plus" aria-hidden="true"></span> Counter
-            </NavLink>
-        </li>
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="fetchdata">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> Fetch data
-            </NavLink>
-        </li>
+<!-- NavBar -->
+<div>
+    <ul class="list">
+        <NavTab Href="/Home" Icon="home">Hjem</NavTab>
+        <NavTab Href="/Booking" Icon="description">Book</NavTab>
+        <NavTab Href="/Placing" Icon="place">Placér</NavTab>
+        <NavTab Href="/Market" Icon="storefront">Market</NavTab>
+        <NavTab Href="/Customer" Icon="person_outline">Loppe</NavTab>
     </ul>
 </div>
-
-@code {
-    private bool collapseNavMenu = true;
-
-    private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
-
-    private void ToggleNavMenu()
-    {
-        collapseNavMenu = !collapseNavMenu;
-    }
-
-}

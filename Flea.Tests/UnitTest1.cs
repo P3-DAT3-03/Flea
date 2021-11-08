@@ -9,8 +9,6 @@ namespace Flea.Tests
         [SetUp]
         public void Setup()
         {
-
-
         }
 
         [Test]
@@ -74,9 +72,5 @@ namespace Flea.Tests
             Assert.IsFalse(1 != m.ReservationCount, "reservation count doesnt have the correct amount of reservations");
 
         }
-
-
-
-
     }
 }
