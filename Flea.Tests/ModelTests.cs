@@ -25,8 +25,8 @@ namespace Flea.Tests
         [Test]
         public void CustomerTests()
         {
-            string name = "Ole";
-            int number = 88888888;
+            const string name = "Ole";
+            const int number = 88888888;
             Customer Ole = new Customer(name, number);
             Assert.True(Ole.Name == name || Ole.PhoneNumber == number);
         }
@@ -34,10 +34,10 @@ namespace Flea.Tests
         [Test]
         public void ReservationTests()
         {
-            int priority = 1;
-            int tableCount = 4;
-            bool paid = false;
-            string comment = "Ole er meget gammel og grim";
+            const int priority = 1;
+            const int tableCount = 4;
+            const bool paid = false;
+            const string comment = "Ole er meget gammel og grim";
             Reservation OleReservation = new Reservation(priority, tableCount, paid, comment);
             OleReservation.Tables.Add(new Table());
             Assert.AreEqual(OleReservation.TableCount, tableCount, "reservation does not have the right tablecount based on input");
@@ -53,11 +53,11 @@ namespace Flea.Tests
         [Test]
         public void ClusterTests()
         {
-            int tableAmount = 8;
-            int priority = 1;
-            int reservedTableCount = 4;
-            bool paid = false;
-            string comment = "Ole er meget gammel og grim";
+            const int tableAmount = 8;
+            const int priority = 1;
+            const int reservedTableCount = 4;
+            const bool paid = false;
+            const string comment = "Ole er meget gammel og grim";
             Reservation OleReservation = new Reservation(priority, reservedTableCount, paid, comment);
             Cluster m = new Cluster("m", 4, tableAmount);
             Assert.AreEqual(m.CustomerCount, 4);
