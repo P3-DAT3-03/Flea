@@ -114,35 +114,107 @@ a, .btn-link {
     z-index: 1000;
 }
 
-    #blazor-error-ui .dismiss {
-        cursor: pointer;
-        position: absolute;
-        right: 0.75rem;
-        top: 0.5rem;
-    }
+#blazor-error-ui .dismiss {
+    cursor: pointer;
+    position: absolute;
+    right: 0.75rem;
+    top: 0.5rem;
+}
 
 
-/*To make navbar transparent so it match sidebar color*/
+/* TopBar - To make navbar transparent so it match sidebar color*/
 .list, .tabbar--material{
     background-color: transparent;
 }
-    
-/*To edit li padding in navbar*/
+
+/* SideBar - To edit li padding in SideBar*/
 .list-item{
     padding: 0;
 }
 
-/*To edit logo*/
+/* SideBar - To edit logo*/
 .logo{
     padding-left: 1rem;
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
 }
-/*.checked+.tabbar--material__button:after*/
+
+/* To change color of the line under the different tabs*/
 .tabbar--material__button:after{
     background-color: #ffa101;
 }
 
+/* Change color on the main page*/
 .page{
     color: #0d0d0d;
 }
+
+/* Search field*/
+.search-input{
+    border-color: #ffffff;
+    border-radius: 20px 20px 20px 20px;
+    border-style: solid;
+    border-width: 1px;
+    width: 50%;
+    height: 40px;
+    margin-bottom: 50px;
+    vertical-align: baseline;
+}
+
+/* Grid for each booking and Customer ---*/
+.customer-item, .reservation-item{
+    color: white;
+    background-color: #484848;
+    padding: 10px;
+    border-radius: 20px;
+    display: grid;
+    
+    grid-gap: 10px;
+    margin-bottom: 20px;
+}
+
+.reservation-item {
+    grid-template-columns: 30% 12.5% 15% 15% auto;   
+}
+
+.customer-item {
+    grid-template-columns: 12.5% 30% 15% 15% auto;
+}
+/*---*/
+
+
+/*  Create new booking or customer button*/
+.create-button {
+    border-radius: 20px;
+    border: 2px solid #ffffff;
+    height: 40px;
+    float: right;
+    width: 30%;
+}
+
+/* Delete button for each booking or customer*/
+.del-button {
+    background: #ff0000;
+    border: 1px solid currentColor;
+    border-radius: 20px;
+}
+
+/* Edit button for each booking or customer*/
+.edit-button{
+    background: transparent;
+    border: 1px solid currentColor;
+    border-radius: 20px;
+}
+
+/* Allign txt for Information on reservation and customer*/
+.txt {
+    display: flex;
+    align-items: center;
+}
+
+
+
+
+
+
+

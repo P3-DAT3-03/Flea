@@ -1,81 +1,87 @@
 @page "/CustomerOverview"
-<li class="TopLine-item">
-    <input @oninput="Searchbar" type="search" value="" placeholder="Søg efter kunde" class="search-input" style="width: 280px;">
-    <button class="button" @onclick="NewCustomer">Tilføj Ny Loppe</button>
-</li>
-@foreach (var (key, value) in ShownCustomers)
-{
-    <ul class="list"style="background-color: #0d0d0d">
-        <UserListItem Id="@key" Name="@value.Name" TeleNumber="@value.TeleNumber" OnDelete="@DeleteCustomerInformation" OnEdit="@EditCustomerInformation">
-        </UserListItem >
-    </ul>
-}
+<div>
+    <input class="search-input" type="search" value="" placeholder="Søg efter kunde" @oninput="Searchbar">
+    <button class="button create-button" @onclick="NewCustomer">Tilføj Ny Loppe</button>
+
+    @foreach (var (key, value) in ShownCustomers)
+    {
+        <div>
+            <UserListItem Id="@key" Name="@value.Name" TeleNumber="@value.TeleNumber"
+                          OnDelete="@DeleteCustomerInformation" OnEdit="@EditCustomerInformation">
+            </UserListItem>
+        </div>
+    }
+</div>
 
 @code
 {
     private string _search = "";
-    
-    //dummy data
+
+    // Dummy data ---
     class Customer
     {
         public string Name { get; set; }
         public string TeleNumber { get; set; }
     }
-    //dummy data
+    
     private Dictionary<int, Customer> Customers = new()
     {
         {1, new Customer() {Name = "Sebastian Aaholm", TeleNumber = "24823423"}},
         {2, new Customer() {Name = "Jens Jensen", TeleNumber = "4541341"}},
         {3, new Customer() {Name = "Hans Nielsen", TeleNumber = "8888888"}},
     };
+    // ---
     
     private Dictionary<int, Customer> ShownCustomers = new();
-    
-    //Delete the customer
+
+    // Delete the customer
     public void DeleteCustomerInformation(int id)
     {
         Customers.Remove(id);
     }
-    
-    ///Edits the customer
+
+    // Edits the customer
     public void EditCustomerInformation(int id)
     {
         Console.WriteLine("Write the function here hehe");
     }
-    
+
     // Makes a new Customer
     public void NewCustomer()
     {
         Console.WriteLine("Write the function here haha");
     }
 
-    ///The searchbar function, it works WOW
+    // Searchbar function
     public void Searchbar(ChangeEventArgs e)
     {
-        var input = e.Value?.ToString()?? "";
+        // If no input whole list is shown
+        var input = e.Value?.ToString() ?? "";
         if (input == "")
         {
             ShownCustomers = Customers;
         }
         else if (Char.IsDigit(input[0]))
-        {///Finds by phonenumbers
-            
+        {
+    // Finds by phonenumbers
+
             var results = from c
                 in Customers
                 where c.Value.TeleNumber.Contains(input)
                 select c;
-            ShownCustomers= results.ToDictionary(x => x.Key, x => x.Value);
+            ShownCustomers = results.ToDictionary(x => x.Key, x => x.Value);
         }
         else
-        {///Finds by name
+        {
+    // Finds by name
             var results = from c
                 in Customers
                 where c.Value.Name.Contains(input)
                 select c;
-            ShownCustomers= results.ToDictionary(x => x.Key, x => x.Value);
+            ShownCustomers = results.ToDictionary(x => x.Key, x => x.Value);
         }
     }
-    
+
     protected override void OnInitialized()
     {
         ShownCustomers = Customers;
