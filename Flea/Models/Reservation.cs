@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Flea.Models
 {
@@ -6,14 +8,16 @@ namespace Flea.Models
     {
         /*TODO maybe add priority as Enum instead of as a int.
          *TODO consider if comments should be a list of strings and not one long string
-         *TODO consider if Tables should be a array based on TableCount insted of a list.*/
+         *TODO consider if Tables should be a array based on TableCount instead of a list.*/
 
         public int Priority { get; set; }
         public int TableCount { get; set; }
         public bool Paid { get; set; }
         public string Comments { get; set; }
         public List<Table> Tables { get; } = new List<Table>();
-        public Customer ReservationOwner { get; }
+        
+        public Event Event { get; set; }
+        public Customer ReservationOwner { get; set; }
 
         public Reservation(int priority, int tableCount, bool paid, string comments, Customer reservationOwner)
         {

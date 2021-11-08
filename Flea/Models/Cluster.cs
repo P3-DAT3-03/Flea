@@ -21,7 +21,7 @@ namespace Flea.Models
         }
 
         public int ReservationCount =>
-            Tables.Aggregate(0, (acc, table) => table.TableReservation != null ? acc + 1 : acc);
+            Tables.Aggregate(0, (acc, table) => table.Reservation != null ? acc + 1 : acc);
 
         public int TablesNotPlaced => Tables.Length - ReservationCount;
 

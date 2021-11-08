@@ -4,17 +4,18 @@
     {
         public enum TableType
         {
-            table,
-            empty,
-            rack,
+            Table,
+            Empty,
+            Rack,
         }
 
-        public Reservation TableReservation { get; set; }
+        public Reservation? Reservation { get; set; }
         public TableType Type { get; set; }
 
-        public Table()
+        public Table(TableType type = TableType.Table, Reservation? reservation = null)
         {
-            Type = TableType.table;
+            Type = type;
+            Reservation = reservation;
         }
     }
 }

@@ -6,8 +6,6 @@ namespace Flea.Models
     {
         public DbSet<Event> Events { get; set; }
         
-        public DbSet<Cluster> Clusters { get; set; }
-        
         public DbSet<Table> Tables { get; set; }
         
         public DbSet<Reservation> Reservations { get; set; }
@@ -16,7 +14,6 @@ namespace Flea.Models
 
         public BingoContext(DbContextOptions<BingoContext> contextOptions) : base(contextOptions)
         {
-            
         }
     }
 }
