@@ -4,8 +4,9 @@
       "src": [
         {
           "files": [
-            "src/**.csproj"
-          ]
+            "**.csproj"
+          ],
+          "src":"../Flea/"
         }
       ],
       "dest": "api",
@@ -51,7 +52,7 @@
     "dest": "_site",
     "globalMetadataFiles": [],
     "fileMetadataFiles": [],
-    "template": ["default", "./docfx.console.2.58.9/tools/Plugins/rest.tagpage.2.58.9/content"],
+    "template": ["default","material/material"],
     "postProcessors": [],
     "markdownEngineName": "markdig",
     "noLangKeyword": false,

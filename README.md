@@ -7,6 +7,22 @@ FLEA - Flea Location EstablishingApplication
  - PostgreSQL 
  - EntityFramework (ORM)
 
+## Setup
+
+To be able to run the program a `appsettings.json` must be present. A template for the contents is seen below:
+```json
+{
+  "Logging": {
+    "LogLevel": {
+      "Default": "Debug",
+      "System": "Information",
+      "Microsoft": "Information"
+    }
+  },
+  "ConnectionString": "<Insert Database Connection String Here>"
+}
+```
+
 # Development guidelines
 
  - New features are developed on separate feature branches.

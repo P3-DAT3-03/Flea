@@ -15,7 +15,7 @@ namespace Flea.Tests
         public void EventTests()
         {
             Event hello = new Event("hello", DateTime.Now);
-            Assert.True(13 == hello.Clusters.Length, "There should always be 13 clusters");
+            Assert.True(13 == hello.Clusters.Count, "There should always be 13 clusters");
 
             Assert.AreEqual(108, hello.ComputeRemainingTables);
 
@@ -50,7 +50,7 @@ namespace Flea.Tests
         public void TableTests()
         {
             Table m1 = new Table();
-            Assert.AreEqual(m1.Type, Table.TableType.table);
+            Assert.AreEqual(m1.Type, Table.TableType.Table);
         }
 
         [Test]
@@ -68,8 +68,8 @@ namespace Flea.Tests
             Cluster m = new Cluster("m", 4, tableAmount);
             Assert.AreEqual(m.CustomerCount, 4);
 
-            m.Tables[tableAmount - 1].TableReservation = OleReservation;
-            Assert.AreEqual(m.Tables[tableAmount-1].TableReservation.TableCount, 4, "trouble with assesing reservation info though table");
+            m.Tables[tableAmount - 1].Reservation = OleReservation;
+            Assert.AreEqual(m.Tables[tableAmount-1].Reservation.TableCount, 4, "trouble with assesing reservation info though table");
 
             /*checks if tables not placed gives back one lower than table amount since 1 table is reserved*/
             Assert.AreEqual(tableAmount - 1, m.TablesNotPlaced, "TablesNotPlaced does not give back the amount of unreserved tables");
