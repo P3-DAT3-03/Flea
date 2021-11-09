@@ -1,34 +1,32 @@
 @page "/"
 @page "/Home"
 
-<style>
-    body {background-color: #1f1f21}
-</style>
+<div>
+    <li class="view-head">
+        <input class="search-input" @bind-value="SearchTerm" @bind-value:event="oninput" placeholder="Søg efter loppemarked..."/>
+        <button class="button button--outline res-new-booking" type="button" @onclick="AddEventItem">Tilføj nyt loppemarked</button>
+    </li>
 
-<li class="TopLine-item">
-    <input @bind-value="SearchTerm" @bind-value:event="oninput" placeholder="Søg efter loppemarked..."/>
-    <button type="button" @onclick="AddEventItem">Tilføj nyt loppemarked</button>
-</li>
-
-<!-- Creates event items for each event that matches the user's search term -->
-@if (DummyEventDB.Count == 0)
-{
-    <h2>Der er ingen loppemarkeder at vise...</h2>
-}
-else if (FilteredEvents.Count == 0)
-{
-    <h2>Der er ingen loppemarkeder, som matcher søgekriterierne...</h2>
-}
-else
-{
-    foreach (DummyEvent e in FilteredEvents)
+    <!-- Creates event items for each event that matches the user's search term -->
+    @if (DummyEventDB.Count == 0)
     {
-        <ul>
-            <EventListItem Date="@e.Date" RemainingTables="@e.RemainingTables" MissingPayments="@e.MissingPayments">
-            </EventListItem>
-        </ul>
+        <h2>Der er ingen loppemarkeder at vise...</h2>
     }
-}
+    else if (FilteredEvents.Count == 0)
+    {
+        <h2>Der er ingen loppemarkeder, som matcher søgekriterierne...</h2>
+    }
+    else
+    {
+        foreach (DummyEvent e in FilteredEvents)
+        {
+            <div>
+                <EventListItem Date="@e.Date" RemainingTables="@e.RemainingTables" MissingPayments="@e.MissingPayments">
+                </EventListItem>
+            </div>
+        }
+    }
+</div>
 
 @code {
     // Placeholder event class. Replace with Event.cs in Model
