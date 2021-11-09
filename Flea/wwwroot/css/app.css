@@ -72,6 +72,33 @@
 
 @import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
 
+
+:root {
+    /* iOS dark theme background and foreground */
+    --ios-bg: #000;
+    --ios-fg: #fff;
+    
+    /* iOS dark theme grays */
+    --ios-g1: rgb(28, 28, 30);
+    --ios-g2: rgb(44, 44, 46);
+    --ios-g3: rgb(58, 58, 60);
+    --ios-g4: rgb(72, 72, 74);
+    --ios-g5: rgb(99, 99, 102);
+    --ios-g6: rgb(142, 142, 147);
+    
+    /* iOS other colors */
+    --ios-red: rgb(255, 69, 58);
+    --ios-orange-t: 255, 159, 10;
+    --ios-orange: rgb(var(--ios-orange-t));
+    
+    background: var(--ios-bg);
+    color: var(--ios-fg);
+}
+
+.sidebar .tabbar--material {
+    box-shadow: unset;
+}
+
 html, body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
@@ -144,21 +171,17 @@ a, .btn-link {
     background-color: #ffa101;
 }
 
-/* Change color on the main page*/
-.page{
-    color: #0d0d0d;
+.view-head {
+    height: 40px;
+    margin-bottom: 50px;
 }
 
 /* Reservation search field*/
 .search-input{
-    border-color: #ffffff;
-    border-radius: 20px 20px 20px 20px;
-    border-style: solid;
-    border-width: 1px;
     width: 50%;
     height: 40px;
-    margin-bottom: 50px;
     vertical-align: baseline;
+    background-color: var(--ios-g1);
 }
 
 /* Reservation grid for each booking*/
@@ -168,32 +191,31 @@ a, .btn-link {
     padding: 10px;
     border-radius: 20px;
     display: grid;
-    grid-template-columns: 30% 12.5% 15% 15% auto;
+    grid-template-columns: 35% 12.5% 12.5% 12.5% auto;
     grid-gap: 10px;
     margin-bottom: 20px;
 }
 
 /* Reservation create new booking button*/
 .res-new-booking {
-    border-radius: 20px;
-    border: 2px solid #ffffff;
+    border-radius: 9px;
     height: 40px;
     float: right;
-    width: 30%;
 }
 
 /* Reservation delete button for each booking*/
 .res-del-button{
-    background: #ff0000;
-    border: 1px solid currentColor;
-    border-radius: 20px;
+    background: transparent;
+    border-color: var(--ios-red);
+    color: var(--ios-red);
+    border-radius: 9px;
 }
 
 /* Reservation edit button for each booking*/
 .res-edit-button{
-    background: transparent;
-    border: 1px solid currentColor;
-    border-radius: 20px;
+    color: var(--ios-orange);
+    background-color: rgba(var(--ios-orange-t), 0.25);
+    border-radius: 9px;
 }
 
 /* Reservation to allign txt for name, phonenumber, stande etc.

@@ -1,8 +1,8 @@
-<div class="grid-container-res">
+<div class="reservation-li">
     <div class="res-txt">@Name</div>
     <div class="res-txt">@Stande</div>
     <div class="res-txt">@(PaymentStatus ? "Betalt" : "Ej betalt")</div>
-    <button class="button res-del-button" @onclick="Delete">Slet</button>
+    <button class="button res-del-button button--outline" @onclick="Delete">Slet</button>
     <button class="button res-edit-button" @onclick="Edit">Rediger</button>
 </div>
 
