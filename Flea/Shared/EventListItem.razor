@@ -1,13 +1,11 @@
-<li class="event-list">
-    <div>
-        <div>@Date </div>
-        <div>@RemainingTables ledige stande </div>
-        <div>@MissingPayments mangler at betale </div>
-        <button class="button">Booking ></button>
-        <button class="button">Placering ></button>
-        <button class="button">Loppemarked ></button>
-    </div>
-</li>
+<div class="event-list">
+    <div class="font-size-xx-large">@Date </div>
+    <button class="button button--outline">Booking ></button>
+    <div class="font-size-larger-unicorn">@RemainingTables ledige stande </div>
+    <button class="button button--outline">Placering ></button>
+    <div class="font-size-larger">@MissingPayments mangler at betale </div>
+    <button class="button button--outline">Loppemarked ></button>
+</div>
 
 @code {
     [Parameter]

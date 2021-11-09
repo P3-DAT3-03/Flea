@@ -2,10 +2,10 @@
 @page "/Home"
 
 <div>
-    <li class="view-head">
+    <div class="view-head">
         <input class="search-input" @bind-value="SearchTerm" @bind-value:event="oninput" placeholder="Søg efter loppemarked..."/>
         <button class="button button--outline res-new-booking" type="button" @onclick="AddEventItem">Tilføj nyt loppemarked</button>
-    </li>
+    </div>
 
     <!-- Creates event items for each event that matches the user's search term -->
     @if (DummyEventDB.Count == 0)
