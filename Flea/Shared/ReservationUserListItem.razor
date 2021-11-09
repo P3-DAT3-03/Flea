@@ -1,0 +1,34 @@
+<div class="reservation-li">
+    <div class="res-txt">@Name</div>
+    <div class="res-txt">@Booths Stande</div>
+    <div class="res-txt">@(PaymentStatus ? "Betalt" : "Ej betalt")</div>
+    <button class="button del-button button--outline" @onclick="Delete">Slet</button>
+    <button class="button edit-button" @onclick="Edit">Rediger</button>
+</div>
+
+@code {
+    [Parameter]
+    public string Name { get; set; }
+
+    [Parameter]
+    public int Booths { get; set; }
+    
+    [Parameter]
+    public bool PaymentStatus { get; set; }
+    
+    [Parameter]
+    public EventCallback<string> OnDelete { get; set; }
+    
+    [Parameter]
+    public EventCallback<string>OnEdit { get; set; }
+
+    public async Task Delete()
+    {
+        await OnDelete.InvokeAsync(Name);
+    }
+
+    public async Task Edit()
+    {
+        await OnEdit.InvokeAsync(Name);
+    }
+}

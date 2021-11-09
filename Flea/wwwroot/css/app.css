@@ -72,6 +72,33 @@
 
 @import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
 
+
+:root {
+    /* iOS dark theme background and foreground */
+    --ios-bg: #000;
+    --ios-fg: #fff;
+    
+    /* iOS dark theme grays */
+    --ios-g1: rgb(28, 28, 30);
+    --ios-g2: rgb(44, 44, 46);
+    --ios-g3: rgb(58, 58, 60);
+    --ios-g4: rgb(72, 72, 74);
+    --ios-g5: rgb(99, 99, 102);
+    --ios-g6: rgb(142, 142, 147);
+    
+    /* iOS other colors */
+    --ios-red: rgb(255, 69, 58);
+    --ios-orange-t: 255, 159, 10;
+    --ios-orange: rgb(var(--ios-orange-t));
+    
+    background: var(--ios-bg);
+    color: var(--ios-fg);
+}
+
+.sidebar .tabbar--material {
+    box-shadow: unset;
+}
+
 html, body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
@@ -122,27 +149,95 @@ a, .btn-link {
     }
 
 
-/*To make navbar transparent so it match sidebar color*/
+/* TopBar - To make navbar transparent so it match sidebar color*/
 .list, .tabbar--material{
     background-color: transparent;
 }
     
-/*To edit li padding in navbar*/
+/* SideBar - To edit li padding in SideBar*/
 .list-item{
     padding: 0;
 }
 
-/*To edit logo*/
+/* SideBar - To edit logo*/
 .logo{
     padding-left: 1rem;
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
 }
-/*.checked+.tabbar--material__button:after*/
+
+/* To change color of the line under the different tabs*/
 .tabbar--material__button:after{
     background-color: #ffa101;
 }
 
-.page{
-    color: #0d0d0d;
+.view-head {
+    height: 40px;
+    margin-bottom: 50px;
 }
+
+/* Search field*/
+.search-input{
+    width: 50%;
+    height: 40px;
+    vertical-align: baseline;
+    background-color: var(--ios-g1);
+}
+
+/* Grid container for reservation and customer*/
+.customer-item, 
+.reservation-li {
+    background-color: var(--ios-g1);
+    padding: 10px;
+    border-radius: 11px;
+    display: grid;
+    
+    grid-gap: 10px;
+    margin-bottom: 20px;
+}
+
+/* Template for reservation*/
+.reservation-li {
+    grid-template-columns: auto 12.5% 12.5% 10% 15%;
+}
+
+/* Template for customer*/
+.customer-item{
+    grid-template-columns: auto 30% 25% 10% 15%;
+}
+
+/* Create new booking and customer button*/
+.create-button {
+    border-radius: 9px;
+    height: 40px;
+    float: right;
+}
+
+/* Delete button for each booking and customer*/
+.del-button{
+    background: transparent;
+    border-color: var(--ios-red);
+    color: var(--ios-red);
+    border-radius: 9px;
+}
+
+/* Edit button for each booking and customer*/
+.edit-button{
+    color: var(--ios-orange);
+    background-color: rgba(var(--ios-orange-t), 0.25);
+    border-radius: 9px;
+}
+
+/* Allign text for displayed data in grid columns */
+.txt {
+    display: flex;
+    align-items: center;
+}
+
+
+
+
+
+
+
+
