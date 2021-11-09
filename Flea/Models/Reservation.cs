@@ -10,6 +10,8 @@ namespace Flea.Models
          *TODO consider if comments should be a list of strings and not one long string
          *TODO consider if Tables should be a array based on TableCount instead of a list.*/
 
+        public int Id { get; set; }
+        
         public int Priority { get; set; }
         public int TableCount { get; set; }
         public bool Paid { get; set; }
@@ -25,7 +27,14 @@ namespace Flea.Models
             TableCount = tableCount;
             Paid = paid;
             Comments = comments;
-            ReservationOwner = reservationOwner;
+        }
+        
+        public Reservation(int priority, int tableCount, bool paid, string comments)
+        {
+            Priority = priority;
+            TableCount = tableCount;
+            Paid = paid;
+            Comments = comments;
         }
     }
 }

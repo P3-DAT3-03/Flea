@@ -1,29 +1,38 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 
 namespace Flea.Models
 {
     public class Cluster
     {
+        public int Id { get; set; }
         public string Name { get; set; }
-        public Table[] Tables { get; set; }
+        public List<Table> Tables { get; set; }
         public int CustomerCount { get; set; }
 
         public Cluster(string name, int customerCount, int tableAmount)
         {
             Name = name;
             CustomerCount = customerCount;
-            Tables = new Table[tableAmount];
-            for (int i = 0; i < tableAmount; i++)
+            Tables = new List<Table> {Capacity = customerCount};
+            for (var i = 0; i < tableAmount; i++)
             {
-                Tables[i] = new Table();
+                Tables.Add(new Table());
             }
+        }
+
+        public Cluster(string name, int customerCount)
+        {
+            Name = name;
+            CustomerCount = customerCount;
         }
 
         public int ReservationCount =>
             Tables.Aggregate(0, (acc, table) => table.Reservation != null ? acc + 1 : acc);
 
-        public int TablesNotPlaced => Tables.Length - ReservationCount;
+        public int TablesNotPlaced => Tables.Count - ReservationCount;
 
         /*TODO need to implement a function that checks if a placement is possible based on the cluster criterea,
          * fx if it sould cause too many customers to be seated*/
