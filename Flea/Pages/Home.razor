@@ -4,7 +4,7 @@
 <div>
     <div class="view-head">
         <input class="search-input" @bind-value="SearchTerm" @bind-value:event="oninput" placeholder="Søg efter loppemarked..."/>
-        <button class="button button--outline res-new-booking" type="button" @onclick="AddEventItem">Tilføj nyt loppemarked</button>
+        <button class="button button--outline create-button" type="button" @onclick="AddEventItem">Tilføj nyt loppemarked</button>
     </div>
 
     <!-- Creates event items for each event that matches the user's search term -->
