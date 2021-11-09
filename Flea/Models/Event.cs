@@ -1,13 +1,21 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Flea.Models
 {
     public class Event
     {
+        public int Id { get; set; }
         public string Name { get; set; }
+        
+        /// <summary>
+        /// The date at which the event will be held.
+        /// </summary>
         public DateTime DateTime { get; set; }
-        public Cluster[] Clusters { get; set; }
+        
+        public List<Cluster> Clusters { get; set; }
+        public List<Reservation> Reservations;
         public Event PreviousEvent { get; set; }
 
 
@@ -17,7 +25,7 @@ namespace Flea.Models
             DateTime = dateTime;
             Name = name;
 
-            Clusters = new Cluster[]
+            Clusters = new List<Cluster>
                 { 
                 new Cluster("A", 4, 8), new Cluster("B", 4, 8), new Cluster("C", 4, 8), new Cluster("D", 4, 8),
                 new Cluster("E", 4, 8), new Cluster("F", 4, 8), new Cluster("G", 4, 8), new Cluster("H", 4, 8),
