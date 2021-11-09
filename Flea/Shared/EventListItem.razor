@@ -1,0 +1,26 @@
+<li class="event-list">
+    <div>
+        <div>@Date </div>
+        <div>@RemainingTables ledige stande </div>
+        <div>@MissingPayments mangler at betale </div>
+        <button class="button">Booking ></button>
+        <button class="button">Placering ></button>
+        <button class="button">Loppemarked ></button>
+    </div>
+</li>
+
+@code {
+    [Parameter]
+    public int ID { get; set; }
+    
+    [Parameter]
+    public string Date { get; set; }
+    
+    [Parameter]
+    public int RemainingTables { get; set; }
+    
+    [Parameter]
+    public int MissingPayments { get; set; }
+    
+    // Add functionality for buttons here.
+}
