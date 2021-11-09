@@ -1,6 +1,6 @@
 <div class="reservation-li">
     <div class="res-txt">@Name</div>
-    <div class="res-txt">@Stande</div>
+    <div class="res-txt">@Booths Stande</div>
     <div class="res-txt">@(PaymentStatus ? "Betalt" : "Ej betalt")</div>
     <button class="button res-del-button button--outline" @onclick="Delete">Slet</button>
     <button class="button res-edit-button" @onclick="Edit">Rediger</button>
@@ -11,7 +11,7 @@
     public string Name { get; set; }
 
     [Parameter]
-    public int Stande { get; set; }
+    public int Booths { get; set; }
     
     [Parameter]
     public bool PaymentStatus { get; set; }

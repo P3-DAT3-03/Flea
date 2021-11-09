@@ -9,7 +9,7 @@
     @foreach (var value in _shownReservation)
     {
         <div>
-            <ReservationUserListItem Name="@value.Name" Stande="@value.Stande"
+            <ReservationUserListItem Name="@value.Name" Booths="@value.Booths"
                                      PaymentStatus="@value.PaymentStatus"
                                      OnDelete="@DeleteReservationInformation"
                                      OnEdit="@EditReservationInformation"/>
@@ -23,19 +23,19 @@
     class Reservation
     {
         public string Name { get; set; }
-        public int Stande { get; set; }
+        public int Booths { get; set; }
         public bool PaymentStatus { get; set; }
     }
     
     private List<Reservation> _reservations = new()
     {
-        {new Reservation() {Name = "Sebastian Aaholm", Stande = 3, PaymentStatus = false}},
-        {new Reservation() {Name = "Jens Jensen", Stande = 3, PaymentStatus = true}},
-        {new Reservation() {Name = "Hans Nielsen", Stande = 10, PaymentStatus = false}},
+        new Reservation() {Name = "Sebastian Aaholm", Booths = 3, PaymentStatus = false},
+        new Reservation() {Name = "Jens Jensen", Booths = 3, PaymentStatus = true},
+        new Reservation() {Name = "Hans Nielsen", Booths = 8, PaymentStatus = false},
     };
     // ---
     
-    private List<Reservation> _shownReservation = new();
+    private IEnumerable<Reservation> _shownReservation;
 
     // Delete the reservation
     public void DeleteReservationInformation(string name)
@@ -45,7 +45,7 @@
         if (nameFound != null)
         {
             _reservations.Remove(nameFound);
-            _shownReservation.Remove((nameFound));
+            _shownReservation = _shownReservation.Where(reservation=> reservation != nameFound);
         }
     }
     
@@ -71,30 +71,25 @@
             _shownReservation = _reservations;
         }
         else if (Char.IsDigit(input[0]))
-        {// Finds by stande
-
-            var results = from c
+        {// Finds by Booths
+            _shownReservation = from c
                 in _reservations
-                where c.Stande.ToString().Contains(input)
+                where c.Booths.ToString().Contains(input)
                 select c;
-            _shownReservation= results.ToList();
         }
         else if (input.Contains("betalt"))
         {
-            var results = from c
+            _shownReservation = from c
                 in _reservations
                 where c.PaymentStatus != input.Contains("ej")
                 select c;
-            _shownReservation = results.ToList();
         }
         else
-            
         {// Finds by name
-            var results = from c
+            _shownReservation = from c
                 in _reservations
                 where c.Name.ToLower().Contains(input)
                 select c;
-            _shownReservation = results.ToList();
         }
     }
     
