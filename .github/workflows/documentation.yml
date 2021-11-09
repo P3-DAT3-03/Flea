@@ -48,7 +48,7 @@ jobs:
         run:  |
           FILES="$(find -type f -iname "*.yaml")"
           echo "::set-output name=file_list::$FILES"
-      - name: Validate
+      - name: Validate Specificaiton
         uses: mbowman100/swagger-validator-action@master
         with:
           files: ${{ steps.getfiles.outputs.file_list }}
