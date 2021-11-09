@@ -185,26 +185,32 @@ a, .btn-link {
 }
 
 /* Reservation grid for each booking*/
-.grid-container-res{
-    color: white;
-    background-color: #484848;
+.customer-item, 
+.reservation-li {
+    background-color: var(--ios-g1);
     padding: 10px;
-    border-radius: 20px;
+    border-radius: 11px;
     display: grid;
-    grid-template-columns: 35% 12.5% 12.5% 12.5% auto;
+    
     grid-gap: 10px;
     margin-bottom: 20px;
 }
+.reservation-li {
+    grid-template-columns: auto 12.5% 12.5% 10% 15%;
+}
+.customer-item{
+    grid-template-columns: auto 30% 25% 10% 15%;
+}
 
 /* Reservation create new booking button*/
-.res-new-booking {
+.create-button {
     border-radius: 9px;
     height: 40px;
     float: right;
 }
 
 /* Reservation delete button for each booking*/
-.res-del-button{
+.del-button{
     background: transparent;
     border-color: var(--ios-red);
     color: var(--ios-red);
@@ -212,7 +218,7 @@ a, .btn-link {
 }
 
 /* Reservation edit button for each booking*/
-.res-edit-button{
+.edit-button{
     color: var(--ios-orange);
     background-color: rgba(var(--ios-orange-t), 0.25);
     border-radius: 9px;
@@ -220,7 +226,7 @@ a, .btn-link {
 
 /* Reservation to allign txt for name, phonenumber, stande etc.
    in grid columns */
-.res-txt {
+.txt {
     display: flex;
     align-items: center;
 }

@@ -1,7 +1,9 @@
 @page "/CustomerOverview"
 <div>
-    <input class="search-input" type="search" value="" placeholder="Søg efter kunde" @oninput="Searchbar">
-    <button class="button create-button" @onclick="NewCustomer">Tilføj Ny Loppe</button>
+    <div class="view-head">
+        <input class="search-input" type="search" value="" placeholder="Søg efter kunde" @oninput="Searchbar">
+        <button class="button button--outline create-button" @onclick="NewCustomer">Tilføj Ny Loppe</button>
+    </div>
 
     @foreach (var (key, value) in ShownCustomers)
     {
@@ -23,15 +25,16 @@
         public string Name { get; set; }
         public string TeleNumber { get; set; }
     }
-    
+
     private Dictionary<int, Customer> Customers = new()
     {
         {1, new Customer() {Name = "Sebastian Aaholm", TeleNumber = "24823423"}},
         {2, new Customer() {Name = "Jens Jensen", TeleNumber = "4541341"}},
         {3, new Customer() {Name = "Hans Nielsen", TeleNumber = "8888888"}},
     };
+
     // ---
-    
+
     private Dictionary<int, Customer> ShownCustomers = new();
 
     // Delete the customer
@@ -55,7 +58,7 @@
     // Searchbar function
     public void Searchbar(ChangeEventArgs e)
     {
-        // If no input whole list is shown
+    // If no input whole list is shown
         var input = e.Value?.ToString() ?? "";
         if (input == "")
         {
