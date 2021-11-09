@@ -19,9 +19,12 @@ jobs:
       - name: Setup DocFx
         run: |
           nuget install docfx.console -Version 2.58.9
+      - name: Get DocFx Template
+        run: |
+          cd ./Docs
+          git clone https://github.com/ovasquez/docfx-material.git material
       - name: Get DocFx Metadata
         run: |
-          mv ./Flea/* ./Docs/src
           cd ./Docs
           .\..\docfx.console.2.58.9\tools\docfx metadata
       - name: Generate Documentation
@@ -35,9 +38,9 @@ jobs:
           publish_dir: ./Docs/_site
           destination_dir: ./
   OpenAPI:
-      needs: DotNet
-      runs-on: ubuntu-latest
-      steps:
+    needs: DotNet
+    runs-on: ubuntu-latest
+    steps:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Get OpenAPI files
