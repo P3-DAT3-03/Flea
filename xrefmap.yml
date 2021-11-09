@@ -7,18 +7,149 @@ references:
   commentId: N:Flea
   fullName: Flea
   nameWithType: Flea
+- uid: Flea.Migrations
+  name: Flea.Migrations
+  href: api/Flea.Migrations.html
+  commentId: N:Flea.Migrations
+  fullName: Flea.Migrations
+  nameWithType: Flea.Migrations
+- uid: Flea.Migrations.init
+  name: init
+  href: api/Flea.Migrations.init.html
+  commentId: T:Flea.Migrations.init
+  fullName: Flea.Migrations.init
+  nameWithType: init
+- uid: Flea.Migrations.init.BuildTargetModel(ModelBuilder)
+  name: BuildTargetModel(ModelBuilder)
+  href: api/Flea.Migrations.init.html#Flea_Migrations_init_BuildTargetModel_ModelBuilder_
+  commentId: M:Flea.Migrations.init.BuildTargetModel(ModelBuilder)
+  fullName: Flea.Migrations.init.BuildTargetModel(ModelBuilder)
+  nameWithType: init.BuildTargetModel(ModelBuilder)
+- uid: Flea.Migrations.init.BuildTargetModel*
+  name: BuildTargetModel
+  href: api/Flea.Migrations.init.html#Flea_Migrations_init_BuildTargetModel_
+  commentId: Overload:Flea.Migrations.init.BuildTargetModel
+  isSpec: "True"
+  fullName: Flea.Migrations.init.BuildTargetModel
+  nameWithType: init.BuildTargetModel
+- uid: Flea.Migrations.init.Down(MigrationBuilder)
+  name: Down(MigrationBuilder)
+  href: api/Flea.Migrations.init.html#Flea_Migrations_init_Down_MigrationBuilder_
+  commentId: M:Flea.Migrations.init.Down(MigrationBuilder)
+  fullName: Flea.Migrations.init.Down(MigrationBuilder)
+  nameWithType: init.Down(MigrationBuilder)
+- uid: Flea.Migrations.init.Down*
+  name: Down
+  href: api/Flea.Migrations.init.html#Flea_Migrations_init_Down_
+  commentId: Overload:Flea.Migrations.init.Down
+  isSpec: "True"
+  fullName: Flea.Migrations.init.Down
+  nameWithType: init.Down
+- uid: Flea.Migrations.init.Up(MigrationBuilder)
+  name: Up(MigrationBuilder)
+  href: api/Flea.Migrations.init.html#Flea_Migrations_init_Up_MigrationBuilder_
+  commentId: M:Flea.Migrations.init.Up(MigrationBuilder)
+  fullName: Flea.Migrations.init.Up(MigrationBuilder)
+  nameWithType: init.Up(MigrationBuilder)
+- uid: Flea.Migrations.init.Up*
+  name: Up
+  href: api/Flea.Migrations.init.html#Flea_Migrations_init_Up_
+  commentId: Overload:Flea.Migrations.init.Up
+  isSpec: "True"
+  fullName: Flea.Migrations.init.Up
+  nameWithType: init.Up
 - uid: Flea.Models
   name: Flea.Models
   href: api/Flea.Models.html
   commentId: N:Flea.Models
   fullName: Flea.Models
   nameWithType: Flea.Models
+- uid: Flea.Models.BingoContext
+  name: BingoContext
+  href: api/Flea.Models.BingoContext.html
+  commentId: T:Flea.Models.BingoContext
+  fullName: Flea.Models.BingoContext
+  nameWithType: BingoContext
+- uid: Flea.Models.BingoContext.#ctor(DbContextOptions{Flea.Models.BingoContext})
+  name: BingoContext(DbContextOptions<BingoContext>)
+  href: api/Flea.Models.BingoContext.html#Flea_Models_BingoContext__ctor_DbContextOptions_Flea_Models_BingoContext__
+  commentId: M:Flea.Models.BingoContext.#ctor(DbContextOptions{Flea.Models.BingoContext})
+  name.vb: BingoContext(DbContextOptions(Of BingoContext))
+  fullName: Flea.Models.BingoContext.BingoContext(DbContextOptions<Flea.Models.BingoContext>)
+  fullName.vb: Flea.Models.BingoContext.BingoContext(DbContextOptions(Of Flea.Models.BingoContext))
+  nameWithType: BingoContext.BingoContext(DbContextOptions<BingoContext>)
+  nameWithType.vb: BingoContext.BingoContext(DbContextOptions(Of BingoContext))
+- uid: Flea.Models.BingoContext.#ctor*
+  name: BingoContext
+  href: api/Flea.Models.BingoContext.html#Flea_Models_BingoContext__ctor_
+  commentId: Overload:Flea.Models.BingoContext.#ctor
+  isSpec: "True"
+  fullName: Flea.Models.BingoContext.BingoContext
+  nameWithType: BingoContext.BingoContext
+- uid: Flea.Models.BingoContext.Customers
+  name: Customers
+  href: api/Flea.Models.BingoContext.html#Flea_Models_BingoContext_Customers
+  commentId: P:Flea.Models.BingoContext.Customers
+  fullName: Flea.Models.BingoContext.Customers
+  nameWithType: BingoContext.Customers
+- uid: Flea.Models.BingoContext.Customers*
+  name: Customers
+  href: api/Flea.Models.BingoContext.html#Flea_Models_BingoContext_Customers_
+  commentId: Overload:Flea.Models.BingoContext.Customers
+  isSpec: "True"
+  fullName: Flea.Models.BingoContext.Customers
+  nameWithType: BingoContext.Customers
+- uid: Flea.Models.BingoContext.Events
+  name: Events
+  href: api/Flea.Models.BingoContext.html#Flea_Models_BingoContext_Events
+  commentId: P:Flea.Models.BingoContext.Events
+  fullName: Flea.Models.BingoContext.Events
+  nameWithType: BingoContext.Events
+- uid: Flea.Models.BingoContext.Events*
+  name: Events
+  href: api/Flea.Models.BingoContext.html#Flea_Models_BingoContext_Events_
+  commentId: Overload:Flea.Models.BingoContext.Events
+  isSpec: "True"
+  fullName: Flea.Models.BingoContext.Events
+  nameWithType: BingoContext.Events
+- uid: Flea.Models.BingoContext.Reservations
+  name: Reservations
+  href: api/Flea.Models.BingoContext.html#Flea_Models_BingoContext_Reservations
+  commentId: P:Flea.Models.BingoContext.Reservations
+  fullName: Flea.Models.BingoContext.Reservations
+  nameWithType: BingoContext.Reservations
+- uid: Flea.Models.BingoContext.Reservations*
+  name: Reservations
+  href: api/Flea.Models.BingoContext.html#Flea_Models_BingoContext_Reservations_
+  commentId: Overload:Flea.Models.BingoContext.Reservations
+  isSpec: "True"
+  fullName: Flea.Models.BingoContext.Reservations
+  nameWithType: BingoContext.Reservations
+- uid: Flea.Models.BingoContext.Tables
+  name: Tables
+  href: api/Flea.Models.BingoContext.html#Flea_Models_BingoContext_Tables
+  commentId: P:Flea.Models.BingoContext.Tables
+  fullName: Flea.Models.BingoContext.Tables
+  nameWithType: BingoContext.Tables
+- uid: Flea.Models.BingoContext.Tables*
+  name: Tables
+  href: api/Flea.Models.BingoContext.html#Flea_Models_BingoContext_Tables_
+  commentId: Overload:Flea.Models.BingoContext.Tables
+  isSpec: "True"
+  fullName: Flea.Models.BingoContext.Tables
+  nameWithType: BingoContext.Tables
 - uid: Flea.Models.Cluster
   name: Cluster
   href: api/Flea.Models.Cluster.html
   commentId: T:Flea.Models.Cluster
   fullName: Flea.Models.Cluster
   nameWithType: Cluster
+- uid: Flea.Models.Cluster.#ctor(System.String,System.Int32)
+  name: Cluster(String, Int32)
+  href: api/Flea.Models.Cluster.html#Flea_Models_Cluster__ctor_System_String_System_Int32_
+  commentId: M:Flea.Models.Cluster.#ctor(System.String,System.Int32)
+  fullName: Flea.Models.Cluster.Cluster(System.String, System.Int32)
+  nameWithType: Cluster.Cluster(String, Int32)
 - uid: Flea.Models.Cluster.#ctor(System.String,System.Int32,System.Int32)
   name: Cluster(String, Int32, Int32)
   href: api/Flea.Models.Cluster.html#Flea_Models_Cluster__ctor_System_String_System_Int32_System_Int32_
@@ -58,6 +189,19 @@ references:
   isSpec: "True"
   fullName: Flea.Models.Cluster.CustomerCount
   nameWithType: Cluster.CustomerCount
+- uid: Flea.Models.Cluster.Id
+  name: Id
+  href: api/Flea.Models.Cluster.html#Flea_Models_Cluster_Id
+  commentId: P:Flea.Models.Cluster.Id
+  fullName: Flea.Models.Cluster.Id
+  nameWithType: Cluster.Id
+- uid: Flea.Models.Cluster.Id*
+  name: Id
+  href: api/Flea.Models.Cluster.html#Flea_Models_Cluster_Id_
+  commentId: Overload:Flea.Models.Cluster.Id
+  isSpec: "True"
+  fullName: Flea.Models.Cluster.Id
+  nameWithType: Cluster.Id
 - uid: Flea.Models.Cluster.Name
   name: Name
   href: api/Flea.Models.Cluster.html#Flea_Models_Cluster_Name
@@ -142,6 +286,32 @@ references:
   isSpec: "True"
   fullName: Flea.Models.Customer.Customer
   nameWithType: Customer.Customer
+- uid: Flea.Models.Customer.CreateReservation(System.Int32,System.Int32,System.Boolean,System.String)
+  name: CreateReservation(Int32, Int32, Boolean, String)
+  href: api/Flea.Models.Customer.html#Flea_Models_Customer_CreateReservation_System_Int32_System_Int32_System_Boolean_System_String_
+  commentId: M:Flea.Models.Customer.CreateReservation(System.Int32,System.Int32,System.Boolean,System.String)
+  fullName: Flea.Models.Customer.CreateReservation(System.Int32, System.Int32, System.Boolean, System.String)
+  nameWithType: Customer.CreateReservation(Int32, Int32, Boolean, String)
+- uid: Flea.Models.Customer.CreateReservation*
+  name: CreateReservation
+  href: api/Flea.Models.Customer.html#Flea_Models_Customer_CreateReservation_
+  commentId: Overload:Flea.Models.Customer.CreateReservation
+  isSpec: "True"
+  fullName: Flea.Models.Customer.CreateReservation
+  nameWithType: Customer.CreateReservation
+- uid: Flea.Models.Customer.Id
+  name: Id
+  href: api/Flea.Models.Customer.html#Flea_Models_Customer_Id
+  commentId: P:Flea.Models.Customer.Id
+  fullName: Flea.Models.Customer.Id
+  nameWithType: Customer.Id
+- uid: Flea.Models.Customer.Id*
+  name: Id
+  href: api/Flea.Models.Customer.html#Flea_Models_Customer_Id_
+  commentId: Overload:Flea.Models.Customer.Id
+  isSpec: "True"
+  fullName: Flea.Models.Customer.Id
+  nameWithType: Customer.Id
 - uid: Flea.Models.Customer.Name
   name: Name
   href: api/Flea.Models.Customer.html#Flea_Models_Customer_Name
@@ -226,6 +396,19 @@ references:
   isSpec: "True"
   fullName: Flea.Models.Event.DateTime
   nameWithType: Event.DateTime
+- uid: Flea.Models.Event.Id
+  name: Id
+  href: api/Flea.Models.Event.html#Flea_Models_Event_Id
+  commentId: P:Flea.Models.Event.Id
+  fullName: Flea.Models.Event.Id
+  nameWithType: Event.Id
+- uid: Flea.Models.Event.Id*
+  name: Id
+  href: api/Flea.Models.Event.html#Flea_Models_Event_Id_
+  commentId: Overload:Flea.Models.Event.Id
+  isSpec: "True"
+  fullName: Flea.Models.Event.Id
+  nameWithType: Event.Id
 - uid: Flea.Models.Event.Name
   name: Name
   href: api/Flea.Models.Event.html#Flea_Models_Event_Name
@@ -252,12 +435,24 @@ references:
   isSpec: "True"
   fullName: Flea.Models.Event.PreviousEvent
   nameWithType: Event.PreviousEvent
+- uid: Flea.Models.Event.Reservations
+  name: Reservations
+  href: api/Flea.Models.Event.html#Flea_Models_Event_Reservations
+  commentId: F:Flea.Models.Event.Reservations
+  fullName: Flea.Models.Event.Reservations
+  nameWithType: Event.Reservations
 - uid: Flea.Models.Reservation
   name: Reservation
   href: api/Flea.Models.Reservation.html
   commentId: T:Flea.Models.Reservation
   fullName: Flea.Models.Reservation
   nameWithType: Reservation
+- uid: Flea.Models.Reservation.#ctor(System.Int32,System.Int32,System.Boolean,System.String)
+  name: Reservation(Int32, Int32, Boolean, String)
+  href: api/Flea.Models.Reservation.html#Flea_Models_Reservation__ctor_System_Int32_System_Int32_System_Boolean_System_String_
+  commentId: M:Flea.Models.Reservation.#ctor(System.Int32,System.Int32,System.Boolean,System.String)
+  fullName: Flea.Models.Reservation.Reservation(System.Int32, System.Int32, System.Boolean, System.String)
+  nameWithType: Reservation.Reservation(Int32, Int32, Boolean, String)
 - uid: Flea.Models.Reservation.#ctor(System.Int32,System.Int32,System.Boolean,System.String,Flea.Models.Customer)
   name: Reservation(Int32, Int32, Boolean, String, Customer)
   href: api/Flea.Models.Reservation.html#Flea_Models_Reservation__ctor_System_Int32_System_Int32_System_Boolean_System_String_Flea_Models_Customer_
@@ -284,6 +479,32 @@ references:
   isSpec: "True"
   fullName: Flea.Models.Reservation.Comments
   nameWithType: Reservation.Comments
+- uid: Flea.Models.Reservation.Event
+  name: Event
+  href: api/Flea.Models.Reservation.html#Flea_Models_Reservation_Event
+  commentId: P:Flea.Models.Reservation.Event
+  fullName: Flea.Models.Reservation.Event
+  nameWithType: Reservation.Event
+- uid: Flea.Models.Reservation.Event*
+  name: Event
+  href: api/Flea.Models.Reservation.html#Flea_Models_Reservation_Event_
+  commentId: Overload:Flea.Models.Reservation.Event
+  isSpec: "True"
+  fullName: Flea.Models.Reservation.Event
+  nameWithType: Reservation.Event
+- uid: Flea.Models.Reservation.Id
+  name: Id
+  href: api/Flea.Models.Reservation.html#Flea_Models_Reservation_Id
+  commentId: P:Flea.Models.Reservation.Id
+  fullName: Flea.Models.Reservation.Id
+  nameWithType: Reservation.Id
+- uid: Flea.Models.Reservation.Id*
+  name: Id
+  href: api/Flea.Models.Reservation.html#Flea_Models_Reservation_Id_
+  commentId: Overload:Flea.Models.Reservation.Id
+  isSpec: "True"
+  fullName: Flea.Models.Reservation.Id
+  nameWithType: Reservation.Id
 - uid: Flea.Models.Reservation.Paid
   name: Paid
   href: api/Flea.Models.Reservation.html#Flea_Models_Reservation_Paid
@@ -355,12 +576,18 @@ references:
   commentId: T:Flea.Models.Table
   fullName: Flea.Models.Table
   nameWithType: Table
-- uid: Flea.Models.Table.#ctor
-  name: Table()
-  href: api/Flea.Models.Table.html#Flea_Models_Table__ctor
-  commentId: M:Flea.Models.Table.#ctor
-  fullName: Flea.Models.Table.Table()
-  nameWithType: Table.Table()
+- uid: Flea.Models.Table.#ctor(Flea.Models.Table.TableType)
+  name: Table(Table.TableType)
+  href: api/Flea.Models.Table.html#Flea_Models_Table__ctor_Flea_Models_Table_TableType_
+  commentId: M:Flea.Models.Table.#ctor(Flea.Models.Table.TableType)
+  fullName: Flea.Models.Table.Table(Flea.Models.Table.TableType)
+  nameWithType: Table.Table(Table.TableType)
+- uid: Flea.Models.Table.#ctor(Flea.Models.Table.TableType,Flea.Models.Reservation)
+  name: Table(Table.TableType, Reservation)
+  href: api/Flea.Models.Table.html#Flea_Models_Table__ctor_Flea_Models_Table_TableType_Flea_Models_Reservation_
+  commentId: M:Flea.Models.Table.#ctor(Flea.Models.Table.TableType,Flea.Models.Reservation)
+  fullName: Flea.Models.Table.Table(Flea.Models.Table.TableType, Flea.Models.Reservation)
+  nameWithType: Table.Table(Table.TableType, Reservation)
 - uid: Flea.Models.Table.#ctor*
   name: Table
   href: api/Flea.Models.Table.html#Flea_Models_Table__ctor_
@@ -368,43 +595,69 @@ references:
   isSpec: "True"
   fullName: Flea.Models.Table.Table
   nameWithType: Table.Table
-- uid: Flea.Models.Table.TableReservation
-  name: TableReservation
-  href: api/Flea.Models.Table.html#Flea_Models_Table_TableReservation
-  commentId: P:Flea.Models.Table.TableReservation
-  fullName: Flea.Models.Table.TableReservation
-  nameWithType: Table.TableReservation
-- uid: Flea.Models.Table.TableReservation*
-  name: TableReservation
-  href: api/Flea.Models.Table.html#Flea_Models_Table_TableReservation_
-  commentId: Overload:Flea.Models.Table.TableReservation
+- uid: Flea.Models.Table.Cluster
+  name: Cluster
+  href: api/Flea.Models.Table.html#Flea_Models_Table_Cluster
+  commentId: P:Flea.Models.Table.Cluster
+  fullName: Flea.Models.Table.Cluster
+  nameWithType: Table.Cluster
+- uid: Flea.Models.Table.Cluster*
+  name: Cluster
+  href: api/Flea.Models.Table.html#Flea_Models_Table_Cluster_
+  commentId: Overload:Flea.Models.Table.Cluster
   isSpec: "True"
-  fullName: Flea.Models.Table.TableReservation
-  nameWithType: Table.TableReservation
+  fullName: Flea.Models.Table.Cluster
+  nameWithType: Table.Cluster
+- uid: Flea.Models.Table.Id
+  name: Id
+  href: api/Flea.Models.Table.html#Flea_Models_Table_Id
+  commentId: P:Flea.Models.Table.Id
+  fullName: Flea.Models.Table.Id
+  nameWithType: Table.Id
+- uid: Flea.Models.Table.Id*
+  name: Id
+  href: api/Flea.Models.Table.html#Flea_Models_Table_Id_
+  commentId: Overload:Flea.Models.Table.Id
+  isSpec: "True"
+  fullName: Flea.Models.Table.Id
+  nameWithType: Table.Id
+- uid: Flea.Models.Table.Reservation
+  name: Reservation
+  href: api/Flea.Models.Table.html#Flea_Models_Table_Reservation
+  commentId: P:Flea.Models.Table.Reservation
+  fullName: Flea.Models.Table.Reservation
+  nameWithType: Table.Reservation
+- uid: Flea.Models.Table.Reservation*
+  name: Reservation
+  href: api/Flea.Models.Table.html#Flea_Models_Table_Reservation_
+  commentId: Overload:Flea.Models.Table.Reservation
+  isSpec: "True"
+  fullName: Flea.Models.Table.Reservation
+  nameWithType: Table.Reservation
 - uid: Flea.Models.Table.TableType
   name: Table.TableType
   href: api/Flea.Models.Table.TableType.html
   commentId: T:Flea.Models.Table.TableType
   fullName: Flea.Models.Table.TableType
   nameWithType: Table.TableType
-- uid: Flea.Models.Table.TableType.empty
-  name: empty
-  href: api/Flea.Models.Table.TableType.html#Flea_Models_Table_TableType_empty
-  commentId: F:Flea.Models.Table.TableType.empty
-  fullName: Flea.Models.Table.TableType.empty
-  nameWithType: Table.TableType.empty
-- uid: Flea.Models.Table.TableType.rack
-  name: rack
-  href: api/Flea.Models.Table.TableType.html#Flea_Models_Table_TableType_rack
-  commentId: F:Flea.Models.Table.TableType.rack
-  fullName: Flea.Models.Table.TableType.rack
-  nameWithType: Table.TableType.rack
-- uid: Flea.Models.Table.TableType.table
-  name: table
-  href: api/Flea.Models.Table.TableType.html#Flea_Models_Table_TableType_table
-  commentId: F:Flea.Models.Table.TableType.table
-  fullName: Flea.Models.Table.TableType.table
-  nameWithType: Table.TableType.table
+- uid: Flea.Models.Table.TableType.Empty
+  name: Empty
+  href: api/Flea.Models.Table.TableType.html#Flea_Models_Table_TableType_Empty
+  commentId: F:Flea.Models.Table.TableType.Empty
+  fullName: Flea.Models.Table.TableType.Empty
+  nameWithType: Table.TableType.Empty
+- uid: Flea.Models.Table.TableType.Rack
+  name: Rack
+  href: api/Flea.Models.Table.TableType.html#Flea_Models_Table_TableType_Rack
+  commentId: F:Flea.Models.Table.TableType.Rack
+  fullName: Flea.Models.Table.TableType.Rack
+  nameWithType: Table.TableType.Rack
+- uid: Flea.Models.Table.TableType.Table
+  name: Table
+  href: api/Flea.Models.Table.TableType.html#Flea_Models_Table_TableType_Table
+  commentId: F:Flea.Models.Table.TableType.Table
+  fullName: Flea.Models.Table.TableType.Table
+  nameWithType: Table.TableType.Table
 - uid: Flea.Models.Table.Type
   name: Type
   href: api/Flea.Models.Table.html#Flea_Models_Table_Type
@@ -418,12 +671,95 @@ references:
   isSpec: "True"
   fullName: Flea.Models.Table.Type
   nameWithType: Table.Type
+- uid: Flea.Pages
+  name: Flea.Pages
+  href: api/Flea.Pages.html
+  commentId: N:Flea.Pages
+  fullName: Flea.Pages
+  nameWithType: Flea.Pages
+- uid: Flea.Pages.ErrorModel
+  name: ErrorModel
+  href: api/Flea.Pages.ErrorModel.html
+  commentId: T:Flea.Pages.ErrorModel
+  fullName: Flea.Pages.ErrorModel
+  nameWithType: ErrorModel
+- uid: Flea.Pages.ErrorModel.#ctor(Microsoft.Extensions.Logging.ILogger{Flea.Pages.ErrorModel})
+  name: ErrorModel(ILogger<ErrorModel>)
+  href: api/Flea.Pages.ErrorModel.html#Flea_Pages_ErrorModel__ctor_Microsoft_Extensions_Logging_ILogger_Flea_Pages_ErrorModel__
+  commentId: M:Flea.Pages.ErrorModel.#ctor(Microsoft.Extensions.Logging.ILogger{Flea.Pages.ErrorModel})
+  name.vb: ErrorModel(ILogger(Of ErrorModel))
+  fullName: Flea.Pages.ErrorModel.ErrorModel(Microsoft.Extensions.Logging.ILogger<Flea.Pages.ErrorModel>)
+  fullName.vb: Flea.Pages.ErrorModel.ErrorModel(Microsoft.Extensions.Logging.ILogger(Of Flea.Pages.ErrorModel))
+  nameWithType: ErrorModel.ErrorModel(ILogger<ErrorModel>)
+  nameWithType.vb: ErrorModel.ErrorModel(ILogger(Of ErrorModel))
+- uid: Flea.Pages.ErrorModel.#ctor*
+  name: ErrorModel
+  href: api/Flea.Pages.ErrorModel.html#Flea_Pages_ErrorModel__ctor_
+  commentId: Overload:Flea.Pages.ErrorModel.#ctor
+  isSpec: "True"
+  fullName: Flea.Pages.ErrorModel.ErrorModel
+  nameWithType: ErrorModel.ErrorModel
+- uid: Flea.Pages.ErrorModel.OnGet
+  name: OnGet()
+  href: api/Flea.Pages.ErrorModel.html#Flea_Pages_ErrorModel_OnGet
+  commentId: M:Flea.Pages.ErrorModel.OnGet
+  fullName: Flea.Pages.ErrorModel.OnGet()
+  nameWithType: ErrorModel.OnGet()
+- uid: Flea.Pages.ErrorModel.OnGet*
+  name: OnGet
+  href: api/Flea.Pages.ErrorModel.html#Flea_Pages_ErrorModel_OnGet_
+  commentId: Overload:Flea.Pages.ErrorModel.OnGet
+  isSpec: "True"
+  fullName: Flea.Pages.ErrorModel.OnGet
+  nameWithType: ErrorModel.OnGet
+- uid: Flea.Pages.ErrorModel.RequestId
+  name: RequestId
+  href: api/Flea.Pages.ErrorModel.html#Flea_Pages_ErrorModel_RequestId
+  commentId: P:Flea.Pages.ErrorModel.RequestId
+  fullName: Flea.Pages.ErrorModel.RequestId
+  nameWithType: ErrorModel.RequestId
+- uid: Flea.Pages.ErrorModel.RequestId*
+  name: RequestId
+  href: api/Flea.Pages.ErrorModel.html#Flea_Pages_ErrorModel_RequestId_
+  commentId: Overload:Flea.Pages.ErrorModel.RequestId
+  isSpec: "True"
+  fullName: Flea.Pages.ErrorModel.RequestId
+  nameWithType: ErrorModel.RequestId
+- uid: Flea.Pages.ErrorModel.ShowRequestId
+  name: ShowRequestId
+  href: api/Flea.Pages.ErrorModel.html#Flea_Pages_ErrorModel_ShowRequestId
+  commentId: P:Flea.Pages.ErrorModel.ShowRequestId
+  fullName: Flea.Pages.ErrorModel.ShowRequestId
+  nameWithType: ErrorModel.ShowRequestId
+- uid: Flea.Pages.ErrorModel.ShowRequestId*
+  name: ShowRequestId
+  href: api/Flea.Pages.ErrorModel.html#Flea_Pages_ErrorModel_ShowRequestId_
+  commentId: Overload:Flea.Pages.ErrorModel.ShowRequestId
+  isSpec: "True"
+  fullName: Flea.Pages.ErrorModel.ShowRequestId
+  nameWithType: ErrorModel.ShowRequestId
 - uid: Flea.Program
   name: Program
   href: api/Flea.Program.html
   commentId: T:Flea.Program
   fullName: Flea.Program
   nameWithType: Program
+- uid: Flea.Program.CreateHostBuilder(System.String[])
+  name: CreateHostBuilder(String[])
+  href: api/Flea.Program.html#Flea_Program_CreateHostBuilder_System_String___
+  commentId: M:Flea.Program.CreateHostBuilder(System.String[])
+  name.vb: CreateHostBuilder(String())
+  fullName: Flea.Program.CreateHostBuilder(System.String[])
+  fullName.vb: Flea.Program.CreateHostBuilder(System.String())
+  nameWithType: Program.CreateHostBuilder(String[])
+  nameWithType.vb: Program.CreateHostBuilder(String())
+- uid: Flea.Program.CreateHostBuilder*
+  name: CreateHostBuilder
+  href: api/Flea.Program.html#Flea_Program_CreateHostBuilder_
+  commentId: Overload:Flea.Program.CreateHostBuilder
+  isSpec: "True"
+  fullName: Flea.Program.CreateHostBuilder
+  nameWithType: Program.CreateHostBuilder
 - uid: Flea.Program.Main(System.String[])
   name: Main(String[])
   href: api/Flea.Program.html#Flea_Program_Main_System_String___
@@ -440,3 +776,61 @@ references:
   isSpec: "True"
   fullName: Flea.Program.Main
   nameWithType: Program.Main
+- uid: Flea.Startup
+  name: Startup
+  href: api/Flea.Startup.html
+  commentId: T:Flea.Startup
+  fullName: Flea.Startup
+  nameWithType: Startup
+- uid: Flea.Startup.#ctor(Microsoft.Extensions.Configuration.IConfiguration)
+  name: Startup(IConfiguration)
+  href: api/Flea.Startup.html#Flea_Startup__ctor_Microsoft_Extensions_Configuration_IConfiguration_
+  commentId: M:Flea.Startup.#ctor(Microsoft.Extensions.Configuration.IConfiguration)
+  fullName: Flea.Startup.Startup(Microsoft.Extensions.Configuration.IConfiguration)
+  nameWithType: Startup.Startup(IConfiguration)
+- uid: Flea.Startup.#ctor*
+  name: Startup
+  href: api/Flea.Startup.html#Flea_Startup__ctor_
+  commentId: Overload:Flea.Startup.#ctor
+  isSpec: "True"
+  fullName: Flea.Startup.Startup
+  nameWithType: Startup.Startup
+- uid: Flea.Startup.Configuration
+  name: Configuration
+  href: api/Flea.Startup.html#Flea_Startup_Configuration
+  commentId: P:Flea.Startup.Configuration
+  fullName: Flea.Startup.Configuration
+  nameWithType: Startup.Configuration
+- uid: Flea.Startup.Configuration*
+  name: Configuration
+  href: api/Flea.Startup.html#Flea_Startup_Configuration_
+  commentId: Overload:Flea.Startup.Configuration
+  isSpec: "True"
+  fullName: Flea.Startup.Configuration
+  nameWithType: Startup.Configuration
+- uid: Flea.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IWebHostEnvironment)
+  name: Configure(IApplicationBuilder, IWebHostEnvironment)
+  href: api/Flea.Startup.html#Flea_Startup_Configure_Microsoft_AspNetCore_Builder_IApplicationBuilder_Microsoft_AspNetCore_Hosting_IWebHostEnvironment_
+  commentId: M:Flea.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IWebHostEnvironment)
+  fullName: Flea.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder, Microsoft.AspNetCore.Hosting.IWebHostEnvironment)
+  nameWithType: Startup.Configure(IApplicationBuilder, IWebHostEnvironment)
+- uid: Flea.Startup.Configure*
+  name: Configure
+  href: api/Flea.Startup.html#Flea_Startup_Configure_
+  commentId: Overload:Flea.Startup.Configure
+  isSpec: "True"
+  fullName: Flea.Startup.Configure
+  nameWithType: Startup.Configure
+- uid: Flea.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)
+  name: ConfigureServices(IServiceCollection)
+  href: api/Flea.Startup.html#Flea_Startup_ConfigureServices_Microsoft_Extensions_DependencyInjection_IServiceCollection_
+  commentId: M:Flea.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)
+  fullName: Flea.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)
+  nameWithType: Startup.ConfigureServices(IServiceCollection)
+- uid: Flea.Startup.ConfigureServices*
+  name: ConfigureServices
+  href: api/Flea.Startup.html#Flea_Startup_ConfigureServices_
+  commentId: Overload:Flea.Startup.ConfigureServices
+  isSpec: "True"
+  fullName: Flea.Startup.ConfigureServices
+  nameWithType: Startup.ConfigureServices

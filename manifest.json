@@ -5,11 +5,47 @@
   "files": [
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/Flea.Migrations.init.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Flea.Migrations.init.html",
+          "hash": "Ik6gyRrvo+xDnmMS0ZoSMdwHiv58NGvgLMKZbYkDn4s="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Flea.Migrations.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Flea.Migrations.html",
+          "hash": "A5bigHAxkkotdi3Sg8A/MZYmJ2m6HrdTsO7H8kaYS9k="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Flea.Models.BingoContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Flea.Models.BingoContext.html",
+          "hash": "IGKDFf+dEMtuPpkhwyMG5EF9cT1JUfeEXeTOyg12gSY="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/Flea.Models.Cluster.yml",
       "output": {
         ".html": {
           "relative_path": "api/Flea.Models.Cluster.html",
-          "hash": "ej2R3wCnA6/KUF4Oa4QQxGzz0v1U4mX0Ad3oAj5C+3c="
+          "hash": "R+VjBH7CYsKTZ3NgAC6Lx/lB477iXbEMi5ABB3aMKlw="
         }
       },
       "is_incremental": false,
@@ -21,7 +57,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Flea.Models.Customer.html",
-          "hash": "fvPpJJYzsevTjyGqhZFH7FEY2+HpQuPp6XitYMa1NqA="
+          "hash": "HopiWRmiL/eY7io+bGxZdro2e2mHJao3DEBoLzCCoM0="
         }
       },
       "is_incremental": false,
@@ -33,7 +69,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Flea.Models.Event.html",
-          "hash": "lWqCcusyPFocMT49BmqhjlWXzNvtK/NCl+a1HsLoFx8="
+          "hash": "gABwaSFW8ZDdU1L3mSkYAv/e8IEc7NUKPF5lVLxK+W4="
         }
       },
       "is_incremental": false,
@@ -45,7 +81,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Flea.Models.Reservation.html",
-          "hash": "c+LfIUHHWpf75SmX/6s5U5nwmOJGwix+SwV5eREmN6o="
+          "hash": "q+gmL4PyFC3IlsIzXpi5n0tQ4X3/Och3jfYfbrDHVO4="
         }
       },
       "is_incremental": false,
@@ -57,7 +93,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Flea.Models.Table.TableType.html",
-          "hash": "xt1Qw4NKlsHGy65BCjeaNK0z53+0PVJHKKXYJgGfAgQ="
+          "hash": "A7jHQw7xtO+RF2dqP/EroX/BFo+jefqPv2T2aZbDaO0="
         }
       },
       "is_incremental": false,
@@ -69,7 +105,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Flea.Models.Table.html",
-          "hash": "ob41YLSpVvxBzEIWKvfLULF1ZnH8GC4QRenYZnVhnQs="
+          "hash": "5h+4HJxV2UkUlps3B4L3xGcoIz4j2Xk81578OdrwnZY="
         }
       },
       "is_incremental": false,
@@ -81,7 +117,31 @@
       "output": {
         ".html": {
           "relative_path": "api/Flea.Models.html",
-          "hash": "W8A1s7yOoPJRUlSyxH/WM7fURaJyojC/eBvGT7zsZys="
+          "hash": "bBvE6ZnRZX88Mo7mlffd7nzdnCvWcV/p1m1SbtlWQxA="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Flea.Pages.ErrorModel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Flea.Pages.ErrorModel.html",
+          "hash": "G05TpG4ikbvrJzAqH5mnsXF9AHtJ9pWtQ0Fm62hnJP4="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Flea.Pages.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Flea.Pages.html",
+          "hash": "0NkwiELZgIRi/MC8I/OwV5AgKh1hHNC3GoNtqOHfyOI="
         }
       },
       "is_incremental": false,
@@ -93,7 +153,19 @@
       "output": {
         ".html": {
           "relative_path": "api/Flea.Program.html",
-          "hash": "f2XnOqaXKmz+LYu4vhI4IU4M0sTXJD+yO9dTBbyBRf0="
+          "hash": "eAB6EoA0/zzcQNXVhGB5CoNIEhCyzXCEXOoL7thNlkU="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Flea.Startup.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Flea.Startup.html",
+          "hash": "wR4n46OHF2EwyEEwkEBnqMAvE7XPOmrbCBg5HiUIFIk="
         }
       },
       "is_incremental": false,
@@ -105,7 +177,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Flea.html",
-          "hash": "bJ6cm7l+/ETdlYETYL5M+GjEpgRMM9ZoR0DNJMtbXP4="
+          "hash": "3k+SIRN89BpZ0LZzN25aupfyFU9m7qWNxYG5c1KW2A4="
         }
       },
       "is_incremental": false,
@@ -129,7 +201,19 @@
       "output": {
         ".html": {
           "relative_path": "api/toc.html",
-          "hash": "zAFPbeN6IL+GzBccEWoVlGMl3y2DVrdzS1fgUHafr3w="
+          "hash": "KE9HKMYdEDhnQ6lZnYiFIBnVz6m0ZjbTMBVI0aoQGm8="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/ef_info.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/ef_info.html",
+          "hash": "5HSXeradYUrk8iu+BqvcgGRfjkwrDklSOg7Ra76VB5A="
         }
       },
       "is_incremental": false,
@@ -153,7 +237,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/toc.html",
-          "hash": "BlPxk5mtl2kgfcZUgkEguqiSAR/EUyUTT4EdebwkQvs="
+          "hash": "g6lZAXThfkKD29AZ5tVl3D6tVGkqr6TPUNsnUPpXClk="
         }
       },
       "is_incremental": false,
@@ -198,13 +282,13 @@
         "ConceptualDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build",
-          "total_file_count": 3,
+          "total_file_count": 4,
           "skipped_file_count": 0
         },
         "ManagedReferenceDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build",
-          "total_file_count": 9,
+          "total_file_count": 15,
           "skipped_file_count": 0
         },
         "TocDocumentProcessor": {

@@ -5,11 +5,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Namespace Flea
-   </title>
+    <title>Installing dotnet-ef </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Namespace Flea
-   ">
+    <meta name="title" content="Installing dotnet-ef ">
     <meta name="generator" content="docfx 2.58.9.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
@@ -68,19 +66,35 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="Flea">
-  
-  <h1 id="Flea" data-uid="Flea" class="text-break">Namespace Flea
-  </h1>
-  <div class="markdown level0 summary"></div>
-  <div class="markdown level0 conceptual"></div>
-  <div class="markdown level0 remarks"></div>
-    <h3 id="classes">Classes
-  </h3>
-      <h4><a class="xref" href="Flea.Program.html">Program</a></h4>
-      <section></section>
-      <h4><a class="xref" href="Flea.Startup.html">Startup</a></h4>
-      <section></section>
+            <article class="content wrap" id="_content" data-uid="">
+
+<p>This document will cover various information that will help you getting started
+with development using the Entity Framework Core on the FLEA project.</p>
+<h1 id="installing-dotnet-ef">Installing <code>dotnet-ef</code></h1>
+<p><code>dotnet-ef</code> is the main CLI used for interacting with the entity framework tooling.
+This is used for things such as generating database migrations or generating code
+models from a pre-existing database.</p>
+<p>If you have the <code>dotnet</code> cli tool installed you can easily install it using the following
+command:</p>
+<pre><code>dotnet tool install --global dotnet-ef
+</code></pre>
+<p>Note: Beware that for some custom installations of the <code>dotnet</code> cli tool
+the <code>dotnet-ef</code> executable may be installed to a folder that is not in your
+path thus causing errors when executing entity framework commands through
+the <code>dotnet</code> command.</p>
+<h1 id="adding-new-models">Adding new models</h1>
+<p>When adding a new model to the system the entity framework must be made aware of the
+model in one of two ways. The first method is to add a new <code>DbSet&lt;T&gt;</code> property for it
+on the relevant <code>DbContext</code> class (<code>BingoContext</code>). The second method is to have it
+detected recursively through another model that the framework is already aware of.
+To give an example: the <code>Event</code> class contains a <code>List&lt;Reservation&gt;</code> property containing
+all reservations for the given event. This automatically cause the <code>Reservation</code> class
+to be scanned, likewise the <code>Customer</code> class will be scanned since the <code>Reservation</code>
+class refers to the <code>Customer</code> instance that owns the <code>Reservation</code>.</p>
+<p>Another thing to note is that all models should have a primary key of some sort.
+Typically this will just be the property:</p>
+<pre><code class="lang-cs">public int Id { get; set; }
+</code></pre>
 </article>
           </div>
           
@@ -88,6 +102,9 @@
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
+                  <li>
+                    <a href="https://github.com/P3-DAT3-03/Flea/blob/main/Docs/articles/ef_info.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
