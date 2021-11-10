@@ -11,7 +11,6 @@ namespace Flea.Models
          *TODO consider if Tables should be a array based on TableCount instead of a list.*/
 
         public int Id { get; set; }
-        
         public int Priority { get; set; }
         public int TableCount { get; set; }
         public bool Paid { get; set; }
