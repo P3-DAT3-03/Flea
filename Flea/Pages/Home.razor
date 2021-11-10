@@ -8,7 +8,7 @@
     </div>
 
     <!-- Creates event items for each event that matches the user's search term -->
-    @if (DummyEventDB.Count == 0)
+    @if (_dummyEventDb.Count == 0)
     {
         <h2>Der er ingen loppemarkeder at vise...</h2>
     }
@@ -30,7 +30,7 @@
 
 @code {
     // Placeholder event class. Replace with Event.cs in Model
-    class DummyEvent
+    public class DummyEvent
     {
         public DummyEvent(string date, int remainingTables, int missingPayments)
         {
@@ -44,18 +44,18 @@
     }
     
     // Placeholder event database. 
-    private List<DummyEvent> DummyEventDB = new();
+    private List<DummyEvent> _dummyEventDb = new();
 
     // SearchTerm is initialised as empty string to avoid null errors.
-    string SearchTerm { get; set; } = "";
+    private string SearchTerm { get; set; } = "";
 
     // List of events from database that match the search term.
-    List<DummyEvent> FilteredEvents => 
-        DummyEventDB.Where(i => i.Date.ToLower().Contains(SearchTerm.ToLower())).ToList();
+    private List<DummyEvent> FilteredEvents => 
+        _dummyEventDb.Where(i => i.Date.ToLower().Contains(SearchTerm.ToLower())).ToList();
 
     public void AddEventItem()
     {
-        DummyEventDB.Add(new DummyEvent("28. Februar, 2021", 130, 23));
+        _dummyEventDb.Add(new DummyEvent("28. Februar, 2021", 130, 23));
         //DummyEventDB.Add(new DummyEvent("17. Oktober, 2022", 130, 23));
         //DummyEventDB.Add(new DummyEvent("28. Oktober, 2021", 130, 23));
     }

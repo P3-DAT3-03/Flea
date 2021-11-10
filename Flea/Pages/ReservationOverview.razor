@@ -1,3 +1,5 @@
+@using Flea.Models
+@using Microsoft.EntityFrameworkCore
 @page "/ReservationOverview"
 
 <div>
@@ -9,8 +11,8 @@
     @foreach (var value in _shownReservation)
     {
         <div>
-            <ReservationUserListItem Name="@value.Name" Booths="@value.Booths"
-                                     PaymentStatus="@value.PaymentStatus"
+            <ReservationUserListItem Name="@value.ReservationOwner.Name" Booths="@value.TableCount"
+                                     PaymentStatus="@value.Paid"
                                      OnDelete="@DeleteReservationInformation"
                                      OnEdit="@EditReservationInformation"/>
         </div>
@@ -19,28 +21,22 @@
 
 @code
 {
-    // Dummy data ---
-    class Reservation
-    {
-        public string Name { get; set; }
-        public int Booths { get; set; }
-        public bool PaymentStatus { get; set; }
-    }
+    // Dummy data
+    private static Models.Customer _dummyCustomer = new Models.Customer("Christoffer Trebbien Jønsson", "12345678");
     
     private List<Reservation> _reservations = new()
     {
-        new Reservation() {Name = "Sebastian Aaholm", Booths = 3, PaymentStatus = false},
-        new Reservation() {Name = "Jens Jensen", Booths = 3, PaymentStatus = true},
-        new Reservation() {Name = "Hans Nielsen", Booths = 8, PaymentStatus = false},
+        new Reservation(1, 3, true, "Handicapped", _dummyCustomer),
+        new Reservation(1, 3, true, "Handicapped", _dummyCustomer),
+        new Reservation(1, 3, true, "Handicapped", _dummyCustomer)
     };
-    // ---
-    
+
     private IEnumerable<Reservation> _shownReservation;
 
     // Delete the reservation
     public void DeleteReservationInformation(string name)
     {
-        var nameFound = _reservations.Find(r => r.Name == name);
+        var nameFound = _reservations.Find(r => r.ReservationOwner.Name == name);
         
         if (nameFound != null)
         {
@@ -74,21 +70,21 @@
         {// Finds by Booths
             _shownReservation = from c
                 in _reservations
-                where c.Booths.ToString().Contains(input)
+                where c.TableCount.ToString().Contains(input)
                 select c;
         }
         else if (input.Contains("betalt"))
         {
             _shownReservation = from c
                 in _reservations
-                where c.PaymentStatus != input.Contains("ej")
+                where c.Paid != input.Contains("ej")
                 select c;
         }
         else
         {// Finds by name
             _shownReservation = from c
                 in _reservations
-                where c.Name.ToLower().Contains(input)
+                where c.ReservationOwner.Name.ToLower().Contains(input)
                 select c;
         }
     }
