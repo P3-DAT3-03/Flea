@@ -1,5 +1,5 @@
 
-<button class="btn btn-primary" @onclick="@ModalShow">@ButtonName</button>
+<button class="button button--outline create-button" @onclick="@ModalShow">@ButtonName</button>
 @if (_showModal)
 {
     <div class="modal fade show" id="myModal" style="display:block; background-color: transparent;" aria-modal="true" role="dialog">
@@ -10,7 +10,7 @@
 
                 <!-- Modal footer -->
                 <div class="modal-footer">
-                    <button type="button" class="btn" @onclick="@ModalCancel">Cancel</button>
+                    <button type="button" class="button button--outline del-button" @onclick="@ModalCancel">Cancel</button>
                 </div>
 
             </div>

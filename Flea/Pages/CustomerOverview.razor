@@ -2,7 +2,21 @@
 <div>
     <div class="view-head">
         <input class="search-input" type="search" value="" placeholder="Søg efter kunde" @oninput="Searchbar">
-        <button class="button button--outline create-button" @onclick="NewCustomer">Tilføj Ny Loppe</button>
+        <Modal ButtonName="lav ny kunde">
+            <EditForm Model="Temp" OnValidSubmit="NewCustomer">
+                <div>
+                    <label>Name: </label>
+                    <InputText @bind-Value="Temp.Name"/>
+                </div>
+                <div>
+                    <label>Telefonnummer: </label>
+                    <InputText @bind-Value="Temp.PhoneNumber"></InputText>
+                </div>
+                <div>
+                    <button class="button button--outline create-button">Opret Loppe</button>
+                </div>
+            </EditForm>
+        </Modal>
     </div>
 
     @foreach (var customer in ShownCustomers)
@@ -17,6 +31,8 @@
 
 @code
 {
+
+    Flea.Models.Customer Temp = new("", "");
     private string _search = "";
 
     // Dummy data ---
@@ -70,7 +86,7 @@
         else if (Char.IsDigit(input[0]))
         {
     // Finds by phonenumbers
-            
+
             var results = from c
                 in Customers
                 where c.TeleNumber.Contains(input)
