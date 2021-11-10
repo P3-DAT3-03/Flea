@@ -1,8 +1,9 @@
 @page "/CustomerOverview"
+@using Customer = Flea.Models.Customer
 <div>
     <div class="view-head">
         <input class="search-input" type="search" value="" placeholder="Søg efter kunde" @oninput="Searchbar">
-        <Modal ButtonName="lav ny kunde">
+        <Modal ButtonName="lav ny kunde" @ref="child">
             <EditForm Model="Temp" OnValidSubmit="NewCustomer">
                 <div>
                     <label>Name: </label>
@@ -13,7 +14,7 @@
                     <InputText @bind-Value="Temp.PhoneNumber"></InputText>
                 </div>
                 <div>
-                    <button class="button button--outline create-button">Opret Loppe</button>
+                    <button type="submit" class="button button--outline create-button">Opret Loppe</button>
                 </div>
             </EditForm>
         </Modal>
@@ -22,8 +23,7 @@
     @foreach (var customer in ShownCustomers)
     {
         <div>
-            <UserListItem Id="@customer.Id" Name="@customer.Name" TeleNumber="@customer.TeleNumber"
-                          OnDelete="@DeleteCustomerInformation" OnEdit="@EditCustomerInformation">
+            <UserListItem Customer="@customer" OnDelete="@DeleteCustomerInformation">
             </UserListItem>
         </div>
     }
@@ -31,23 +31,17 @@
 
 @code
 {
-
-    Flea.Models.Customer Temp = new("", "");
+    Modal child;
+    private Customer Temp = new("", "");
     private string _search = "";
 
     // Dummy data ---
-    class Customer
-    {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public string TeleNumber { get; set; }
-    }
 
     private List<Customer> Customers = new()
     {
-        new Customer() {Id = 1, Name = "Sebastian Aaholm", TeleNumber = "24823423"},
-        new Customer() {Id = 2, Name = "Jens Jensen", TeleNumber = "4541341"},
-        new Customer() {Id = 3, Name = "Hans Nielsen", TeleNumber = "8888888"},
+        new Customer("Sebastian Aaholm", "24823423") {Id = 1},
+        new Customer("Jens Jensen", "4541341") {Id = 2},
+        new Customer("Hans Nielsen", "8888888") {Id = 3}
     };
 
     // ---
@@ -69,9 +63,11 @@
     }
 
     // Makes a new Customer
-    public void NewCustomer()
+    public void NewCustomer(EditContext editContext)
     {
-        Console.WriteLine("Write the function here haha");
+        var customer = (Customer) editContext.Model;
+        Customers.Add(customer);
+        child.ModalCancel();
     }
 
     // Searchbar function
@@ -89,7 +85,7 @@
 
             var results = from c
                 in Customers
-                where c.TeleNumber.Contains(input)
+                where c.PhoneNumber.Contains(input)
                 select c;
             ShownCustomers = results;
         }
