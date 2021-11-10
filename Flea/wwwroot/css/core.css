@@ -1,3 +1,33 @@
+.panel {
+    background-color: rgba(var(--g1-t), 1);
+    padding: 10px;
+    border: 11px;
+}
+
+.button {
+    border-radius: 9px;
+    --primary-t: var(--orange-t);
+    background-color: rgba(var(--primary-t), 1);
+}
+.button.button--outline, .button.outlined {
+    background-color: transparent;
+    border: 1px solid rgba(var(--primary-t), 1);
+    color: rgba(var(--primary-t), 1);
+}
+.button.button--tinted, .button.tinted {
+    background-color: rgba(var(--primary-t), 0.25);
+    color: rgba(var(--primary-t), 1);
+}
+.button.plain, .button.button--quiet {
+    color: rgba(var(--primary-t), 1);
+    background: transparent;
+}
+
+.search-input {
+    height: 40px;
+    background-color: rgba(var(--g1-t), 1);
+}
+
 :root {
     --white-t: 255, 255, 255;
     --white: rgb(var(--white-t));
@@ -167,33 +197,4 @@
 
 .c-orange {
     --primary-t: var(--orange-t);
-}
-
-.panel {
-    background-color: rgba(var(--g1-t), 1);
-    padding: 10px;
-    border: 11px;
-}
-
-.button {
-    --primary-t: rgba(var(--orange-t), 1);
-    background-color: rgba(var(--primary-t), 1);
-}
-.button.button--outline, .button.outlined {
-    background-color: transparent;
-    border-color: rgba(var(--primary-t), 1);
-    color: rgba(var(--primary-t), 1);
-}
-.button.button--tinted, .button.tinted {
-    background-color: rgba(var(--primary-t), 0.25);
-    color: rgba(var(--primary-t), 1);
-}
-.button.plain, .button.button--quiet {
-    color: rgba(var(--primary-t), 1);
-    background: transparent;
-}
-
-.search-input {
-    height: 40px;
-    background-color: rgba(var(--g1-t), 1);
 }
