@@ -1,0 +1,33 @@
+
+<button class="btn btn-primary" @onclick="@ModalShow">@ButtonName</button>
+@if (_showModal)
+{
+    <div class="modal fade show" id="myModal" style="display:block; background-color: transparent;" aria-modal="true" role="dialog">
+        <div class="modal-dialog" style="background-color:black; color:whitesmoke; display: flex;margin: 15%;">
+            <div class="modal-content" >
+
+                @ChildContent
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn" @onclick="@ModalCancel">Cancel</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+}
+<hr />
+@code
+{
+    
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+    
+    [Parameter]
+    public string ButtonName { get; set; }
+
+    bool _showModal = false;
+    void ModalShow() => _showModal = true;
+    void ModalCancel() => _showModal = false;
+}
