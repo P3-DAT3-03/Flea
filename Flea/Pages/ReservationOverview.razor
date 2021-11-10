@@ -1,0 +1,96 @@
+@using Flea.Models
+@using Microsoft.EntityFrameworkCore
+@page "/ReservationOverview"
+
+<div>
+    <div class="view-head">
+        <input class="search-input" type="search" value="" placeholder="Søg efter booking" @oninput="Searchbar">
+        <button class="button button--outline create-button" @onclick="NewReservation">Opret ny booking</button>
+    </div>
+
+    @foreach (var value in _shownReservation)
+    {
+        <div>
+            <ReservationUserListItem Name="@value.ReservationOwner.Name" Booths="@value.TableCount"
+                                     PaymentStatus="@value.Paid"
+                                     OnDelete="@DeleteReservationInformation"
+                                     OnEdit="@EditReservationInformation"/>
+        </div>
+    }
+</div>
+
+@code
+{
+    // Dummy data
+    private static Models.Customer _dummyCustomer = new Models.Customer("Christoffer Trebbien Jønsson", "12345678");
+    
+    private List<Reservation> _reservations = new()
+    {
+        new Reservation(1, 3, true, "Handicapped", _dummyCustomer),
+        new Reservation(1, 3, true, "Handicapped", _dummyCustomer),
+        new Reservation(1, 3, true, "Handicapped", _dummyCustomer)
+    };
+
+    private IEnumerable<Reservation> _shownReservation;
+
+    // Delete the reservation
+    public void DeleteReservationInformation(string name)
+    {
+        var nameFound = _reservations.Find(r => r.ReservationOwner.Name == name);
+        
+        if (nameFound != null)
+        {
+            _reservations.Remove(nameFound);
+            _shownReservation = _shownReservation.Where(reservation=> reservation != nameFound);
+        }
+    }
+    
+    // Edits the reservation
+    public void EditReservationInformation(string id)
+    {
+        Console.WriteLine("Write the function here hehe");
+    }
+    
+    // Makes a new Customer
+    public void NewReservation()
+    {
+        Console.WriteLine("Write the function here haha");
+    }
+
+    // The searchbar function, it works WOW
+    public void Searchbar(ChangeEventArgs e)
+    {
+        // If you search with nothing in the bar
+        var input = e.Value?.ToString()?.ToLower()?? "";
+        if (input == "")
+        {
+            _shownReservation = _reservations;
+        }
+        else if (Char.IsDigit(input[0]))
+        {// Finds by Booths
+            _shownReservation = from c
+                in _reservations
+                where c.TableCount.ToString().Contains(input)
+                select c;
+        }
+        else if (input.Contains("betalt"))
+        {
+            _shownReservation = from c
+                in _reservations
+                where c.Paid != input.Contains("ej")
+                select c;
+        }
+        else
+        {// Finds by name
+            _shownReservation = from c
+                in _reservations
+                where c.ReservationOwner.Name.ToLower().Contains(input)
+                select c;
+        }
+    }
+    
+    protected override void OnInitialized()
+    {
+        _shownReservation = _reservations;
+    }
+}

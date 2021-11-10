@@ -1,0 +1,87 @@
+@page "/CustomerOverview"
+@using System.Data.Common
+<div>
+    <div class="view-head">
+        <input class="search-input" type="search" value="" placeholder="Søg efter kunde" @oninput="Searchbar">
+        <button class="button button--outline create-button" @onclick="NewCustomer">Tilføj Ny Loppe</button>
+    </div>
+
+    @foreach (var customer in _shownCustomers)
+    {
+        <div>
+            <UserListItem Id="@customer.Id" Name="@customer.Name" TeleNumber="@customer.PhoneNumber"
+                          OnDelete="@DeleteCustomerInformation" OnEdit="@EditCustomerInformation">
+            </UserListItem>
+        </div>
+    }
+</div>
+
+@code
+{
+    private string _search = "";
+
+    private List<Models.Customer> _customers = new()
+    {
+        new Models.Customer("Sebastian Aaholm", "24823423") {Id = 1},
+        new Models.Customer("Jens Jensen", "4541341") {Id = 2},
+        new Models.Customer("Hans Nielsen", "8888888") {Id = 3},
+    };
+    // ---
+
+    private IEnumerable<Models.Customer> _shownCustomers;
+
+    // Delete the customer
+    public void DeleteCustomerInformation(int id)
+    {
+        _customers = _customers.Where(c => c.Id != id).ToList();
+        _shownCustomers = _shownCustomers.Where(c => c.Id != id);
+        StateHasChanged();
+    }
+
+    // Edits the customer
+    public void EditCustomerInformation(int id)
+    {
+        Console.WriteLine("Write the function here hehe");
+    }
+
+    // Makes a new Customer
+    public void NewCustomer()
+    {
+        Console.WriteLine("Write the function here haha");
+    }
+
+    // Searchbar function
+    public void Searchbar(ChangeEventArgs e)
+    {
+    // If no input whole list is shown
+        var input = e.Value?.ToString() ?? "";
+        if (input == "")
+        {
+            _shownCustomers = _customers;
+        }
+        else if (Char.IsDigit(input[0]))
+        {
+    // Finds by phonenumbers
+            
+            var results = from c
+                in _customers
+                where c.PhoneNumber.Contains(input)
+                select c;
+            _shownCustomers = results;
+        }
+        else
+        {
+    // Finds by name
+            var results = from c
+                in _customers
+                where c.Name.ToLower().Contains(input.ToLower())
+                select c;
+            _shownCustomers = results;
+        }
+    }
+
+    protected override void OnInitialized()
+    {
+        _shownCustomers = _customers;
+    }
+}

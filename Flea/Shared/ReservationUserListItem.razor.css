@@ -1,0 +1,9 @@
+.reservation-li {
+     background-color: var(--ios-g1);
+     padding: 10px;
+     border-radius: 11px;
+     display: grid;
+     grid-template-columns: auto 15.5% 12.5% 10% 15%;
+     grid-gap: 10px;
+     margin-bottom: 20px;
+ }

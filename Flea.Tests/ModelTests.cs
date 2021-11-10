@@ -26,7 +26,7 @@ namespace Flea.Tests
         public void CustomerTests()
         {
             const string name = "Ole";
-            const int number = 88888888;
+            const string number = "88888888";
             Customer Ole = new Customer(name, number);
             Assert.True(Ole.Name == name || Ole.PhoneNumber == number);
         }
@@ -39,7 +39,7 @@ namespace Flea.Tests
             const bool paid = false;
             const string comment = "Ole er meget gammel og grim";
             const string name = "Ole";
-            const int number = 88888888;
+            const string number = "88888888";
             Customer Ole = new Customer(name, number);
             Reservation OleReservation = new Reservation(priority, tableCount, paid, comment, Ole);
             OleReservation.Tables.Add(new Table());
@@ -62,7 +62,7 @@ namespace Flea.Tests
             const bool paid = false;
             const string comment = "Ole er meget gammel og grim";
             const string name = "Ole";
-            const int number = 88888888;
+            const string number = "88888888";
             Customer Ole = new Customer(name, number);
             Reservation OleReservation = new Reservation(priority, reservedTableCount, paid, comment, Ole);
             Cluster m = new Cluster("m", 4, tableAmount);
