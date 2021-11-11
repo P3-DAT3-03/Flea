@@ -5,17 +5,13 @@
         <input class="search-input" type="search" value="" placeholder="Søg efter kunde" @oninput="Searchbar">
         <Modal ButtonName="lav ny kunde" @ref="child">
             <EditForm Model="Temp" OnValidSubmit="NewCustomer">
-                <div>
-                    <label>Name: </label>
-                    <InputText @bind-Value="Temp.Name"/>
-                </div>
-                <div>
-                    <label>Telefonnummer: </label>
-                    <InputText @bind-Value="Temp.PhoneNumber"></InputText>
-                </div>
-                <div>
-                    <button type="submit" class="button button--outline create-button">Opret Loppe</button>
-                </div>
+                <DataAnnotationsValidator/>
+                <ValidationSummary/>
+                <div class="txt">Name: </div>
+                    <InputText class="text-input" @bind-Value="Temp.Name" placeholder="Skriv et navn her"/>
+                <div class="txt">Telefonnummer: </div>
+                    <InputText class="text-input" @bind-Value="Temp.PhoneNumber" placeholder="Skriv et mobilnummer her" />
+                <button type="submit" class="button button--outline create-button">Opret Loppe</button>
             </EditForm>
         </Modal>
     </div>
