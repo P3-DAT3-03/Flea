@@ -1,0 +1,28 @@
+﻿@using Event = Flea.Models.Event;
+
+<div>
+    <p>
+        <label>Dato:</label>
+        <input type="date" @bind="Temp.DateTime"/>
+    </p>
+    <p>
+        <label>Stand pris:</label>
+        <input type="text" @bind="Temp.TablePrice"/>
+    </p>
+    <p>
+        <label>Antal stativer:</label>
+        <input type="text" @bind="Temp.ClothesRackAmount"/>
+    </p>
+    <p>
+        <label>Stativ pris:</label>
+        <input type="text" @bind="Temp.ClothesRackPrice"/>
+    </p>
+</div>
+
+
+@code {
+
+    [Parameter]
+    public Event Temp { get; set; }
+
+}

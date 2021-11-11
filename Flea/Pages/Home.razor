@@ -1,14 +1,53 @@
 @page "/"
 @page "/Home"
+@using Event = Flea.Models.Event;
 
 <div>
     <div class="view-head">
-        <input class="search-input" @bind-value="SearchTerm" @bind-value:event="oninput" placeholder="Søg efter loppemarked..."/>
-        <button class="button button--outline create-button" type="button" @onclick="AddEventItem">Tilføj nyt loppemarked</button>
+        <input class="search-input" @bind-value="_searchTerm" @bind-value:event="oninput" placeholder="Søg efter loppemarked..."/>
+        <Modal ButtonName="Tilføj nyt loppemarked" @ref="child">
+            <EditForm Model="_temp" OnValidSubmit="AddEventItem">
+                <div>
+                    <h5>Hvor mange loppemarkeder ønsker I at oprette?</h5>
+                    <label>Antal loppemarkeder: </label>
+                    <input type="text" @bind="_eventAmount" >
+                </div>
+                @if (_eventAmount > 0)
+                {
+                    _tempEvents.Clear();
+                    for (int i = 0; i < _eventAmount; i++)
+                    {
+                        _tempEvents.Add(new Event("", DateTime.Today));
+                    }       
+                    foreach (var temp in _tempEvents)
+                    {
+                        <div>
+                            <p>
+                                <label>Dato:</label>
+                                <input type="date" @bind-value="temp.DateTime"/>
+                            </p>
+                            <p>
+                                <label>Stand pris:</label>
+                                <input type="text" @bind-value="temp.TablePrice"/>
+                            </p>
+                            <p>
+                                <label>Antal stativer:</label>
+                                <input type="text" @bind-value="temp.ClothesRackAmount"/>
+                            </p>
+                            <p>
+                                <label>Stativ pris:</label>
+                                <input type="text" @bind-value="temp.ClothesRackPrice"/>
+                            </p>
+                        </div>
+                    }
+                }    
+                <button type="submit">Tilføj loppemarked ></button>
+            </EditForm>
+        </Modal>
     </div>
 
     <!-- Creates event items for each event that matches the user's search term -->
-    @if (_dummyEventDb.Count == 0)
+    @if (DummyEventDB.Count == 0)
     {
         <h2>Der er ingen loppemarkeder at vise...</h2>
     }
@@ -18,46 +57,44 @@
     }
     else
     {
-        foreach (DummyEvent e in FilteredEvents)
+        foreach (Event e in FilteredEvents)
         {
             <div>
-                <EventListItem Date="@e.Date" RemainingTables="@e.RemainingTables" MissingPayments="@e.MissingPayments">
-                </EventListItem>
+                <EventListItem Event="@e"></EventListItem>
             </div>
         }
     }
 </div>
 
 @code {
-    // Placeholder event class. Replace with Event.cs in Model
-    public class DummyEvent
-    {
-        public DummyEvent(string date, int remainingTables, int missingPayments)
-        {
-            Date = date;
-            RemainingTables = remainingTables;
-            MissingPayments = missingPayments;
-        }
-
-        public string Date { get; }
-        public int RemainingTables { get; }
-        public int MissingPayments { get; }
-    }
-
+    Modal child;
+    private Event _temp = new Event("", DateTime.Today);
+    private string _searchTerm { get; set; } = "";
+    private int _eventAmount = 1;
+    
     // Placeholder event database. 
-    private List<DummyEvent> _dummyEventDb = new();
-
-    // SearchTerm is initialised as empty string to avoid null errors.
-    private string SearchTerm { get; set; } = "";
+    private List<Event> DummyEventDB = new();
 
     // List of events from database that match the search term.
-    private List<DummyEvent> FilteredEvents =>
-        _dummyEventDb.Where(i => i.Date.ToLower().Contains(SearchTerm.ToLower())).ToList();
+    List<Event> FilteredEvents => 
+        DummyEventDB.Where(i => i.DateTime.ToString().ToLower().Contains(_searchTerm.ToLower())).ToList();
 
     public void AddEventItem()
     {
-        _dummyEventDb.Add(new DummyEvent("28. Februar, 2021", 130, 23));
-    //DummyEventDB.Add(new DummyEvent("17. Oktober, 2022", 130, 23));
-    //DummyEventDB.Add(new DummyEvent("28. Oktober, 2021", 130, 23));
+        DummyEventDB.AddRange(_tempEvents);
+        DummyEventDB.Sort((x, y) => x.DateTime.CompareTo(y.DateTime));
     }
+
+    List<Event> _tempEvents = new List<Event>();
+
+    
+    public void CreateTempEvents()
+    {
+        _tempEvents.Clear();
+        for (int i = 0; i < _eventAmount; i++)
+        {
+            _tempEvents.Add(new Event("", DateTime.Today));
+        }
+    }
+
 }

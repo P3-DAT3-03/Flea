@@ -13,25 +13,31 @@ namespace Flea.Models
         /// The date at which the event will be held.
         /// </summary>
         public DateTime DateTime { get; set; }
+        public int TablePrice { get; set; }
+        public int ClothesRackAmount { get; set; }
+        public int ClothesRackPrice { get; set; }
         
         public List<Cluster> Clusters { get; set; }
         public List<Reservation> Reservations;
         public Event PreviousEvent { get; set; }
 
 
-        /* the constructor creates the event and all the needed clusters in the bingo fleamarket formet*/
+        /* the constructor creates the event and all the needed clusters in the bingo fleamarket format*/
         public Event(string name, DateTime dateTime)
         {
             DateTime = dateTime;
             Name = name;
+            TablePrice = 100;
+            ClothesRackAmount = 7;
+            ClothesRackPrice = 50;
 
             Clusters = new List<Cluster>
-                { 
+            { 
                 new Cluster("A", 4, 8), new Cluster("B", 4, 8), new Cluster("C", 4, 8), new Cluster("D", 4, 8),
                 new Cluster("E", 4, 8), new Cluster("F", 4, 8), new Cluster("G", 4, 8), new Cluster("H", 4, 8),
                 new Cluster("I", 4, 8), new Cluster("J", 4, 8), new Cluster("K", 4, 8), new Cluster("L", 4, 8),
                 new Cluster("M", 12, 12)
-                };
+            };
         }
 
 
