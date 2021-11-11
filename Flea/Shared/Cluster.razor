@@ -1,0 +1,26 @@
+@using Flea.Models
+<div class="cluster @Class" >
+    @foreach (var table in Inner.Tables)
+    {
+        <Table
+            Inner="@table"
+            OnTableSelect="@(async id => await OnTableSelect.InvokeAsync(id))">
+        </Table>
+    }
+</div>
+
+@code {
+    [Parameter]
+    public string? Class { get; set; }
+
+    [Parameter]
+    public Models.Cluster Inner { get; set; }
+    
+    [Parameter]
+    public EventCallback<(int,int)> OnTableSelect { get; set; }
+    
+    protected override void OnInitialized()
+    {
+        Class ??= "";
+    }
+}
