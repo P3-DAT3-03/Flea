@@ -1,26 +1,46 @@
 @using Flea.Models
+@using System.Diagnostics
 <div class="cluster @Class" >
-    @foreach (var table in Inner.Tables)
+    @foreach (var(i, value) in Inner!.Tables.Select((value, i) => (i, value)))
     {
+        @switch (i)
+        {
+            case 0: case 3: case 4: case 7:
+                TableClass = "horizontal";
+                break;
+            case 5: case 6:
+                TableClass = "bottom";
+                break;
+            default:
+                TableClass = "vertical";
+                break;
+        }
         <Table
-            Inner="@table"
+            Inner="@value"
+            Class="@TableClass"
             OnTableSelect="@(async id => await OnTableSelect.InvokeAsync(id))">
         </Table>
     }
+    <div class="cluster-tag">@Inner.Name</div>
 </div>
-
 @code {
     [Parameter]
     public string? Class { get; set; }
-
+    
     [Parameter]
-    public Models.Cluster Inner { get; set; }
+    public Models.Cluster? Inner { get; set; }
     
     [Parameter]
     public EventCallback<(int,int)> OnTableSelect { get; set; }
+
+    private string? TableClass;
     
     protected override void OnInitialized()
     {
         Class ??= "";
+        Inner ??= new Models.Cluster("None", 0)
+        {
+            Tables = new List<Models.Table>()
+        };
     }
 }
