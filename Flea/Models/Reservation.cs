@@ -26,6 +26,7 @@ namespace Flea.Models
             TableCount = tableCount;
             Paid = paid;
             Comments = comments;
+            ReservationOwner = reservationOwner;
         }
         
         public Reservation(int priority, int tableCount, bool paid, string comments)

@@ -11,8 +11,7 @@
     @foreach (var value in _shownReservation)
     {
         <div>
-            <ReservationUserListItem Name="@value.ReservationOwner.Name" Booths="@value.TableCount"
-                                     PaymentStatus="@value.Paid"
+            <ReservationUserListItem Reservation="value"
                                      OnDelete="@DeleteReservationInformation"
                                      OnEdit="@EditReservationInformation"/>
         </div>
