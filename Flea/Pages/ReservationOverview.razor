@@ -1,5 +1,6 @@
 @using Flea.Models
 @using Microsoft.EntityFrameworkCore
+
 @page "/ReservationOverview"
 
 @* <button class="button button--outline create-button" @onclick="NewReservation">Opret ny booking</button> *@
@@ -7,6 +8,9 @@
 <div>
     <div class="view-head">
         <input class="search-input" type="search" value="" placeholder="Søg efter booking" @oninput="Searchbar">
+        <Modal ButtonName="Opret ny booking" @ref="child">
+            <ReservationForm Reservation="Temp" OnValidSubmit="NewReservation"></ReservationForm>
+        </Modal>
     </div>
 
     @foreach (var value in _shownReservation)
@@ -21,14 +25,20 @@
 
 @code
 {
+    Modal child;
+    private Reservation Temp = new (1, 1, false, "",new Models.Customer("", ""));
+    private string _search = "";
+    
+    
+    
     // Dummy data
     private static Models.Customer _dummyCustomer = new Models.Customer("Christoffer Trebbien Jønsson", "12345678");
     
     private List<Reservation> _reservations = new()
     {
-        new Reservation(1, 3, true, "Handicapped", _dummyCustomer),
-        new Reservation(1, 3, true, "Handicapped", _dummyCustomer),
-        new Reservation(1, 3, true, "Handicapped", _dummyCustomer)
+        new Reservation(1, 3, true, "Handicapped", _dummyCustomer){Id = 1},
+        new Reservation(1, 3, true, "Handicapped", _dummyCustomer){Id = 2},
+        new Reservation(1, 3, true, "Handicapped", _dummyCustomer){Id = 3}
     };
 
     private IEnumerable<Reservation> _shownReservation;
@@ -46,12 +56,14 @@
     }
     
     // Edits the reservation
-    public void EditReservationInformation(string id)
+    public void EditReservationInformation(EditContext editContext)
     {
-        Console.WriteLine("Write the function here hehe");
+        var temp = (Reservation) editContext.Model;
+        child.ModalCancel();
+        Console.WriteLine("Hello");
     }
     
-    // Makes a new Customer
+    // Makes a new reservation
     public void NewReservation()
     {
         Console.WriteLine("Write the function here haha");

@@ -1,0 +1,52 @@
+﻿@using Flea.Models
+<EditForm Model="Reservation" OnValidSubmit="OnValidSubmit">
+    <div>
+        <label>Vælg en loppe:</label>
+        <InputText @bind-Value="Reservation.ReservationOwner.Name"/> @*Indsæt søgefelt med oprettet kunder *@
+    </div>
+    <div>
+        <label>Antal stande: </label>
+        <InputNumber @bind-Value="Reservation.TableCount"></InputNumber>
+    </div>
+    <div>
+        <label>Betalt?: </label>
+        <InputCheckbox @bind-Value="Reservation.Paid"></InputCheckbox>
+    </div>
+    <div>
+        <label>Bemærkninger: </label>
+        <InputText @bind-Value="Reservation.Comments"></InputText>
+    </div>
+    @* <div> *@
+    @*     <label>Bod type: </label> *@
+    @*     <InputText @bind-Value="Temp.Comments"></InputText> *@
+    @* </div> *@
+    @* <div> *@
+    @*     <label>Leje af tøj stativ: </label> *@
+    @*     <InputNumber @bind-Value="Temp.Comments"></InputNumber> *@
+    @* </div> *@
+    @* <div> *@
+    @*     <label>Bemærkninger: </label> *@
+    @*     <InputText @bind-Value="Temp.Comments"></InputText> *@
+    @* </div> *@
+    <div>
+        <button type="submit" class="button button--outline create-button">@(Reservation.Id == 0 ? "Opret booking" : "Gem ændringer")</button>
+    </div>
+</EditForm>
+
+@code {
+
+    [Parameter]
+    public Reservation Reservation { get; set; } = null!;
+    
+    [Parameter]
+    public EventCallback<EditContext> OnValidSubmit { get; set; }
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        if (Reservation == null!)
+        {
+            throw new ArgumentNullException(nameof(Reservation),"Parameter Reservation can never be null");
+        }
+    }
+}

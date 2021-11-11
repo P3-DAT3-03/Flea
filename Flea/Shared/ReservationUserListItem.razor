@@ -1,13 +1,21 @@
 @using Flea.Models
+@using Reservation = Flea.Models.Reservation
+
 <div class="reservation-li">
     <div class="txt">@Reservation.ReservationOwner.Name</div>
     <div class="txt">@Reservation.TableCount Stande</div>
     <div class="txt">@(Reservation.Paid ? "Betalt" : "Ej betalt")</div>
     <button class="button del-button button--outline" @onclick="Delete">Slet</button>
-    <button class="button edit-button" @onclick="Edit">Rediger</button>
+    <Modal ButtonName="Rediger" ButtonClass="edit-button" @ref="child">
+        <ReservationForm Reservation="Temp" OnValidSubmit="OnEdit"></ReservationForm>
+    </Modal>
 </div>
+@* <button class="button edit-button" @onclick="Edit">Rediger</button> *@
 
 @code {
+    Modal child;
+    private Reservation Temp = new(1, 1, false, "",new Models.Customer("", ""));
+    
     [Parameter]
     public Reservation Reservation { get; set; }
 
@@ -15,15 +23,10 @@
     public EventCallback<string> OnDelete { get; set; }
     
     [Parameter]
-    public EventCallback<string>OnEdit { get; set; }
+    public EventCallback<EditContext>OnEdit { get; set; }
 
     public async Task Delete()
     {
         await OnDelete.InvokeAsync(Reservation.ReservationOwner.Name);
-    }
-
-    public async Task Edit()
-    {
-        await OnEdit.InvokeAsync(Reservation.ReservationOwner.Name);
     }
 }
