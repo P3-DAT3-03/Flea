@@ -1,23 +1,26 @@
 @using Flea.Models
 @using System.Diagnostics
-<div class="cluster @Class" >
-    @foreach (var(i, value) in Inner!.Tables.Select((value, i) => (i, value)))
+<div class="cluster @Class">
+    @{var i = 0;}
+    @foreach (var value in Inner!.Tables)
     {
         @switch (i)
         {
-            case 0: case 3: case 4: case 7:
-                TableClass = "horizontal";
+            case 0 or 3 or 4 or 7:
+                _tableClass = "horizontal";
                 break;
-            case 5: case 6:
-                TableClass = "bottom";
+            case 5 or 6:
+                _tableClass = "bottom";
                 break;
             default:
-                TableClass = "vertical";
+                _tableClass = "vertical";
                 break;
         }
         <Table
+            TableIndex="@(i++)"
+            ClusterIndex="@ClusterIndex"
             Inner="@value"
-            Class="@TableClass"
+            Class="@_tableClass"
             OnTableSelect="@(async id => await OnTableSelect.InvokeAsync(id))">
         </Table>
     }
@@ -33,7 +36,10 @@
     [Parameter]
     public EventCallback<(int,int)> OnTableSelect { get; set; }
 
-    private string? TableClass;
+    [Parameter]
+    public int ClusterIndex { get; set; }
+    
+    private string? _tableClass;
     
     protected override void OnInitialized()
     {

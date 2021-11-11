@@ -3,10 +3,11 @@
 @using Table = Flea.Models.Table
 <h1>Placing</h1>
 <div class="clusters">
-@foreach (var cluster in Clusters!)
-{
-    <Cluster Inner="@cluster" OnTableSelect="@TableSelected"></Cluster>
-}
+    @{var index = 0;}
+    @foreach (var cluster in Clusters!)
+    {
+        <Cluster Inner="@cluster" ClusterIndex="@(index++)" OnTableSelect="@TableSelected"></Cluster>
+    }
 </div>
 <style>
     .table {
@@ -108,7 +109,7 @@
         SelectedReservation = null;
     }
 
-    private (int, int) Wrap(int offset, int direction)
+    private static (int, int) Wrap(int offset, int direction)
     {
         switch (offset)
         {
