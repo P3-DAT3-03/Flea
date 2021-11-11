@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 @page "/"
 @page "/Home"
 
@@ -38,11 +39,12 @@
             RemainingTables = remainingTables;
             MissingPayments = missingPayments;
         }
+
         public string Date { get; }
         public int RemainingTables { get; }
         public int MissingPayments { get; }
     }
-    
+
     // Placeholder event database. 
     private List<DummyEvent> _dummyEventDb = new();
 
@@ -50,13 +52,13 @@
     private string SearchTerm { get; set; } = "";
 
     // List of events from database that match the search term.
-    private List<DummyEvent> FilteredEvents => 
+    private List<DummyEvent> FilteredEvents =>
         _dummyEventDb.Where(i => i.Date.ToLower().Contains(SearchTerm.ToLower())).ToList();
 
     public void AddEventItem()
     {
         _dummyEventDb.Add(new DummyEvent("28. Februar, 2021", 130, 23));
-        //DummyEventDB.Add(new DummyEvent("17. Oktober, 2022", 130, 23));
-        //DummyEventDB.Add(new DummyEvent("28. Oktober, 2021", 130, 23));
+    //DummyEventDB.Add(new DummyEvent("17. Oktober, 2022", 130, 23));
+    //DummyEventDB.Add(new DummyEvent("28. Oktober, 2021", 130, 23));
     }
 }

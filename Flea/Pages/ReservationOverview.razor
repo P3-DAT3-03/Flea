@@ -2,10 +2,11 @@
 @using Microsoft.EntityFrameworkCore
 @page "/ReservationOverview"
 
+@* <button class="button button--outline create-button" @onclick="NewReservation">Opret ny booking</button> *@
+
 <div>
     <div class="view-head">
         <input class="search-input" type="search" value="" placeholder="Søg efter booking" @oninput="Searchbar">
-        <button class="button button--outline create-button" @onclick="NewReservation">Opret ny booking</button>
     </div>
 
     @foreach (var value in _shownReservation)
