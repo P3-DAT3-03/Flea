@@ -1,0 +1,12 @@
+﻿.modal-dialog {
+    background-color: var(--ios-bg);
+    color: var(--ios-fg);
+    display: grid;
+    border: 1px solid var(--ios-g4);
+    border-radius: 9px;
+    margin: 0 auto;
+    margin-top: 12.5%;
+    width: 60%;
+    height: auto;
+    padding: 1em;
+}

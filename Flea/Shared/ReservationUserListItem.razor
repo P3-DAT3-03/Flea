@@ -7,14 +7,14 @@
     <div class="txt">@(Reservation.Paid ? "Betalt" : "Ej betalt")</div>
     <button class="button del-button button--outline" @onclick="Delete">Slet</button>
     <Modal ButtonName="Rediger" ButtonClass="edit-button" @ref="_child">
-        <ReservationForm Reservation="_temp" OnValidSubmit="OnSubmit"></ReservationForm>
+        <ReservationForm Reservation="_temp" OnValidSubmit="OnSubmit" Modal="_child"></ReservationForm>
     </Modal>
 </div>
 @* <button class="button edit-button" @onclick="Edit">Rediger</button> *@
 
 @code {
     private Modal _child;
-    private Reservation _temp = new(1, 1, false, "",new Models.Customer("", ""));
+    private Reservation _temp = new(1, 0, false, "",new Models.Customer("", ""));
     private Reservation _reservation;
 
     [Parameter]
