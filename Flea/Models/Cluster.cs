@@ -7,10 +7,19 @@ namespace Flea.Models
 {
     public class Cluster
     {
+        public enum ClusterType
+        {
+            Round,
+            Vertical,
+            Horizontal,
+        }
+        
         public int Id { get; set; }
         public string Name { get; set; }
         public List<Table> Tables { get; set; }
         public int CustomerCount { get; set; }
+        
+        public ClusterType Type { get; set; }
 
         public Cluster(string name, int customerCount, int tableAmount)
         {

@@ -1,52 +1,46 @@
 @using Flea.Models
-@using System.Diagnostics
 <div class="cluster @Class">
-    @{var i = 0;}
-    @foreach (var value in Inner!.Tables)
+    @for (var i = 0; i < Inner.Tables.Count; i++)
     {
-        @switch (i)
+        var tableClass = Inner.Type switch
         {
-            case 0 or 3 or 4 or 7:
-                _tableClass = "horizontal";
-                break;
-            case 5 or 6:
-                _tableClass = "bottom";
-                break;
-            default:
-                _tableClass = "vertical";
-                break;
-        }
+            Models.Cluster.ClusterType.Round => i switch
+            {
+                0 or 3 or 4 or 7 => "horizontal",
+                5 or 6 => "bottom",
+                _ => "vertical"
+            },
+            Models.Cluster.ClusterType.Horizontal => "horizontal",
+            _ => "vertical"
+        };
         <Table
-            TableIndex="@(i++)"
+            TableIndex="@i"
             ClusterIndex="@ClusterIndex"
-            Inner="@value"
-            Class="@_tableClass"
+            Inner="@Inner.Tables[i]"
+            Class="@tableClass"
             OnTableSelect="@(async id => await OnTableSelect.InvokeAsync(id))">
         </Table>
     }
-    <div class="cluster-tag">@Inner.Name</div>
+    @if (Inner.Type == Models.Cluster.ClusterType.Round)
+    {
+        <div class="cluster-tag">@Inner.Name</div>   
+    }
 </div>
 @code {
     [Parameter]
     public string? Class { get; set; }
     
     [Parameter]
-    public Models.Cluster? Inner { get; set; }
+    public Models.Cluster Inner { get; set; }
     
     [Parameter]
     public EventCallback<(int,int)> OnTableSelect { get; set; }
 
     [Parameter]
     public int ClusterIndex { get; set; }
-    
-    private string? _tableClass;
-    
+
     protected override void OnInitialized()
     {
         Class ??= "";
-        Inner ??= new Models.Cluster("None", 0)
-        {
-            Tables = new List<Models.Table>()
-        };
     }
 }

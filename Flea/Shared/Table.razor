@@ -1,5 +1,5 @@
-<div class="table @Class @(Inner?.Reservation != null ? "on" : "off")" @onclick="OnTableClicked">
-    @Inner?.Id
+<div class="table @Class @(Inner.Reservation != null ? "on" : "off")" @onclick="OnTableClicked">
+    @Inner.Id
 </div>
 
 @code {
@@ -7,7 +7,7 @@
     public EventCallback<(int,int)> OnTableSelect { get; set; }
 
     [Parameter]
-    public Models.Table? Inner { get; set; }
+    public Models.Table Inner { get; set; }
 
     [Parameter]
     public string? Class { get; set; }
@@ -20,12 +20,10 @@
     
     private async Task OnTableClicked()
     {
-        if(Inner != null)
-            await OnTableSelect.InvokeAsync((TableIndex, ClusterIndex));
+        await OnTableSelect.InvokeAsync((TableIndex, ClusterIndex));
     }
     protected override void OnInitialized()
     {
-        Inner ??= new Models.Table(Models.Table.TableType.Empty){Id = 0};
         Class ??= "";
     }
 }

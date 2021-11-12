@@ -1,12 +1,12 @@
 @page "/Placing"
 @using Flea.Models
 @using Table = Flea.Models.Table
+@using Cluster = Flea.Models.Cluster
 <h1>Placing</h1>
 <div class="clusters">
-    @{var index = 0;}
-    @foreach (var cluster in Clusters!)
+    @for (var i = 0; i < Clusters.Count; i++)
     {
-        <Cluster Inner="@cluster" ClusterIndex="@(index++)" OnTableSelect="@TableSelected"></Cluster>
+        <Cluster Inner="@Clusters[i]" ClusterIndex="@i" OnTableSelect="@TableSelected"></Cluster>
     }
 </div>
 <style>
@@ -55,7 +55,7 @@
     }
 </style>
 @code {
-    private List<Models.Cluster>? Clusters { get; set; }
+    private List<Models.Cluster> Clusters { get; set; }
     private readonly Random _random = new ();  
     private Reservation? SelectedReservation { get; set; }
 
@@ -95,8 +95,14 @@
             if (cluster.Tables[offset].Reservation == null)
             {
                 tables[i] = cluster.Tables[offset];
-                (offset, direction) = Wrap(offset, direction);
+                if (cluster.Type == Cluster.ClusterType.Round)
+                    (offset, direction) = Wrap(offset, direction);
                 offset += direction;
+                if (offset >= cluster.Tables.Count && i != cluster.Tables.Count-1)
+                {
+                    Console.WriteLine($"{offset}:{cluster.Tables.Count}Could not reserve a continuous line of tables.");
+                    return;
+                }
                 continue;
             }
             Console.WriteLine("Could not reserve a continuous line of tables.");
@@ -111,51 +117,44 @@
 
     private static (int, int) Wrap(int offset, int direction)
     {
-        switch (offset)
+        return offset switch
         {
-            case 7 when direction is 1:
-                direction = -1;
-                offset = 4;
-                break;
-            case 4 when direction is -1:
-                direction = 1;
-                offset = -1;
-                break;
-            case 0 when direction is -1:
-                direction = 1;
-                offset = 3;
-                break;
-            case 3 when direction is 1:
-                direction = -1;
-                offset = 8;
-                break;
-        }
-        return (offset, direction);
+            7 when direction is 1 => (4, -1),
+            4 when direction is -1 => (-1, 1),
+            0 when direction is -1 => (3, 1),
+            3 when direction is 1 => (8, -1),
+            _ => (offset, direction)
+        };
     }
     
     protected override void OnInitialized()
     {
         SelectedReservation = new Reservation(1, 3, true, "");
-        Clusters = new List<Models.Cluster>();
-        AddCluster("L",0);
-        AddCluster("I",1);
-        AddCluster("F",2);
-        AddCluster("C",3);
-        AddCluster("K",4);
-        AddCluster("H",5);
-        AddCluster("E",6);
-        AddCluster("B",7);
-        AddCluster("J",8);
-        AddCluster("G",9);
-        AddCluster("D",10);
-        AddCluster("A",11);
+        Clusters = new List<Cluster>();
+        AddCluster("1",12, Cluster.ClusterType.Vertical,3);
+        AddCluster("2",13, Cluster.ClusterType.Vertical,3);
+        AddCluster("3",14, Cluster.ClusterType.Vertical,3);
+        AddCluster("4",15, Cluster.ClusterType.Vertical,3);
+        
+        AddCluster("L",0, Cluster.ClusterType.Round);
+        AddCluster("I",1, Cluster.ClusterType.Round);
+        AddCluster("F",2, Cluster.ClusterType.Round);
+        AddCluster("C",3, Cluster.ClusterType.Round);
+        AddCluster("K",4, Cluster.ClusterType.Round);
+        AddCluster("H",5, Cluster.ClusterType.Round);
+        AddCluster("E",6, Cluster.ClusterType.Round);
+        AddCluster("B",7, Cluster.ClusterType.Round);
+        AddCluster("J",8, Cluster.ClusterType.Round);
+        AddCluster("G",9, Cluster.ClusterType.Round);
+        AddCluster("D",10, Cluster.ClusterType.Round);
+        AddCluster("A",11, Cluster.ClusterType.Round);
     }
 
-    private void AddCluster(string name, int id)
+    private void AddCluster(string name, int id, Cluster.ClusterType type, int len = 8)
     {
-        var target = new Models.Cluster(name, 0){Id = id, Tables = new List<Table>()};
-        Clusters?.Add(target);
-        for (var i = 0; i < 8; i++)
+        var target = new Cluster(name, 0){Id = id, Tables = new List<Table>(), Type = type};
+        Clusters.Add(target);
+        for (var i = 0; i < len; i++)
         {
             target.Tables.Add(_random.Next(0, 5) == 1 ?
                 new Table {Id = i, Cluster = target,Reservation = new Reservation(0, 1, true, "")} :
