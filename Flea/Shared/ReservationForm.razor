@@ -1,19 +1,29 @@
 ﻿@using Flea.Models
 <EditForm Model="Reservation" OnValidSubmit="OnValidSubmit">
+    @if (Reservation.Id == 0)
+    {
+        <div>
+            <div>Vælg en loppe:</div>
+            <InputText @bind-Value="Reservation.ReservationOwner.Name"/> @*Indsæt søgefelt med oprettet kunder *@
+        </div>
+    }
+    else
+    {
+        <div>
+            <div>Loppe:</div>
+            <InputText disabled="" @bind-Value="Reservation.ReservationOwner.Name"/> @*Indsæt søgefelt med oprettet kunder *@
+        </div>
+    }
     <div>
-        <label>Vælg en loppe:</label>
-        <InputText @bind-Value="Reservation.ReservationOwner.Name"/> @*Indsæt søgefelt med oprettet kunder *@
-    </div>
-    <div>
-        <label>Antal stande: </label>
+        <div>Antal stande: </div>
         <InputNumber @bind-Value="Reservation.TableCount"></InputNumber>
     </div>
     <div>
-        <label>Betalt?: </label>
+        <div>Betalt?: </div>
         <InputCheckbox @bind-Value="Reservation.Paid"></InputCheckbox>
     </div>
     <div>
-        <label>Bemærkninger: </label>
+        <div>Bemærkninger: </div>
         <InputText @bind-Value="Reservation.Comments"></InputText>
     </div>
     @* <div> *@

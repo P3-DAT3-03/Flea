@@ -36,5 +36,7 @@ namespace Flea.Models
             Paid = paid;
             Comments = comments;
         }
+
+        public Reservation Clone() => (Reservation) this.MemberwiseClone();
     }
 }

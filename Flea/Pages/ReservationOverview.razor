@@ -8,8 +8,8 @@
 <div>
     <div class="view-head">
         <input class="search-input" type="search" value="" placeholder="Søg efter booking" @oninput="Searchbar">
-        <Modal ButtonName="Opret ny booking" @ref="child">
-            <ReservationForm Reservation="Temp" OnValidSubmit="NewReservation"></ReservationForm>
+        <Modal ButtonName="Opret ny booking" @ref="_child">
+            <ReservationForm Reservation="_temp" OnValidSubmit="NewReservation"></ReservationForm>
         </Modal>
     </div>
 
@@ -25,8 +25,8 @@
 
 @code
 {
-    Modal child;
-    private Reservation Temp = new (1, 1, false, "",new Models.Customer("", ""));
+    private Modal _child;
+    private Reservation _temp = new (1, 1, false, "",new Models.Customer("", ""));
     private string _search = "";
     
     
@@ -59,7 +59,7 @@
     public void EditReservationInformation(EditContext editContext)
     {
         var temp = (Reservation) editContext.Model;
-        child.ModalCancel();
+        
         Console.WriteLine("Hello");
     }
     
