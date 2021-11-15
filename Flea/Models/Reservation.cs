@@ -11,7 +11,6 @@ namespace Flea.Models
          *TODO consider if Tables should be a array based on TableCount instead of a list.*/
 
         public int Id { get; set; }
-        
         public int Priority { get; set; }
         public int TableCount { get; set; }
         public bool Paid { get; set; }
@@ -27,6 +26,7 @@ namespace Flea.Models
             TableCount = tableCount;
             Paid = paid;
             Comments = comments;
+            ReservationOwner = reservationOwner;
         }
         
         public Reservation(int priority, int tableCount, bool paid, string comments)
@@ -36,5 +36,7 @@ namespace Flea.Models
             Paid = paid;
             Comments = comments;
         }
+
+        public Reservation Clone() => (Reservation) this.MemberwiseClone();
     }
 }
