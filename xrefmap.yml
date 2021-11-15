@@ -466,6 +466,19 @@ references:
   isSpec: "True"
   fullName: Flea.Models.Reservation.Reservation
   nameWithType: Reservation.Reservation
+- uid: Flea.Models.Reservation.Clone
+  name: Clone()
+  href: api/Flea.Models.Reservation.html#Flea_Models_Reservation_Clone
+  commentId: M:Flea.Models.Reservation.Clone
+  fullName: Flea.Models.Reservation.Clone()
+  nameWithType: Reservation.Clone()
+- uid: Flea.Models.Reservation.Clone*
+  name: Clone
+  href: api/Flea.Models.Reservation.html#Flea_Models_Reservation_Clone_
+  commentId: Overload:Flea.Models.Reservation.Clone
+  isSpec: "True"
+  fullName: Flea.Models.Reservation.Clone
+  nameWithType: Reservation.Clone
 - uid: Flea.Models.Reservation.Comments
   name: Comments
   href: api/Flea.Models.Reservation.html#Flea_Models_Reservation_Comments
