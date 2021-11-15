@@ -50,7 +50,7 @@
         if (nameFound != null)
         {
             _reservations.Remove(nameFound);
-            _shownReservation = _shownReservation.Where(reservation=> reservation != nameFound);
+            _shownReservation = _shownReservation.Where(reservation => reservation != nameFound);
         }
     }
     
