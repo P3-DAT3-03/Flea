@@ -26,6 +26,7 @@ namespace Flea.Models
             TableCount = tableCount;
             Paid = paid;
             Comments = comments;
+            ReservationOwner = reservationOwner;
         }
         
         public Reservation(int priority, int tableCount, bool paid, string comments)
@@ -35,5 +36,7 @@ namespace Flea.Models
             Paid = paid;
             Comments = comments;
         }
+
+        public Reservation Clone() => (Reservation) this.MemberwiseClone();
     }
 }
