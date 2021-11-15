@@ -20,5 +20,6 @@ namespace Flea.Models
 		{
 			return new Reservation(priority, tables, paid, comments, this);
 		}
+		public Customer Clone() => (Customer) this.MemberwiseClone();
 	}
 }

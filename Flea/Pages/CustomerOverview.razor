@@ -2,33 +2,25 @@
 @using Customer = Flea.Models.Customer
 <div>
     <div class="view-head">
-        <input class="search-input" type="search" value="" placeholder="Søg efter kunde" @oninput="Searchbar">
-        <Modal ButtonName="lav ny kunde" @ref="child">
-            <EditForm Model="Temp" OnValidSubmit="NewCustomer">
-                <DataAnnotationsValidator/>
-                <ValidationSummary/>
-                <div class="txt">Name: </div>
-                    <InputText class="text-input" @bind-Value="Temp.Name" placeholder="Skriv et navn her"/>
-                <div class="txt">Telefonnummer: </div>
-                    <InputText class="text-input" @bind-Value="Temp.PhoneNumber" placeholder="Skriv et mobilnummer her" />
-                <button type="submit" class="button button--outline create-button">Opret Loppe</button>
-            </EditForm>
+        <input class="search-input" type="search" value="" placeholder="Søg efter loppe" @oninput="Searchbar">
+        <Modal ButtonName="Opret ny loppe" @ref="_child">
+            <CustomerForm Customer="_temp" OnValidSubmit="NewCustomer" Modal="_child"></CustomerForm>
         </Modal>
     </div>
-
     @foreach (var customer in ShownCustomers)
     {
         <div>
-            <UserListItem Customer="@customer" OnDelete="@DeleteCustomerInformation">
-            </UserListItem>
+            <CustomerUserListItem Customer="@customer" OnDelete="@DeleteCustomerInformation">
+            </CustomerUserListItem>
         </div>
     }
 </div>
 
+
 @code
 {
-    Modal child;
-    private Customer Temp = new("", "");
+    private Modal _child;
+    private Customer _temp = new("", "");
     private string _search = "";
 
     // Dummy data ---
@@ -52,18 +44,10 @@
         StateHasChanged();
     }
 
-    // Edits the customer
-    public void EditCustomerInformation(int id)
-    {
-        Console.WriteLine("Write the function here hehe");
-    }
-
     // Makes a new Customer
     public void NewCustomer(EditContext editContext)
     {
-        var customer = (Customer) editContext.Model;
-        Customers.Add(customer);
-        child.ModalCancel();
+        
     }
 
     // Searchbar function
