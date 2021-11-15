@@ -1,34 +1,41 @@
 @page "/CustomerOverview"
-@using System.Data.Common
+@using Customer = Flea.Models.Customer
+
 <div>
     <div class="view-head">
-        <input class="search-input" type="search" value="" placeholder="Søg efter kunde" @oninput="Searchbar">
-        <button class="button button--outline create-button" @onclick="NewCustomer">Tilføj Ny Loppe</button>
+        <input class="search-input" type="search" value="" placeholder="Søg efter loppe" @oninput="Searchbar">
+        <Modal ButtonName="Opret ny loppe" @ref="_child">
+            <CustomerForm Customer="_temp" OnValidSubmit="NewCustomer" Modal="_child"></CustomerForm>
+        </Modal>
     </div>
-
     @foreach (var customer in _shownCustomers)
     {
         <div>
-            <UserListItem Id="@customer.Id" Name="@customer.Name" TeleNumber="@customer.PhoneNumber"
-                          OnDelete="@DeleteCustomerInformation" OnEdit="@EditCustomerInformation">
-            </UserListItem>
+            <CustomerUserListItem Customer="@customer" OnDelete="@DeleteCustomerInformation">
+            </CustomerUserListItem>
         </div>
     }
 </div>
 
+
 @code
 {
+    private Modal _child;
+    private Customer _temp = new("", "");
     private string _search = "";
 
-    private List<Models.Customer> _customers = new()
+    // Dummy data ---
+
+    private List<Customer> _customers = new()
     {
-        new Models.Customer("Sebastian Aaholm", "24823423") {Id = 1},
-        new Models.Customer("Jens Jensen", "4541341") {Id = 2},
-        new Models.Customer("Hans Nielsen", "8888888") {Id = 3},
+        new Customer("Sebastian Aaholm", "24823423") {Id = 1},
+        new Customer("Jens Jensen", "4541341") {Id = 2},
+        new Customer("Hans Nielsen", "8888888") {Id = 3}
     };
+
     // ---
 
-    private IEnumerable<Models.Customer> _shownCustomers;
+    private IEnumerable<Customer> _shownCustomers;
 
     // Delete the customer
     public void DeleteCustomerInformation(int id)
@@ -38,16 +45,10 @@
         StateHasChanged();
     }
 
-    // Edits the customer
-    public void EditCustomerInformation(int id)
-    {
-        Console.WriteLine("Write the function here hehe");
-    }
-
     // Makes a new Customer
-    public void NewCustomer()
+    public void NewCustomer(EditContext editContext)
     {
-        Console.WriteLine("Write the function here haha");
+        
     }
 
     // Searchbar function
@@ -62,7 +63,7 @@
         else if (Char.IsDigit(input[0]))
         {
     // Finds by phonenumbers
-            
+
             var results = from c
                 in _customers
                 where c.PhoneNumber.Contains(input)

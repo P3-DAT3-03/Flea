@@ -1,0 +1,66 @@
+﻿@using Flea.Models
+@using Flea.Pages
+
+<EditForm Model="Customer" OnValidSubmit="OnValidSubmit">
+    <div class="edit-form">
+        @if (Customer.Id == 0)
+        {
+            <div class="edit-form-div">
+                <div>Navn på loppe:</div>
+                <InputText class="search-input edit-search-input" placeholder="Eks. Hans Henriksen"
+                           @bind-Value="Customer.Name"/> @*Indsæt søgefelt med oprettet kunder *@
+            </div>
+        }
+        else
+        {
+            <div class="edit-form-div">
+                <div>Loppe:</div>
+                <InputText class="search-input edit-search-input" disabled=""
+                           @bind-Value="Customer.Name"/> @*Indsæt søgefelt med oprettet kunder *@
+            </div>
+        }
+        <div class="edit-form-div">
+            <div>Telefon-nummer: </div>
+            <InputText class="search-input edit-search-input" placeholder="Eks. 12345678"
+                       @bind-Value="Customer.PhoneNumber"></InputText>
+        </div>
+        @* <div> *@
+        @*     <label>Bod type: </label> *@
+        @*     <InputText @bind-Value="Temp.Comments"></InputText> *@
+        @* </div> *@
+        @* <div> *@
+        @*     <label>Leje af tøj stativ: </label> *@
+        @*     <InputNumber @bind-Value="Temp.Comments"></InputNumber> *@
+        @* </div> *@
+        @* <div> *@
+        @*     <label>Bemærkninger: </label> *@
+        @*     <InputText @bind-Value="Temp.Comments"></InputText> *@
+        @* </div> *@
+        <div id="move-down">
+            <button type="submit" class="button create-button button--outline">@(Customer.Id == 0 ? "Opret Loppe" : "Gem ændringer")</button>
+            <button class="button button del-button button--outline" type="button" @onclick="@Modal.ModalCancel">Cancel</button>
+        </div>
+    </div>
+</EditForm>
+
+@code
+{
+    [Parameter]
+    public Customer Customer { get; set; } = null!;
+    
+    [Parameter]
+    public EventCallback<EditContext> OnValidSubmit { get; set; }
+
+    [Parameter]
+    public Modal Modal { get; set; }
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        if (Customer == null!)
+        {
+            throw new ArgumentNullException(nameof(Customer),"Parameter Customer can never be null");
+        }
+    }
+    
+}
