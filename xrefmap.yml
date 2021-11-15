@@ -286,6 +286,19 @@ references:
   isSpec: "True"
   fullName: Flea.Models.Customer.Customer
   nameWithType: Customer.Customer
+- uid: Flea.Models.Customer.Clone
+  name: Clone()
+  href: api/Flea.Models.Customer.html#Flea_Models_Customer_Clone
+  commentId: M:Flea.Models.Customer.Clone
+  fullName: Flea.Models.Customer.Clone()
+  nameWithType: Customer.Clone()
+- uid: Flea.Models.Customer.Clone*
+  name: Clone
+  href: api/Flea.Models.Customer.html#Flea_Models_Customer_Clone_
+  commentId: Overload:Flea.Models.Customer.Clone
+  isSpec: "True"
+  fullName: Flea.Models.Customer.Clone
+  nameWithType: Customer.Clone
 - uid: Flea.Models.Customer.CreateReservation(System.Int32,System.Int32,System.Boolean,System.String)
   name: CreateReservation(Int32, Int32, Boolean, String)
   href: api/Flea.Models.Customer.html#Flea_Models_Customer_CreateReservation_System_Int32_System_Int32_System_Boolean_System_String_
