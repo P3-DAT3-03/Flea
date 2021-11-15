@@ -37,7 +37,7 @@
         @*     <InputText @bind-Value="Temp.Comments"></InputText> *@
         @* </div> *@
         <div id="move-down">
-            <button type="submit" class="button create-button button--outline">@(Customer.Id == 0 ? "Opret Kunde" : "Gem ændringer")</button>
+            <button type="submit" class="button create-button button--outline">@(Customer.Id == 0 ? "Opret Loppe" : "Gem ændringer")</button>
             <button class="button button del-button button--outline" type="button" @onclick="@Modal.ModalCancel">Cancel</button>
         </div>
     </div>
