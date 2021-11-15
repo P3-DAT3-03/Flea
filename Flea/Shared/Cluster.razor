@@ -13,17 +13,32 @@
             Models.Cluster.ClusterType.Horizontal => "horizontal",
             _ => "vertical"
         };
+        if (SelectedCluster != null && Inner.Id == SelectedCluster.Id)
+        {
+            var t = Inner.Tables[i].Id;
+            foreach (var endNode in EndNodes)
+            {
+                if (StartNode != t && endNode.Contains(t))
+                {
+                    tableClass += " path";
+                    _endNode = endNode.Last();
+                }
+            }
+            if (t == StartNode)
+                tableClass += " start";
+        }
         <Table
             TableIndex="@i"
             ClusterIndex="@ClusterIndex"
             Inner="@Inner.Tables[i]"
             Class="@tableClass"
+            EndNode="@_endNode"
             OnTableSelect="@(async id => await OnTableSelect.InvokeAsync(id))">
         </Table>
     }
     @if (Inner.Type == Models.Cluster.ClusterType.Round)
     {
-        <div class="cluster-tag">@Inner.Name</div>   
+        <div class="cluster-tag">@Inner.Name</div>
     }
 </div>
 @code {
@@ -34,10 +49,21 @@
     public Models.Cluster Inner { get; set; }
     
     [Parameter]
-    public EventCallback<(int,int)> OnTableSelect { get; set; }
+    public List<int[]> EndNodes { get; set; }
+    
+    [Parameter]
+    public int StartNode { get; set; }
+    
+    [Parameter]
+    public Models.Cluster? SelectedCluster { get; set; }
+
+    [Parameter]
+    public EventCallback<(int,int,int)> OnTableSelect { get; set; }
 
     [Parameter]
     public int ClusterIndex { get; set; }
+
+    private int _endNode = -1;
 
     protected override void OnInitialized()
     {
