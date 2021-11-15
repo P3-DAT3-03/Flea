@@ -1,5 +1,6 @@
 @page "/CustomerOverview"
 @using Customer = Flea.Models.Customer
+
 <div>
     <div class="view-head">
         <input class="search-input" type="search" value="" placeholder="Søg efter loppe" @oninput="Searchbar">
@@ -7,7 +8,7 @@
             <CustomerForm Customer="_temp" OnValidSubmit="NewCustomer" Modal="_child"></CustomerForm>
         </Modal>
     </div>
-    @foreach (var customer in ShownCustomers)
+    @foreach (var customer in _shownCustomers)
     {
         <div>
             <CustomerUserListItem Customer="@customer" OnDelete="@DeleteCustomerInformation">
@@ -25,7 +26,7 @@
 
     // Dummy data ---
 
-    private List<Customer> Customers = new()
+    private List<Customer> _customers = new()
     {
         new Customer("Sebastian Aaholm", "24823423") {Id = 1},
         new Customer("Jens Jensen", "4541341") {Id = 2},
@@ -34,13 +35,13 @@
 
     // ---
 
-    private IEnumerable<Customer> ShownCustomers;
+    private IEnumerable<Customer> _shownCustomers;
 
     // Delete the customer
     public void DeleteCustomerInformation(int id)
     {
-        Customers = Customers.Where(c => c.Id != id).ToList();
-        ShownCustomers = ShownCustomers.Where(c => c.Id != id);
+        _customers = _customers.Where(c => c.Id != id).ToList();
+        _shownCustomers = _shownCustomers.Where(c => c.Id != id);
         StateHasChanged();
     }
 
@@ -57,31 +58,31 @@
         var input = e.Value?.ToString() ?? "";
         if (input == "")
         {
-            ShownCustomers = Customers;
+            _shownCustomers = _customers;
         }
         else if (Char.IsDigit(input[0]))
         {
     // Finds by phonenumbers
 
             var results = from c
-                in Customers
+                in _customers
                 where c.PhoneNumber.Contains(input)
                 select c;
-            ShownCustomers = results;
+            _shownCustomers = results;
         }
         else
         {
     // Finds by name
             var results = from c
-                in Customers
+                in _customers
                 where c.Name.ToLower().Contains(input.ToLower())
                 select c;
-            ShownCustomers = results;
+            _shownCustomers = results;
         }
     }
 
     protected override void OnInitialized()
     {
-        ShownCustomers = Customers;
+        _shownCustomers = _customers;
     }
 }

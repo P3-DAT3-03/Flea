@@ -1,9 +1,9 @@
 <button class="button button--outline create-button" @onclick="@ModalShow">@ButtonName</button>
 @if (_showModal)
 {
-    <div class="modal fade show" id="myModal" style="display: block; background-color: transparent" aria-modal="true" role="dialog">
+    <div class="modal fade show modal-display" id="myModal" aria-modal="true" role="dialog">
         <div class="modal-dialog">
-            <div class="modal-content" >
+            <div class="modal-content">
                 @ChildContent
             </div>
         </div>
@@ -18,6 +18,6 @@
     public string ButtonName { get; set; }
 
     private bool _showModal = false;
-    private void ModalShow()=> _showModal = true;
+    private void ModalShow() => _showModal = true;
     public void ModalCancel() => _showModal = false;
 }

@@ -10,3 +10,8 @@
     height: auto;
     padding: 1em;
 }
+
+.modal-display {
+    display: block;
+    background-color: transparent
+}
