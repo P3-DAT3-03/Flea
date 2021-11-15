@@ -1,0 +1,841 @@
+﻿openapi: 3.0.2
+info:
+  title:  BankoCenter Denmark Event Management
+  version: '1.0'
+  description: An api for managing data needed to run BankoCenter Denmark flea markts.
+
+# Authors notes:
+# this is pain plz oh god help me
+# Python i <3 u
+# Things that needs to be looked at
+
+## Currently a reservation has not field 
+## for when a customer is checked in.
+
+## Were kind of missing the search for customer event
+## I guess we will search for every customer based on Name or Phone number.
+
+## Were also missing a event for getting x latest 'Events'
+
+## Comments was this not requirements?
+paths:
+  /Event:
+    get:
+      tags:
+        - Event
+      operationId: Eventget137
+      description: Gets a instance of the Event object.
+      parameters:
+        - in: header
+          name: ID
+          schema:
+            type: integer
+          required: true
+      responses:
+        200:
+          description: Successfully completed request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Event"
+        default:
+          description: An unexpected error has occured
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Message:
+                    type: string
+                    default: "An unexpected error has occured"
+    post:
+      tags:
+        - Event
+      operationId: Eventpost582
+      description: Posts a instance of the Event object.
+      parameters:
+        - in: header
+          name: Event
+          schema:
+            type: object
+            properties:
+              Name:
+                type: string
+              Date:
+                type: integer
+                format: date
+              PreviousEventId:
+                type: integer
+      responses:
+        200:
+          description: Successfully completed request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Event"
+        default:
+          description: An unexpected error has occured
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Message:
+                    type: string
+                    default: "An unexpected error has occured"
+    put:
+      tags:
+        - Event
+      operationId: Eventput867
+      description: Puts a instance of the Event object.
+      parameters:
+        - in: header
+          name: Event
+          schema:
+            type: object
+            properties:
+              ID:
+                type: integer
+              Name:
+                type: string
+              Date:
+                type: integer
+                format: date
+              PreviousEventId:
+                type: integer
+      responses:
+        200:
+          description: Successfully completed request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Message:
+                    type: string
+                    default: "Successfully completed request"
+        default:
+          description: An unexpected error has occured
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Message:
+                    type: string
+                    default: "An unexpected error has occured"
+    delete:
+      tags:
+        - Event
+      operationId: Eventdelete821
+      description: Deletes a instance of the Event object.
+      parameters:
+        - in: header
+          name: ID
+          schema:
+            type: integer
+          required: true
+      responses:
+        200:
+          description: Successfully completed request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Message:
+                    type: string
+                    default: "Successfully completed request"
+        default:
+          description: An unexpected error has occured
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Message:
+                    type: string
+                    default: "An unexpected error has occured"
+  /Latest/Event:
+    get:
+      tags:
+        - Event
+      operationId: Eventget782
+      description: Gets a instance of the Event object.
+      parameters:
+        - in: header
+          name: Count
+          schema:
+            type: integer
+          required: true
+        - in: header
+          name: Offset
+          schema:
+            type: integer
+          required: true
+      responses:
+        200:
+          description: Successfully completed request
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Event"
+        default:
+          description: An unexpected error has occured
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Message:
+                    type: string
+                    default: "An unexpected error has occured"
+  /Cluster:
+    get:
+      tags:
+        - Cluster
+      operationId: Clusterget64
+      description: Gets a instance of the Cluster object.
+      parameters:
+        - in: header
+          name: ID
+          schema:
+            type: integer
+          required: true
+      responses:
+        200:
+          description: Successfully completed request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Cluster"
+        default:
+          description: An unexpected error has occured
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Message:
+                    type: string
+                    default: "An unexpected error has occured"
+    post:
+      tags:
+        - Cluster
+      operationId: Clusterpost261
+      description: Posts a instance of the Cluster object.
+      parameters:
+        - in: header
+          name: Cluster
+          schema:
+            type: object
+            properties:
+              Name:
+                type: string
+              CustomerCount:
+                type: integer
+      responses:
+        200:
+          description: Successfully completed request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Cluster"
+        default:
+          description: An unexpected error has occured
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Message:
+                    type: string
+                    default: "An unexpected error has occured"
+    put:
+      tags:
+        - Cluster
+      operationId: Clusterput120
+      description: Puts a instance of the Cluster object.
+      parameters:
+        - in: header
+          name: Cluster
+          schema:
+            type: object
+            properties:
+              ID:
+                type: integer
+              CustomerCount:
+                type: integer
+      responses:
+        200:
+          description: Successfully completed request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Message:
+                    type: string
+                    default: "Successfully completed request"
+        default:
+          description: An unexpected error has occured
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Message:
+                    type: string
+                    default: "An unexpected error has occured"
+    delete:
+      tags:
+        - Cluster
+      operationId: Clusterdelete507
+      description: Deletes a instance of the Cluster object.
+      parameters:
+        - in: header
+          name: ID
+          schema:
+            type: integer
+          required: true
+      responses:
+        200:
+          description: Successfully completed request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Message:
+                    type: string
+                    default: "Successfully completed request"
+        default:
+          description: An unexpected error has occured
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Message:
+                    type: string
+                    default: "An unexpected error has occured"
+  /Table:
+    get:
+      tags:
+        - Table
+      operationId: Tableget779
+      description: Gets a instance of the Table object.
+      parameters:
+        - in: header
+          name: ID
+          schema:
+            type: integer
+          required: true
+      responses:
+        200:
+          description: Successfully completed request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Table"
+        default:
+          description: An unexpected error has occured
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Message:
+                    type: string
+                    default: "An unexpected error has occured"
+    post:
+      tags:
+        - Table
+      operationId: Tablepost460
+      description: Posts a instance of the Table object.
+      parameters:
+        - in: header
+          name: Table
+          schema:
+            type: object
+            properties:
+              Type:
+                type: string
+      responses:
+        200:
+          description: Successfully completed request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Table"
+        default:
+          description: An unexpected error has occured
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Message:
+                    type: string
+                    default: "An unexpected error has occured"
+    put:
+      tags:
+        - Table
+      operationId: Tableput483
+      description: Puts a instance of the Table object.
+      parameters:
+        - in: header
+          name: Table
+          schema:
+            type: object
+            properties:
+              ID:
+                type: integer
+              Type:
+                type: string
+      responses:
+        200:
+          description: Successfully completed request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Message:
+                    type: string
+                    default: "Successfully completed request"
+        default:
+          description: An unexpected error has occured
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Message:
+                    type: string
+                    default: "An unexpected error has occured"
+    delete:
+      tags:
+        - Table
+      operationId: Tabledelete667
+      description: Deletes a instance of the Table object.
+      parameters:
+        - in: header
+          name: ID
+          schema:
+            type: integer
+          required: true
+      responses:
+        200:
+          description: Successfully completed request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Message:
+                    type: string
+                    default: "Successfully completed request"
+        default:
+          description: An unexpected error has occured
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Message:
+                    type: string
+                    default: "An unexpected error has occured"
+  /Reservation:
+    get:
+      tags:
+        - Reservation
+      operationId: Reservationget388
+      description: Gets a instance of the Reservation object.
+      parameters:
+        - in: header
+          name: ID
+          schema:
+            type: integer
+          required: true
+      responses:
+        200:
+          description: Successfully completed request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Reservation"
+        default:
+          description: An unexpected error has occured
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Message:
+                    type: string
+                    default: "An unexpected error has occured"
+    post:
+      tags:
+        - Reservation
+      operationId: Reservationpost807
+      description: Posts a instance of the Reservation object.
+      parameters:
+        - in: header
+          name: Reservation
+          schema:
+            type: object
+            properties:
+              Priority:
+                type: integer
+              TableCount:
+                type: integer
+              Paid:
+                type: boolean
+              Arrived:
+                type: boolean
+              ProductType:
+                type: string
+              Comments:
+                type: array
+                items:
+                  type: string
+      responses:
+        200:
+          description: Successfully completed request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Reservation"
+        default:
+          description: An unexpected error has occured
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Message:
+                    type: string
+                    default: "An unexpected error has occured"
+    put:
+      tags:
+        - Reservation
+      operationId: Reservationput214
+      description: Puts a instance of the Reservation object.
+      parameters:
+        - in: header
+          name: Reservation
+          schema:
+            type: object
+            properties:
+              ID:
+                type: integer
+              Priority:
+                type: integer
+              TableCount:
+                type: integer
+              Paid:
+                type: boolean
+              Arrived:
+                type: boolean
+              ProductType:
+                type: string
+              Comments:
+                type: array
+                items:
+                  type: string
+      responses:
+        200:
+          description: Successfully completed request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Message:
+                    type: string
+                    default: "Successfully completed request"
+        default:
+          description: An unexpected error has occured
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Message:
+                    type: string
+                    default: "An unexpected error has occured"
+    delete:
+      tags:
+        - Reservation
+      operationId: Reservationdelete96
+      description: Deletes a instance of the Reservation object.
+      parameters:
+        - in: header
+          name: ID
+          schema:
+            type: integer
+          required: true
+      responses:
+        200:
+          description: Successfully completed request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Message:
+                    type: string
+                    default: "Successfully completed request"
+        default:
+          description: An unexpected error has occured
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Message:
+                    type: string
+                    default: "An unexpected error has occured"
+  /Customer:
+    get:
+      tags:
+        - Customer
+      operationId: Customerget499
+      description: Gets a instance of the Customer object.
+      parameters:
+        - in: header
+          name: ID
+          schema:
+            type: integer
+          required: true
+      responses:
+        200:
+          description: Successfully completed request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Customer"
+        default:
+          description: An unexpected error has occured
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Message:
+                    type: string
+                    default: "An unexpected error has occured"
+    post:
+      tags:
+        - Customer
+      operationId: Customerpost29
+      description: Posts a instance of the Customer object.
+      parameters:
+        - in: header
+          name: Customer
+          schema:
+            type: object
+            properties:
+              Name:
+                type: string
+              PhoneNumber:
+                type: integer
+      responses:
+        200:
+          description: Successfully completed request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Customer"
+        default:
+          description: An unexpected error has occured
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Message:
+                    type: string
+                    default: "An unexpected error has occured"
+    put:
+      tags:
+        - Customer
+      operationId: Customerput914
+      description: Puts a instance of the Customer object.
+      parameters:
+        - in: header
+          name: Customer
+          schema:
+            type: object
+            properties:
+              ID:
+                type: integer
+              Name:
+                type: string
+              PhoneNumber:
+                type: integer
+      responses:
+        200:
+          description: Successfully completed request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Message:
+                    type: string
+                    default: "Successfully completed request"
+        default:
+          description: An unexpected error has occured
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Message:
+                    type: string
+                    default: "An unexpected error has occured"
+    delete:
+      tags:
+        - Customer
+      operationId: Customerdelete855
+      description: Deletes a instance of the Customer object.
+      parameters:
+        - in: header
+          name: ID
+          schema:
+            type: integer
+          required: true
+      responses:
+        200:
+          description: Successfully completed request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Message:
+                    type: string
+                    default: "Successfully completed request"
+        default:
+          description: An unexpected error has occured
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Message:
+                    type: string
+                    default: "An unexpected error has occured"
+  /Search/Customer:
+    get:
+      tags:
+        - Customer
+      operationId: Customerget399
+      description: Gets a instance of the Customer object.
+      parameters:
+        - in: header
+          name: Name
+          schema:
+            type: string
+          required: true
+        - in: header
+          name: PhoneNumber
+          schema:
+            type: string
+          required: true
+      responses:
+        200:
+          description: Successfully completed request
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Customer"
+        default:
+          description: An unexpected error has occured
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Message:
+                    type: string
+                    default: "An unexpected error has occured"
+components:
+  schemas:
+    Event:
+      type: object
+      properties:
+        ID:
+          type: integer
+        Name:
+          type: string
+        Date:
+          type: integer
+          format: date
+        Clusters:
+          type: array
+          items:
+            $ref: "#/components/schemas/Cluster"
+        PreviousEventId:
+          type: integer
+    Cluster:
+      type: object
+      properties:
+        ID:
+          type: integer
+        Name:
+          type: string
+        Tables:
+          type: array
+          items:
+            $ref: "#/components/schemas/Table"
+        CustomerCount:
+          type: integer
+    Table:
+      type: object
+      properties:
+        ID:
+          type: integer
+        Reservation:
+          $ref: "#/components/schemas/Reservation"
+        Type:
+          type: string
+    Reservation:
+      type: object
+      properties:
+        ID:
+          type: integer
+        Priority:
+          type: integer
+        TableCount:
+          type: integer
+        Paid:
+          type: boolean
+        Arrived:
+          type: boolean
+        ProductType:
+          type: string
+        Comments:
+          type: array
+          items:
+            type: string
+    Customer:
+      type: object
+      properties:
+        ID:
+          type: integer
+        Name:
+          type: string
+        PhoneNumber:
+          type: integer
+        Reservations:
+          type: array
+          items:
+            $ref: "#/components/schemas/Reservation"
+
