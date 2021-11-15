@@ -25,7 +25,7 @@ namespace Flea
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
-            services.AddDbContext<BingoContext>(options =>
+            services.AddDbContextFactory<BingoContext>(options =>
             {
                 options.UseNpgsql(Configuration.GetConnectionString("Default"));
             });
