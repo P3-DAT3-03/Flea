@@ -1,6 +1,6 @@
 ﻿@using Event = Flea.Models.Event;
 
-<EditForm Model="Event" OnInvalidSubmit="OnValidSubmit">
+<EditForm Model="Event" OnValidSubmit="OnValidSubmit">
     <div class="edit-form">
         <div class="edit-form-div">
             <label>Dato:</label>
@@ -25,7 +25,13 @@
 @code {
 
     [Parameter]
+    public int EventAmount { get; set; }= 1;
+
+    [Parameter]
     public Event Event { get; set; } = null;
+    
+    [Parameter]
+    public List<Event> TempEvents { get; set; }
     
     [Parameter]
     public EventCallback<EditContext> OnValidSubmit { get; set; }

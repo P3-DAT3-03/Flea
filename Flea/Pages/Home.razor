@@ -1,6 +1,7 @@
+@using Event = Flea.Models.Event;
+
 @page "/"
 @page "/Home"
-@using Event = Flea.Models.Event;
 
 <div>
     <div class="view-head">
@@ -9,8 +10,9 @@
             <div>
                 <h5>Hvor mange loppemarkeder ønsker I at oprette?</h5>
                 <label>Antal loppemarkeder: </label>
-                <input type="text" @bind="_eventAmount">
-            </div>
+                <input type="text" @bind="_eventAmount">   
+            </div>    
+            
             @if (_eventAmount > 0)
             {
                 _tempEvents.Clear();
@@ -19,14 +21,18 @@
                     _tempEvents.Add(new Event("", DateTime.Today));
                 }
             }
+            
             @foreach (var temp in _tempEvents)
             {
-                <CreateEventForm Event="_temp" OnValidSubmit="AddEventItem" Modal="_child"></CreateEventForm>
+                <CreateEventForm Event="temp" OnValidSubmit="AddEventItem" Modal="_child"></CreateEventForm>
             }
-            <button type="submit" onclick="AddEventItem">Tilføj loppemarked</button>
+            <div>
+                <button type="submit" class="button create-button button--outline" @onclick="AddEventItem">Tilføj loppemarked</button>
+                <button type="button" class="button button del-button button--outline"  >Anullér</button>
+            </div>
         </Modal>
     </div>
-
+    
     <!-- Creates event items for each event that matches the user's search term -->
     @if (DummyEventDB.Count == 0)
     {
@@ -48,10 +54,12 @@
 </div>
 
 @code {
-    Modal _child;
+    public Modal Modal { get; set; }
+    public Modal _child;
     private Event _temp = new Event("", DateTime.Today);
     private string _searchTerm { get; set; } = "";
     private int _eventAmount = 1;
+    List<Event> _tempEvents = new List<Event>();
     
     // Placeholder event database. 
     private List<Event> DummyEventDB = new();
@@ -65,6 +73,4 @@
         DummyEventDB.AddRange(_tempEvents);
         DummyEventDB.Sort((x, y) => x.DateTime.CompareTo(y.DateTime));
     }
-
-    List<Event> _tempEvents = new List<Event>();
 }
