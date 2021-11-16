@@ -17,11 +17,23 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/Flea.Migrations.phonenumber_to_string.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Flea.Migrations.phonenumber_to_string.html",
+          "hash": "GmTJO2goj6CKJo/+T44awgvavK5NJ6FNBf2i/hJvtY8="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/Flea.Migrations.yml",
       "output": {
         ".html": {
           "relative_path": "api/Flea.Migrations.html",
-          "hash": "UgtvwHCiz9vaio12ERMylI8uxDMk9uZZlVECsoAEUyk="
+          "hash": "wQFwuxU0r6NPuH/qSih1A+ic1KL8EiAifwQtbmaP+zQ="
         }
       },
       "is_incremental": false,
@@ -57,7 +69,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Flea.Models.Customer.html",
-          "hash": "AB0vLBBrHnGYyP6XJgFCGiGzNQQT7UGneuiEQs/R11U="
+          "hash": "VZw5WteT7cG+TWGCIeaWTOqEF6VKAxLG1+wVhsipf8I="
         }
       },
       "is_incremental": false,
@@ -70,6 +82,18 @@
         ".html": {
           "relative_path": "api/Flea.Models.Event.html",
           "hash": "dsl0XnKve4VSmHcjML4y4uLL65Yh9M50h4UHpD2+QoI="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Flea.Models.IModelEntity-2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Flea.Models.IModelEntity-2.html",
+          "hash": "7tLiRycXyaOLU08ou4Nm4TPg+aiPbSpJ7SLHnQuPqM8="
         }
       },
       "is_incremental": false,
@@ -117,7 +141,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Flea.Models.html",
-          "hash": "PfbWo54652LYgFn7fGgvXgpg9Dffzf7lwzHwEeJfye0="
+          "hash": "2JFxE+81PLQchSmL6B3gG4vuVwsTHk3kTms0gnVKFXA="
         }
       },
       "is_incremental": false,
@@ -173,6 +197,30 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/Flea.Utility.DatabaseHelperExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Flea.Utility.DatabaseHelperExtensions.html",
+          "hash": "m+jlDmNJi5NUzQwD1DIoEbofEr8qzstYbhXUrCddOGE="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Flea.Utility.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Flea.Utility.html",
+          "hash": "/uPGZyJ0LXEH6oIzzz9JVBuEJiSiDIDAWOwJ8tqs8qA="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/Flea.yml",
       "output": {
         ".html": {
@@ -201,7 +249,7 @@
       "output": {
         ".html": {
           "relative_path": "api/toc.html",
-          "hash": "KE9HKMYdEDhnQ6lZnYiFIBnVz6m0ZjbTMBVI0aoQGm8="
+          "hash": "FpendwjRP+AcU011lArleoCwdavKnrp/OP/ETv5QT4M="
         }
       },
       "is_incremental": false,
@@ -288,7 +336,7 @@
         "ManagedReferenceDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build",
-          "total_file_count": 15,
+          "total_file_count": 19,
           "skipped_file_count": 0
         },
         "TocDocumentProcessor": {

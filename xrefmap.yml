@@ -58,6 +58,51 @@ references:
   isSpec: "True"
   fullName: Flea.Migrations.init.Up
   nameWithType: init.Up
+- uid: Flea.Migrations.phonenumber_to_string
+  name: phonenumber_to_string
+  href: api/Flea.Migrations.phonenumber_to_string.html
+  commentId: T:Flea.Migrations.phonenumber_to_string
+  fullName: Flea.Migrations.phonenumber_to_string
+  nameWithType: phonenumber_to_string
+- uid: Flea.Migrations.phonenumber_to_string.BuildTargetModel(ModelBuilder)
+  name: BuildTargetModel(ModelBuilder)
+  href: api/Flea.Migrations.phonenumber_to_string.html#Flea_Migrations_phonenumber_to_string_BuildTargetModel_ModelBuilder_
+  commentId: M:Flea.Migrations.phonenumber_to_string.BuildTargetModel(ModelBuilder)
+  fullName: Flea.Migrations.phonenumber_to_string.BuildTargetModel(ModelBuilder)
+  nameWithType: phonenumber_to_string.BuildTargetModel(ModelBuilder)
+- uid: Flea.Migrations.phonenumber_to_string.BuildTargetModel*
+  name: BuildTargetModel
+  href: api/Flea.Migrations.phonenumber_to_string.html#Flea_Migrations_phonenumber_to_string_BuildTargetModel_
+  commentId: Overload:Flea.Migrations.phonenumber_to_string.BuildTargetModel
+  isSpec: "True"
+  fullName: Flea.Migrations.phonenumber_to_string.BuildTargetModel
+  nameWithType: phonenumber_to_string.BuildTargetModel
+- uid: Flea.Migrations.phonenumber_to_string.Down(MigrationBuilder)
+  name: Down(MigrationBuilder)
+  href: api/Flea.Migrations.phonenumber_to_string.html#Flea_Migrations_phonenumber_to_string_Down_MigrationBuilder_
+  commentId: M:Flea.Migrations.phonenumber_to_string.Down(MigrationBuilder)
+  fullName: Flea.Migrations.phonenumber_to_string.Down(MigrationBuilder)
+  nameWithType: phonenumber_to_string.Down(MigrationBuilder)
+- uid: Flea.Migrations.phonenumber_to_string.Down*
+  name: Down
+  href: api/Flea.Migrations.phonenumber_to_string.html#Flea_Migrations_phonenumber_to_string_Down_
+  commentId: Overload:Flea.Migrations.phonenumber_to_string.Down
+  isSpec: "True"
+  fullName: Flea.Migrations.phonenumber_to_string.Down
+  nameWithType: phonenumber_to_string.Down
+- uid: Flea.Migrations.phonenumber_to_string.Up(MigrationBuilder)
+  name: Up(MigrationBuilder)
+  href: api/Flea.Migrations.phonenumber_to_string.html#Flea_Migrations_phonenumber_to_string_Up_MigrationBuilder_
+  commentId: M:Flea.Migrations.phonenumber_to_string.Up(MigrationBuilder)
+  fullName: Flea.Migrations.phonenumber_to_string.Up(MigrationBuilder)
+  nameWithType: phonenumber_to_string.Up(MigrationBuilder)
+- uid: Flea.Migrations.phonenumber_to_string.Up*
+  name: Up
+  href: api/Flea.Migrations.phonenumber_to_string.html#Flea_Migrations_phonenumber_to_string_Up_
+  commentId: Overload:Flea.Migrations.phonenumber_to_string.Up
+  isSpec: "True"
+  fullName: Flea.Migrations.phonenumber_to_string.Up
+  nameWithType: phonenumber_to_string.Up
 - uid: Flea.Models
   name: Flea.Models
   href: api/Flea.Models.html
@@ -273,6 +318,18 @@ references:
   commentId: T:Flea.Models.Customer
   fullName: Flea.Models.Customer
   nameWithType: Customer
+- uid: Flea.Models.Customer.#ctor
+  name: Customer()
+  href: api/Flea.Models.Customer.html#Flea_Models_Customer__ctor
+  commentId: M:Flea.Models.Customer.#ctor
+  fullName: Flea.Models.Customer.Customer()
+  nameWithType: Customer.Customer()
+- uid: Flea.Models.Customer.#ctor(System.Int32)
+  name: Customer(Int32)
+  href: api/Flea.Models.Customer.html#Flea_Models_Customer__ctor_System_Int32_
+  commentId: M:Flea.Models.Customer.#ctor(System.Int32)
+  fullName: Flea.Models.Customer.Customer(System.Int32)
+  nameWithType: Customer.Customer(Int32)
 - uid: Flea.Models.Customer.#ctor(System.String,System.String)
   name: Customer(String, String)
   href: api/Flea.Models.Customer.html#Flea_Models_Customer__ctor_System_String_System_String_
@@ -454,6 +511,100 @@ references:
   commentId: F:Flea.Models.Event.Reservations
   fullName: Flea.Models.Event.Reservations
   nameWithType: Event.Reservations
+- uid: Flea.Models.IModelEntity`2
+  name: IModelEntity<TEntity, TContext>
+  href: api/Flea.Models.IModelEntity-2.html
+  commentId: T:Flea.Models.IModelEntity`2
+  name.vb: IModelEntity(Of TEntity, TContext)
+  fullName: Flea.Models.IModelEntity<TEntity, TContext>
+  fullName.vb: Flea.Models.IModelEntity(Of TEntity, TContext)
+  nameWithType: IModelEntity<TEntity, TContext>
+  nameWithType.vb: IModelEntity(Of TEntity, TContext)
+- uid: Flea.Models.IModelEntity`2.Delete(`1)
+  name: Delete(TContext)
+  href: api/Flea.Models.IModelEntity-2.html#Flea_Models_IModelEntity_2_Delete__1_
+  commentId: M:Flea.Models.IModelEntity`2.Delete(`1)
+  fullName: Flea.Models.IModelEntity<TEntity, TContext>.Delete(TContext)
+  fullName.vb: Flea.Models.IModelEntity(Of TEntity, TContext).Delete(TContext)
+  nameWithType: IModelEntity<TEntity, TContext>.Delete(TContext)
+  nameWithType.vb: IModelEntity(Of TEntity, TContext).Delete(TContext)
+- uid: Flea.Models.IModelEntity`2.Delete*
+  name: Delete
+  href: api/Flea.Models.IModelEntity-2.html#Flea_Models_IModelEntity_2_Delete_
+  commentId: Overload:Flea.Models.IModelEntity`2.Delete
+  isSpec: "True"
+  fullName: Flea.Models.IModelEntity<TEntity, TContext>.Delete
+  fullName.vb: Flea.Models.IModelEntity(Of TEntity, TContext).Delete
+  nameWithType: IModelEntity<TEntity, TContext>.Delete
+  nameWithType.vb: IModelEntity(Of TEntity, TContext).Delete
+- uid: Flea.Models.IModelEntity`2.GetAll(`1)
+  name: GetAll(TContext)
+  href: api/Flea.Models.IModelEntity-2.html#Flea_Models_IModelEntity_2_GetAll__1_
+  commentId: M:Flea.Models.IModelEntity`2.GetAll(`1)
+  fullName: Flea.Models.IModelEntity<TEntity, TContext>.GetAll(TContext)
+  fullName.vb: Flea.Models.IModelEntity(Of TEntity, TContext).GetAll(TContext)
+  nameWithType: IModelEntity<TEntity, TContext>.GetAll(TContext)
+  nameWithType.vb: IModelEntity(Of TEntity, TContext).GetAll(TContext)
+- uid: Flea.Models.IModelEntity`2.GetAll*
+  name: GetAll
+  href: api/Flea.Models.IModelEntity-2.html#Flea_Models_IModelEntity_2_GetAll_
+  commentId: Overload:Flea.Models.IModelEntity`2.GetAll
+  isSpec: "True"
+  fullName: Flea.Models.IModelEntity<TEntity, TContext>.GetAll
+  fullName.vb: Flea.Models.IModelEntity(Of TEntity, TContext).GetAll
+  nameWithType: IModelEntity<TEntity, TContext>.GetAll
+  nameWithType.vb: IModelEntity(Of TEntity, TContext).GetAll
+- uid: Flea.Models.IModelEntity`2.GetDbSet(`1)
+  name: GetDbSet(TContext)
+  href: api/Flea.Models.IModelEntity-2.html#Flea_Models_IModelEntity_2_GetDbSet__1_
+  commentId: M:Flea.Models.IModelEntity`2.GetDbSet(`1)
+  fullName: Flea.Models.IModelEntity<TEntity, TContext>.GetDbSet(TContext)
+  fullName.vb: Flea.Models.IModelEntity(Of TEntity, TContext).GetDbSet(TContext)
+  nameWithType: IModelEntity<TEntity, TContext>.GetDbSet(TContext)
+  nameWithType.vb: IModelEntity(Of TEntity, TContext).GetDbSet(TContext)
+- uid: Flea.Models.IModelEntity`2.GetDbSet*
+  name: GetDbSet
+  href: api/Flea.Models.IModelEntity-2.html#Flea_Models_IModelEntity_2_GetDbSet_
+  commentId: Overload:Flea.Models.IModelEntity`2.GetDbSet
+  isSpec: "True"
+  fullName: Flea.Models.IModelEntity<TEntity, TContext>.GetDbSet
+  fullName.vb: Flea.Models.IModelEntity(Of TEntity, TContext).GetDbSet
+  nameWithType: IModelEntity<TEntity, TContext>.GetDbSet
+  nameWithType.vb: IModelEntity(Of TEntity, TContext).GetDbSet
+- uid: Flea.Models.IModelEntity`2.Save(`1)
+  name: Save(TContext)
+  href: api/Flea.Models.IModelEntity-2.html#Flea_Models_IModelEntity_2_Save__1_
+  commentId: M:Flea.Models.IModelEntity`2.Save(`1)
+  fullName: Flea.Models.IModelEntity<TEntity, TContext>.Save(TContext)
+  fullName.vb: Flea.Models.IModelEntity(Of TEntity, TContext).Save(TContext)
+  nameWithType: IModelEntity<TEntity, TContext>.Save(TContext)
+  nameWithType.vb: IModelEntity(Of TEntity, TContext).Save(TContext)
+- uid: Flea.Models.IModelEntity`2.Save*
+  name: Save
+  href: api/Flea.Models.IModelEntity-2.html#Flea_Models_IModelEntity_2_Save_
+  commentId: Overload:Flea.Models.IModelEntity`2.Save
+  isSpec: "True"
+  fullName: Flea.Models.IModelEntity<TEntity, TContext>.Save
+  fullName.vb: Flea.Models.IModelEntity(Of TEntity, TContext).Save
+  nameWithType: IModelEntity<TEntity, TContext>.Save
+  nameWithType.vb: IModelEntity(Of TEntity, TContext).Save
+- uid: Flea.Models.IModelEntity`2.SaveNew(`1)
+  name: SaveNew(TContext)
+  href: api/Flea.Models.IModelEntity-2.html#Flea_Models_IModelEntity_2_SaveNew__1_
+  commentId: M:Flea.Models.IModelEntity`2.SaveNew(`1)
+  fullName: Flea.Models.IModelEntity<TEntity, TContext>.SaveNew(TContext)
+  fullName.vb: Flea.Models.IModelEntity(Of TEntity, TContext).SaveNew(TContext)
+  nameWithType: IModelEntity<TEntity, TContext>.SaveNew(TContext)
+  nameWithType.vb: IModelEntity(Of TEntity, TContext).SaveNew(TContext)
+- uid: Flea.Models.IModelEntity`2.SaveNew*
+  name: SaveNew
+  href: api/Flea.Models.IModelEntity-2.html#Flea_Models_IModelEntity_2_SaveNew_
+  commentId: Overload:Flea.Models.IModelEntity`2.SaveNew
+  isSpec: "True"
+  fullName: Flea.Models.IModelEntity<TEntity, TContext>.SaveNew
+  fullName.vb: Flea.Models.IModelEntity(Of TEntity, TContext).SaveNew
+  nameWithType: IModelEntity<TEntity, TContext>.SaveNew
+  nameWithType.vb: IModelEntity(Of TEntity, TContext).SaveNew
 - uid: Flea.Models.Reservation
   name: Reservation
   href: api/Flea.Models.Reservation.html
@@ -860,3 +1011,79 @@ references:
   isSpec: "True"
   fullName: Flea.Startup.ConfigureServices
   nameWithType: Startup.ConfigureServices
+- uid: Flea.Utility
+  name: Flea.Utility
+  href: api/Flea.Utility.html
+  commentId: N:Flea.Utility
+  fullName: Flea.Utility
+  nameWithType: Flea.Utility
+- uid: Flea.Utility.DatabaseHelperExtensions
+  name: DatabaseHelperExtensions
+  href: api/Flea.Utility.DatabaseHelperExtensions.html
+  commentId: T:Flea.Utility.DatabaseHelperExtensions
+  fullName: Flea.Utility.DatabaseHelperExtensions
+  nameWithType: DatabaseHelperExtensions
+- uid: Flea.Utility.DatabaseHelperExtensions.Delete*
+  name: Delete
+  href: api/Flea.Utility.DatabaseHelperExtensions.html#Flea_Utility_DatabaseHelperExtensions_Delete_
+  commentId: Overload:Flea.Utility.DatabaseHelperExtensions.Delete
+  isSpec: "True"
+  fullName: Flea.Utility.DatabaseHelperExtensions.Delete
+  nameWithType: DatabaseHelperExtensions.Delete
+- uid: Flea.Utility.DatabaseHelperExtensions.Delete``2(IDbContextFactory{``0},``1)
+  name: Delete<TContext, TEntity>(IDbContextFactory<TContext>, TEntity)
+  href: api/Flea.Utility.DatabaseHelperExtensions.html#Flea_Utility_DatabaseHelperExtensions_Delete__2_IDbContextFactory___0____1_
+  commentId: M:Flea.Utility.DatabaseHelperExtensions.Delete``2(IDbContextFactory{``0},``1)
+  name.vb: Delete(Of TContext, TEntity)(IDbContextFactory(Of TContext), TEntity)
+  fullName: Flea.Utility.DatabaseHelperExtensions.Delete<TContext, TEntity>(IDbContextFactory<TContext>, TEntity)
+  fullName.vb: Flea.Utility.DatabaseHelperExtensions.Delete(Of TContext, TEntity)(IDbContextFactory(Of TContext), TEntity)
+  nameWithType: DatabaseHelperExtensions.Delete<TContext, TEntity>(IDbContextFactory<TContext>, TEntity)
+  nameWithType.vb: DatabaseHelperExtensions.Delete(Of TContext, TEntity)(IDbContextFactory(Of TContext), TEntity)
+- uid: Flea.Utility.DatabaseHelperExtensions.GetAll*
+  name: GetAll
+  href: api/Flea.Utility.DatabaseHelperExtensions.html#Flea_Utility_DatabaseHelperExtensions_GetAll_
+  commentId: Overload:Flea.Utility.DatabaseHelperExtensions.GetAll
+  isSpec: "True"
+  fullName: Flea.Utility.DatabaseHelperExtensions.GetAll
+  nameWithType: DatabaseHelperExtensions.GetAll
+- uid: Flea.Utility.DatabaseHelperExtensions.GetAll``2(IDbContextFactory{``0})
+  name: GetAll<TContext, TEntity>(IDbContextFactory<TContext>)
+  href: api/Flea.Utility.DatabaseHelperExtensions.html#Flea_Utility_DatabaseHelperExtensions_GetAll__2_IDbContextFactory___0__
+  commentId: M:Flea.Utility.DatabaseHelperExtensions.GetAll``2(IDbContextFactory{``0})
+  name.vb: GetAll(Of TContext, TEntity)(IDbContextFactory(Of TContext))
+  fullName: Flea.Utility.DatabaseHelperExtensions.GetAll<TContext, TEntity>(IDbContextFactory<TContext>)
+  fullName.vb: Flea.Utility.DatabaseHelperExtensions.GetAll(Of TContext, TEntity)(IDbContextFactory(Of TContext))
+  nameWithType: DatabaseHelperExtensions.GetAll<TContext, TEntity>(IDbContextFactory<TContext>)
+  nameWithType.vb: DatabaseHelperExtensions.GetAll(Of TContext, TEntity)(IDbContextFactory(Of TContext))
+- uid: Flea.Utility.DatabaseHelperExtensions.Save*
+  name: Save
+  href: api/Flea.Utility.DatabaseHelperExtensions.html#Flea_Utility_DatabaseHelperExtensions_Save_
+  commentId: Overload:Flea.Utility.DatabaseHelperExtensions.Save
+  isSpec: "True"
+  fullName: Flea.Utility.DatabaseHelperExtensions.Save
+  nameWithType: DatabaseHelperExtensions.Save
+- uid: Flea.Utility.DatabaseHelperExtensions.Save``2(IDbContextFactory{``0},``1)
+  name: Save<TContext, TEntity>(IDbContextFactory<TContext>, TEntity)
+  href: api/Flea.Utility.DatabaseHelperExtensions.html#Flea_Utility_DatabaseHelperExtensions_Save__2_IDbContextFactory___0____1_
+  commentId: M:Flea.Utility.DatabaseHelperExtensions.Save``2(IDbContextFactory{``0},``1)
+  name.vb: Save(Of TContext, TEntity)(IDbContextFactory(Of TContext), TEntity)
+  fullName: Flea.Utility.DatabaseHelperExtensions.Save<TContext, TEntity>(IDbContextFactory<TContext>, TEntity)
+  fullName.vb: Flea.Utility.DatabaseHelperExtensions.Save(Of TContext, TEntity)(IDbContextFactory(Of TContext), TEntity)
+  nameWithType: DatabaseHelperExtensions.Save<TContext, TEntity>(IDbContextFactory<TContext>, TEntity)
+  nameWithType.vb: DatabaseHelperExtensions.Save(Of TContext, TEntity)(IDbContextFactory(Of TContext), TEntity)
+- uid: Flea.Utility.DatabaseHelperExtensions.SaveNew*
+  name: SaveNew
+  href: api/Flea.Utility.DatabaseHelperExtensions.html#Flea_Utility_DatabaseHelperExtensions_SaveNew_
+  commentId: Overload:Flea.Utility.DatabaseHelperExtensions.SaveNew
+  isSpec: "True"
+  fullName: Flea.Utility.DatabaseHelperExtensions.SaveNew
+  nameWithType: DatabaseHelperExtensions.SaveNew
+- uid: Flea.Utility.DatabaseHelperExtensions.SaveNew``2(IDbContextFactory{``0},``1)
+  name: SaveNew<TContext, TEntity>(IDbContextFactory<TContext>, TEntity)
+  href: api/Flea.Utility.DatabaseHelperExtensions.html#Flea_Utility_DatabaseHelperExtensions_SaveNew__2_IDbContextFactory___0____1_
+  commentId: M:Flea.Utility.DatabaseHelperExtensions.SaveNew``2(IDbContextFactory{``0},``1)
+  name.vb: SaveNew(Of TContext, TEntity)(IDbContextFactory(Of TContext), TEntity)
+  fullName: Flea.Utility.DatabaseHelperExtensions.SaveNew<TContext, TEntity>(IDbContextFactory<TContext>, TEntity)
+  fullName.vb: Flea.Utility.DatabaseHelperExtensions.SaveNew(Of TContext, TEntity)(IDbContextFactory(Of TContext), TEntity)
+  nameWithType: DatabaseHelperExtensions.SaveNew<TContext, TEntity>(IDbContextFactory<TContext>, TEntity)
+  nameWithType.vb: DatabaseHelperExtensions.SaveNew(Of TContext, TEntity)(IDbContextFactory(Of TContext), TEntity)
