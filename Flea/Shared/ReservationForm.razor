@@ -15,7 +15,7 @@
             <div class="edit-form-div">
                 <div>Loppe:</div>
                 <InputText class="search-input edit-search-input" disabled=""
-                           @bind-Value="Reservation.ReservationOwner.Name"/> @*Indsæt søgefelt med oprettet kunder *@
+                           @bind-Value="Reservation.ReservationOwner.Name"/>
             </div>
         }
         <div class="edit-form-div">
@@ -65,7 +65,7 @@
     public EventCallback<EditContext> OnValidSubmit { get; set; }
 
     [Parameter]
-    public Modal Modal { get; set; }
+    public Modal Modal { get; set; } = null!;
 
     protected override void OnInitialized()
     {

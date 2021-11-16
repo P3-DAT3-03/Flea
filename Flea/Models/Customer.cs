@@ -1,4 +1,6 @@
-﻿namespace Flea.Models
+﻿
+
+namespace Flea.Models
 {
 	public class Customer
 	{

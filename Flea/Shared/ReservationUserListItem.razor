@@ -13,9 +13,9 @@
 @* <button class="button edit-button" @onclick="Edit">Rediger</button> *@
 
 @code {
-    private Modal _child;
-    private Reservation _temp = new(1, 0, false, "",new Models.Customer("", ""));
-    private Reservation _reservation;
+    private Modal _child = null!;
+    private Reservation _temp = new(0, 0, false, "",new Customer("", ""));
+    private Reservation _reservation = null!;
 
     [Parameter]
     public Reservation Reservation
@@ -29,20 +29,20 @@
     }
 
     [Parameter]
-    public EventCallback<string> OnDelete { get; set; }
+    public EventCallback<Reservation> OnDelete { get; set; }
     
     [Parameter]
-    public EventCallback<EditContext>OnEdit { get; set; }
+    public EventCallback<EditContext> OnEdit { get; set; }
 
     public async Task Delete()
     {
-        await OnDelete.InvokeAsync(Reservation.ReservationOwner.Name);
+        await OnDelete.InvokeAsync(Reservation);
     }
 
     public async Task OnSubmit(EditContext context)
     {
         _child.ModalCancel();
-
+        
         Reservation.TableCount = _temp.TableCount;
         Reservation.Paid = _temp.Paid;
         Reservation.Comments = _temp.Comments;
