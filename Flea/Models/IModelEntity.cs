@@ -94,6 +94,5 @@ namespace Flea.Models
             var set = GetDbSetStatic(ctx);
             return set.ToListAsync();
         }
-
     }
 }

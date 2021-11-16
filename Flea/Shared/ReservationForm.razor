@@ -1,4 +1,8 @@
 ﻿@using Flea.Models
+@using Flea.Utility
+@using Microsoft.EntityFrameworkCore
+@inject IDbContextFactory<BingoContext> _dbFactory
+@using Syncfusion.Blazor;
 
 <EditForm Model="Reservation" OnValidSubmit="OnValidSubmit">
     <div class="edit-form">
@@ -6,8 +10,19 @@
         {
             <div class="edit-form-div">
                 <div>Søg efter loppe:</div>
-                <InputText class="search-input edit-search-input" placeholder="Eks. Hans Henriksen"
-                           @bind-Value="Reservation.ReservationOwner.Name"/> @*Indsæt søgefelt med oprettet kunder *@
+                <div style="display: grid;">
+                    <input class="search-input edit-search-input-form" type="search" value="" placeholder="Eks. Hans Henriksen"
+                           list="customerInput" @oninput="Search"/>
+                    <select id="customerInput" class="search-input edit-search-input" type="search">
+                        @if (_shownCustomers != null)
+                        {
+                            foreach (var customer in _shownCustomers)
+                            {
+                                <option value="@customer.Id">@customer.Name</option>
+                            }
+                        }
+                    </select>
+                </div>
             </div>
         }
         else
@@ -60,19 +75,52 @@
 
     [Parameter]
     public Reservation Reservation { get; set; } = null!;
-    
+
     [Parameter]
     public EventCallback<EditContext> OnValidSubmit { get; set; }
 
     [Parameter]
     public Modal Modal { get; set; } = null!;
 
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
-        base.OnInitialized();
         if (Reservation == null!)
         {
             throw new ArgumentNullException(nameof(Reservation),"Parameter Reservation can never be null");
         }
+
+        await base.OnInitializedAsync();
+        await UpdateReservationList();
+
+    }
+    
+    private List<Customer>? _customers;
+    private IEnumerable<Customer>? _shownCustomers;
+    private string _lastSearchTerm = string.Empty;
+    
+    public void Search(ChangeEventArgs e) => Search(e.Value?.ToString()!.ToLower() ?? "");
+    
+    public void Search(string searchTerm)
+    {
+    // If no input show everything
+        if (searchTerm == "")
+        {
+            _shownCustomers = _customers;
+        }
+        else 
+        {// Finds by name
+            _shownCustomers = from c
+                in _customers
+                where c.Name.ToLower().Contains(searchTerm)
+                select c;
+        }
+        _lastSearchTerm = searchTerm;
+    }
+    
+    private async Task UpdateReservationList()
+    {
+        await using var context = _dbFactory.CreateDbContext();
+        _customers = await _dbFactory.GetAll<BingoContext, Customer>();
+        Search(_lastSearchTerm);
     }
 }

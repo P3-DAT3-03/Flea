@@ -6,6 +6,10 @@
     margin: 2em 2em 0 2em;
 }
 
+.edit-search-input-form{
+    width: auto;
+}
+
 .edit-form-div {
     display: grid;
     grid-template-columns: 40% 60%;

@@ -5,6 +5,7 @@
 @using Reservation = Flea.Models.Reservation
 @using Microsoft.EntityFrameworkCore
 @using Flea.Models
+@using Flea.Utility
 
 
 @* <button class="button button--outline create-button" @onclick="NewReservation">Opret ny booking</button> *@
@@ -53,19 +54,21 @@
     public async Task CreateReservation(EditContext editContext)
     {
         await _dbFactory.SaveNew(_temp);
-        _temp = new Reservation(0, 0, false, "", new Customer("", ""));
+        _temp = new Reservation(0, 0, false, "", new Customer("", "")); // reset _temp
         _child.ModalCancel();
         await UpdateReservationList();
     }
     
     // Edits the reservation
-    public void EditReservation(EditContext editContext)
+    public async Task EditReservation(EditContext editContext)
     {
-        // Insert method
+        await _dbFactory.Save(_temp);
+        _child.ModalCancel();
+        await UpdateReservationList();
     }
 
     // Searchbar function
-    public void Search(ChangeEventArgs e) => Search(e.Value?.ToString() ?? "");
+    public void Search(ChangeEventArgs e) => Search(e.Value?.ToString()!.ToLower() ?? "");
     
     public void Search(string searchTerm)
     {
