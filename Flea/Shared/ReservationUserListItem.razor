@@ -1,34 +1,53 @@
+@using Flea.Models
+@using Reservation = Flea.Models.Reservation
+
 <div class="reservation-li">
-    <div class="txt">@Name</div>
-    <div class="txt">@Booths Stande</div>
-    <div class="txt">@(PaymentStatus ? "Betalt" : "Ej betalt")</div>
+    <div class="txt">@Reservation.ReservationOwner.Name</div>
+    <div class="txt">@Reservation.TableCount Stande</div>
+    <div class="txt">@(Reservation.Paid ? "Betalt" : "Ej betalt")</div>
     <button class="button del-button button--outline" @onclick="Delete">Slet</button>
-    <button class="button edit-button" @onclick="Edit">Rediger</button>
+    <Modal ButtonName="Rediger" @ref="_child">
+        <ReservationForm Reservation="_temp" OnValidSubmit="OnSubmit" Modal="_child"></ReservationForm>
+    </Modal>
 </div>
+@* <button class="button edit-button" @onclick="Edit">Rediger</button> *@
 
 @code {
-    [Parameter]
-    public string Name { get; set; }
+    private Modal _child;
+    private Reservation _temp = new(1, 0, false, "",new Models.Customer("", ""));
+    private Reservation _reservation;
 
     [Parameter]
-    public int Booths { get; set; }
-    
-    [Parameter]
-    public bool PaymentStatus { get; set; }
-    
+    public Reservation Reservation
+    {
+        get => _reservation;
+        set
+        {
+            _reservation = value;
+            _temp = Reservation.Clone();
+        }
+    }
+
     [Parameter]
     public EventCallback<string> OnDelete { get; set; }
     
     [Parameter]
-    public EventCallback<string>OnEdit { get; set; }
+    public EventCallback<EditContext>OnEdit { get; set; }
 
     public async Task Delete()
     {
-        await OnDelete.InvokeAsync(Name);
+        await OnDelete.InvokeAsync(Reservation.ReservationOwner.Name);
     }
 
-    public async Task Edit()
+    public async Task OnSubmit(EditContext context)
     {
-        await OnEdit.InvokeAsync(Name);
+        _child.ModalCancel();
+
+        Reservation.TableCount = _temp.TableCount;
+        Reservation.Paid = _temp.Paid;
+        Reservation.Comments = _temp.Comments;
+        
+        await OnEdit.InvokeAsync(context);
+        
     }
 }

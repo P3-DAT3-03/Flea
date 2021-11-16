@@ -1,86 +1,102 @@
-@page "/CustomerOverview"
+@page "/Customers"
+
+@inject IDbContextFactory<BingoContext> _dbFactory
+
+@using Customer = Flea.Models.Customer
+@using Microsoft.EntityFrameworkCore
+@using Flea.Models
+@using Flea.Utility
+
 <div>
     <div class="view-head">
-        <input class="search-input" type="search" value="" placeholder="Søg efter kunde" @oninput="Searchbar">
-        <button class="button button--outline create-button" @onclick="NewCustomer">Tilføj Ny Loppe</button>
+        <input class="search-input" type="search" value="" placeholder="Søg efter loppe" @oninput="Search">
+        <Modal ButtonName="Opret ny loppe" @ref="_child">
+            <CustomerForm Customer="_temp" OnValidSubmit="CreateCustomer" Modal="_child"></CustomerForm>
+        </Modal>
     </div>
-
-    @foreach (var customer in _shownCustomers)
+    @if (_shownCustomers is not null && _shownCustomers.Any())
     {
-        <div>
-            <UserListItem Id="@customer.Id" Name="@customer.Name" TeleNumber="@customer.PhoneNumber"
-                          OnDelete="@DeleteCustomerInformation" OnEdit="@EditCustomerInformation">
-            </UserListItem>
-        </div>
+        @foreach (var customer in _shownCustomers)
+        {
+            <div>
+            <CustomerUserListItem Customer="@customer" OnDelete="@DeleteCustomer"/>
+            </div>
+        }
+    }
+    else
+    {
+        <h2>Der er ingen lopper at vise...</h2>
     }
 </div>
 
+
 @code
 {
-    private string _search = "";
+    private Modal _child = null!;
+    private Customer _temp = new(0);
+    private string _lastSearchTerm = string.Empty;
 
-    private List<Models.Customer> _customers = new()
-    {
-        new Models.Customer("Sebastian Aaholm", "24823423") {Id = 1},
-        new Models.Customer("Jens Jensen", "4541341") {Id = 2},
-        new Models.Customer("Hans Nielsen", "8888888") {Id = 3},
-    };
-    // ---
-
-    private IEnumerable<Models.Customer> _shownCustomers;
+    private List<Customer>? _customers;
+    private IEnumerable<Customer>? _shownCustomers;
 
     // Delete the customer
-    public void DeleteCustomerInformation(int id)
+    public async Task DeleteCustomer(Customer customer)
     {
-        _customers = _customers.Where(c => c.Id != id).ToList();
-        _shownCustomers = _shownCustomers.Where(c => c.Id != id);
-        StateHasChanged();
-    }
-
-    // Edits the customer
-    public void EditCustomerInformation(int id)
-    {
-        Console.WriteLine("Write the function here hehe");
+        await _dbFactory.Delete(customer);
+        await UpdateCustomersList();
+        
     }
 
     // Makes a new Customer
-    public void NewCustomer()
+    public async Task CreateCustomer(EditContext editContext)
     {
-        Console.WriteLine("Write the function here haha");
+        await _dbFactory.SaveNew(_temp);
+        _temp = new Customer(0); // reset _temp
+        _child.ModalCancel();
+        await UpdateCustomersList();
     }
 
     // Searchbar function
-    public void Searchbar(ChangeEventArgs e)
+    public void Search(ChangeEventArgs e) => Search(e.Value?.ToString() ?? "");
+
+    public void Search(string searchTerm)
     {
-    // If no input whole list is shown
-        var input = e.Value?.ToString() ?? "";
-        if (input == "")
+        // If no input show everything
+        if (searchTerm == "")
         {
             _shownCustomers = _customers;
         }
-        else if (Char.IsDigit(input[0]))
+        else if (char.IsDigit(searchTerm[0]))
         {
-    // Finds by phonenumbers
-            
+            // Finds by phone numbers
             var results = from c
                 in _customers
-                where c.PhoneNumber.Contains(input)
+                where c.PhoneNumber.Contains(searchTerm)
                 select c;
             _shownCustomers = results;
         }
         else
         {
-    // Finds by name
+            // Finds by name
             var results = from c
                 in _customers
-                where c.Name.ToLower().Contains(input.ToLower())
+                where c.Name.ToLower().Contains(searchTerm.ToLower())
                 select c;
             _shownCustomers = results;
         }
+        
+        _lastSearchTerm = searchTerm;
     }
 
-    protected override void OnInitialized()
+    private async Task UpdateCustomersList()
     {
-        _shownCustomers = _customers;
+        _customers = await _dbFactory.GetAll<BingoContext,Customer>();
+        Search(_lastSearchTerm);
+    }
+    
+    protected override async Task OnInitializedAsync()
+    {
+        await UpdateCustomersList();
+        await base.OnInitializedAsync();
     }
 }

@@ -1,18 +1,22 @@
 @using Flea.Models
 @using Microsoft.EntityFrameworkCore
+
 @page "/ReservationOverview"
+
+@* <button class="button button--outline create-button" @onclick="NewReservation">Opret ny booking</button> *@
 
 <div>
     <div class="view-head">
         <input class="search-input" type="search" value="" placeholder="Søg efter booking" @oninput="Searchbar">
-        <button class="button button--outline create-button" @onclick="NewReservation">Opret ny booking</button>
+        <Modal ButtonName="Opret ny booking" @ref="_child">
+            <ReservationForm Reservation="_temp" OnValidSubmit="NewReservation" Modal="_child"></ReservationForm>
+        </Modal>
     </div>
 
     @foreach (var value in _shownReservation)
     {
         <div>
-            <ReservationUserListItem Name="@value.ReservationOwner.Name" Booths="@value.TableCount"
-                                     PaymentStatus="@value.Paid"
+            <ReservationUserListItem Reservation="value"
                                      OnDelete="@DeleteReservationInformation"
                                      OnEdit="@EditReservationInformation"/>
         </div>
@@ -21,14 +25,19 @@
 
 @code
 {
+    private Modal _child;
+    private Reservation _temp = new (1, 1, false, "",new Models.Customer("", ""));
+    private string _search = "";
+    
+    
     // Dummy data
     private static Models.Customer _dummyCustomer = new Models.Customer("Christoffer Trebbien Jønsson", "12345678");
     
     private List<Reservation> _reservations = new()
     {
-        new Reservation(1, 3, true, "Handicapped", _dummyCustomer),
-        new Reservation(1, 3, true, "Handicapped", _dummyCustomer),
-        new Reservation(1, 3, true, "Handicapped", _dummyCustomer)
+        new Reservation(1, 3, true, "", _dummyCustomer){Id = 1},
+        new Reservation(1, 3, true, "", _dummyCustomer){Id = 2},
+        new Reservation(1, 3, true, "", _dummyCustomer){Id = 3}
     };
 
     private IEnumerable<Reservation> _shownReservation;
@@ -41,20 +50,20 @@
         if (nameFound != null)
         {
             _reservations.Remove(nameFound);
-            _shownReservation = _shownReservation.Where(reservation=> reservation != nameFound);
+            _shownReservation = _shownReservation.Where(reservation => reservation != nameFound);
         }
     }
     
     // Edits the reservation
-    public void EditReservationInformation(string id)
+    public void EditReservationInformation(EditContext editContext)
     {
-        Console.WriteLine("Write the function here hehe");
+        
     }
     
-    // Makes a new Customer
+    // Makes a new reservation
     public void NewReservation()
     {
-        Console.WriteLine("Write the function here haha");
+        
     }
 
     // The searchbar function, it works WOW
