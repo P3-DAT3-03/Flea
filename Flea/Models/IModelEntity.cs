@@ -17,7 +17,7 @@ namespace Flea.Models
     /// <see cref="DbSet{TEntity}"/> property for the entity type.
     /// </typeparam>
     public interface IModelEntity<TEntity, in TContext>
-        where TEntity: class, IModelEntity<TEntity, TContext>
+        where TEntity: class, IModelEntity<TEntity, TContext>, new()
         where TContext: DbContext
     {
         /// <summary>
@@ -26,19 +26,18 @@ namespace Flea.Models
         /// to get DbSet in a static context.
         /// </summary>
         // ReSharper disable once StaticMemberInGenericType
-        private static readonly MethodInfo GetDbSetMethod;
+        private static readonly TEntity _entity;
 
         /// <summary>
         /// Invokes the method referenced through the method info
         /// object stored in <see cref="GetDbSetMethod"/>.
         /// </summary>
         /// <returns></returns>
-        private static DbSet<TEntity> GetDbSetStatic(TContext ctx) => (DbSet<TEntity>) GetDbSetMethod.Invoke(null, new object?[]{ctx})!;
+        private static DbSet<TEntity> GetDbSetStatic(TContext ctx) => _entity.GetDbSet(ctx);
         
         static IModelEntity()
         {
-            var type = typeof(IModelEntity<TEntity, TContext>);
-            GetDbSetMethod = type.GetMethod(nameof(GetDbSet), BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly)!;
+            _entity = new TEntity();
         }
 
         /// <summary>
