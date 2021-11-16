@@ -1,29 +1,27 @@
-<div class="table @Class @(Inner.Reservation != null ? "on" : "off")" @onclick="OnTableClicked">
-    @Inner.Id
+<div class="table @Class @(Inner.Reservation != null ? "on" : "off")" value="@PathId" @onclick="OnTableClicked">
+    @TableIndex
 </div>
 
 @code {
     [Parameter]
-    public EventCallback<(int,int,int)> OnTableSelect { get; set; }
+    public EventCallback<(Models.Table,Models.Cluster,int)> OnTableSelect { get; set; }
 
     [Parameter]
-    public Models.Table Inner { get; set; }
+    public Models.Table Inner { get; set; } = null!;
 
     [Parameter]
     public string? Class { get; set; }
     
     [Parameter]
     public int TableIndex { get; set; }
-    
+
     [Parameter]
-    public int ClusterIndex { get; set; }
-    
-    [Parameter]
-    public int EndNode { get; set; }
+    public int PathId { get; set; }
     
     private async Task OnTableClicked()
     {
-        await OnTableSelect.InvokeAsync((TableIndex, ClusterIndex, EndNode));
+        Console.WriteLine($"TableId: {Inner.Id} ClusterId: {Inner.Cluster.Id} PathId: {PathId}");
+        await OnTableSelect.InvokeAsync((Inner, Inner.Cluster, PathId));
     }
     protected override void OnInitialized()
     {

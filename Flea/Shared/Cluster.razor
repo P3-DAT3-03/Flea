@@ -1,5 +1,6 @@
 @using Flea.Models
 <div class="cluster @Class">
+    
     @for (var i = 0; i < Inner.Tables.Count; i++)
     {
         var tableClass = Inner.Type switch
@@ -9,30 +10,31 @@
                 0 or 3 or 4 or 7 => "horizontal",
                 5 or 6 => "bottom",
                 _ => "vertical"
-            },
+                },
             Models.Cluster.ClusterType.Horizontal => "horizontal",
             _ => "vertical"
-        };
-        if (SelectedCluster != null && Inner.Id == SelectedCluster.Id)
+            };
+        _pathId = -1;
+        if (SelectedCluster != null && Paths != null && Inner.Id == SelectedCluster.Id)
         {
             var t = Inner.Tables[i].Id;
-            foreach (var endNode in EndNodes)
+            for (var j = 0; j < Paths.Count; j++)
             {
-                if (StartNode != t && endNode.Contains(t))
+                if (StartNode?.Id != t && Paths[j].Contains(t))
                 {
                     tableClass += " path";
-                    _endNode = endNode.Last();
+                    _pathId = j;
+                    break;
                 }
             }
-            if (t == StartNode)
+            if (StartNode?.Id == t)
                 tableClass += " start";
         }
         <Table
             TableIndex="@i"
-            ClusterIndex="@ClusterIndex"
             Inner="@Inner.Tables[i]"
             Class="@tableClass"
-            EndNode="@_endNode"
+            PathId="@_pathId"
             OnTableSelect="@(async id => await OnTableSelect.InvokeAsync(id))">
         </Table>
     }
@@ -46,24 +48,24 @@
     public string? Class { get; set; }
     
     [Parameter]
-    public Models.Cluster Inner { get; set; }
+    public Models.Cluster Inner { get; set; } = null!;
+
+    [Parameter]
+    public List<int[]>? Paths { get; set; }
     
     [Parameter]
-    public List<int[]> EndNodes { get; set; }
-    
-    [Parameter]
-    public int StartNode { get; set; }
+    public Models.Table? StartNode { get; set; }
     
     [Parameter]
     public Models.Cluster? SelectedCluster { get; set; }
 
     [Parameter]
-    public EventCallback<(int,int,int)> OnTableSelect { get; set; }
+    public EventCallback<(Models.Table,Models.Cluster,int)> OnTableSelect { get; set; }
 
     [Parameter]
     public int ClusterIndex { get; set; }
 
-    private int _endNode = -1;
+    private int _pathId = -1;
 
     protected override void OnInitialized()
     {
