@@ -5,6 +5,7 @@
 @using Customer = Flea.Models.Customer
 @using Microsoft.EntityFrameworkCore
 @using Flea.Models
+@using Flea.Utility
 
 <div>
     <div class="view-head">
@@ -41,9 +42,7 @@
     // Delete the customer
     public async Task DeleteCustomer(Customer customer)
     {
-        await using var context = _dbFactory.CreateDbContext();
-        context.Customers.Remove(customer);
-        await context.SaveChangesAsync();
+        await _dbFactory.Delete(customer);
         await UpdateCustomersList();
         
     }
@@ -51,9 +50,8 @@
     // Makes a new Customer
     public async Task CreateCustomer(EditContext editContext)
     {
-        await using var context = _dbFactory.CreateDbContext();
-        await context.Customers.AddAsync(_temp);
-        await context.SaveChangesAsync();
+        await _dbFactory.SaveNew(_temp);
+        _temp = new Customer(0); // reset _temp
         _child.ModalCancel();
         await UpdateCustomersList();
     }
@@ -92,9 +90,7 @@
 
     private async Task UpdateCustomersList()
     {
-        await using var context = _dbFactory.CreateDbContext();
-        if (context?.Customers != null)
-            _customers = await context.Customers.ToListAsync();
+        _customers = await _dbFactory.GetAll<BingoContext,Customer>();
         Search(_lastSearchTerm);
     }
     
