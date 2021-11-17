@@ -3,36 +3,15 @@
 @page "/"
 @page "/Home"
 
+
 <div>
     <div class="view-head">
         <input class="search-input" @bind-value="_searchTerm" @bind-value:event="oninput" placeholder="Søg efter loppemarked..."/>
         <Modal ButtonName="Tilføj nyt loppemarked" @ref="_child">
-            <div>
-                <h5>Hvor mange loppemarkeder ønsker I at oprette?</h5>
-                <label>Antal loppemarkeder: </label>
-                <input type="text" @bind="_eventAmount">   
-            </div>    
-            
-            @if (_eventAmount > 0)
-            {
-                _tempEvents.Clear();
-                for (int i = 0; i < _eventAmount; i++)
-                {
-                    _tempEvents.Add(new Event("", DateTime.Today));
-                }
-            }
-            
-            @foreach (var temp in _tempEvents)
-            {
-                <CreateEventForm Event="temp" OnValidSubmit="AddEventItem" Modal="_child"></CreateEventForm>
-            }
-            <div>
-                <button type="submit" class="button create-button button--outline" @onclick="AddEventItem">Tilføj loppemarked</button>
-                <button type="button" class="button button del-button button--outline"  >Anullér</button>
-            </div>
+            <CreateEventForm EventList="_tempEvents" OnValidSubmit="AddEventItem" Modal="_child"></CreateEventForm>
         </Modal>
     </div>
-    
+
     <!-- Creates event items for each event that matches the user's search term -->
     @if (DummyEventDB.Count == 0)
     {
@@ -54,12 +33,14 @@
 </div>
 
 @code {
-    public Modal Modal { get; set; }
-    public Modal _child;
-    private Event _temp = new Event("", DateTime.Today);
+    public class EventList
+    {
+        public List<Event> Events { get; set; } = new List<Event>();
+    }
+
+    public EventList _tempEvents = new();
+    Modal _child;
     private string _searchTerm { get; set; } = "";
-    private int _eventAmount = 1;
-    List<Event> _tempEvents = new List<Event>();
     
     // Placeholder event database. 
     private List<Event> DummyEventDB = new();
@@ -70,7 +51,9 @@
 
     public void AddEventItem()
     {
-        DummyEventDB.AddRange(_tempEvents);
+        DummyEventDB.AddRange(_tempEvents.Events);
         DummyEventDB.Sort((x, y) => x.DateTime.CompareTo(y.DateTime));
+        _child.ModalCancel();
     }
+
 }

@@ -1,22 +1,42 @@
 ﻿@using Event = Flea.Models.Event;
+@using Microsoft.AspNetCore.Components
+@using EventList = Flea.Pages.Home.EventList;
 
-<EditForm Model="Event" OnValidSubmit="OnValidSubmit">
+<EditForm Model="EventList" OnValidSubmit="OnValidSubmit">
     <div class="edit-form">
-        <div class="edit-form-div">
-            <label>Dato:</label>
-            <input type="date" @bind="Event.DateTime"/>
+        <div>
+            <h5>Hvor mange loppemarkeder ønsker I at oprette?</h5>
+            <label>Antal loppemarkeder: </label>
+            <input type="text" @bind="EventAmount">
         </div>
-        <div class="edit-form-div">
-            <label>Stand pris:</label>
-            <input type="text" @bind="Event.TablePrice"/>
-        </div>
-        <div class="edit-form-div">
-            <label>Antal stativer:</label>
-            <input type="text" @bind="Event.ClothesRackAmount"/>
-        </div>
-        <div class="edit-form-div">
-            <label>Stativ pris:</label>
-            <input type="text" @bind="Event.ClothesRackPrice"/>
+        @if (EventAmount > 0)
+        {
+            CreateEventList();
+        }
+        @foreach (Event temp in EventList.Events)
+        {
+            <div class="edit-form">
+                <div class="edit-form-div">
+                    <label>Dato:</label>
+                    <input type="date" @bind-value="temp.DateTime"/>
+                </div>
+                <div class="edit-form-div">
+                    <label>Stand pris:</label>
+                    <input type="text" @bind-value="temp.TablePrice"/>
+                </div>
+                <div class="edit-form-div">
+                    <label>Antal stativer:</label>
+                    <input type="text" @bind-value="temp.ClothesRackAmount"/>
+                </div>
+                <div class="edit-form-div">
+                    <label>Stativ pris:</label>
+                    <input type="text" @bind-value="temp.ClothesRackPrice"/>
+                </div>
+            </div>
+        }
+        <div>
+            <button type="submit" class="button create-button button--outline">Tilføj loppemarked</button>
+            <button type="button" class="button button del-button button--outline" @onclick="Modal.ModalCancel">Annuller</button>
         </div>
     </div>
 </EditForm>
@@ -25,17 +45,32 @@
 @code {
 
     [Parameter]
-    public int EventAmount { get; set; }= 1;
+    public int EventAmount { get; set; } = 1;
 
     [Parameter]
-    public Event Event { get; set; } = null;
-    
-    [Parameter]
-    public List<Event> TempEvents { get; set; }
-    
+    public EventList EventList { get; set; }
+
     [Parameter]
     public EventCallback<EditContext> OnValidSubmit { get; set; }
     
     [Parameter]
     public Modal Modal { get; set; }
+
+    public void CreateEventList()
+    {
+        EventList.Events.Clear();
+        for (int i = 0; i < EventAmount; i++)
+        {
+            EventList.Events.Add(new Event("", DateTime.Today));
+        }
+    }
+    
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        if (EventList == null)
+        {
+            throw new ArgumentNullException(nameof(EventList),"Parameter EventList can never be null");
+        }
+    }
 }
