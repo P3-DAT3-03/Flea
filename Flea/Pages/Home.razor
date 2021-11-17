@@ -8,7 +8,21 @@
     <div class="view-head">
         <input class="search-input" @bind-value="_searchTerm" @bind-value:event="oninput" placeholder="Søg efter loppemarked..."/>
         <Modal ButtonName="Tilføj nyt loppemarked" @ref="_child">
-            <CreateEventForm EventList="_tempEvents" OnValidSubmit="AddEventItem" Modal="_child"></CreateEventForm>
+            <div>
+                <h5>Hvor mange loppemarkeder ønsker I at oprette?</h5>
+                <label>Antal loppemarkeder: </label>
+                <input type="text" @bind-value="_tempEvents.EventAmount">
+            </div>
+            @if (_tempEvents.EventAmount > 0)
+            {
+                _tempEvents.Events.Clear();
+                for (int i = 0; i < _tempEvents.EventAmount; i++)
+                {
+                    _tempEvents.Events.Add(new Event("", DateTime.Today));
+                }
+                _tempEvents.EventAmount = 1;
+            }
+            <CreateEventForm EventList="_tempEvents" OnValidSubmit="NewEvent" Modal="_child"></CreateEventForm>
         </Modal>
     </div>
 
@@ -36,6 +50,7 @@
     public class EventList
     {
         public List<Event> Events { get; set; } = new List<Event>();
+        public int EventAmount { get; set; } = 1;
     }
 
     public EventList _tempEvents = new();
@@ -49,11 +64,10 @@
     List<Event> FilteredEvents => 
         DummyEventDB.Where(i => i.DateTime.ToString().ToLower().Contains(_searchTerm.ToLower())).ToList();
 
-    public void AddEventItem()
+    public void NewEvent()
     {
         DummyEventDB.AddRange(_tempEvents.Events);
         DummyEventDB.Sort((x, y) => x.DateTime.CompareTo(y.DateTime));
         _child.ModalCancel();
     }
-
 }

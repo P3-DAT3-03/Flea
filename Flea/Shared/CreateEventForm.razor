@@ -4,33 +4,24 @@
 
 <EditForm Model="EventList" OnValidSubmit="OnValidSubmit">
     <div class="edit-form">
-        <div>
-            <h5>Hvor mange loppemarkeder ønsker I at oprette?</h5>
-            <label>Antal loppemarkeder: </label>
-            <input type="text" @bind="EventAmount">
-        </div>
-        @if (EventAmount > 0)
-        {
-            CreateEventList();
-        }
         @foreach (Event temp in EventList.Events)
         {
             <div class="edit-form">
                 <div class="edit-form-div">
                     <label>Dato:</label>
-                    <input type="date" @bind-value="temp.DateTime"/>
+                    <input type="date" @bind="temp.DateTime"/>
                 </div>
                 <div class="edit-form-div">
                     <label>Stand pris:</label>
-                    <input type="text" @bind-value="temp.TablePrice"/>
+                    <input type="text" @bind="temp.TablePrice"/>
                 </div>
                 <div class="edit-form-div">
                     <label>Antal stativer:</label>
-                    <input type="text" @bind-value="temp.ClothesRackAmount"/>
+                    <input type="text" @bind="temp.ClothesRackAmount"/>
                 </div>
                 <div class="edit-form-div">
                     <label>Stativ pris:</label>
-                    <input type="text" @bind-value="temp.ClothesRackPrice"/>
+                    <input type="text" @bind="temp.ClothesRackPrice"/>
                 </div>
             </div>
         }
@@ -43,10 +34,7 @@
 
 
 @code {
-
-    [Parameter]
-    public int EventAmount { get; set; } = 1;
-
+    
     [Parameter]
     public EventList EventList { get; set; }
 
@@ -56,15 +44,6 @@
     [Parameter]
     public Modal Modal { get; set; }
 
-    public void CreateEventList()
-    {
-        EventList.Events.Clear();
-        for (int i = 0; i < EventAmount; i++)
-        {
-            EventList.Events.Add(new Event("", DateTime.Today));
-        }
-    }
-    
     protected override void OnInitialized()
     {
         base.OnInitialized();
