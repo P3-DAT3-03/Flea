@@ -1,6 +1,5 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Flea.Models
 {
@@ -15,28 +14,48 @@ namespace Flea.Models
         public int TableCount { get; set; }
         public bool Paid { get; set; }
         public string Comments { get; set; }
-        public List<Table> Tables { get; } = new List<Table>();
+        public List<Table> Tables { get; set; } = new();
         
         public Event Event { get; set; }
+        
         public Customer ReservationOwner { get; set; }
 
-        public Reservation(int priority, int tableCount, bool paid, string comments, Customer reservationOwner)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="priority"></param>
+        /// <param name="tableCount"></param>
+        /// <param name="paid"></param>
+        /// <param name="comments"></param>
+        /// <param name="reservationOwner"></param>
+        /// <param name="event"></param>
+        public Reservation(int priority, int tableCount, bool paid, string comments, Customer reservationOwner, Event @event)
         {
             Priority = priority;
             TableCount = tableCount;
             Paid = paid;
             Comments = comments;
             ReservationOwner = reservationOwner;
+            Event = @event;
         }
         
+        /// <summary>
+        /// Constructor for use by the entity framework.
+        /// This function should never be called.
+        /// </summary>
+        [Obsolete("This constructor should never be called manually. Intended only for EF use.")]
+        // ReSharper disable once UnusedMember.Global
         public Reservation(int priority, int tableCount, bool paid, string comments)
         {
             Priority = priority;
             TableCount = tableCount;
             Paid = paid;
             Comments = comments;
+            
+            Event = null!;
+            ReservationOwner = null!;
         }
 
-        public Reservation Clone() => (Reservation) this.MemberwiseClone();
+        public Reservation Clone() => (Reservation) MemberwiseClone();
     }
 }

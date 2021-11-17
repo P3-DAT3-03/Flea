@@ -1,4 +1,5 @@
 ﻿@using Flea.Models
+@using Flea.Utility
 
 <EditForm Model="Reservation" OnValidSubmit="OnValidSubmit">
     <div class="edit-form">
@@ -58,18 +59,19 @@
 
 @code {
 
-    [Parameter]
+    [Parameter, RequiredParameter]
     public Reservation Reservation { get; set; } = null!;
     
-    [Parameter]
+    [Parameter, RequiredParameter]
     public EventCallback<EditContext> OnValidSubmit { get; set; }
 
-    [Parameter]
-    public Modal Modal { get; set; }
+    [Parameter, RequiredParameter]
+    public Modal Modal { get; set; } = null!;
 
     protected override void OnInitialized()
     {
         base.OnInitialized();
+        ParameterChecker.CheckParameters(this);
         if (Reservation == null!)
         {
             throw new ArgumentNullException(nameof(Reservation),"Parameter Reservation can never be null");

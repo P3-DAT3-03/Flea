@@ -13,9 +13,9 @@
 @* <button class="button edit-button" @onclick="Edit">Rediger</button> *@
 
 @code {
-    private Modal _child;
-    private Reservation _temp = new(1, 0, false, "",new Models.Customer("", ""));
-    private Reservation _reservation;
+    private Modal _child = null!;
+    private Reservation _temp = new(1, 0, false, "",new Models.Customer("", ""), null!);
+    private Reservation _reservation = null!;
 
     [Parameter]
     public Reservation Reservation

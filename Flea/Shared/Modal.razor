@@ -15,7 +15,7 @@
     public RenderFragment? ChildContent { get; set; }
     
     [Parameter]
-    public string ButtonName { get; set; }
+    public string ButtonName { get; set; } = string.Empty;
 
     private bool _showModal = false;
     private void ModalShow() => _showModal = true;
