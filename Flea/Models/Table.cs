@@ -1,6 +1,8 @@
-﻿namespace Flea.Models
+﻿using Microsoft.EntityFrameworkCore;
+
+namespace Flea.Models
 {
-    public class Table
+    public class Table :  IModelEntity<Table, BingoContext>
     {
         public enum TableType
         {
@@ -26,5 +28,12 @@
         {
             Type = type;
         }
+
+        public Table()
+        {
+            Id = 0;
+        }
+
+        DbSet<Table> IModelEntity<Table, BingoContext>.GetDbSet(BingoContext ctx) => ctx.Tables;
     }
 }

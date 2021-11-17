@@ -5,13 +5,13 @@
     {
         var tableClass = Inner.Type switch
         {
-            Models.Cluster.ClusterType.Round => i switch
+            ClusterType.Round => i switch
             {
                 0 or 3 or 4 or 7 => "horizontal",
                 5 or 6 => "bottom",
                 _ => "vertical"
                 },
-            Models.Cluster.ClusterType.Horizontal => "horizontal",
+            ClusterType.Horizontal => "horizontal",
             _ => "vertical"
             };
         _pathId = -1;
@@ -38,7 +38,7 @@
             OnTableSelect="@(async id => await OnTableSelect.InvokeAsync(id))">
         </Table>
     }
-    @if (Inner.Type == Models.Cluster.ClusterType.Round)
+    @if (Inner.Type == ClusterType.Round)
     {
         <div class="cluster-tag">@Inner.Name</div>
     }

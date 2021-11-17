@@ -36,6 +36,9 @@ namespace Flea.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<int>("Type")
+                        .HasColumnType("integer");
+
                     b.HasKey("Id");
 
                     b.HasIndex("EventId");
@@ -52,11 +55,13 @@ namespace Flea.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(64)
+                        .HasColumnType("character varying(64)");
 
                     b.Property<string>("PhoneNumber")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(8)
+                        .HasColumnType("VARCHAR");
 
                     b.HasKey("Id");
 
@@ -77,12 +82,7 @@ namespace Flea.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int?>("PreviousEventId")
-                        .HasColumnType("integer");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("PreviousEventId");
 
                     b.ToTable("Events");
                 });
@@ -152,15 +152,6 @@ namespace Flea.Migrations
                     b.HasOne("Flea.Models.Event", null)
                         .WithMany("Clusters")
                         .HasForeignKey("EventId");
-                });
-
-            modelBuilder.Entity("Flea.Models.Event", b =>
-                {
-                    b.HasOne("Flea.Models.Event", "PreviousEvent")
-                        .WithMany()
-                        .HasForeignKey("PreviousEventId");
-
-                    b.Navigation("PreviousEvent");
                 });
 
             modelBuilder.Entity("Flea.Models.Reservation", b =>
