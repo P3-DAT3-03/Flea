@@ -6,9 +6,14 @@ namespace Flea.Models
 {
     public class Event
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
+        public string[] Months =
+        {
+            "Januar", "Februar", "Marts", "April", "Maj", "Juni", "Juli", 
+            "August", "September", "Oktober", "November", "December"
+        };
         
+        public int Id { get; set; }
+
         /// <summary>
         /// The date at which the event will be held.
         /// </summary>
@@ -18,15 +23,14 @@ namespace Flea.Models
         public int ClothesRackPrice { get; set; }
         
         public List<Cluster> Clusters { get; set; }
-        public List<Reservation> Reservations;
+        public List<Reservation> Reservations = new();
         public Event PreviousEvent { get; set; }
 
 
         /* the constructor creates the event and all the needed clusters in the bingo fleamarket format*/
-        public Event(string name, DateTime dateTime)
+        public Event(DateTime dateTime)
         {
-            DateTime = dateTime;
-            Name = name;
+            DateTime = dateTime; 
             TablePrice = 100;
             ClothesRackAmount = 7;
             ClothesRackPrice = 50;
@@ -39,7 +43,12 @@ namespace Flea.Models
                 new Cluster("M", 12, 12)
             };
         }
-
+        
+        public string SetEventName => 
+            DateTime.Day.ToString() + ". " + Months[DateTime.Month] + ", " + DateTime.Year.ToString();
+        
+        public int ComputeMissingPayments => 
+            Reservations.Aggregate(0, (acc, reservation) => reservation.Paid ? acc : acc + 1);
 
         public int ComputeRemainingTables => Clusters.Aggregate(0, (acc, cluster) => acc + cluster.TablesNotPlaced);
     }
