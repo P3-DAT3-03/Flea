@@ -37,7 +37,7 @@
 @code
 {
     private Modal _child = null!;
-    private Reservation _temp = new (0, 0, false, "",new Customer("", ""));
+    private Reservation _temp = new (0, 0, false, "");
     private string _lastSearchTerm = string.Empty;
 
     private List<Reservation>? _reservations;
@@ -53,12 +53,8 @@
     // Create new reservation
     public async Task CreateReservation(EditContext editContext)
     {
-        var temp = new Reservation(_temp.Priority, _temp.TableCount, _temp.Paid, _temp.Comments);
-        await _dbFactory.SaveNew(temp);
-        temp.ReservationOwner = _temp.ReservationOwner;
-
-        await _dbFactory.Save();
-        _temp = new Reservation(0, 0, false, "", new Customer("", "")); // reset _temp
+        await _dbFactory.SaveNew(_temp);
+        _temp = new Reservation(0, 0, false, ""); // reset _temp
         _child.ModalCancel();
         await UpdateReservationList();
     }

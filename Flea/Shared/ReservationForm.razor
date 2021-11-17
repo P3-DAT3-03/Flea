@@ -14,9 +14,10 @@
                            @oninput="Search"/>
                     
                     <select class="search-input edit-search-input" type="search"
-                            @bind-Value:event="oninput" @bind-Value="CustomerInput">
+                            @bind="CustomerInput">
                     @if (_shownCustomers != null)
                     {
+                        <option selected="selected" disabled="" value="-1">Vælg en loppe</option>
                         foreach (var customer in _shownCustomers)
                         {
                             <option value="@customer.Id">@customer.Name</option>
@@ -129,7 +130,6 @@
     {
         if (Reservation.ReservationOwnerId == 0)
         {
-            Reservation.ReservationOwner = _customers!.First(c => c.Id == CustomerInput);
             Reservation.ReservationOwnerId = CustomerInput;
         }
         await OnValidSubmit.InvokeAsync(context);
