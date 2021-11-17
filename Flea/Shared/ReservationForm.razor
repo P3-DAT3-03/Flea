@@ -2,9 +2,8 @@
 @using Flea.Utility
 @using Microsoft.EntityFrameworkCore
 @inject IDbContextFactory<BingoContext> _dbFactory
-@using Syncfusion.Blazor;
 
-<EditForm Model="Reservation" OnValidSubmit="OnValidSubmit">
+<EditForm Model="Reservation" OnValidSubmit="OnSubmit">
     <div class="edit-form">
         @if (Reservation.Id == 0)
         {
@@ -12,15 +11,17 @@
                 <div>Søg efter loppe:</div>
                 <div style="display: grid;">
                     <input class="search-input edit-search-input-form" type="search" value="" placeholder="Eks. Hans Henriksen"
-                           list="customerInput" @oninput="Search"/>
-                    <select id="customerInput" class="search-input edit-search-input" type="search">
-                        @if (_shownCustomers != null)
+                           @oninput="Search"/>
+                    
+                    <select class="search-input edit-search-input" type="search"
+                            @bind-Value:event="oninput" @bind-Value="CustomerInput">
+                    @if (_shownCustomers != null)
+                    {
+                        foreach (var customer in _shownCustomers)
                         {
-                            foreach (var customer in _shownCustomers)
-                            {
-                                <option value="@customer.Id">@customer.Name</option>
-                            }
+                            <option value="@customer.Id">@customer.Name</option>
                         }
+                    }
                     </select>
                 </div>
             </div>
@@ -66,13 +67,13 @@
         @* </div> *@
         <div id="move-down">
             <button type="submit" class="button create-button button--outline">@(Reservation.Id == 0 ? "Opret booking" : "Gem ændringer")</button>
-            <button class="button button del-button button--outline" type="button" @onclick="@Modal.ModalCancel">Cancel</button>
+            <button type="button" class="button button del-button button--outline" @onclick="@Modal.ModalCancel">Cancel</button>
         </div>
     </div>
 </EditForm>
 
-@code {
-
+@code 
+{
     [Parameter]
     public Reservation Reservation { get; set; } = null!;
 
@@ -82,6 +83,11 @@
     [Parameter]
     public Modal Modal { get; set; } = null!;
 
+    private List<Customer>? _customers;
+    private IEnumerable<Customer>? _shownCustomers;
+    private string _lastSearchTerm = string.Empty;
+    public int CustomerInput;
+    
     protected override async Task OnInitializedAsync()
     {
         if (Reservation == null!)
@@ -94,12 +100,7 @@
 
     }
     
-    private List<Customer>? _customers;
-    private IEnumerable<Customer>? _shownCustomers;
-    private string _lastSearchTerm = string.Empty;
-    
     public void Search(ChangeEventArgs e) => Search(e.Value?.ToString()!.ToLower() ?? "");
-    
     public void Search(string searchTerm)
     {
     // If no input show everything
@@ -122,5 +123,16 @@
         await using var context = _dbFactory.CreateDbContext();
         _customers = await _dbFactory.GetAll<BingoContext, Customer>();
         Search(_lastSearchTerm);
+    }
+
+    private async Task OnSubmit(EditContext context)
+    {
+        if (Reservation.ReservationOwnerId == 0)
+        {
+            Reservation.ReservationOwner = _customers!.First(c => c.Id == CustomerInput);
+            Reservation.ReservationOwnerId = CustomerInput;
+        }
+        await OnValidSubmit.InvokeAsync(context);
+
     }
 }

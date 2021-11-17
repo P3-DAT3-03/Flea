@@ -53,7 +53,11 @@
     // Create new reservation
     public async Task CreateReservation(EditContext editContext)
     {
-        await _dbFactory.SaveNew(_temp);
+        var temp = new Reservation(_temp.Priority, _temp.TableCount, _temp.Paid, _temp.Comments);
+        await _dbFactory.SaveNew(temp);
+        temp.ReservationOwner = _temp.ReservationOwner;
+
+        await _dbFactory.Save();
         _temp = new Reservation(0, 0, false, "", new Customer("", "")); // reset _temp
         _child.ModalCancel();
         await UpdateReservationList();
