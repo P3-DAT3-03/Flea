@@ -9,7 +9,7 @@ namespace Flea.Tests.DbIntegration
 	/// routine will ensure that all tests are run on a clean
 	/// slate using an empty database with the base table initialised.
 	/// </summary>
-	public abstract class Base
+	public abstract class DbTest
 	{
 		protected readonly TestContextFactory Factory = new();
 

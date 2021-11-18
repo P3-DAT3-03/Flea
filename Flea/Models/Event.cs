@@ -16,7 +16,7 @@ namespace Flea.Models
         public DateTime DateTime { get; set; }
         
         public List<Cluster> Clusters { get; set; }
-        public List<Reservation> Reservations;
+        public List<Reservation> Reservations { get; set; }
         public Event PreviousEvent { get; set; }
 
         public Event()

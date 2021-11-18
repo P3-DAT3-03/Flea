@@ -26,8 +26,12 @@ namespace Flea.Utility
 			return await IModelEntity<TEntity, TContext>.GetDbSetStatic(ctx).ToListAsync();
 		}
 		
-
-		public static QueryBuilder<TContext, TEntity> Query<TContext, TEntity>(this IDbContextFactory<TContext> factory)
+		// TODO maybe rename this one the use of update can seem odd since it object contains a method call Update
+		public static UpdateQuery<TContext> Update<TContext>(this IDbContextFactory<TContext> factory)
+			where TContext : DbContext =>
+			new(factory);
+		
+		public static GetQuery<TContext, TEntity> Get<TContext, TEntity>(this IDbContextFactory<TContext> factory)
 			where TEntity : class, IModelEntity<TEntity, TContext>, new()
 			where TContext : DbContext =>
 			new(factory);
