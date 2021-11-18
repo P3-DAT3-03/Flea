@@ -3,27 +3,56 @@
 @using Microsoft.EntityFrameworkCore
 @inject IDbContextFactory<BingoContext> _dbFactory
 
+@using NEvaldas.Blazor.Select2
+
 <EditForm Model="Reservation" OnValidSubmit="OnSubmit">
     <div class="edit-form">
         @if (Reservation.Id == 0)
         {
             <div class="edit-form-div">
                 <div>Søg efter loppe:</div>
-                <div style="display: grid;">
-                    <input class="search-input edit-search-input-form" type="search" value="" placeholder="Eks. Hans Henriksen"
-                           @oninput="Search"/>
+                <div class="search-box" style="display: grid;">
                     
-                    <select class="search-input edit-search-input" type="search"
-                            @bind="CustomerInput">
-                    @if (_shownCustomers != null)
-                    {
-                        <option selected="selected" disabled="" value="-1">Vælg en loppe</option>
-                        foreach (var customer in _shownCustomers)
+                    <input class="search-input edit-search-input-form" type="search" placeholder="Eks. Hans Henriksen"
+                           list="customer" @bind="CustomerInput"/>
+                    
+                    <datalist id="customer">
+                        @if (_shownCustomers != null)
                         {
-                            <option value="@customer.Id">@customer.Name</option>
+                            <option selected="selected" disabled="" value="-1">Vælg en loppe</option>
+                            foreach (var customer in _shownCustomers)
+                            {
+                                <option value="@customer.Id">@customer.Name</option>
+                            }
                         }
-                    }
-                    </select>
+                    </datalist>
+                    
+                    @* <InputSelect class="search-input edit-search-input" @bind-Value="CustomerInput"> *@
+                    @*     @if (_shownCustomers != null) *@
+                    @*     { *@
+                    @*          *@
+                    @*         <option selected="selected" disabled="" value="-1">Vælg en loppe</option> *@
+                    @*         foreach (var customer in _shownCustomers) *@
+                    @*         { *@
+                    @*             <option value="@customer.Id">@customer.Name</option> *@
+                    @*         } *@
+                    @*     } *@
+                    @* </InputSelect> *@
+
+                    @* <input class="search-input edit-search-input-form" type="search" value="" placeholder="Eks. Hans Henriksen" *@
+                    @*        @oninput="Search"/> *@
+                    @* *@
+                    @* <select class="search-input edit-search-input" id="customer" type="search" *@
+                    @*         @bind="CustomerInput"> *@
+                    @*     @if (_shownCustomers != null) *@
+                    @*     { *@
+                    @*         <option selected="selected" disabled="" value="-1">Vælg en loppe</option> *@
+                    @*         foreach (var customer in _shownCustomers) *@
+                    @*         { *@
+                    @*             <option value="@customer.Id">@customer.Name</option> *@
+                    @*         } *@
+                    @*     } *@
+                    @* </select> *@
                 </div>
             </div>
         }
@@ -51,8 +80,9 @@
         </div>
         <div class="edit-form-div">
             <div>Bemærkninger: </div>
-            <InputText class="search-input edit-search-input" placeholder="Eks. Handicap, tæt på rygerrum mm."
-                       @bind-Value="Reservation.Comments"></InputText>
+            <textarea   class="search-input edit-search-input text-area"
+                        placeholder="Eks. Handicap, tæt på rygerrum mm."
+                        @bind="Reservation.Comments"></textarea>
         </div>
         @* <div> *@
         @*     <label>Bod type: </label> *@

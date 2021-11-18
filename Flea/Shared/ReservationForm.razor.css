@@ -16,6 +16,11 @@
     align-items: center;
 }
 
+.text-area {
+    resize: vertical;
+    padding: 10px;
+}
+
 #move-down {
     margin-top: 40px;
 }
