@@ -17,8 +17,8 @@ namespace Flea.Models
     /// <see cref="DbSet{TEntity}"/> property for the entity type.
     /// </typeparam>
     public interface IModelEntity<TEntity, TContext>
-        where TEntity: class, IModelEntity<TEntity, TContext>, new()
-        where TContext: DbContext
+        where TEntity : class, IModelEntity<TEntity, TContext>, new()
+        where TContext : DbContext
     {
         /// <summary>
         /// A static instance of the entity used
@@ -32,7 +32,7 @@ namespace Flea.Models
         /// </summary>
         /// <returns>A DbSet for the entity type</returns>
         public static DbSet<TEntity> GetDbSetStatic(TContext ctx) => Entity.GetDbSet(ctx);
-        
+
         static IModelEntity()
         {
             Entity = new TEntity();

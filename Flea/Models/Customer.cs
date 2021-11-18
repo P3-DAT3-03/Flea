@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 
@@ -29,7 +30,7 @@ namespace Flea.Models
 			Name = name;
 			PhoneNumber = phoneNumber;
 		}
-		
+
 		public Customer Clone() => (Customer) MemberwiseClone();
 		
 		DbSet<Customer> IModelEntity<Customer, BingoContext>.GetDbSet(BingoContext ctx) => ctx.Customers!;
