@@ -300,17 +300,13 @@
         var ids = new int[_selectedReservation.TableCount];
         for (var i = 0; i < _selectedReservation.TableCount; i++)
         {
+            if (offset >= cluster.Tables.Count) return null;
             if (cluster.Tables[offset].Reservation != null) return null;
             
             ids[i] = cluster.Tables[offset].Id;
             if (cluster.Type == ClusterType.Round)
                 (offset, direction) = Wrap(offset, direction);
             offset += direction;
-            
-            if (offset >= cluster.Tables.Count && i != cluster.Tables.Count-1)
-            {
-                return null;
-            }
         }
         return ids;
     }
@@ -361,7 +357,7 @@
     {
         // Db Integration get the selected Event 
         // Get the clusters and find a sane way to place them all :c
-        _selectedReservation = new Reservation(1, 4, true, ""){ReservationOwner = new Customer("Loke Walsted", "1007823")};
+        _selectedReservation = new Reservation(1, 3, true, ""){ReservationOwner = new Customer("Loke Walsted", "1007823")};
         _paths = new List<int[]>();
         _startNode = null;
     }
