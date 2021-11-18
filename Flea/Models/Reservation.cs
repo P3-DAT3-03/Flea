@@ -16,7 +16,7 @@ namespace Flea.Models
         public int TableCount { get; set; }
         public bool Paid { get; set; }
         public string Comments { get; set; }
-        public List<Table> Tables { get; } = new List<Table>();
+        public List<Table> Tables { get; } = new();
         
         public Event Event { get; set; }
         public Customer ReservationOwner { get; set; }

@@ -80,6 +80,14 @@
                 <h3>@_shownReservation?.ReservationOwner.Name</h3>
                 <h3>@_shownReservation?.ReservationOwner.PhoneNumber</h3>
                 <h4>Table count: @_shownReservation?.TableCount</h4>
+                if (_shownReservation != _selectedReservation)
+                {
+                    foreach (var table in _shownReservation?.Tables!)
+                    {
+                        <p>@table.Id</p>
+                    }
+                    <button class="del-button" @onclick="DeleteReservation">Unassign Reservation</button>
+                }
             }
         </div>
     }
@@ -192,8 +200,12 @@
     {
         var (table, cluster, pathId) = id;
         _shownReservation = table.Reservation ?? _selectedReservation;
-        if(table.Reservation != null)
+        if (table.Reservation != null)
+        {
+            _startNode = null;
+            _paths.Clear();
             return;
+        }
         if (_selectedReservation == null)
         {
             Console.WriteLine("[Error Popup] No reservation has been selected");
@@ -265,7 +277,23 @@
             await _dbFactory.Save(table);
         }
     }
-    
+
+    private async void DeleteReservation()
+    {
+        if (_shownReservation == null) return;
+        Console.WriteLine("Delete Reservation");
+        await using var context = _dbFactory.CreateDbContext();
+        foreach (var table in _shownReservation.Tables)
+        {
+            table.Reservation = null;
+            context.Tables.Update(table);
+        }
+        _shownReservation.Tables.Clear();
+        context.Reservations.Update(_shownReservation);
+        await context.SaveChangesAsync();
+        _shownReservation = null;
+        StateHasChanged();
+    }
     private int[]? SelectedPaths(Cluster cluster,  int offset, int direction)
     {
         if (_selectedReservation == null) return null;
@@ -307,6 +335,8 @@
             .ThenInclude(c=> c.Tables)
             .ThenInclude(t => t.Reservation)
             .ThenInclude(r => r!.ReservationOwner)
+            .AsSplitQuery()
+            .OrderBy(e=> e.Id)
             .FirstOrDefaultAsync(e => e.Id == int.Parse(EventId));
     }
     
@@ -317,6 +347,10 @@
         {
             _event.Clusters.Sort((a, b) => a.Name[0] - b.Name[0]);
             _event.Clusters.Reverse();
+            foreach (var cluster in _event.Clusters)
+            {
+                cluster.Tables.Sort((a,b) => a.Id - b.Id);
+            }
             _clusters = _event.Clusters;
         } else
             await _dbFactory.Save(new Event("Crazy event", DateTime.Now)); // Todo: Remove when out of test phase
@@ -327,7 +361,7 @@
     {
         // Db Integration get the selected Event 
         // Get the clusters and find a sane way to place them all :c
-        _selectedReservation = new Reservation(1, 3, true, ""){ReservationOwner = new Customer("Loke Walsted", "1007823")};
+        _selectedReservation = new Reservation(1, 4, true, ""){ReservationOwner = new Customer("Loke Walsted", "1007823")};
         _paths = new List<int[]>();
         _startNode = null;
     }
