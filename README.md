@@ -1,4 +1,7 @@
 # Flea
+[![codecov](https://codecov.io/gh/P3-DAT3-03/Flea/branch/main/graph/badge.svg?token=ZVGVWHZDYP)](https://codecov.io/gh/P3-DAT3-03/Flea)
+![Tests](https://github.com/P3-DAT3-03/Flea/actions/workflows/validate.yml/badge.svg)
+![Documentation](https://github.com/P3-DAT3-03/Flea/actions/workflows/documentation.yml/badge.svg)  
 FLEA - Flea Location EstablishingApplication
 
 # Development environment

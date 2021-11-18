@@ -28,7 +28,10 @@ namespace Flea.Models
         public List<Reservation> Reservations = new();
         public Event PreviousEvent { get; set; }
 
-        public Event() : this(DateTime.Today) {}
+        public Event()
+        {
+            
+        }
 
         /* the constructor creates the event and all the needed clusters in the bingo fleamarket format*/
         public Event(DateTime dateTime)
@@ -55,6 +58,7 @@ namespace Flea.Models
 
         public int ComputeRemainingTables => Clusters.Aggregate(0, (acc, cluster) => acc + cluster.TablesNotPlaced);
 
-        DbSet<Event> IModelEntity<Event, BingoContext>.GetDbSet(BingoContext ctx) => ctx.Events;
+
+        public DbSet<Event> GetDbSet(BingoContext ctx) => ctx.Events!;
     }
 }
