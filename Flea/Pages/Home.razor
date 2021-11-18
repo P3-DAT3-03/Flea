@@ -1,8 +1,12 @@
-@using Event = Flea.Models.Event;
-
 @page "/"
 @page "/Home"
 
+@inject IDbContextFactory<BingoContext> _dbFactory
+
+@using Event = Flea.Models.Event;
+@using Flea.Models
+@using Flea.Utility
+@using Microsoft.EntityFrameworkCore
 
 <div>
     <div class="view-head">
@@ -22,22 +26,22 @@
                 }
                 _tempEvents.EventAmount = 1;
             }
-            <CreateEventForm EventList="_tempEvents" OnValidSubmit="NewEvent" Modal="_child"></CreateEventForm>
+            <CreateEventForm EventList="_tempEvents" OnValidSubmit="CreateEvent" Modal="_child"></CreateEventForm>
         </Modal>
     </div>
 
     <!-- Creates event items for each event that matches the user's search term -->
-    @if (DummyEventDB.Count == 0)
+    @if (_events.Count == 0)
     {
         <h2>Der er ingen loppemarkeder at vise...</h2>
     }
-    else if (FilteredEvents.Count == 0)
+    else if (_filteredEvents.Count == 0)
     {
         <h2>Der er ingen loppemarkeder, som matcher søgekriterierne...</h2>
     }
     else
     {
-        foreach (Event e in FilteredEvents)
+        foreach (Event e in _filteredEvents)
         {
             <div>
                 <EventListItem Event="@e"></EventListItem>
@@ -46,28 +50,42 @@
     }
 </div>
 
+
 @code {
+    
     public class EventList
     {
-        public List<Event> Events { get; set; } = new List<Event>();
+        public List<Event> Events { get; set; } = new();
         public int EventAmount { get; set; } = 1;
     }
 
-    public EventList _tempEvents = new();
-    Modal _child;
-    private string _searchTerm { get; set; } = "";
-    
-    // Placeholder event database. 
-    private List<Event> DummyEventDB = new();
+    private EventList _tempEvents = new();
+    private Modal _child = null!;
+    private string _searchTerm = "";
+    private List<Event>? _events;
 
     // List of events from database that match the search term.
-    List<Event> FilteredEvents => 
-        DummyEventDB.Where(i => i.DateTime.ToString().ToLower().Contains(_searchTerm.ToLower())).ToList();
+    private List<Event> _filteredEvents => 
+        _events.Where(i => i.Name.ToLower().Contains(_searchTerm.ToLower())).ToList();
 
-    public void NewEvent()
+    public async Task CreateEvent(EditContext editContext)
     {
-        DummyEventDB.AddRange(_tempEvents.Events);
-        DummyEventDB.Sort((x, y) => x.DateTime.CompareTo(y.DateTime));
+        foreach (Event e in _tempEvents.Events)
+        {
+            await _dbFactory.SaveNew(e);
+        }
         _child.ModalCancel();
+        await UpdateEventList();
+    }
+
+    private async Task UpdateEventList()
+    {
+        _events = await _dbFactory.GetAll<BingoContext, Event>();
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await UpdateEventList();
+        await base.OnInitializedAsync();
     }
 }

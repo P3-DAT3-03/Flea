@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace Flea.Models
 {
-    public class Event
+    public class Event : IModelEntity<Event, BingoContext>
     {
+        
         public string[] Months =
         {
             "Januar", "Februar", "Marts", "April", "Maj", "Juni", "Juli", 
@@ -26,6 +28,7 @@ namespace Flea.Models
         public List<Reservation> Reservations = new();
         public Event PreviousEvent { get; set; }
 
+        public Event() : this(DateTime.Today) {}
 
         /* the constructor creates the event and all the needed clusters in the bingo fleamarket format*/
         public Event(DateTime dateTime)
@@ -44,12 +47,14 @@ namespace Flea.Models
             };
         }
         
-        public string SetEventName => 
+        public string Name => 
             DateTime.Day.ToString() + ". " + Months[DateTime.Month] + ", " + DateTime.Year.ToString();
         
         public int ComputeMissingPayments => 
             Reservations.Aggregate(0, (acc, reservation) => reservation.Paid ? acc : acc + 1);
 
         public int ComputeRemainingTables => Clusters.Aggregate(0, (acc, cluster) => acc + cluster.TablesNotPlaced);
+
+        DbSet<Event> IModelEntity<Event, BingoContext>.GetDbSet(BingoContext ctx) => ctx.Events;
     }
 }
