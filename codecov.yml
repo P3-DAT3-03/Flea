@@ -1,0 +1,5 @@
+﻿ignore:
+  - "Flea/Migrations/**"
+  - "Flea/Shared/**" 
+  - "Flea/Pages/**"
+  - "Flea/wwwroot/**"

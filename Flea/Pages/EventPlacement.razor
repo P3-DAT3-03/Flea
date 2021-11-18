@@ -223,6 +223,7 @@
             .ThenInclude(c=> c.Tables)
             .FirstOrDefaultAsync(e => e.Id == int.Parse(EventId));
     }
+    
     protected override async Task OnInitializedAsync()
     {
         var test = await GetEvent();
