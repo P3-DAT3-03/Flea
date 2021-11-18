@@ -20,7 +20,6 @@
     
     private async Task OnTableClicked()
     {
-        Console.WriteLine($"TableId: {Inner.Id} ClusterId: {Inner.Cluster.Id} PathId: {PathId}");
         await OnTableSelect.InvokeAsync((Inner, Inner.Cluster, PathId));
     }
     protected override void OnInitialized()

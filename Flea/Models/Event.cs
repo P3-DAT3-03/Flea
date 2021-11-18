@@ -36,22 +36,27 @@ namespace Flea.Models
             Clusters.Add(new Cluster("3", 4, 4, ClusterType.Vertical));
             Clusters.Add(new Cluster("4", 2, 2, ClusterType.Vertical));
             // Middle
-            Clusters.Add(new Cluster("M", 4, 8, ClusterType.Round));
-            Clusters.Add(new Cluster("N", 4, 8, ClusterType.Round));
-            Clusters.Add(new Cluster("O", 4, 8, ClusterType.Round));
-            Clusters.Add(new Cluster("P", 4, 8, ClusterType.Round));
-            Clusters.Add(new Cluster("L", 4, 8, ClusterType.Round));
-            Clusters.Add(new Cluster("I", 4, 8, ClusterType.Round));
-            Clusters.Add(new Cluster("F", 4, 8, ClusterType.Round));
-            Clusters.Add(new Cluster("C", 4, 8, ClusterType.Round));
-            Clusters.Add(new Cluster("K", 4, 8, ClusterType.Round));
-            Clusters.Add(new Cluster("H", 4, 8, ClusterType.Round));
-            Clusters.Add(new Cluster("E", 4, 8, ClusterType.Round));
-            Clusters.Add(new Cluster("B", 4, 8, ClusterType.Round));
-            Clusters.Add(new Cluster("J", 4, 8, ClusterType.Round));
-            Clusters.Add(new Cluster("G", 4, 8, ClusterType.Round));
-            Clusters.Add(new Cluster("D", 4, 8, ClusterType.Round));
+
             Clusters.Add(new Cluster("A", 4, 8, ClusterType.Round));
+            Clusters.Add(new Cluster("D", 4, 8, ClusterType.Round));
+            Clusters.Add(new Cluster("G", 4, 8, ClusterType.Round));
+            Clusters.Add(new Cluster("J", 4, 8, ClusterType.Round));
+
+            Clusters.Add(new Cluster("B", 4, 8, ClusterType.Round));
+            Clusters.Add(new Cluster("E", 4, 8, ClusterType.Round));
+            Clusters.Add(new Cluster("H", 4, 8, ClusterType.Round));
+            Clusters.Add(new Cluster("K", 4, 8, ClusterType.Round));
+            
+            Clusters.Add(new Cluster("C", 4, 8, ClusterType.Round));
+            Clusters.Add(new Cluster("F", 4, 8, ClusterType.Round));
+            Clusters.Add(new Cluster("I", 4, 8, ClusterType.Round));
+            Clusters.Add(new Cluster("L", 4, 8, ClusterType.Round));
+            
+            Clusters.Add(new Cluster("M", 3, 3, ClusterType.Vertical));
+            Clusters.Add(new Cluster("N", 3, 3, ClusterType.Vertical));
+            Clusters.Add(new Cluster("O", 3, 3, ClusterType.Vertical));
+            Clusters.Add(new Cluster("P", 3, 3, ClusterType.Vertical));
+
             //Bottom
             Clusters.Add(new Cluster("5", 4, 4, ClusterType.Vertical));
             Clusters.Add(new Cluster("6", 3, 3, ClusterType.Vertical));

@@ -62,9 +62,6 @@
     [Parameter]
     public EventCallback<(Models.Table,Models.Cluster,int)> OnTableSelect { get; set; }
 
-    [Parameter]
-    public int ClusterIndex { get; set; }
-
     private int _pathId = -1;
 
     protected override void OnInitialized()
