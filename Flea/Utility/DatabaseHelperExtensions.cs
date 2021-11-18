@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Flea.Models;
 using Microsoft.EntityFrameworkCore;
@@ -27,32 +26,12 @@ namespace Flea.Utility
 			return await IModelEntity<TEntity, TContext>.GetDbSetStatic(ctx).ToListAsync();
 		}
 		
-		/// <summary>
-		/// Gets all entities of a given type from the specified database context,
-		/// with the specified related entities included.
-		///
-		/// TODO write usage example
-		/// </summary>
-		/// <param name="factory">The factory that will supply the database context instance.</param>
-		/// <param name="includes">A series of strings specifying which related entities need to included.</param>
-		/// <typeparam name="TContext">The database context type.</typeparam>
-		/// <typeparam name="TEntity">The entity that we are retrieving.</typeparam>
-		/// <returns>A list of all entities in the given context.</returns>
-		public static async Task<List<TEntity>> GetAll<TContext, TEntity>(this IDbContextFactory<TContext> factory, params string[] includes)
-			where TEntity : class, IModelEntity<TEntity, TContext>, new()
-			where TContext : DbContext
-		{
-			await using var ctx = factory.CreateDbContext();
-			IQueryable<TEntity> set = IModelEntity<TEntity, TContext>.GetDbSetStatic(ctx);
 
-			foreach (var include in includes)
-			{
-				set = set.Include(include);
-			}
-			
-			return await set.ToListAsync();
-		}
-		
+		public static QueryBuilder<TContext, TEntity> Query<TContext, TEntity>(this IDbContextFactory<TContext> factory)
+			where TEntity : class, IModelEntity<TEntity, TContext>, new()
+			where TContext : DbContext =>
+			new(factory);
+
 
 		/// <summary>
 		/// Save/update an entity instance in the database.
@@ -70,7 +49,7 @@ namespace Flea.Utility
 			set.Update(entity);
 			await ctx.SaveChangesAsync();
 		}
-		
+
 		/// <summary>
 		/// Save/create a new entity in the database. 
 		/// </summary>
@@ -87,7 +66,7 @@ namespace Flea.Utility
 			await set.AddAsync(entity);
 			await ctx.SaveChangesAsync();
 		}
-		
+
 		/// <summary>
 		/// Delete an entity instance from the database.
 		/// </summary>
@@ -104,7 +83,5 @@ namespace Flea.Utility
 			set.Remove(entity);
 			await ctx.SaveChangesAsync();
 		}
-
-		
 	}
 }

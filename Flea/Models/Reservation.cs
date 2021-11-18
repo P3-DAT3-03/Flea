@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
 
 namespace Flea.Models
 {
-    public class Reservation
+    public class Reservation : IModelEntity<Reservation, BingoContext>
     {
         /*TODO maybe add priority as Enum instead of as a int.
          *TODO consider if comments should be a list of strings and not one long string
@@ -20,6 +21,8 @@ namespace Flea.Models
         
         public Customer ReservationOwner { get; set; }
 
+        public Reservation() {}
+        
         /// <summary>
         /// 
         /// </summary>
@@ -57,5 +60,6 @@ namespace Flea.Models
         }
 
         public Reservation Clone() => (Reservation) MemberwiseClone();
+        public DbSet<Reservation> GetDbSet(BingoContext ctx) => ctx.Reservations!;
     }
 }
