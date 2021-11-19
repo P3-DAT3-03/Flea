@@ -1,47 +1,49 @@
 @using Flea.Models
-<div class="cluster @Class">
-    
-    @for (var i = 0; i < Inner.Tables.Count; i++)
-    {
-        var tableClass = Inner.Type switch
+<div class="cluster border">
+    <div class="cluster @Class">
+        
+        @for (var i = 0; i < Inner.Tables.Count; i++)
         {
-            ClusterType.Round => i switch
+            var tableClass = Inner.Type switch
             {
-                0 or 3 or 4 or 7 => "horizontal",
-                5 or 6 => "bottom",
-                _ => "vertical"
-                },
-            ClusterType.Horizontal => "horizontal",
-            _ => "vertical"
-            };
-        _pathId = -1;
-        if (SelectedCluster != null && Paths != null && Inner.Id == SelectedCluster.Id)
-        {
-            var t = Inner.Tables[i].Id;
-            for (var j = 0; j < Paths.Count; j++)
-            {
-                if (StartNode?.Id != t && Paths[j].Contains(t))
+                ClusterType.Round => i switch
                 {
-                    tableClass += " path";
-                    _pathId = j;
-                    break;
+                    0 or 3 or 4 or 7 => "horizontal",
+                    5 or 6 => "vertical bottom",
+                    _ => "vertical"
+                    },
+                ClusterType.Horizontal => "horizontal",
+                _ => "vertical"
+                };
+            _pathId = -1;
+            if (SelectedCluster != null && Paths != null && Inner.Id == SelectedCluster.Id)
+            {
+                var t = Inner.Tables[i].Id;
+                for (var j = 0; j < Paths.Count; j++)
+                {
+                    if (StartNode?.Id != t && Paths[j].Contains(t))
+                    {
+                        tableClass += " path";
+                        _pathId = j;
+                        break;
+                    }
                 }
+                if (StartNode?.Id == t)
+                    tableClass += " start";
             }
-            if (StartNode?.Id == t)
-                tableClass += " start";
+            <Table
+                TableIndex="@i"
+                Inner="@Inner.Tables[i]"
+                Class="@tableClass"
+                PathId="@_pathId"
+                OnTableSelect="@(async id => await OnTableSelect.InvokeAsync(id))">
+            </Table>
         }
-        <Table
-            TableIndex="@i"
-            Inner="@Inner.Tables[i]"
-            Class="@tableClass"
-            PathId="@_pathId"
-            OnTableSelect="@(async id => await OnTableSelect.InvokeAsync(id))">
-        </Table>
-    }
-    @if (Inner.Type == ClusterType.Round)
-    {
-        <div class="cluster-tag">@Inner.Name</div>
-    }
+        @if (Inner.Type == ClusterType.Round)
+        {
+            <div class="cluster-tag">@Inner.Name</div>
+        }
+    </div>
 </div>
 @code {
     [Parameter]

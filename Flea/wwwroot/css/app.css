@@ -86,13 +86,118 @@
     --ios-g5: rgb(99, 99, 102);
     --ios-g6: rgb(142, 142, 147);
     
-    /* iOS other colors */
+    /* iOS dark theme colors */
     --ios-red: rgb(255, 69, 58);
-    --ios-orange-t: 255, 159, 10;
-    --ios-orange: rgb(var(--ios-orange-t));
+    --ios-orange: rgb(255, 159, 10);
+    --ios-yellow: rgb(255,214,10);
+    --ios-green: rgb(48,209,88);
+    --ios-mint: rgb(102,212,207);
+    --ios-teal: rgb(64,200,224);
+    --ios-cyan: rgb(100,210,255);
+    --ios-blue: rgb(10, 132, 255);
+    --ios-indigo: rgb(94, 92, 230);
+    --ios-purple: rgb(191, 90, 242);
+    --ios-pink: rgb(255, 55, 95);
+    --ios-brown: rgb(172, 142, 104);
+    
+    --table-large: 2em;
+    --table-small: 1em;
+    --table-small-gap: 0.5em;
     
     background: var(--ios-bg);
     color: var(--ios-fg);
+    
+}
+
+.container.event-placement {
+    display: grid;
+    grid-template-columns: max-content max-content;
+    grid-column-gap: var(--table-small);
+}
+.side-panel {
+    height: 100%;
+    float: left;
+    width: 100%;
+    transition: 4s;
+}
+.side-panel.off {
+    width: 0;
+}
+
+.table {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid black;
+}
+.table.vertical {
+    width: var(--table-large);
+    height: var(--table-small);
+}
+.table.horizontal {
+    width: var(--table-small);
+    height: var(--table-large);
+}
+.table.bottom {
+    margin-top: var(--table-small);
+}
+.table.reserved {
+    background-color: var(--ios-red);
+}
+.table {
+    background-color: var(--ios-fg);
+    color: var(--ios-bg);
+}
+.table.path {
+    background-color: var(--ios-pink);
+}
+.table.start {
+    background-color: var(--ios-blue);
+}
+.cluster.border{
+    border: var(--ios-fg) solid 2px;
+}
+.cluster {
+    position: relative;
+    display: grid;
+    width: max-content;
+    grid-template-columns: repeat(4, max-content);
+    border: var(--ios-bg) solid 1px;
+    row-gap: 0.5em; /* 12.5 */
+}
+
+.cluster-tag {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.clusters.middle-top {
+    grid-template-columns: repeat(4, max-content);
+    grid-auto-flow: row;
+    row-gap: var(--table-small-gap);
+    column-gap: var(--table-small);
+}
+.clusters.middle {
+    grid-template-rows: repeat(3, max-content);
+    grid-auto-flow: column;
+}
+.clusters.upper {
+    grid-template-columns: repeat(5, max-content);
+    grid-auto-flow: row;
+    column-gap: var(--table-small);
+    row-gap: var(--table-small-gap);
+}
+.clusters.lower {
+    grid-template-columns: repeat(3, max-content);
+    grid-auto-flow: row;
+}
+.clusters{
+    display: grid;
+    width: fit-content;
+    row-gap: var(--table-small);
+    column-gap: var(--table-small);
+    margin-bottom: var(--table-small);
 }
 
 .sidebar .tabbar--material {
@@ -141,12 +246,12 @@ a, .btn-link {
     z-index: 1000;
 }
 
-    #blazor-error-ui .dismiss {
-        cursor: pointer;
-        position: absolute;
-        right: 0.75rem;
-        top: 0.5rem;
-    }
+#blazor-error-ui .dismiss {
+    cursor: pointer;
+    position: absolute;
+    right: 0.75rem;
+    top: 0.5rem;
+}
 
 
 /* TopBar - To make navbar transparent so it match sidebar color*/

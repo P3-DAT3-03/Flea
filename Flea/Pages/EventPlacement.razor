@@ -7,7 +7,7 @@
 @using Table = Flea.Models.Table
 @using Cluster = Flea.Models.Cluster
 
-<div class="container">
+<div class="container event-placement">
     @if (_clusters != null)
     {
         <div class="cluster-container">
@@ -40,7 +40,8 @@
             </div>
             <div class="center">
                 <div class="clusters middle-top">
-                    @foreach(var cluster in topMiddle){
+                    @foreach (var cluster in topMiddle)
+                    {
                         <Cluster
                             Inner="@cluster"
                             StartNode="@_startNode"
@@ -50,7 +51,8 @@
                     }
                 </div>
                 <div class="clusters middle">
-                    @foreach(var cluster in middle){
+                    @foreach (var cluster in middle)
+                    {
                         <Cluster
                             Inner="@cluster"
                             StartNode="@_startNode"
@@ -61,7 +63,8 @@
                 </div>
                 @* 3 clusters(4,3,3) *@
                 <div class="clusters lower">
-                    @foreach(var cluster in bottom){
+                    @foreach (var cluster in bottom)
+                    {
                         <Cluster
                             Inner="@cluster"
                             StartNode="@_startNode"
@@ -97,92 +100,6 @@
     }
 </div>
 
-<style>
-    .container {
-        display: grid;
-        grid-template-columns: max-content max-content;
-        grid-column-gap: 25px;
-    }
-    .clusters.middle-top {
-        grid-template-columns: repeat(4, max-content);
-        grid-auto-flow: row;
-        row-gap: 13px;
-        column-gap: 28px;
-    }
-    .clusters.middle {
-        grid-template-rows: repeat(3, max-content);
-        grid-auto-flow: column;
-    }
-    .clusters.upper {
-        grid-template-columns: repeat(5, max-content);
-        grid-auto-flow: row;
-        column-gap: 25px;
-        row-gap: 13px;
-    }
-    .clusters.lower {
-        grid-template-columns: repeat(3, max-content);
-        grid-auto-flow: row;
-    }
-    .clusters{
-        display: grid;
-        width: fit-content;
-        row-gap: 25px;
-        column-gap: 25px;
-        margin-bottom: 25px;
-    }
-    .side-panel {
-      height: 100%;
-      float: left;
-      width: min-content;
-      transition: 4s;
-    }
-    .side-panel.off {
-        width: 0;
-    }
-    .table {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border: 1px solid black;
-    }
-    .table.vertical {
-        width: 50px;
-        height: 25px;
-    }
-    .table.horizontal {
-        width: 25px;
-        height: 50px;
-    }
-    .table.bottom {
-        margin-top: 25px;
-    }
-    .table.on {
-        background-color: gray;
-    }
-    .table.off {
-        background-color: white;
-        color: black;
-    }
-    .table.path {
-        background-color: yellow;
-    }
-    .table.start {
-        background-color: #00ff00;
-    }
-    .cluster {
-        position: relative;
-        display: grid;
-        width: max-content;
-        grid-template-columns: repeat(4, max-content);
-        row-gap: 13px; /* 12.5 */
-    }
-    .cluster-tag {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-    }
-</style>
 
 @code {
     [Parameter]
