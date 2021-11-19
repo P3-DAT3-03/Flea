@@ -100,25 +100,60 @@
     --ios-pink: rgb(255, 55, 95);
     --ios-brown: rgb(172, 142, 104);
     
-    --table-large: 2em;
-    --table-small: 1em;
-    --table-small-gap: 0.5em;
+    --table-large: 3em;
+    --table-small: 1.5em;
+    --table-small-gap: 0.75em;
     
     background: var(--ios-bg);
     color: var(--ios-fg);
     
 }
-
+.center {
+    margin: 0 auto;
+    width: fit-content;
+}
 .container.event-placement {
     display: grid;
-    grid-template-columns: max-content max-content;
     grid-column-gap: var(--table-small);
 }
+
+.guides {
+    display: grid;
+    grid-template-columns: repeat(4, max-content);
+    grid-column-gap: var(--table-small);
+}
+.guide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: var(--table-small);
+}
+.ball {
+    width: 1em;
+    height: 1em;
+    margin-right: var(--table-small-gap);
+    border-radius: 100%;
+    border: var(--ios-fg) solid;
+}
+.ball.red {
+    background-color: var(--ios-red);
+}
+.ball.blue {
+    background-color: var(--ios-blue);
+}
+.ball.pink {
+    background-color: var(--ios-pink);
+}
+.ball.white {
+    background-color: var(--ios-fg);
+}
+
 .side-panel {
     height: 100%;
     float: left;
     width: 100%;
     transition: 4s;
+    background-color: var(--ios-g1);
 }
 .side-panel.off {
     width: 0;
@@ -128,7 +163,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid black;
+    border: 1px solid var(--ios-bg);
+    background-color: var(--ios-fg);
+    color: var(--ios-bg);
 }
 .table.vertical {
     width: var(--table-large);
@@ -144,16 +181,13 @@
 .table.reserved {
     background-color: var(--ios-red);
 }
-.table {
-    background-color: var(--ios-fg);
-    color: var(--ios-bg);
-}
 .table.path {
     background-color: var(--ios-pink);
 }
 .table.start {
     background-color: var(--ios-blue);
 }
+
 .cluster.border{
     border: var(--ios-fg) solid 2px;
 }
@@ -163,7 +197,7 @@
     width: max-content;
     grid-template-columns: repeat(4, max-content);
     border: var(--ios-bg) solid 1px;
-    row-gap: 0.5em; /* 12.5 */
+    row-gap: var(--table-small-gap);
 }
 
 .cluster-tag {

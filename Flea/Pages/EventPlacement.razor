@@ -25,7 +25,7 @@
                 var bottom = _clusters.Where(c => 
                     char.IsDigit(c.Name[0]) && int.Parse(c.Name) >= 5);
             }
-            <div class="clusters upper">
+            <div class="clusters upper center">
                 @{ var i = 0;}
                 @foreach (var cluster in top)
                 {
@@ -38,43 +38,58 @@
                     if (i++ == 1){<div class="rando">Oplæser</div>}
                 }
             </div>
-            <div class="center">
-                <div class="clusters middle-top">
-                    @foreach (var cluster in topMiddle)
-                    {
-                        <Cluster
-                            Inner="@cluster"
-                            StartNode="@_startNode"
-                            Paths="@_paths"
-                            SelectedCluster="@_selectedCluster"
-                            OnTableSelect="@TableSelected"/>
-                    }
-                </div>
-                <div class="clusters middle">
-                    @foreach (var cluster in middle)
-                    {
-                        <Cluster
-                            Inner="@cluster"
-                            StartNode="@_startNode"
-                            Paths="@_paths"
-                            SelectedCluster="@_selectedCluster"
-                            OnTableSelect="@TableSelected"/>
-                    }
-                </div>
-                @* 3 clusters(4,3,3) *@
-                <div class="clusters lower">
-                    @foreach (var cluster in bottom)
-                    {
-                        <Cluster
-                            Inner="@cluster"
-                            StartNode="@_startNode"
-                            Paths="@_paths"
-                            SelectedCluster="@_selectedCluster"
-                            OnTableSelect="@TableSelected"/>
-                    }
-                </div>
-                @* tilgængelig, reseveret, start node, mulig sti *@
-                <div class="guide"></div>
+            <div class="clusters middle-top center">
+                @foreach (var cluster in topMiddle)
+                {
+                    <Cluster
+                        Inner="@cluster"
+                        StartNode="@_startNode"
+                        Paths="@_paths"
+                        SelectedCluster="@_selectedCluster"
+                        OnTableSelect="@TableSelected"/>
+                }
+            </div>
+            <div class="clusters middle center">
+                @foreach (var cluster in middle)
+                {
+                    <Cluster
+                        Inner="@cluster"
+                        StartNode="@_startNode"
+                        Paths="@_paths"
+                        SelectedCluster="@_selectedCluster"
+                        OnTableSelect="@TableSelected"/>
+                }
+            </div>
+            @* 3 clusters(4,3,3) *@
+            <div class="clusters lower center">
+                @foreach (var cluster in bottom)
+                {
+                    <Cluster
+                        Inner="@cluster"
+                        StartNode="@_startNode"
+                        Paths="@_paths"
+                        SelectedCluster="@_selectedCluster"
+                        OnTableSelect="@TableSelected"/>
+                }
+            </div>
+            @* tilgængelig, reseveret, start node, mulig sti *@
+        </div>
+        <div class="guides center">
+            <div class="guide">
+                <div class="ball white"></div>
+                <p>Tilgængelig</p>
+            </div>
+            <div class="guide">
+                <div class="ball red"></div>
+                <p>Reserveret</p>
+            </div>
+            <div class="guide">
+                <div class="ball blue"></div>
+                <p>Start</p>
+            </div>
+            <div class="guide">
+                <div class="ball pink"></div>
+                <p>Sti</p>
             </div>
         </div>
         <div class="side-panel">
@@ -85,10 +100,6 @@
                 <h4>Table count: @_shownReservation?.TableCount</h4>
                 if (_shownReservation != _selectedReservation)
                 {
-                    foreach (var table in _shownReservation?.Tables!)
-                    {
-                        <p>@table.Id</p>
-                    }
                     <button class="del-button" @onclick="DeleteReservation">Unassign Reservation</button>
                 }
             }
