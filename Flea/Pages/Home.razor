@@ -10,7 +10,7 @@
 
 <div>
     <div class="view-head">
-        <input class="search-input" @bind-value="_searchTerm" @bind-value:event="oninput" placeholder="Søg efter loppemarked..."/>
+        <input class="search-input" @bind-value="_searchTerm" @oninput="Search" placeholder="Søg efter loppemarked..."/>
         <Modal ButtonName="Tilføj nyt loppemarked" @ref="_child">
             <div>
                 <h5>Hvor mange loppemarkeder ønsker I at oprette?</h5>
@@ -26,22 +26,23 @@
                 }
                 _tempEvents.EventAmount = 1;
             }
-            <CreateEventForm EventList="_tempEvents" OnValidSubmit="CreateEvent" Modal="_child"></CreateEventForm>
+            <CreateEventForm EventList="_tempEvents" OnValidSubmit="CreateEvents" Modal="_child"></CreateEventForm>
         </Modal>
     </div>
 
     <!-- Creates event items for each event that matches the user's search term -->
+    
     @if (_events.Count == 0)
     {
         <h2>Der er ingen loppemarkeder at vise...</h2>
     }
-    else if (_filteredEvents.Count == 0)
+    else if (FilteredEvents.Count == 0)
     {
-        <h2>Der er ingen loppemarkeder, som matcher søgekriterierne...</h2>
+        <h2>Der er ingen loppemarkeder, der matcher søgekriterierne...</h2>
     }
     else
     {
-        foreach (Event e in _filteredEvents)
+        foreach (var e in FilteredEvents)
         {
             <div>
                 <EventListItem Event="@e"></EventListItem>
@@ -62,27 +63,48 @@
     private EventList _tempEvents = new();
     private Modal _child = null!;
     private string _searchTerm = "";
-    private List<Event>? _events;
+    private List<Event> _events = new();
 
     // List of events from database that match the search term.
-    private List<Event> _filteredEvents => 
+    private IEnumerable<Event>? _shownEvents;
+
+    private List<Event> FilteredEvents =>
         _events.Where(i => i.Name.ToLower().Contains(_searchTerm.ToLower())).ToList();
 
-    public async Task CreateEvent(EditContext editContext)
+    
+    public void CreateEvents()
     {
-        foreach (Event e in _tempEvents.Events)
+        foreach (var e in _tempEvents.Events)
         {
-            await _dbFactory.SaveNew(e);
+            _dbFactory.SaveNew(e);
         }
         _child.ModalCancel();
-        await UpdateEventList();
+        UpdateEventList();
     }
+    
 
     private async Task UpdateEventList()
     {
-        _events = await _dbFactory.GetAll<BingoContext, Event>();
+        _events = await _dbFactory.GetAll<BingoContext,Event>();
     }
 
+    public void Search(ChangeEventArgs e) => Search(e.Value?.ToString()?.ToLower() ?? "");
+    
+    public void Search(string searchTerm)
+    {
+        if (searchTerm == "")
+        {
+            _shownEvents = _events;
+        }
+        else
+        {
+            _shownEvents = from e
+                in _events
+                where e.Name.ToLower().Contains(searchTerm.ToLower())
+                select e;
+        }
+    }
+    
     protected override async Task OnInitializedAsync()
     {
         await UpdateEventList();

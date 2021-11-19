@@ -20,9 +20,6 @@ namespace Flea.Models
         /// The date at which the event will be held.
         /// </summary>
         public DateTime DateTime { get; set; }
-        public int TablePrice { get; set; }
-        public int ClothesRackAmount { get; set; }
-        public int ClothesRackPrice { get; set; }
         
         public List<Cluster> Clusters { get; set; }
         public List<Reservation> Reservations = new();
@@ -37,9 +34,6 @@ namespace Flea.Models
         public Event(DateTime dateTime)
         {
             DateTime = dateTime; 
-            TablePrice = 100;
-            ClothesRackAmount = 7;
-            ClothesRackPrice = 50;
 
             Clusters = new List<Cluster>
             { 
