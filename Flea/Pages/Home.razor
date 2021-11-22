@@ -15,34 +15,33 @@
             <div>
                 <h5>Hvor mange loppemarkeder ønsker I at oprette?</h5>
                 <label>Antal loppemarkeder: </label>
-                <input type="text" @bind-value="_tempEvents.EventAmount">
+                <input type="text" @bind-value="TempEvents.EventAmount">
             </div>
-            @if (_tempEvents.EventAmount > 0)
+            @if (TempEvents.EventAmount > 0)
             {
-                _tempEvents.Events.Clear();
-                for (int i = 0; i < _tempEvents.EventAmount; i++)
+                TempEvents.Events.Clear();
+                for (int i = 0; i < TempEvents.EventAmount; i++)
                 {
-                    _tempEvents.Events.Add(new Event(DateTime.Today));
+                    TempEvents.Events.Add(new Event(DateTime.Today));
                 }
-                _tempEvents.EventAmount = 1;
+                TempEvents.EventAmount = 1;
             }
-            <CreateEventForm EventList="_tempEvents" OnValidSubmit="CreateEvents" Modal="_child"></CreateEventForm>
+            <CreateEventForm EventList="TempEvents" OnValidSubmit="CreateEvents" Modal="_child"></CreateEventForm>
         </Modal>
     </div>
 
     <!-- Creates event items for each event that matches the user's search term -->
-    
     @if (_events.Count == 0)
     {
         <h2>Der er ingen loppemarkeder at vise...</h2>
     }
-    else if (FilteredEvents.Count == 0)
+    else if (_shownEvents.Count == 0)
     {
         <h2>Der er ingen loppemarkeder, der matcher søgekriterierne...</h2>
     }
     else
     {
-        foreach (var e in FilteredEvents)
+        foreach (var e in _shownEvents)
         {
             <div>
                 <EventListItem Event="@e"></EventListItem>
@@ -60,28 +59,24 @@
         public int EventAmount { get; set; } = 1;
     }
 
-    private EventList _tempEvents = new();
+    public EventList TempEvents { get; set; } = new();
     private Modal _child = null!;
     private string _searchTerm = "";
     private List<Event> _events = new();
 
     // List of events from database that match the search term.
-    private IEnumerable<Event>? _shownEvents;
+    private List<Event>? _shownEvents = new();
 
-    private List<Event> FilteredEvents =>
-        _events.Where(i => i.Name.ToLower().Contains(_searchTerm.ToLower())).ToList();
 
-    
-    public void CreateEvents()
+    public async Task CreateEvents()
     {
-        foreach (var e in _tempEvents.Events)
+        foreach (var e in TempEvents.Events)
         {
-            _dbFactory.SaveNew(e);
+            await _dbFactory.SaveNew(e);
         }
         _child.ModalCancel();
-        UpdateEventList();
+        await UpdateEventList();
     }
-    
 
     private async Task UpdateEventList()
     {
@@ -98,10 +93,7 @@
         }
         else
         {
-            _shownEvents = from e
-                in _events
-                where e.Name.ToLower().Contains(searchTerm.ToLower())
-                select e;
+            _shownEvents = _events.Where(i => i.Name.ToLower().Contains(_searchTerm.ToLower())).ToList();
         }
     }
     
