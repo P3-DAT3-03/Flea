@@ -1,0 +1,540 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class UpdateQuery&lt;TContext&gt;
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class UpdateQuery&lt;TContext&gt;
+   ">
+    <meta name="generator" content="docfx 2.58.9.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> 
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Flea.Utility.UpdateQuery`1">
+  
+  
+  <h1 id="Flea_Utility_UpdateQuery_1" data-uid="Flea.Utility.UpdateQuery`1" class="text-break">Class UpdateQuery&lt;TContext&gt;
+  </h1>
+  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><a class="xref" href="Flea.Utility.QueryBuilder-1.html">QueryBuilder</a>&lt;TContext&gt;</div>
+    <div class="level2"><span class="xref">UpdateQuery&lt;TContext&gt;</span></div>
+  </div>
+  <div classs="implements">
+    <h5>Implements</h5>
+    <div><span class="xref">System.IDisposable</span></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="Flea.Utility.QueryBuilder-1.html#Flea_Utility_QueryBuilder_1_Context">QueryBuilder&lt;TContext&gt;.Context</a>
+    </div>
+    <div>
+      <a class="xref" href="Flea.Utility.QueryBuilder-1.html#Flea_Utility_QueryBuilder_1_CheckDisposeStatus">QueryBuilder&lt;TContext&gt;.CheckDisposeStatus()</a>
+    </div>
+    <div>
+      <a class="xref" href="Flea.Utility.QueryBuilder-1.html#Flea_Utility_QueryBuilder_1_Dispose">QueryBuilder&lt;TContext&gt;.Dispose()</a>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.MemberwiseClone()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ToString()</span>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="Flea.Utility.html">Flea.Utility</a></h6>
+  <h6><strong>Assembly</strong>: Flea.dll</h6>
+  <h5 id="Flea_Utility_UpdateQuery_1_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class UpdateQuery&lt;TContext&gt; : QueryBuilder&lt;TContext&gt;, IDisposable where TContext : DbContext</code></pre>
+  </div>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TContext</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="constructors">Constructors
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/P3-DAT3-03/Flea/new/main/apiSpec/new?filename=Flea_Utility_UpdateQuery_1__ctor_IDbContextFactory__0__.md&amp;value=---%0Auid%3A%20Flea.Utility.UpdateQuery%601.%23ctor(IDbContextFactory%7B%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/P3-DAT3-03/Flea/blob/main/Flea/Utility/UpdateQuery.cs/#L109">View Source</a>
+  </span>
+  <a id="Flea_Utility_UpdateQuery_1__ctor_" data-uid="Flea.Utility.UpdateQuery`1.#ctor*"></a>
+  <h4 id="Flea_Utility_UpdateQuery_1__ctor_IDbContextFactory__0__" data-uid="Flea.Utility.UpdateQuery`1.#ctor(IDbContextFactory{`0})">UpdateQuery(IDbContextFactory&lt;TContext&gt;)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public UpdateQuery(IDbContextFactory&lt;TContext&gt; factory)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IDbContextFactory</span>&lt;TContext&gt;</td>
+        <td><span class="parametername">factory</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/P3-DAT3-03/Flea/new/main/apiSpec/new?filename=Flea_Utility_UpdateQuery_1_New__1___0_.md&amp;value=---%0Auid%3A%20Flea.Utility.UpdateQuery%601.New%60%601(%60%600)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/P3-DAT3-03/Flea/blob/main/Flea/Utility/UpdateQuery.cs/#L67">View Source</a>
+  </span>
+  <a id="Flea_Utility_UpdateQuery_1_New_" data-uid="Flea.Utility.UpdateQuery`1.New*"></a>
+  <h4 id="Flea_Utility_UpdateQuery_1_New__1___0_" data-uid="Flea.Utility.UpdateQuery`1.New``1(``0)">New&lt;TEntity&gt;(TEntity)</h4>
+  <div class="markdown level1 summary"><p>Creates a new entity.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public UpdateQuery&lt;TContext&gt; New&lt;TEntity&gt;(TEntity entity)
+
+    where TEntity : class, IModelEntity&lt;TEntity, TContext&gt;, new()</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">TEntity</span></td>
+        <td><span class="parametername">entity</span></td>
+        <td><p>The entity that is to created.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Flea.Utility.UpdateQuery-1.html">UpdateQuery</a>&lt;TContext&gt;</td>
+        <td><p>A reference to the current <a class="xref" href="Flea.Utility.UpdateQuery-1.html">UpdateQuery&lt;TContext&gt;</a> (<code>this</code>)
+allowing for chaining of commands.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TEntity</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/P3-DAT3-03/Flea/new/main/apiSpec/new?filename=Flea_Utility_UpdateQuery_1_New__1___0___.md&amp;value=---%0Auid%3A%20Flea.Utility.UpdateQuery%601.New%60%601(%60%600%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/P3-DAT3-03/Flea/blob/main/Flea/Utility/UpdateQuery.cs/#L84">View Source</a>
+  </span>
+  <a id="Flea_Utility_UpdateQuery_1_New_" data-uid="Flea.Utility.UpdateQuery`1.New*"></a>
+  <h4 id="Flea_Utility_UpdateQuery_1_New__1___0___" data-uid="Flea.Utility.UpdateQuery`1.New``1(``0[])">New&lt;TEntity&gt;(TEntity[])</h4>
+  <div class="markdown level1 summary"><p>Creates a new entity.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public UpdateQuery&lt;TContext&gt; New&lt;TEntity&gt;(params TEntity[] entity)
+
+    where TEntity : class, IModelEntity&lt;TEntity, TContext&gt;, new()</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>TEntity[]</td>
+        <td><span class="parametername">entity</span></td>
+        <td><p>The entity that is to created.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Flea.Utility.UpdateQuery-1.html">UpdateQuery</a>&lt;TContext&gt;</td>
+        <td><p>A reference to the current <a class="xref" href="Flea.Utility.UpdateQuery-1.html">UpdateQuery&lt;TContext&gt;</a> (<code>this</code>)
+allowing for chaining of commands.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TEntity</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/P3-DAT3-03/Flea/new/main/apiSpec/new?filename=Flea_Utility_UpdateQuery_1_Save.md&amp;value=---%0Auid%3A%20Flea.Utility.UpdateQuery%601.Save%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/P3-DAT3-03/Flea/blob/main/Flea/Utility/UpdateQuery.cs/#L96">View Source</a>
+  </span>
+  <a id="Flea_Utility_UpdateQuery_1_Save_" data-uid="Flea.Utility.UpdateQuery`1.Save*"></a>
+  <h4 id="Flea_Utility_UpdateQuery_1_Save" data-uid="Flea.Utility.UpdateQuery`1.Save">Save()</h4>
+  <div class="markdown level1 summary"><p>Save all changes that have been made.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public async Task Save()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/P3-DAT3-03/Flea/new/main/apiSpec/new?filename=Flea_Utility_UpdateQuery_1_Update__1___0_.md&amp;value=---%0Auid%3A%20Flea.Utility.UpdateQuery%601.Update%60%601(%60%600)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/P3-DAT3-03/Flea/blob/main/Flea/Utility/UpdateQuery.cs/#L50">View Source</a>
+  </span>
+  <a id="Flea_Utility_UpdateQuery_1_Update_" data-uid="Flea.Utility.UpdateQuery`1.Update*"></a>
+  <h4 id="Flea_Utility_UpdateQuery_1_Update__1___0_" data-uid="Flea.Utility.UpdateQuery`1.Update``1(``0)">Update&lt;TEntity&gt;(TEntity)</h4>
+  <div class="markdown level1 summary"><p>Updates an entity.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public UpdateQuery&lt;TContext&gt; Update&lt;TEntity&gt;(TEntity entity)
+
+    where TEntity : class, IModelEntity&lt;TEntity, TContext&gt;, new()</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">TEntity</span></td>
+        <td><span class="parametername">entity</span></td>
+        <td><p>The entity that is to updated.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Flea.Utility.UpdateQuery-1.html">UpdateQuery</a>&lt;TContext&gt;</td>
+        <td><p>A reference to the current <a class="xref" href="Flea.Utility.UpdateQuery-1.html">UpdateQuery&lt;TContext&gt;</a> (<code>this</code>)
+allowing for chaining of commands.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TEntity</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/P3-DAT3-03/Flea/new/main/apiSpec/new?filename=Flea_Utility_UpdateQuery_1_With__1___0_.md&amp;value=---%0Auid%3A%20Flea.Utility.UpdateQuery%601.With%60%601(%60%600)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/P3-DAT3-03/Flea/blob/main/Flea/Utility/UpdateQuery.cs/#L34">View Source</a>
+  </span>
+  <a id="Flea_Utility_UpdateQuery_1_With_" data-uid="Flea.Utility.UpdateQuery`1.With*"></a>
+  <h4 id="Flea_Utility_UpdateQuery_1_With__1___0_" data-uid="Flea.Utility.UpdateQuery`1.With``1(``0)">With&lt;TEntity&gt;(TEntity)</h4>
+  <div class="markdown level1 summary"><p>Attaches an entity to the current context. This is used when you
+want to add a new entity that has a relation with an already existing
+entity. If this is not used when doing so the entity framework
+will attempt to insert the related object as if it were a new object
+causing a primary key conflict.
+<example>
+An example showing its use in adding a new <a class="xref" href="Flea.Models.Reservation.html">Reservation</a>.<p>
+<pre><code>	await factory
+		.Query&lt;BingoContext, Reservation>()
+		.With(someRelatedCustomer)
+		.New(theReservation)
+		.Save();</code></pre>
+</example> 
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public UpdateQuery&lt;TContext&gt; With&lt;TEntity&gt;(TEntity other)
+
+    where TEntity : class, IModelEntity&lt;TEntity, TContext&gt;, new()</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">TEntity</span></td>
+        <td><span class="parametername">other</span></td>
+        <td><p>The entity that is to be added to the context of the current query.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Flea.Utility.UpdateQuery-1.html">UpdateQuery</a>&lt;TContext&gt;</td>
+        <td><p>A reference to the current <a class="xref" href="Flea.Utility.UpdateQuery-1.html">UpdateQuery&lt;TContext&gt;</a> (<code>this</code>)
+allowing for chaining of commands.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TEntity</span></td>
+        <td><p>The type of the entity.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <span class="xref">System.IDisposable</span>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/P3-DAT3-03/Flea/new/main/apiSpec/new?filename=Flea_Utility_UpdateQuery_1.md&amp;value=---%0Auid%3A%20Flea.Utility.UpdateQuery%601%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/P3-DAT3-03/Flea/blob/main/Flea/Utility/UpdateQuery.cs/#L7" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

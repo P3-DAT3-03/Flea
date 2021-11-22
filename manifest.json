@@ -45,7 +45,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Flea.Models.BingoContext.html",
-          "hash": "P7Ty8fXcQAkwZCsrCEwjHDryXvWgjxkSJem6zo2SbU8="
+          "hash": "0Fs/s4Qw8JRXa4GoC+1XV7RLsbpcWHOp/CXV71J1/Vs="
         }
       },
       "is_incremental": false,
@@ -69,7 +69,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Flea.Models.Customer.html",
-          "hash": "VZw5WteT7cG+TWGCIeaWTOqEF6VKAxLG1+wVhsipf8I="
+          "hash": "IET+uOh3jIeagIZw3+kLOGDfvVZc0zQgj3z3cP7d/EA="
         }
       },
       "is_incremental": false,
@@ -81,7 +81,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Flea.Models.Event.html",
-          "hash": "dsl0XnKve4VSmHcjML4y4uLL65Yh9M50h4UHpD2+QoI="
+          "hash": "UYVow/+R9s0feMa8lYd0Zh3BACl/kDtGLwnpsNURKhk="
         }
       },
       "is_incremental": false,
@@ -93,7 +93,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Flea.Models.IModelEntity-2.html",
-          "hash": "7tLiRycXyaOLU08ou4Nm4TPg+aiPbSpJ7SLHnQuPqM8="
+          "hash": "h4R/iW0hVYWeR/2XKcRNWlNa2hEjVLxI+XELjzM1RyI="
         }
       },
       "is_incremental": false,
@@ -105,7 +105,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Flea.Models.Reservation.html",
-          "hash": "n3LHVPWUhGb7atD9pjs0vVqLXyYSHp8nGae7UCcQcl4="
+          "hash": "15+HTR71tr0XhRMWbFJ3Jm6lNhKPPgUnbfU1dSrcFKc="
         }
       },
       "is_incremental": false,
@@ -153,7 +153,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Flea.Pages.ErrorModel.html",
-          "hash": "bxFQBAFQA5ke/4O64d94fqKFUKybs311ZrUy96cpDaE="
+          "hash": "mDRb6X7/AfmDcOmI527+axCYO9dxcK5isHKN8R8PTpE="
         }
       },
       "is_incremental": false,
@@ -201,7 +201,79 @@
       "output": {
         ".html": {
           "relative_path": "api/Flea.Utility.DatabaseHelperExtensions.html",
-          "hash": "m+jlDmNJi5NUzQwD1DIoEbofEr8qzstYbhXUrCddOGE="
+          "hash": "z7GcwBm3TBgBD/Lvv2GaA9QwFsX3EQoPyphK/4HnUEA="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Flea.Utility.GetQuery-2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Flea.Utility.GetQuery-2.html",
+          "hash": "okKQAzQS8W1gdZrWKBA6ys1XT9T92fK308V4S7XnZr8="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Flea.Utility.MissingRequiredParameterException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Flea.Utility.MissingRequiredParameterException.html",
+          "hash": "jfwhRu+qSMPTKj6eGZZgIjzIywAKUGwiffy+dQX9Ws0="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Flea.Utility.ParameterChecker.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Flea.Utility.ParameterChecker.html",
+          "hash": "SSPzUqvU2/TaEhWanUcUyJatO6d/4urSlRlvXOWg9i0="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Flea.Utility.QueryBuilder-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Flea.Utility.QueryBuilder-1.html",
+          "hash": "BsmpPdOr1eN/N4AIsFJH4s76OSRssj+NdMpc8QOCrkA="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Flea.Utility.RequiredParameterAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Flea.Utility.RequiredParameterAttribute.html",
+          "hash": "c2/RcyoGeMKJ8xtLnSnZUzfMUHhXVeZRGxZ9P0Wac14="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Flea.Utility.UpdateQuery-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Flea.Utility.UpdateQuery-1.html",
+          "hash": "9J39GbUz7uskwsPhgZeu7+FyGU9B3WptAcGutJvldoA="
         }
       },
       "is_incremental": false,
@@ -213,7 +285,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Flea.Utility.html",
-          "hash": "/uPGZyJ0LXEH6oIzzz9JVBuEJiSiDIDAWOwJ8tqs8qA="
+          "hash": "BwY/Mt6Pg23WU6ZNBbL/Xa+XUR55LfoEknatEnrDk5Q="
         }
       },
       "is_incremental": false,
@@ -249,7 +321,7 @@
       "output": {
         ".html": {
           "relative_path": "api/toc.html",
-          "hash": "FpendwjRP+AcU011lArleoCwdavKnrp/OP/ETv5QT4M="
+          "hash": "jbhyYmpxQV/ZcP1Mdbpzkm3OYxEZLy4i0eLL/MNVfN0="
         }
       },
       "is_incremental": false,
@@ -336,7 +408,7 @@
         "ManagedReferenceDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build",
-          "total_file_count": 19,
+          "total_file_count": 25,
           "skipped_file_count": 0
         },
         "TocDocumentProcessor": {

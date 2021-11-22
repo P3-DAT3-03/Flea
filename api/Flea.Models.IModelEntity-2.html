@@ -81,7 +81,7 @@ basic database operations on EF entity models.</p>
   <h6><strong>Assembly</strong>: Flea.dll</h6>
   <h5 id="Flea_Models_IModelEntity_2_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public interface IModelEntity&lt;TEntity, in TContext&gt;
+    <pre><code class="lang-csharp hljs">public interface IModelEntity&lt;TEntity, TContext&gt;
 
     where TEntity : class, IModelEntity&lt;TEntity, TContext&gt;, new()
 
@@ -113,109 +113,10 @@ basic database operations on EF entity models.</p>
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/P3-DAT3-03/Flea/new/main/apiSpec/new?filename=Flea_Models_IModelEntity_2_Delete__1_.md&amp;value=---%0Auid%3A%20Flea.Models.IModelEntity%602.Delete(%601)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/P3-DAT3-03/Flea/blob/main/Flea/Models/IModelEntity.cs/#L80">View Source</a>
-  </span>
-  <a id="Flea_Models_IModelEntity_2_Delete_" data-uid="Flea.Models.IModelEntity`2.Delete*"></a>
-  <h4 id="Flea_Models_IModelEntity_2_Delete__1_" data-uid="Flea.Models.IModelEntity`2.Delete(`1)">Delete(TContext)</h4>
-  <div class="markdown level1 summary"><p>Delete an entity.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">virtual async Task Delete(TContext ctx)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">TContext</span></td>
-        <td><span class="parametername">ctx</span></td>
-        <td><p>The database context to perform the action on.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Threading.Tasks.Task</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/P3-DAT3-03/Flea/new/main/apiSpec/new?filename=Flea_Models_IModelEntity_2_GetAll__1_.md&amp;value=---%0Auid%3A%20Flea.Models.IModelEntity%602.GetAll(%601)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/P3-DAT3-03/Flea/blob/main/Flea/Models/IModelEntity.cs/#L92">View Source</a>
-  </span>
-  <a id="Flea_Models_IModelEntity_2_GetAll_" data-uid="Flea.Models.IModelEntity`2.GetAll*"></a>
-  <h4 id="Flea_Models_IModelEntity_2_GetAll__1_" data-uid="Flea.Models.IModelEntity`2.GetAll(`1)">GetAll(TContext)</h4>
-  <div class="markdown level1 summary"><p>Gets all entities of this type.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">static Task&lt;List&lt;TEntity&gt;&gt; GetAll(TContext ctx)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">TContext</span></td>
-        <td><span class="parametername">ctx</span></td>
-        <td><p>The database context to perform the action on.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Threading.Tasks.Task</span>&lt;<span class="xref">System.Collections.Generic.List</span>&lt;TEntity&gt;&gt;</td>
-        <td><p>A list of entities.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
     <a href="https://github.com/P3-DAT3-03/Flea/new/main/apiSpec/new?filename=Flea_Models_IModelEntity_2_GetDbSet__1_.md&amp;value=---%0Auid%3A%20Flea.Models.IModelEntity%602.GetDbSet(%601)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/P3-DAT3-03/Flea/blob/main/Flea/Models/IModelEntity.cs/#L52">View Source</a>
+    <a href="https://github.com/P3-DAT3-03/Flea/blob/main/Flea/Models/IModelEntity.cs/#L47">View Source</a>
   </span>
   <a id="Flea_Models_IModelEntity_2_GetDbSet_" data-uid="Flea.Models.IModelEntity`2.GetDbSet*"></a>
   <h4 id="Flea_Models_IModelEntity_2_GetDbSet__1_" data-uid="Flea.Models.IModelEntity`2.GetDbSet(`1)">GetDbSet(TContext)</h4>
@@ -264,19 +165,19 @@ is to be retrieved from.</p>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/P3-DAT3-03/Flea/new/main/apiSpec/new?filename=Flea_Models_IModelEntity_2_Save__1_.md&amp;value=---%0Auid%3A%20Flea.Models.IModelEntity%602.Save(%601)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/P3-DAT3-03/Flea/new/main/apiSpec/new?filename=Flea_Models_IModelEntity_2_GetDbSetStatic__1_.md&amp;value=---%0Auid%3A%20Flea.Models.IModelEntity%602.GetDbSetStatic(%601)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/P3-DAT3-03/Flea/blob/main/Flea/Models/IModelEntity.cs/#L58">View Source</a>
+    <a href="https://github.com/P3-DAT3-03/Flea/blob/main/Flea/Models/IModelEntity.cs/#L31">View Source</a>
   </span>
-  <a id="Flea_Models_IModelEntity_2_Save_" data-uid="Flea.Models.IModelEntity`2.Save*"></a>
-  <h4 id="Flea_Models_IModelEntity_2_Save__1_" data-uid="Flea.Models.IModelEntity`2.Save(`1)">Save(TContext)</h4>
-  <div class="markdown level1 summary"><p>Saves changes to an existing entity.</p>
+  <a id="Flea_Models_IModelEntity_2_GetDbSetStatic_" data-uid="Flea.Models.IModelEntity`2.GetDbSetStatic*"></a>
+  <h4 id="Flea_Models_IModelEntity_2_GetDbSetStatic__1_" data-uid="Flea.Models.IModelEntity`2.GetDbSetStatic(`1)">GetDbSetStatic(TContext)</h4>
+  <div class="markdown level1 summary"><p>Gets a DbSet through a static instance field.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">virtual async Task Save(TContext ctx)</code></pre>
+    <pre><code class="lang-csharp hljs">static DbSet&lt;TEntity&gt; GetDbSetStatic(TContext ctx)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -291,8 +192,7 @@ is to be retrieved from.</p>
       <tr>
         <td><span class="xref">TContext</span></td>
         <td><span class="parametername">ctx</span></td>
-        <td><p>The database context to perform the action on.</p>
-</td>
+        <td></td>
       </tr>
     </tbody>
   </table>
@@ -306,57 +206,9 @@ is to be retrieved from.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Threading.Tasks.Task</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/P3-DAT3-03/Flea/new/main/apiSpec/new?filename=Flea_Models_IModelEntity_2_SaveNew__1_.md&amp;value=---%0Auid%3A%20Flea.Models.IModelEntity%602.SaveNew(%601)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/P3-DAT3-03/Flea/blob/main/Flea/Models/IModelEntity.cs/#L69">View Source</a>
-  </span>
-  <a id="Flea_Models_IModelEntity_2_SaveNew_" data-uid="Flea.Models.IModelEntity`2.SaveNew*"></a>
-  <h4 id="Flea_Models_IModelEntity_2_SaveNew__1_" data-uid="Flea.Models.IModelEntity`2.SaveNew(`1)">SaveNew(TContext)</h4>
-  <div class="markdown level1 summary"><p>Save a new entity.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">virtual async Task SaveNew(TContext ctx)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">TContext</span></td>
-        <td><span class="parametername">ctx</span></td>
-        <td><p>The database context to perform the action on.</p>
+        <td><span class="xref">DbSet</span>&lt;TEntity&gt;</td>
+        <td><p>A DbSet for the entity type</p>
 </td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Threading.Tasks.Task</span></td>
-        <td></td>
       </tr>
     </tbody>
   </table>
@@ -371,7 +223,7 @@ is to be retrieved from.</p>
                     <a href="https://github.com/P3-DAT3-03/Flea/new/main/apiSpec/new?filename=Flea_Models_IModelEntity_2.md&amp;value=---%0Auid%3A%20Flea.Models.IModelEntity%602%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/P3-DAT3-03/Flea/blob/main/Flea/Models/IModelEntity.cs/#L19" class="contribution-link">View Source</a>
+                    <a href="https://github.com/P3-DAT3-03/Flea/blob/main/Flea/Models/IModelEntity.cs/#L16" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

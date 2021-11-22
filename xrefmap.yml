@@ -356,19 +356,25 @@ references:
   isSpec: "True"
   fullName: Flea.Models.Customer.Clone
   nameWithType: Customer.Clone
-- uid: Flea.Models.Customer.CreateReservation(System.Int32,System.Int32,System.Boolean,System.String)
-  name: CreateReservation(Int32, Int32, Boolean, String)
-  href: api/Flea.Models.Customer.html#Flea_Models_Customer_CreateReservation_System_Int32_System_Int32_System_Boolean_System_String_
-  commentId: M:Flea.Models.Customer.CreateReservation(System.Int32,System.Int32,System.Boolean,System.String)
-  fullName: Flea.Models.Customer.CreateReservation(System.Int32, System.Int32, System.Boolean, System.String)
-  nameWithType: Customer.CreateReservation(Int32, Int32, Boolean, String)
-- uid: Flea.Models.Customer.CreateReservation*
-  name: CreateReservation
-  href: api/Flea.Models.Customer.html#Flea_Models_Customer_CreateReservation_
-  commentId: Overload:Flea.Models.Customer.CreateReservation
+- uid: Flea.Models.Customer.Flea#Models#IModelEntity{Flea#Models#Customer,Flea#Models#BingoContext}#GetDbSet(Flea.Models.BingoContext)
+  name: IModelEntity<Customer, BingoContext>.GetDbSet(BingoContext)
+  href: api/Flea.Models.Customer.html#Flea_Models_Customer_Flea_Models_IModelEntity_Flea_Models_Customer_Flea_Models_BingoContext__GetDbSet_Flea_Models_BingoContext_
+  commentId: M:Flea.Models.Customer.Flea#Models#IModelEntity{Flea#Models#Customer,Flea#Models#BingoContext}#GetDbSet(Flea.Models.BingoContext)
+  name.vb: Flea.Models.IModelEntity<Flea.Models.Customer,Flea.Models.BingoContext>.GetDbSet(BingoContext)
+  fullName: Flea.Models.Customer.Flea.Models.IModelEntity<Flea.Models.Customer, Flea.Models.BingoContext>.GetDbSet(Flea.Models.BingoContext)
+  fullName.vb: Flea.Models.Customer.Flea.Models.IModelEntity<Flea.Models.Customer,Flea.Models.BingoContext>.GetDbSet(Flea.Models.BingoContext)
+  nameWithType: Customer.IModelEntity<Customer, BingoContext>.GetDbSet(BingoContext)
+  nameWithType.vb: Customer.Flea.Models.IModelEntity<Flea.Models.Customer,Flea.Models.BingoContext>.GetDbSet(BingoContext)
+- uid: Flea.Models.Customer.Flea#Models#IModelEntity{Flea#Models#Customer,Flea#Models#BingoContext}#GetDbSet*
+  name: IModelEntity<Customer, BingoContext>.GetDbSet
+  href: api/Flea.Models.Customer.html#Flea_Models_Customer_Flea_Models_IModelEntity_Flea_Models_Customer_Flea_Models_BingoContext__GetDbSet_
+  commentId: Overload:Flea.Models.Customer.Flea#Models#IModelEntity{Flea#Models#Customer,Flea#Models#BingoContext}#GetDbSet
   isSpec: "True"
-  fullName: Flea.Models.Customer.CreateReservation
-  nameWithType: Customer.CreateReservation
+  name.vb: Flea.Models.IModelEntity<Flea.Models.Customer,Flea.Models.BingoContext>.GetDbSet
+  fullName: Flea.Models.Customer.Flea.Models.IModelEntity<Flea.Models.Customer, Flea.Models.BingoContext>.GetDbSet
+  fullName.vb: Flea.Models.Customer.Flea.Models.IModelEntity<Flea.Models.Customer,Flea.Models.BingoContext>.GetDbSet
+  nameWithType: Customer.IModelEntity<Customer, BingoContext>.GetDbSet
+  nameWithType.vb: Customer.Flea.Models.IModelEntity<Flea.Models.Customer,Flea.Models.BingoContext>.GetDbSet
 - uid: Flea.Models.Customer.Id
   name: Id
   href: api/Flea.Models.Customer.html#Flea_Models_Customer_Id
@@ -414,6 +420,12 @@ references:
   commentId: T:Flea.Models.Event
   fullName: Flea.Models.Event
   nameWithType: Event
+- uid: Flea.Models.Event.#ctor
+  name: Event()
+  href: api/Flea.Models.Event.html#Flea_Models_Event__ctor
+  commentId: M:Flea.Models.Event.#ctor
+  fullName: Flea.Models.Event.Event()
+  nameWithType: Event.Event()
 - uid: Flea.Models.Event.#ctor(System.String,System.DateTime)
   name: Event(String, DateTime)
   href: api/Flea.Models.Event.html#Flea_Models_Event__ctor_System_String_System_DateTime_
@@ -466,6 +478,19 @@ references:
   isSpec: "True"
   fullName: Flea.Models.Event.DateTime
   nameWithType: Event.DateTime
+- uid: Flea.Models.Event.GetDbSet(Flea.Models.BingoContext)
+  name: GetDbSet(BingoContext)
+  href: api/Flea.Models.Event.html#Flea_Models_Event_GetDbSet_Flea_Models_BingoContext_
+  commentId: M:Flea.Models.Event.GetDbSet(Flea.Models.BingoContext)
+  fullName: Flea.Models.Event.GetDbSet(Flea.Models.BingoContext)
+  nameWithType: Event.GetDbSet(BingoContext)
+- uid: Flea.Models.Event.GetDbSet*
+  name: GetDbSet
+  href: api/Flea.Models.Event.html#Flea_Models_Event_GetDbSet_
+  commentId: Overload:Flea.Models.Event.GetDbSet
+  isSpec: "True"
+  fullName: Flea.Models.Event.GetDbSet
+  nameWithType: Event.GetDbSet
 - uid: Flea.Models.Event.Id
   name: Id
   href: api/Flea.Models.Event.html#Flea_Models_Event_Id
@@ -508,7 +533,14 @@ references:
 - uid: Flea.Models.Event.Reservations
   name: Reservations
   href: api/Flea.Models.Event.html#Flea_Models_Event_Reservations
-  commentId: F:Flea.Models.Event.Reservations
+  commentId: P:Flea.Models.Event.Reservations
+  fullName: Flea.Models.Event.Reservations
+  nameWithType: Event.Reservations
+- uid: Flea.Models.Event.Reservations*
+  name: Reservations
+  href: api/Flea.Models.Event.html#Flea_Models_Event_Reservations_
+  commentId: Overload:Flea.Models.Event.Reservations
+  isSpec: "True"
   fullName: Flea.Models.Event.Reservations
   nameWithType: Event.Reservations
 - uid: Flea.Models.IModelEntity`2
@@ -520,40 +552,6 @@ references:
   fullName.vb: Flea.Models.IModelEntity(Of TEntity, TContext)
   nameWithType: IModelEntity<TEntity, TContext>
   nameWithType.vb: IModelEntity(Of TEntity, TContext)
-- uid: Flea.Models.IModelEntity`2.Delete(`1)
-  name: Delete(TContext)
-  href: api/Flea.Models.IModelEntity-2.html#Flea_Models_IModelEntity_2_Delete__1_
-  commentId: M:Flea.Models.IModelEntity`2.Delete(`1)
-  fullName: Flea.Models.IModelEntity<TEntity, TContext>.Delete(TContext)
-  fullName.vb: Flea.Models.IModelEntity(Of TEntity, TContext).Delete(TContext)
-  nameWithType: IModelEntity<TEntity, TContext>.Delete(TContext)
-  nameWithType.vb: IModelEntity(Of TEntity, TContext).Delete(TContext)
-- uid: Flea.Models.IModelEntity`2.Delete*
-  name: Delete
-  href: api/Flea.Models.IModelEntity-2.html#Flea_Models_IModelEntity_2_Delete_
-  commentId: Overload:Flea.Models.IModelEntity`2.Delete
-  isSpec: "True"
-  fullName: Flea.Models.IModelEntity<TEntity, TContext>.Delete
-  fullName.vb: Flea.Models.IModelEntity(Of TEntity, TContext).Delete
-  nameWithType: IModelEntity<TEntity, TContext>.Delete
-  nameWithType.vb: IModelEntity(Of TEntity, TContext).Delete
-- uid: Flea.Models.IModelEntity`2.GetAll(`1)
-  name: GetAll(TContext)
-  href: api/Flea.Models.IModelEntity-2.html#Flea_Models_IModelEntity_2_GetAll__1_
-  commentId: M:Flea.Models.IModelEntity`2.GetAll(`1)
-  fullName: Flea.Models.IModelEntity<TEntity, TContext>.GetAll(TContext)
-  fullName.vb: Flea.Models.IModelEntity(Of TEntity, TContext).GetAll(TContext)
-  nameWithType: IModelEntity<TEntity, TContext>.GetAll(TContext)
-  nameWithType.vb: IModelEntity(Of TEntity, TContext).GetAll(TContext)
-- uid: Flea.Models.IModelEntity`2.GetAll*
-  name: GetAll
-  href: api/Flea.Models.IModelEntity-2.html#Flea_Models_IModelEntity_2_GetAll_
-  commentId: Overload:Flea.Models.IModelEntity`2.GetAll
-  isSpec: "True"
-  fullName: Flea.Models.IModelEntity<TEntity, TContext>.GetAll
-  fullName.vb: Flea.Models.IModelEntity(Of TEntity, TContext).GetAll
-  nameWithType: IModelEntity<TEntity, TContext>.GetAll
-  nameWithType.vb: IModelEntity(Of TEntity, TContext).GetAll
 - uid: Flea.Models.IModelEntity`2.GetDbSet(`1)
   name: GetDbSet(TContext)
   href: api/Flea.Models.IModelEntity-2.html#Flea_Models_IModelEntity_2_GetDbSet__1_
@@ -571,58 +569,47 @@ references:
   fullName.vb: Flea.Models.IModelEntity(Of TEntity, TContext).GetDbSet
   nameWithType: IModelEntity<TEntity, TContext>.GetDbSet
   nameWithType.vb: IModelEntity(Of TEntity, TContext).GetDbSet
-- uid: Flea.Models.IModelEntity`2.Save(`1)
-  name: Save(TContext)
-  href: api/Flea.Models.IModelEntity-2.html#Flea_Models_IModelEntity_2_Save__1_
-  commentId: M:Flea.Models.IModelEntity`2.Save(`1)
-  fullName: Flea.Models.IModelEntity<TEntity, TContext>.Save(TContext)
-  fullName.vb: Flea.Models.IModelEntity(Of TEntity, TContext).Save(TContext)
-  nameWithType: IModelEntity<TEntity, TContext>.Save(TContext)
-  nameWithType.vb: IModelEntity(Of TEntity, TContext).Save(TContext)
-- uid: Flea.Models.IModelEntity`2.Save*
-  name: Save
-  href: api/Flea.Models.IModelEntity-2.html#Flea_Models_IModelEntity_2_Save_
-  commentId: Overload:Flea.Models.IModelEntity`2.Save
+- uid: Flea.Models.IModelEntity`2.GetDbSetStatic(`1)
+  name: GetDbSetStatic(TContext)
+  href: api/Flea.Models.IModelEntity-2.html#Flea_Models_IModelEntity_2_GetDbSetStatic__1_
+  commentId: M:Flea.Models.IModelEntity`2.GetDbSetStatic(`1)
+  fullName: Flea.Models.IModelEntity<TEntity, TContext>.GetDbSetStatic(TContext)
+  fullName.vb: Flea.Models.IModelEntity(Of TEntity, TContext).GetDbSetStatic(TContext)
+  nameWithType: IModelEntity<TEntity, TContext>.GetDbSetStatic(TContext)
+  nameWithType.vb: IModelEntity(Of TEntity, TContext).GetDbSetStatic(TContext)
+- uid: Flea.Models.IModelEntity`2.GetDbSetStatic*
+  name: GetDbSetStatic
+  href: api/Flea.Models.IModelEntity-2.html#Flea_Models_IModelEntity_2_GetDbSetStatic_
+  commentId: Overload:Flea.Models.IModelEntity`2.GetDbSetStatic
   isSpec: "True"
-  fullName: Flea.Models.IModelEntity<TEntity, TContext>.Save
-  fullName.vb: Flea.Models.IModelEntity(Of TEntity, TContext).Save
-  nameWithType: IModelEntity<TEntity, TContext>.Save
-  nameWithType.vb: IModelEntity(Of TEntity, TContext).Save
-- uid: Flea.Models.IModelEntity`2.SaveNew(`1)
-  name: SaveNew(TContext)
-  href: api/Flea.Models.IModelEntity-2.html#Flea_Models_IModelEntity_2_SaveNew__1_
-  commentId: M:Flea.Models.IModelEntity`2.SaveNew(`1)
-  fullName: Flea.Models.IModelEntity<TEntity, TContext>.SaveNew(TContext)
-  fullName.vb: Flea.Models.IModelEntity(Of TEntity, TContext).SaveNew(TContext)
-  nameWithType: IModelEntity<TEntity, TContext>.SaveNew(TContext)
-  nameWithType.vb: IModelEntity(Of TEntity, TContext).SaveNew(TContext)
-- uid: Flea.Models.IModelEntity`2.SaveNew*
-  name: SaveNew
-  href: api/Flea.Models.IModelEntity-2.html#Flea_Models_IModelEntity_2_SaveNew_
-  commentId: Overload:Flea.Models.IModelEntity`2.SaveNew
-  isSpec: "True"
-  fullName: Flea.Models.IModelEntity<TEntity, TContext>.SaveNew
-  fullName.vb: Flea.Models.IModelEntity(Of TEntity, TContext).SaveNew
-  nameWithType: IModelEntity<TEntity, TContext>.SaveNew
-  nameWithType.vb: IModelEntity(Of TEntity, TContext).SaveNew
+  fullName: Flea.Models.IModelEntity<TEntity, TContext>.GetDbSetStatic
+  fullName.vb: Flea.Models.IModelEntity(Of TEntity, TContext).GetDbSetStatic
+  nameWithType: IModelEntity<TEntity, TContext>.GetDbSetStatic
+  nameWithType.vb: IModelEntity(Of TEntity, TContext).GetDbSetStatic
 - uid: Flea.Models.Reservation
   name: Reservation
   href: api/Flea.Models.Reservation.html
   commentId: T:Flea.Models.Reservation
   fullName: Flea.Models.Reservation
   nameWithType: Reservation
+- uid: Flea.Models.Reservation.#ctor
+  name: Reservation()
+  href: api/Flea.Models.Reservation.html#Flea_Models_Reservation__ctor
+  commentId: M:Flea.Models.Reservation.#ctor
+  fullName: Flea.Models.Reservation.Reservation()
+  nameWithType: Reservation.Reservation()
 - uid: Flea.Models.Reservation.#ctor(System.Int32,System.Int32,System.Boolean,System.String)
   name: Reservation(Int32, Int32, Boolean, String)
   href: api/Flea.Models.Reservation.html#Flea_Models_Reservation__ctor_System_Int32_System_Int32_System_Boolean_System_String_
   commentId: M:Flea.Models.Reservation.#ctor(System.Int32,System.Int32,System.Boolean,System.String)
   fullName: Flea.Models.Reservation.Reservation(System.Int32, System.Int32, System.Boolean, System.String)
   nameWithType: Reservation.Reservation(Int32, Int32, Boolean, String)
-- uid: Flea.Models.Reservation.#ctor(System.Int32,System.Int32,System.Boolean,System.String,Flea.Models.Customer)
-  name: Reservation(Int32, Int32, Boolean, String, Customer)
-  href: api/Flea.Models.Reservation.html#Flea_Models_Reservation__ctor_System_Int32_System_Int32_System_Boolean_System_String_Flea_Models_Customer_
-  commentId: M:Flea.Models.Reservation.#ctor(System.Int32,System.Int32,System.Boolean,System.String,Flea.Models.Customer)
-  fullName: Flea.Models.Reservation.Reservation(System.Int32, System.Int32, System.Boolean, System.String, Flea.Models.Customer)
-  nameWithType: Reservation.Reservation(Int32, Int32, Boolean, String, Customer)
+- uid: Flea.Models.Reservation.#ctor(System.Int32,System.Int32,System.Boolean,System.String,Flea.Models.Customer,Flea.Models.Event)
+  name: Reservation(Int32, Int32, Boolean, String, Customer, Event)
+  href: api/Flea.Models.Reservation.html#Flea_Models_Reservation__ctor_System_Int32_System_Int32_System_Boolean_System_String_Flea_Models_Customer_Flea_Models_Event_
+  commentId: M:Flea.Models.Reservation.#ctor(System.Int32,System.Int32,System.Boolean,System.String,Flea.Models.Customer,Flea.Models.Event)
+  fullName: Flea.Models.Reservation.Reservation(System.Int32, System.Int32, System.Boolean, System.String, Flea.Models.Customer, Flea.Models.Event)
+  nameWithType: Reservation.Reservation(Int32, Int32, Boolean, String, Customer, Event)
 - uid: Flea.Models.Reservation.#ctor*
   name: Reservation
   href: api/Flea.Models.Reservation.html#Flea_Models_Reservation__ctor_
@@ -669,6 +656,19 @@ references:
   isSpec: "True"
   fullName: Flea.Models.Reservation.Event
   nameWithType: Reservation.Event
+- uid: Flea.Models.Reservation.GetDbSet(Flea.Models.BingoContext)
+  name: GetDbSet(BingoContext)
+  href: api/Flea.Models.Reservation.html#Flea_Models_Reservation_GetDbSet_Flea_Models_BingoContext_
+  commentId: M:Flea.Models.Reservation.GetDbSet(Flea.Models.BingoContext)
+  fullName: Flea.Models.Reservation.GetDbSet(Flea.Models.BingoContext)
+  nameWithType: Reservation.GetDbSet(BingoContext)
+- uid: Flea.Models.Reservation.GetDbSet*
+  name: GetDbSet
+  href: api/Flea.Models.Reservation.html#Flea_Models_Reservation_GetDbSet_
+  commentId: Overload:Flea.Models.Reservation.GetDbSet
+  isSpec: "True"
+  fullName: Flea.Models.Reservation.GetDbSet
+  nameWithType: Reservation.GetDbSet
 - uid: Flea.Models.Reservation.Id
   name: Id
   href: api/Flea.Models.Reservation.html#Flea_Models_Reservation_Id
@@ -1039,6 +1039,22 @@ references:
   fullName.vb: Flea.Utility.DatabaseHelperExtensions.Delete(Of TContext, TEntity)(IDbContextFactory(Of TContext), TEntity)
   nameWithType: DatabaseHelperExtensions.Delete<TContext, TEntity>(IDbContextFactory<TContext>, TEntity)
   nameWithType.vb: DatabaseHelperExtensions.Delete(Of TContext, TEntity)(IDbContextFactory(Of TContext), TEntity)
+- uid: Flea.Utility.DatabaseHelperExtensions.Get*
+  name: Get
+  href: api/Flea.Utility.DatabaseHelperExtensions.html#Flea_Utility_DatabaseHelperExtensions_Get_
+  commentId: Overload:Flea.Utility.DatabaseHelperExtensions.Get
+  isSpec: "True"
+  fullName: Flea.Utility.DatabaseHelperExtensions.Get
+  nameWithType: DatabaseHelperExtensions.Get
+- uid: Flea.Utility.DatabaseHelperExtensions.Get``2(IDbContextFactory{``0})
+  name: Get<TContext, TEntity>(IDbContextFactory<TContext>)
+  href: api/Flea.Utility.DatabaseHelperExtensions.html#Flea_Utility_DatabaseHelperExtensions_Get__2_IDbContextFactory___0__
+  commentId: M:Flea.Utility.DatabaseHelperExtensions.Get``2(IDbContextFactory{``0})
+  name.vb: Get(Of TContext, TEntity)(IDbContextFactory(Of TContext))
+  fullName: Flea.Utility.DatabaseHelperExtensions.Get<TContext, TEntity>(IDbContextFactory<TContext>)
+  fullName.vb: Flea.Utility.DatabaseHelperExtensions.Get(Of TContext, TEntity)(IDbContextFactory(Of TContext))
+  nameWithType: DatabaseHelperExtensions.Get<TContext, TEntity>(IDbContextFactory<TContext>)
+  nameWithType.vb: DatabaseHelperExtensions.Get(Of TContext, TEntity)(IDbContextFactory(Of TContext))
 - uid: Flea.Utility.DatabaseHelperExtensions.GetAll*
   name: GetAll
   href: api/Flea.Utility.DatabaseHelperExtensions.html#Flea_Utility_DatabaseHelperExtensions_GetAll_
@@ -1087,3 +1103,431 @@ references:
   fullName.vb: Flea.Utility.DatabaseHelperExtensions.SaveNew(Of TContext, TEntity)(IDbContextFactory(Of TContext), TEntity)
   nameWithType: DatabaseHelperExtensions.SaveNew<TContext, TEntity>(IDbContextFactory<TContext>, TEntity)
   nameWithType.vb: DatabaseHelperExtensions.SaveNew(Of TContext, TEntity)(IDbContextFactory(Of TContext), TEntity)
+- uid: Flea.Utility.DatabaseHelperExtensions.Update*
+  name: Update
+  href: api/Flea.Utility.DatabaseHelperExtensions.html#Flea_Utility_DatabaseHelperExtensions_Update_
+  commentId: Overload:Flea.Utility.DatabaseHelperExtensions.Update
+  isSpec: "True"
+  fullName: Flea.Utility.DatabaseHelperExtensions.Update
+  nameWithType: DatabaseHelperExtensions.Update
+- uid: Flea.Utility.DatabaseHelperExtensions.Update``1(IDbContextFactory{``0})
+  name: Update<TContext>(IDbContextFactory<TContext>)
+  href: api/Flea.Utility.DatabaseHelperExtensions.html#Flea_Utility_DatabaseHelperExtensions_Update__1_IDbContextFactory___0__
+  commentId: M:Flea.Utility.DatabaseHelperExtensions.Update``1(IDbContextFactory{``0})
+  name.vb: Update(Of TContext)(IDbContextFactory(Of TContext))
+  fullName: Flea.Utility.DatabaseHelperExtensions.Update<TContext>(IDbContextFactory<TContext>)
+  fullName.vb: Flea.Utility.DatabaseHelperExtensions.Update(Of TContext)(IDbContextFactory(Of TContext))
+  nameWithType: DatabaseHelperExtensions.Update<TContext>(IDbContextFactory<TContext>)
+  nameWithType.vb: DatabaseHelperExtensions.Update(Of TContext)(IDbContextFactory(Of TContext))
+- uid: Flea.Utility.GetQuery`2
+  name: GetQuery<TContext, TEntity>
+  href: api/Flea.Utility.GetQuery-2.html
+  commentId: T:Flea.Utility.GetQuery`2
+  name.vb: GetQuery(Of TContext, TEntity)
+  fullName: Flea.Utility.GetQuery<TContext, TEntity>
+  fullName.vb: Flea.Utility.GetQuery(Of TContext, TEntity)
+  nameWithType: GetQuery<TContext, TEntity>
+  nameWithType.vb: GetQuery(Of TContext, TEntity)
+- uid: Flea.Utility.GetQuery`2.#ctor(IDbContextFactory{`0})
+  name: GetQuery(IDbContextFactory<TContext>)
+  href: api/Flea.Utility.GetQuery-2.html#Flea_Utility_GetQuery_2__ctor_IDbContextFactory__0__
+  commentId: M:Flea.Utility.GetQuery`2.#ctor(IDbContextFactory{`0})
+  name.vb: GetQuery(IDbContextFactory(Of TContext))
+  fullName: Flea.Utility.GetQuery<TContext, TEntity>.GetQuery(IDbContextFactory<TContext>)
+  fullName.vb: Flea.Utility.GetQuery(Of TContext, TEntity).GetQuery(IDbContextFactory(Of TContext))
+  nameWithType: GetQuery<TContext, TEntity>.GetQuery(IDbContextFactory<TContext>)
+  nameWithType.vb: GetQuery(Of TContext, TEntity).GetQuery(IDbContextFactory(Of TContext))
+- uid: Flea.Utility.GetQuery`2.#ctor*
+  name: GetQuery
+  href: api/Flea.Utility.GetQuery-2.html#Flea_Utility_GetQuery_2__ctor_
+  commentId: Overload:Flea.Utility.GetQuery`2.#ctor
+  isSpec: "True"
+  fullName: Flea.Utility.GetQuery<TContext, TEntity>.GetQuery
+  fullName.vb: Flea.Utility.GetQuery(Of TContext, TEntity).GetQuery
+  nameWithType: GetQuery<TContext, TEntity>.GetQuery
+  nameWithType.vb: GetQuery(Of TContext, TEntity).GetQuery
+- uid: Flea.Utility.GetQuery`2.All
+  name: All()
+  href: api/Flea.Utility.GetQuery-2.html#Flea_Utility_GetQuery_2_All
+  commentId: M:Flea.Utility.GetQuery`2.All
+  fullName: Flea.Utility.GetQuery<TContext, TEntity>.All()
+  fullName.vb: Flea.Utility.GetQuery(Of TContext, TEntity).All()
+  nameWithType: GetQuery<TContext, TEntity>.All()
+  nameWithType.vb: GetQuery(Of TContext, TEntity).All()
+- uid: Flea.Utility.GetQuery`2.All*
+  name: All
+  href: api/Flea.Utility.GetQuery-2.html#Flea_Utility_GetQuery_2_All_
+  commentId: Overload:Flea.Utility.GetQuery`2.All
+  isSpec: "True"
+  fullName: Flea.Utility.GetQuery<TContext, TEntity>.All
+  fullName.vb: Flea.Utility.GetQuery(Of TContext, TEntity).All
+  nameWithType: GetQuery<TContext, TEntity>.All
+  nameWithType.vb: GetQuery(Of TContext, TEntity).All
+- uid: Flea.Utility.GetQuery`2.First
+  name: First()
+  href: api/Flea.Utility.GetQuery-2.html#Flea_Utility_GetQuery_2_First
+  commentId: M:Flea.Utility.GetQuery`2.First
+  fullName: Flea.Utility.GetQuery<TContext, TEntity>.First()
+  fullName.vb: Flea.Utility.GetQuery(Of TContext, TEntity).First()
+  nameWithType: GetQuery<TContext, TEntity>.First()
+  nameWithType.vb: GetQuery(Of TContext, TEntity).First()
+- uid: Flea.Utility.GetQuery`2.First(System.Linq.Expressions.Expression{System.Func{`1,System.Boolean}})
+  name: First(Expression<Func<TEntity, Boolean>>)
+  href: api/Flea.Utility.GetQuery-2.html#Flea_Utility_GetQuery_2_First_System_Linq_Expressions_Expression_System_Func__1_System_Boolean___
+  commentId: M:Flea.Utility.GetQuery`2.First(System.Linq.Expressions.Expression{System.Func{`1,System.Boolean}})
+  name.vb: First(Expression(Of Func(Of TEntity, Boolean)))
+  fullName: Flea.Utility.GetQuery<TContext, TEntity>.First(System.Linq.Expressions.Expression<System.Func<TEntity, System.Boolean>>)
+  fullName.vb: Flea.Utility.GetQuery(Of TContext, TEntity).First(System.Linq.Expressions.Expression(Of System.Func(Of TEntity, System.Boolean)))
+  nameWithType: GetQuery<TContext, TEntity>.First(Expression<Func<TEntity, Boolean>>)
+  nameWithType.vb: GetQuery(Of TContext, TEntity).First(Expression(Of Func(Of TEntity, Boolean)))
+- uid: Flea.Utility.GetQuery`2.First*
+  name: First
+  href: api/Flea.Utility.GetQuery-2.html#Flea_Utility_GetQuery_2_First_
+  commentId: Overload:Flea.Utility.GetQuery`2.First
+  isSpec: "True"
+  fullName: Flea.Utility.GetQuery<TContext, TEntity>.First
+  fullName.vb: Flea.Utility.GetQuery(Of TContext, TEntity).First
+  nameWithType: GetQuery<TContext, TEntity>.First
+  nameWithType.vb: GetQuery(Of TContext, TEntity).First
+- uid: Flea.Utility.GetQuery`2.Include(System.String[])
+  name: Include(String[])
+  href: api/Flea.Utility.GetQuery-2.html#Flea_Utility_GetQuery_2_Include_System_String___
+  commentId: M:Flea.Utility.GetQuery`2.Include(System.String[])
+  name.vb: Include(String())
+  fullName: Flea.Utility.GetQuery<TContext, TEntity>.Include(System.String[])
+  fullName.vb: Flea.Utility.GetQuery(Of TContext, TEntity).Include(System.String())
+  nameWithType: GetQuery<TContext, TEntity>.Include(String[])
+  nameWithType.vb: GetQuery(Of TContext, TEntity).Include(String())
+- uid: Flea.Utility.GetQuery`2.Include*
+  name: Include
+  href: api/Flea.Utility.GetQuery-2.html#Flea_Utility_GetQuery_2_Include_
+  commentId: Overload:Flea.Utility.GetQuery`2.Include
+  isSpec: "True"
+  fullName: Flea.Utility.GetQuery<TContext, TEntity>.Include
+  fullName.vb: Flea.Utility.GetQuery(Of TContext, TEntity).Include
+  nameWithType: GetQuery<TContext, TEntity>.Include
+  nameWithType.vb: GetQuery(Of TContext, TEntity).Include
+- uid: Flea.Utility.GetQuery`2.Include``1(System.Linq.Expressions.Expression{System.Func{`1,``0}})
+  name: Include<TProperty>(Expression<Func<TEntity, TProperty>>)
+  href: api/Flea.Utility.GetQuery-2.html#Flea_Utility_GetQuery_2_Include__1_System_Linq_Expressions_Expression_System_Func__1___0___
+  commentId: M:Flea.Utility.GetQuery`2.Include``1(System.Linq.Expressions.Expression{System.Func{`1,``0}})
+  name.vb: Include(Of TProperty)(Expression(Of Func(Of TEntity, TProperty)))
+  fullName: Flea.Utility.GetQuery<TContext, TEntity>.Include<TProperty>(System.Linq.Expressions.Expression<System.Func<TEntity, TProperty>>)
+  fullName.vb: Flea.Utility.GetQuery(Of TContext, TEntity).Include(Of TProperty)(System.Linq.Expressions.Expression(Of System.Func(Of TEntity, TProperty)))
+  nameWithType: GetQuery<TContext, TEntity>.Include<TProperty>(Expression<Func<TEntity, TProperty>>)
+  nameWithType.vb: GetQuery(Of TContext, TEntity).Include(Of TProperty)(Expression(Of Func(Of TEntity, TProperty)))
+- uid: Flea.Utility.GetQuery`2.Take(System.Int32)
+  name: Take(Int32)
+  href: api/Flea.Utility.GetQuery-2.html#Flea_Utility_GetQuery_2_Take_System_Int32_
+  commentId: M:Flea.Utility.GetQuery`2.Take(System.Int32)
+  fullName: Flea.Utility.GetQuery<TContext, TEntity>.Take(System.Int32)
+  fullName.vb: Flea.Utility.GetQuery(Of TContext, TEntity).Take(System.Int32)
+  nameWithType: GetQuery<TContext, TEntity>.Take(Int32)
+  nameWithType.vb: GetQuery(Of TContext, TEntity).Take(Int32)
+- uid: Flea.Utility.GetQuery`2.Take*
+  name: Take
+  href: api/Flea.Utility.GetQuery-2.html#Flea_Utility_GetQuery_2_Take_
+  commentId: Overload:Flea.Utility.GetQuery`2.Take
+  isSpec: "True"
+  fullName: Flea.Utility.GetQuery<TContext, TEntity>.Take
+  fullName.vb: Flea.Utility.GetQuery(Of TContext, TEntity).Take
+  nameWithType: GetQuery<TContext, TEntity>.Take
+  nameWithType.vb: GetQuery(Of TContext, TEntity).Take
+- uid: Flea.Utility.GetQuery`2.ThenInclude*
+  name: ThenInclude
+  href: api/Flea.Utility.GetQuery-2.html#Flea_Utility_GetQuery_2_ThenInclude_
+  commentId: Overload:Flea.Utility.GetQuery`2.ThenInclude
+  isSpec: "True"
+  fullName: Flea.Utility.GetQuery<TContext, TEntity>.ThenInclude
+  fullName.vb: Flea.Utility.GetQuery(Of TContext, TEntity).ThenInclude
+  nameWithType: GetQuery<TContext, TEntity>.ThenInclude
+  nameWithType.vb: GetQuery(Of TContext, TEntity).ThenInclude
+- uid: Flea.Utility.GetQuery`2.ThenInclude``2(System.Linq.Expressions.Expression{System.Func{``0,``1}})
+  name: ThenInclude<TSourceProperty, TTargetProperty>(Expression<Func<TSourceProperty, TTargetProperty>>)
+  href: api/Flea.Utility.GetQuery-2.html#Flea_Utility_GetQuery_2_ThenInclude__2_System_Linq_Expressions_Expression_System_Func___0___1___
+  commentId: M:Flea.Utility.GetQuery`2.ThenInclude``2(System.Linq.Expressions.Expression{System.Func{``0,``1}})
+  name.vb: ThenInclude(Of TSourceProperty, TTargetProperty)(Expression(Of Func(Of TSourceProperty, TTargetProperty)))
+  fullName: Flea.Utility.GetQuery<TContext, TEntity>.ThenInclude<TSourceProperty, TTargetProperty>(System.Linq.Expressions.Expression<System.Func<TSourceProperty, TTargetProperty>>)
+  fullName.vb: Flea.Utility.GetQuery(Of TContext, TEntity).ThenInclude(Of TSourceProperty, TTargetProperty)(System.Linq.Expressions.Expression(Of System.Func(Of TSourceProperty, TTargetProperty)))
+  nameWithType: GetQuery<TContext, TEntity>.ThenInclude<TSourceProperty, TTargetProperty>(Expression<Func<TSourceProperty, TTargetProperty>>)
+  nameWithType.vb: GetQuery(Of TContext, TEntity).ThenInclude(Of TSourceProperty, TTargetProperty)(Expression(Of Func(Of TSourceProperty, TTargetProperty)))
+- uid: Flea.Utility.GetQuery`2.Where(System.Linq.Expressions.Expression{System.Func{`1,System.Boolean}})
+  name: Where(Expression<Func<TEntity, Boolean>>)
+  href: api/Flea.Utility.GetQuery-2.html#Flea_Utility_GetQuery_2_Where_System_Linq_Expressions_Expression_System_Func__1_System_Boolean___
+  commentId: M:Flea.Utility.GetQuery`2.Where(System.Linq.Expressions.Expression{System.Func{`1,System.Boolean}})
+  name.vb: Where(Expression(Of Func(Of TEntity, Boolean)))
+  fullName: Flea.Utility.GetQuery<TContext, TEntity>.Where(System.Linq.Expressions.Expression<System.Func<TEntity, System.Boolean>>)
+  fullName.vb: Flea.Utility.GetQuery(Of TContext, TEntity).Where(System.Linq.Expressions.Expression(Of System.Func(Of TEntity, System.Boolean)))
+  nameWithType: GetQuery<TContext, TEntity>.Where(Expression<Func<TEntity, Boolean>>)
+  nameWithType.vb: GetQuery(Of TContext, TEntity).Where(Expression(Of Func(Of TEntity, Boolean)))
+- uid: Flea.Utility.GetQuery`2.Where*
+  name: Where
+  href: api/Flea.Utility.GetQuery-2.html#Flea_Utility_GetQuery_2_Where_
+  commentId: Overload:Flea.Utility.GetQuery`2.Where
+  isSpec: "True"
+  fullName: Flea.Utility.GetQuery<TContext, TEntity>.Where
+  fullName.vb: Flea.Utility.GetQuery(Of TContext, TEntity).Where
+  nameWithType: GetQuery<TContext, TEntity>.Where
+  nameWithType.vb: GetQuery(Of TContext, TEntity).Where
+- uid: Flea.Utility.MissingRequiredParameterException
+  name: MissingRequiredParameterException
+  href: api/Flea.Utility.MissingRequiredParameterException.html
+  commentId: T:Flea.Utility.MissingRequiredParameterException
+  fullName: Flea.Utility.MissingRequiredParameterException
+  nameWithType: MissingRequiredParameterException
+- uid: Flea.Utility.MissingRequiredParameterException.#ctor(System.Reflection.MemberInfo)
+  name: MissingRequiredParameterException(MemberInfo)
+  href: api/Flea.Utility.MissingRequiredParameterException.html#Flea_Utility_MissingRequiredParameterException__ctor_System_Reflection_MemberInfo_
+  commentId: M:Flea.Utility.MissingRequiredParameterException.#ctor(System.Reflection.MemberInfo)
+  fullName: Flea.Utility.MissingRequiredParameterException.MissingRequiredParameterException(System.Reflection.MemberInfo)
+  nameWithType: MissingRequiredParameterException.MissingRequiredParameterException(MemberInfo)
+- uid: Flea.Utility.MissingRequiredParameterException.#ctor(System.String,System.String)
+  name: MissingRequiredParameterException(String, String)
+  href: api/Flea.Utility.MissingRequiredParameterException.html#Flea_Utility_MissingRequiredParameterException__ctor_System_String_System_String_
+  commentId: M:Flea.Utility.MissingRequiredParameterException.#ctor(System.String,System.String)
+  fullName: Flea.Utility.MissingRequiredParameterException.MissingRequiredParameterException(System.String, System.String)
+  nameWithType: MissingRequiredParameterException.MissingRequiredParameterException(String, String)
+- uid: Flea.Utility.MissingRequiredParameterException.#ctor*
+  name: MissingRequiredParameterException
+  href: api/Flea.Utility.MissingRequiredParameterException.html#Flea_Utility_MissingRequiredParameterException__ctor_
+  commentId: Overload:Flea.Utility.MissingRequiredParameterException.#ctor
+  isSpec: "True"
+  fullName: Flea.Utility.MissingRequiredParameterException.MissingRequiredParameterException
+  nameWithType: MissingRequiredParameterException.MissingRequiredParameterException
+- uid: Flea.Utility.ParameterChecker
+  name: ParameterChecker
+  href: api/Flea.Utility.ParameterChecker.html
+  commentId: T:Flea.Utility.ParameterChecker
+  fullName: Flea.Utility.ParameterChecker
+  nameWithType: ParameterChecker
+- uid: Flea.Utility.ParameterChecker.CheckParameter*
+  name: CheckParameter
+  href: api/Flea.Utility.ParameterChecker.html#Flea_Utility_ParameterChecker_CheckParameter_
+  commentId: Overload:Flea.Utility.ParameterChecker.CheckParameter
+  isSpec: "True"
+  fullName: Flea.Utility.ParameterChecker.CheckParameter
+  nameWithType: ParameterChecker.CheckParameter
+- uid: Flea.Utility.ParameterChecker.CheckParameter``2(``0,``1,System.String)
+  name: CheckParameter<TComponent, TParameter>(TComponent, TParameter, String)
+  href: api/Flea.Utility.ParameterChecker.html#Flea_Utility_ParameterChecker_CheckParameter__2___0___1_System_String_
+  commentId: M:Flea.Utility.ParameterChecker.CheckParameter``2(``0,``1,System.String)
+  name.vb: CheckParameter(Of TComponent, TParameter)(TComponent, TParameter, String)
+  fullName: Flea.Utility.ParameterChecker.CheckParameter<TComponent, TParameter>(TComponent, TParameter, System.String)
+  fullName.vb: Flea.Utility.ParameterChecker.CheckParameter(Of TComponent, TParameter)(TComponent, TParameter, System.String)
+  nameWithType: ParameterChecker.CheckParameter<TComponent, TParameter>(TComponent, TParameter, String)
+  nameWithType.vb: ParameterChecker.CheckParameter(Of TComponent, TParameter)(TComponent, TParameter, String)
+- uid: Flea.Utility.ParameterChecker.CheckParameters*
+  name: CheckParameters
+  href: api/Flea.Utility.ParameterChecker.html#Flea_Utility_ParameterChecker_CheckParameters_
+  commentId: Overload:Flea.Utility.ParameterChecker.CheckParameters
+  isSpec: "True"
+  fullName: Flea.Utility.ParameterChecker.CheckParameters
+  nameWithType: ParameterChecker.CheckParameters
+- uid: Flea.Utility.ParameterChecker.CheckParameters``1(``0)
+  name: CheckParameters<T>(T)
+  href: api/Flea.Utility.ParameterChecker.html#Flea_Utility_ParameterChecker_CheckParameters__1___0_
+  commentId: M:Flea.Utility.ParameterChecker.CheckParameters``1(``0)
+  name.vb: CheckParameters(Of T)(T)
+  fullName: Flea.Utility.ParameterChecker.CheckParameters<T>(T)
+  fullName.vb: Flea.Utility.ParameterChecker.CheckParameters(Of T)(T)
+  nameWithType: ParameterChecker.CheckParameters<T>(T)
+  nameWithType.vb: ParameterChecker.CheckParameters(Of T)(T)
+- uid: Flea.Utility.QueryBuilder`1
+  name: QueryBuilder<TContext>
+  href: api/Flea.Utility.QueryBuilder-1.html
+  commentId: T:Flea.Utility.QueryBuilder`1
+  name.vb: QueryBuilder(Of TContext)
+  fullName: Flea.Utility.QueryBuilder<TContext>
+  fullName.vb: Flea.Utility.QueryBuilder(Of TContext)
+  nameWithType: QueryBuilder<TContext>
+  nameWithType.vb: QueryBuilder(Of TContext)
+- uid: Flea.Utility.QueryBuilder`1.#ctor(IDbContextFactory{`0})
+  name: QueryBuilder(IDbContextFactory<TContext>)
+  href: api/Flea.Utility.QueryBuilder-1.html#Flea_Utility_QueryBuilder_1__ctor_IDbContextFactory__0__
+  commentId: M:Flea.Utility.QueryBuilder`1.#ctor(IDbContextFactory{`0})
+  name.vb: QueryBuilder(IDbContextFactory(Of TContext))
+  fullName: Flea.Utility.QueryBuilder<TContext>.QueryBuilder(IDbContextFactory<TContext>)
+  fullName.vb: Flea.Utility.QueryBuilder(Of TContext).QueryBuilder(IDbContextFactory(Of TContext))
+  nameWithType: QueryBuilder<TContext>.QueryBuilder(IDbContextFactory<TContext>)
+  nameWithType.vb: QueryBuilder(Of TContext).QueryBuilder(IDbContextFactory(Of TContext))
+- uid: Flea.Utility.QueryBuilder`1.#ctor*
+  name: QueryBuilder
+  href: api/Flea.Utility.QueryBuilder-1.html#Flea_Utility_QueryBuilder_1__ctor_
+  commentId: Overload:Flea.Utility.QueryBuilder`1.#ctor
+  isSpec: "True"
+  fullName: Flea.Utility.QueryBuilder<TContext>.QueryBuilder
+  fullName.vb: Flea.Utility.QueryBuilder(Of TContext).QueryBuilder
+  nameWithType: QueryBuilder<TContext>.QueryBuilder
+  nameWithType.vb: QueryBuilder(Of TContext).QueryBuilder
+- uid: Flea.Utility.QueryBuilder`1.CheckDisposeStatus
+  name: CheckDisposeStatus()
+  href: api/Flea.Utility.QueryBuilder-1.html#Flea_Utility_QueryBuilder_1_CheckDisposeStatus
+  commentId: M:Flea.Utility.QueryBuilder`1.CheckDisposeStatus
+  fullName: Flea.Utility.QueryBuilder<TContext>.CheckDisposeStatus()
+  fullName.vb: Flea.Utility.QueryBuilder(Of TContext).CheckDisposeStatus()
+  nameWithType: QueryBuilder<TContext>.CheckDisposeStatus()
+  nameWithType.vb: QueryBuilder(Of TContext).CheckDisposeStatus()
+- uid: Flea.Utility.QueryBuilder`1.CheckDisposeStatus*
+  name: CheckDisposeStatus
+  href: api/Flea.Utility.QueryBuilder-1.html#Flea_Utility_QueryBuilder_1_CheckDisposeStatus_
+  commentId: Overload:Flea.Utility.QueryBuilder`1.CheckDisposeStatus
+  isSpec: "True"
+  fullName: Flea.Utility.QueryBuilder<TContext>.CheckDisposeStatus
+  fullName.vb: Flea.Utility.QueryBuilder(Of TContext).CheckDisposeStatus
+  nameWithType: QueryBuilder<TContext>.CheckDisposeStatus
+  nameWithType.vb: QueryBuilder(Of TContext).CheckDisposeStatus
+- uid: Flea.Utility.QueryBuilder`1.Context
+  name: Context
+  href: api/Flea.Utility.QueryBuilder-1.html#Flea_Utility_QueryBuilder_1_Context
+  commentId: F:Flea.Utility.QueryBuilder`1.Context
+  fullName: Flea.Utility.QueryBuilder<TContext>.Context
+  fullName.vb: Flea.Utility.QueryBuilder(Of TContext).Context
+  nameWithType: QueryBuilder<TContext>.Context
+  nameWithType.vb: QueryBuilder(Of TContext).Context
+- uid: Flea.Utility.QueryBuilder`1.Dispose
+  name: Dispose()
+  href: api/Flea.Utility.QueryBuilder-1.html#Flea_Utility_QueryBuilder_1_Dispose
+  commentId: M:Flea.Utility.QueryBuilder`1.Dispose
+  fullName: Flea.Utility.QueryBuilder<TContext>.Dispose()
+  fullName.vb: Flea.Utility.QueryBuilder(Of TContext).Dispose()
+  nameWithType: QueryBuilder<TContext>.Dispose()
+  nameWithType.vb: QueryBuilder(Of TContext).Dispose()
+- uid: Flea.Utility.QueryBuilder`1.Dispose*
+  name: Dispose
+  href: api/Flea.Utility.QueryBuilder-1.html#Flea_Utility_QueryBuilder_1_Dispose_
+  commentId: Overload:Flea.Utility.QueryBuilder`1.Dispose
+  isSpec: "True"
+  fullName: Flea.Utility.QueryBuilder<TContext>.Dispose
+  fullName.vb: Flea.Utility.QueryBuilder(Of TContext).Dispose
+  nameWithType: QueryBuilder<TContext>.Dispose
+  nameWithType.vb: QueryBuilder(Of TContext).Dispose
+- uid: Flea.Utility.QueryBuilder`1.Finalize
+  name: Finalize()
+  href: api/Flea.Utility.QueryBuilder-1.html#Flea_Utility_QueryBuilder_1_Finalize
+  commentId: M:Flea.Utility.QueryBuilder`1.Finalize
+  fullName: Flea.Utility.QueryBuilder<TContext>.Finalize()
+  fullName.vb: Flea.Utility.QueryBuilder(Of TContext).Finalize()
+  nameWithType: QueryBuilder<TContext>.Finalize()
+  nameWithType.vb: QueryBuilder(Of TContext).Finalize()
+- uid: Flea.Utility.QueryBuilder`1.Finalize*
+  name: Finalize
+  href: api/Flea.Utility.QueryBuilder-1.html#Flea_Utility_QueryBuilder_1_Finalize_
+  commentId: Overload:Flea.Utility.QueryBuilder`1.Finalize
+  isSpec: "True"
+  fullName: Flea.Utility.QueryBuilder<TContext>.Finalize
+  fullName.vb: Flea.Utility.QueryBuilder(Of TContext).Finalize
+  nameWithType: QueryBuilder<TContext>.Finalize
+  nameWithType.vb: QueryBuilder(Of TContext).Finalize
+- uid: Flea.Utility.RequiredParameterAttribute
+  name: RequiredParameterAttribute
+  href: api/Flea.Utility.RequiredParameterAttribute.html
+  commentId: T:Flea.Utility.RequiredParameterAttribute
+  fullName: Flea.Utility.RequiredParameterAttribute
+  nameWithType: RequiredParameterAttribute
+- uid: Flea.Utility.UpdateQuery`1
+  name: UpdateQuery<TContext>
+  href: api/Flea.Utility.UpdateQuery-1.html
+  commentId: T:Flea.Utility.UpdateQuery`1
+  name.vb: UpdateQuery(Of TContext)
+  fullName: Flea.Utility.UpdateQuery<TContext>
+  fullName.vb: Flea.Utility.UpdateQuery(Of TContext)
+  nameWithType: UpdateQuery<TContext>
+  nameWithType.vb: UpdateQuery(Of TContext)
+- uid: Flea.Utility.UpdateQuery`1.#ctor(IDbContextFactory{`0})
+  name: UpdateQuery(IDbContextFactory<TContext>)
+  href: api/Flea.Utility.UpdateQuery-1.html#Flea_Utility_UpdateQuery_1__ctor_IDbContextFactory__0__
+  commentId: M:Flea.Utility.UpdateQuery`1.#ctor(IDbContextFactory{`0})
+  name.vb: UpdateQuery(IDbContextFactory(Of TContext))
+  fullName: Flea.Utility.UpdateQuery<TContext>.UpdateQuery(IDbContextFactory<TContext>)
+  fullName.vb: Flea.Utility.UpdateQuery(Of TContext).UpdateQuery(IDbContextFactory(Of TContext))
+  nameWithType: UpdateQuery<TContext>.UpdateQuery(IDbContextFactory<TContext>)
+  nameWithType.vb: UpdateQuery(Of TContext).UpdateQuery(IDbContextFactory(Of TContext))
+- uid: Flea.Utility.UpdateQuery`1.#ctor*
+  name: UpdateQuery
+  href: api/Flea.Utility.UpdateQuery-1.html#Flea_Utility_UpdateQuery_1__ctor_
+  commentId: Overload:Flea.Utility.UpdateQuery`1.#ctor
+  isSpec: "True"
+  fullName: Flea.Utility.UpdateQuery<TContext>.UpdateQuery
+  fullName.vb: Flea.Utility.UpdateQuery(Of TContext).UpdateQuery
+  nameWithType: UpdateQuery<TContext>.UpdateQuery
+  nameWithType.vb: UpdateQuery(Of TContext).UpdateQuery
+- uid: Flea.Utility.UpdateQuery`1.New*
+  name: New
+  href: api/Flea.Utility.UpdateQuery-1.html#Flea_Utility_UpdateQuery_1_New_
+  commentId: Overload:Flea.Utility.UpdateQuery`1.New
+  isSpec: "True"
+  fullName: Flea.Utility.UpdateQuery<TContext>.New
+  fullName.vb: Flea.Utility.UpdateQuery(Of TContext).New
+  nameWithType: UpdateQuery<TContext>.New
+  nameWithType.vb: UpdateQuery(Of TContext).New
+- uid: Flea.Utility.UpdateQuery`1.New``1(``0)
+  name: New<TEntity>(TEntity)
+  href: api/Flea.Utility.UpdateQuery-1.html#Flea_Utility_UpdateQuery_1_New__1___0_
+  commentId: M:Flea.Utility.UpdateQuery`1.New``1(``0)
+  name.vb: New(Of TEntity)(TEntity)
+  fullName: Flea.Utility.UpdateQuery<TContext>.New<TEntity>(TEntity)
+  fullName.vb: Flea.Utility.UpdateQuery(Of TContext).New(Of TEntity)(TEntity)
+  nameWithType: UpdateQuery<TContext>.New<TEntity>(TEntity)
+  nameWithType.vb: UpdateQuery(Of TContext).New(Of TEntity)(TEntity)
+- uid: Flea.Utility.UpdateQuery`1.New``1(``0[])
+  name: New<TEntity>(TEntity[])
+  href: api/Flea.Utility.UpdateQuery-1.html#Flea_Utility_UpdateQuery_1_New__1___0___
+  commentId: M:Flea.Utility.UpdateQuery`1.New``1(``0[])
+  name.vb: New(Of TEntity)(TEntity())
+  fullName: Flea.Utility.UpdateQuery<TContext>.New<TEntity>(TEntity[])
+  fullName.vb: Flea.Utility.UpdateQuery(Of TContext).New(Of TEntity)(TEntity())
+  nameWithType: UpdateQuery<TContext>.New<TEntity>(TEntity[])
+  nameWithType.vb: UpdateQuery(Of TContext).New(Of TEntity)(TEntity())
+- uid: Flea.Utility.UpdateQuery`1.Save
+  name: Save()
+  href: api/Flea.Utility.UpdateQuery-1.html#Flea_Utility_UpdateQuery_1_Save
+  commentId: M:Flea.Utility.UpdateQuery`1.Save
+  fullName: Flea.Utility.UpdateQuery<TContext>.Save()
+  fullName.vb: Flea.Utility.UpdateQuery(Of TContext).Save()
+  nameWithType: UpdateQuery<TContext>.Save()
+  nameWithType.vb: UpdateQuery(Of TContext).Save()
+- uid: Flea.Utility.UpdateQuery`1.Save*
+  name: Save
+  href: api/Flea.Utility.UpdateQuery-1.html#Flea_Utility_UpdateQuery_1_Save_
+  commentId: Overload:Flea.Utility.UpdateQuery`1.Save
+  isSpec: "True"
+  fullName: Flea.Utility.UpdateQuery<TContext>.Save
+  fullName.vb: Flea.Utility.UpdateQuery(Of TContext).Save
+  nameWithType: UpdateQuery<TContext>.Save
+  nameWithType.vb: UpdateQuery(Of TContext).Save
+- uid: Flea.Utility.UpdateQuery`1.Update*
+  name: Update
+  href: api/Flea.Utility.UpdateQuery-1.html#Flea_Utility_UpdateQuery_1_Update_
+  commentId: Overload:Flea.Utility.UpdateQuery`1.Update
+  isSpec: "True"
+  fullName: Flea.Utility.UpdateQuery<TContext>.Update
+  fullName.vb: Flea.Utility.UpdateQuery(Of TContext).Update
+  nameWithType: UpdateQuery<TContext>.Update
+  nameWithType.vb: UpdateQuery(Of TContext).Update
+- uid: Flea.Utility.UpdateQuery`1.Update``1(``0)
+  name: Update<TEntity>(TEntity)
+  href: api/Flea.Utility.UpdateQuery-1.html#Flea_Utility_UpdateQuery_1_Update__1___0_
+  commentId: M:Flea.Utility.UpdateQuery`1.Update``1(``0)
+  name.vb: Update(Of TEntity)(TEntity)
+  fullName: Flea.Utility.UpdateQuery<TContext>.Update<TEntity>(TEntity)
+  fullName.vb: Flea.Utility.UpdateQuery(Of TContext).Update(Of TEntity)(TEntity)
+  nameWithType: UpdateQuery<TContext>.Update<TEntity>(TEntity)
+  nameWithType.vb: UpdateQuery(Of TContext).Update(Of TEntity)(TEntity)
+- uid: Flea.Utility.UpdateQuery`1.With*
+  name: With
+  href: api/Flea.Utility.UpdateQuery-1.html#Flea_Utility_UpdateQuery_1_With_
+  commentId: Overload:Flea.Utility.UpdateQuery`1.With
+  isSpec: "True"
+  fullName: Flea.Utility.UpdateQuery<TContext>.With
+  fullName.vb: Flea.Utility.UpdateQuery(Of TContext).With
+  nameWithType: UpdateQuery<TContext>.With
+  nameWithType.vb: UpdateQuery(Of TContext).With
+- uid: Flea.Utility.UpdateQuery`1.With``1(``0)
+  name: With<TEntity>(TEntity)
+  href: api/Flea.Utility.UpdateQuery-1.html#Flea_Utility_UpdateQuery_1_With__1___0_
+  commentId: M:Flea.Utility.UpdateQuery`1.With``1(``0)
+  name.vb: With(Of TEntity)(TEntity)
+  fullName: Flea.Utility.UpdateQuery<TContext>.With<TEntity>(TEntity)
+  fullName.vb: Flea.Utility.UpdateQuery(Of TContext).With(Of TEntity)(TEntity)
+  nameWithType: UpdateQuery<TContext>.With<TEntity>(TEntity)
+  nameWithType.vb: UpdateQuery(Of TContext).With(Of TEntity)(TEntity)

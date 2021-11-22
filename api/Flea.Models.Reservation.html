@@ -80,6 +80,10 @@
     <div class="level0"><span class="xref">System.Object</span></div>
     <div class="level1"><span class="xref">Reservation</span></div>
   </div>
+  <div classs="implements">
+    <h5>Implements</h5>
+    <div><a class="xref" href="Flea.Models.IModelEntity-2.html">IModelEntity</a>&lt;<a class="xref" href="Flea.Models.Reservation.html">Reservation</a>, <a class="xref" href="Flea.Models.BingoContext.html">BingoContext</a>&gt;</div>
+  </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
     <div>
@@ -108,24 +112,42 @@
   <h6><strong>Assembly</strong>: Flea.dll</h6>
   <h5 id="Flea_Models_Reservation_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class Reservation</code></pre>
+    <pre><code class="lang-csharp hljs">public class Reservation : IModelEntity&lt;Reservation, BingoContext&gt;</code></pre>
   </div>
   <h3 id="constructors">Constructors
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/P3-DAT3-03/Flea/new/main/apiSpec/new?filename=Flea_Models_Reservation__ctor_System_Int32_System_Int32_System_Boolean_System_String_.md&amp;value=---%0Auid%3A%20Flea.Models.Reservation.%23ctor(System.Int32%2CSystem.Int32%2CSystem.Boolean%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/P3-DAT3-03/Flea/new/main/apiSpec/new?filename=Flea_Models_Reservation__ctor.md&amp;value=---%0Auid%3A%20Flea.Models.Reservation.%23ctor%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/P3-DAT3-03/Flea/blob/main/Flea/Models/Reservation.cs/#L32">View Source</a>
+    <a href="https://github.com/P3-DAT3-03/Flea/blob/main/Flea/Models/Reservation.cs/#L24">View Source</a>
   </span>
   <a id="Flea_Models_Reservation__ctor_" data-uid="Flea.Models.Reservation.#ctor*"></a>
-  <h4 id="Flea_Models_Reservation__ctor_System_Int32_System_Int32_System_Boolean_System_String_" data-uid="Flea.Models.Reservation.#ctor(System.Int32,System.Int32,System.Boolean,System.String)">Reservation(Int32, Int32, Boolean, String)</h4>
+  <h4 id="Flea_Models_Reservation__ctor" data-uid="Flea.Models.Reservation.#ctor">Reservation()</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Reservation(int priority, int tableCount, bool paid, string comments)</code></pre>
+    <pre><code class="lang-csharp hljs">public Reservation()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/P3-DAT3-03/Flea/new/main/apiSpec/new?filename=Flea_Models_Reservation__ctor_System_Int32_System_Int32_System_Boolean_System_String_.md&amp;value=---%0Auid%3A%20Flea.Models.Reservation.%23ctor(System.Int32%2CSystem.Int32%2CSystem.Boolean%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/P3-DAT3-03/Flea/blob/main/Flea/Models/Reservation.cs/#L49">View Source</a>
+  </span>
+  <a id="Flea_Models_Reservation__ctor_" data-uid="Flea.Models.Reservation.#ctor*"></a>
+  <h4 id="Flea_Models_Reservation__ctor_System_Int32_System_Int32_System_Boolean_System_String_" data-uid="Flea.Models.Reservation.#ctor(System.Int32,System.Int32,System.Boolean,System.String)">Reservation(Int32, Int32, Boolean, String)</h4>
+  <div class="markdown level1 summary"><p>Constructor for use by the entity framework.
+This function should never be called.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This constructor should never be called manually. Intended only for EF use.&quot;)]
+public Reservation(int priority, int tableCount, bool paid, string comments)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -161,18 +183,18 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/P3-DAT3-03/Flea/new/main/apiSpec/new?filename=Flea_Models_Reservation__ctor_System_Int32_System_Int32_System_Boolean_System_String_Flea_Models_Customer_.md&amp;value=---%0Auid%3A%20Flea.Models.Reservation.%23ctor(System.Int32%2CSystem.Int32%2CSystem.Boolean%2CSystem.String%2CFlea.Models.Customer)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/P3-DAT3-03/Flea/new/main/apiSpec/new?filename=Flea_Models_Reservation__ctor_System_Int32_System_Int32_System_Boolean_System_String_Flea_Models_Customer_Flea_Models_Event_.md&amp;value=---%0Auid%3A%20Flea.Models.Reservation.%23ctor(System.Int32%2CSystem.Int32%2CSystem.Boolean%2CSystem.String%2CFlea.Models.Customer%2CFlea.Models.Event)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/P3-DAT3-03/Flea/blob/main/Flea/Models/Reservation.cs/#L23">View Source</a>
+    <a href="https://github.com/P3-DAT3-03/Flea/blob/main/Flea/Models/Reservation.cs/#L35">View Source</a>
   </span>
   <a id="Flea_Models_Reservation__ctor_" data-uid="Flea.Models.Reservation.#ctor*"></a>
-  <h4 id="Flea_Models_Reservation__ctor_System_Int32_System_Int32_System_Boolean_System_String_Flea_Models_Customer_" data-uid="Flea.Models.Reservation.#ctor(System.Int32,System.Int32,System.Boolean,System.String,Flea.Models.Customer)">Reservation(Int32, Int32, Boolean, String, Customer)</h4>
+  <h4 id="Flea_Models_Reservation__ctor_System_Int32_System_Int32_System_Boolean_System_String_Flea_Models_Customer_Flea_Models_Event_" data-uid="Flea.Models.Reservation.#ctor(System.Int32,System.Int32,System.Boolean,System.String,Flea.Models.Customer,Flea.Models.Event)">Reservation(Int32, Int32, Boolean, String, Customer, Event)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Reservation(int priority, int tableCount, bool paid, string comments, Customer reservationOwner)</code></pre>
+    <pre><code class="lang-csharp hljs">public Reservation(int priority, int tableCount, bool paid, string comments, Customer reservationOwner, Event event)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -207,6 +229,11 @@
       <tr>
         <td><a class="xref" href="Flea.Models.Customer.html">Customer</a></td>
         <td><span class="parametername">reservationOwner</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Flea.Models.Event.html">Event</a></td>
+        <td><span class="parametername">event</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -368,7 +395,7 @@
     <a href="https://github.com/P3-DAT3-03/Flea/new/main/apiSpec/new?filename=Flea_Models_Reservation_ReservationOwner.md&amp;value=---%0Auid%3A%20Flea.Models.Reservation.ReservationOwner%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/P3-DAT3-03/Flea/blob/main/Flea/Models/Reservation.cs/#L21">View Source</a>
+    <a href="https://github.com/P3-DAT3-03/Flea/blob/main/Flea/Models/Reservation.cs/#L22">View Source</a>
   </span>
   <a id="Flea_Models_Reservation_ReservationOwner_" data-uid="Flea.Models.Reservation.ReservationOwner*"></a>
   <h4 id="Flea_Models_Reservation_ReservationOwner" data-uid="Flea.Models.Reservation.ReservationOwner">ReservationOwner</h4>
@@ -436,7 +463,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public List&lt;Table&gt; Tables { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public List&lt;Table&gt; Tables { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -460,7 +487,7 @@
     <a href="https://github.com/P3-DAT3-03/Flea/new/main/apiSpec/new?filename=Flea_Models_Reservation_Clone.md&amp;value=---%0Auid%3A%20Flea.Models.Reservation.Clone%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/P3-DAT3-03/Flea/blob/main/Flea/Models/Reservation.cs/#L40">View Source</a>
+    <a href="https://github.com/P3-DAT3-03/Flea/blob/main/Flea/Models/Reservation.cs/#L62">View Source</a>
   </span>
   <a id="Flea_Models_Reservation_Clone_" data-uid="Flea.Models.Reservation.Clone*"></a>
   <h4 id="Flea_Models_Reservation_Clone" data-uid="Flea.Models.Reservation.Clone">Clone()</h4>
@@ -485,6 +512,57 @@
       </tr>
     </tbody>
   </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/P3-DAT3-03/Flea/new/main/apiSpec/new?filename=Flea_Models_Reservation_GetDbSet_Flea_Models_BingoContext_.md&amp;value=---%0Auid%3A%20Flea.Models.Reservation.GetDbSet(Flea.Models.BingoContext)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/P3-DAT3-03/Flea/blob/main/Flea/Models/Reservation.cs/#L63">View Source</a>
+  </span>
+  <a id="Flea_Models_Reservation_GetDbSet_" data-uid="Flea.Models.Reservation.GetDbSet*"></a>
+  <h4 id="Flea_Models_Reservation_GetDbSet_Flea_Models_BingoContext_" data-uid="Flea.Models.Reservation.GetDbSet(Flea.Models.BingoContext)">GetDbSet(BingoContext)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DbSet&lt;Reservation&gt; GetDbSet(BingoContext ctx)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Flea.Models.BingoContext.html">BingoContext</a></td>
+        <td><span class="parametername">ctx</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">DbSet</span>&lt;<a class="xref" href="Flea.Models.Reservation.html">Reservation</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="Flea.Models.IModelEntity-2.html">IModelEntity&lt;TEntity, TContext&gt;</a>
+  </div>
 </article>
           </div>
           
