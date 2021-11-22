@@ -10,43 +10,39 @@
 
 <div>
     <div class="view-head">
-        <input class="search-input" @bind-value="_searchTerm" @oninput="Search" placeholder="Søg efter loppemarked..."/>
+        <input class="search-input" type="search" value="" @oninput="Search" placeholder="Søg efter loppemarked..."/>
         <Modal ButtonName="Tilføj nyt loppemarked" @ref="_child">
             <div>
                 <h5>Hvor mange loppemarkeder ønsker I at oprette?</h5>
                 <label>Antal loppemarkeder: </label>
-                <input type="text" @bind-value="TempEvents.EventAmount">
+                <input type="text" @bind-value="_tempEvents.EventAmount">
             </div>
-            @if (TempEvents.EventAmount > 0)
+            @if (_tempEvents.EventAmount > 0)
             {
-                TempEvents.Events.Clear();
-                for (int i = 0; i < TempEvents.EventAmount; i++)
+                _tempEvents.Events.Clear();
+                for (int i = 0; i < _tempEvents.EventAmount; i++)
                 {
-                    TempEvents.Events.Add(new Event(DateTime.Today));
+                    _tempEvents.Events.Add(new Event(DateTime.Today));
                 }
-                TempEvents.EventAmount = 1;
+                _tempEvents.EventAmount = 1;
             }
-            <CreateEventForm EventList="TempEvents" OnValidSubmit="CreateEvents" Modal="_child"></CreateEventForm>
+            <CreateEventForm EventList="_tempEvents" OnValidSubmit="CreateEvents" Modal="_child"></CreateEventForm>
         </Modal>
     </div>
 
     <!-- Creates event items for each event that matches the user's search term -->
-    @if (_events.Count == 0)
+    @if (_shownEvents is not null && _shownEvents.Any())
     {
-        <h2>Der er ingen loppemarkeder at vise...</h2>
-    }
-    else if (_shownEvents.Count == 0)
-    {
-        <h2>Der er ingen loppemarkeder, der matcher søgekriterierne...</h2>
-    }
-    else
-    {
-        foreach (var e in _shownEvents)
+        @foreach (var e in _shownEvents)
         {
             <div>
                 <EventListItem Event="@e"></EventListItem>
             </div>
         }
+    }
+    else
+    {
+        <h2>Der er ingen loppemarkeder at vise...</h2>
     }
 </div>
 
@@ -59,28 +55,33 @@
         public int EventAmount { get; set; } = 1;
     }
 
-    public EventList TempEvents { get; set; } = new();
+    private EventList _tempEvents = new();
     private Modal _child = null!;
-    private string _searchTerm = "";
-    private List<Event> _events = new();
-
-    // List of events from database that match the search term.
-    private List<Event>? _shownEvents = new();
+    private List<Event>? _events;
+    private IEnumerable<Event>? _shownEvents;
+    private string _lastSearchTerm = string.Empty;
     
 
     public async Task CreateEvents()
     {
-        foreach (var e in TempEvents.Events)
+        var q = _dbFactory.Update();
+        foreach (var e in _tempEvents.Events)
         {
-            await _dbFactory.SaveNew(e);
+            q.New(e);
         }
+        await q.Save();
         _child.ModalCancel();
         await UpdateEventList();
     }
 
     private async Task UpdateEventList()
     {
-        _events = await _dbFactory.GetAll<BingoContext,Event>();
+        _events = await _dbFactory.Get<BingoContext,Event>()
+            .Include(e => e.Clusters)
+            .ThenInclude<Cluster, IEnumerable<Table>>(c => c.Tables)
+            .Include(e => e.Reservations)
+            .All();
+        Search(_lastSearchTerm);
     }
 
     public void Search(ChangeEventArgs e) => Search(e.Value?.ToString()?.ToLower() ?? "");
@@ -93,8 +94,14 @@
         }
         else
         {
-            _shownEvents = _events.Where(i => i.Name.ToLower().Contains(_searchTerm.ToLower())).ToList();
+            var results = from e 
+                in _events 
+                where e.Name.ToLower().Contains(searchTerm.ToLower()) 
+                select e;
+            _shownEvents = results;
         }
+
+        _lastSearchTerm = searchTerm;
     }
     
     protected override async Task OnInitializedAsync()

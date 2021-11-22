@@ -23,7 +23,7 @@ namespace Flea.Models
         public string Name { get; set; }
         
         public List<Cluster> Clusters { get; set; }
-        public List<Reservation> Reservations = new();
+        public List<Reservation> Reservations { get; set; }= new();
         public Event PreviousEvent { get; set; }
 
         public Event()
@@ -50,7 +50,6 @@ namespace Flea.Models
             Reservations.Aggregate(0, (acc, reservation) => reservation.Paid ? acc : acc + 1);
 
         public int ComputeRemainingTables => Clusters.Aggregate(0, (acc, cluster) => acc + cluster.TablesNotPlaced);
-
 
         public DbSet<Event> GetDbSet(BingoContext ctx) => ctx.Events!;
     }
