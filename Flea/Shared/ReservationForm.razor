@@ -2,8 +2,8 @@
 @using Flea.Utility
 @using Microsoft.EntityFrameworkCore
 @inject IDbContextFactory<BingoContext> _dbFactory
-
 @using NEvaldas.Blazor.Select2
+
 
 <EditForm Model="Reservation" OnValidSubmit="OnSubmit">
     <div class="edit-form">
@@ -12,6 +12,11 @@
             <div class="edit-form-div">
                 <div>Søg efter loppe:</div>
                 <div class="search-box" style="display: grid;">
+                    @*<Select2 TItem="Customer"
+                             Id="simple-string-example"
+                             Data="@(_shownCustomers?.ToList())"
+                             @bind-Value="@CustomerInput">
+                    </Select2>*@
                     
                     <input class="search-input edit-search-input-form" type="search" placeholder="Eks. Hans Henriksen"
                            list="customer" @bind="CustomerInput"/>
@@ -27,17 +32,16 @@
                         }
                     </datalist>
                     
-                    @* <InputSelect class="search-input edit-search-input" @bind-Value="CustomerInput"> *@
-                    @*     @if (_shownCustomers != null) *@
-                    @*     { *@
-                    @*          *@
-                    @*         <option selected="selected" disabled="" value="-1">Vælg en loppe</option> *@
-                    @*         foreach (var customer in _shownCustomers) *@
-                    @*         { *@
-                    @*             <option value="@customer.Id">@customer.Name</option> *@
-                    @*         } *@
-                    @*     } *@
-                    @* </InputSelect> *@
+                    @*<InputSelect class="search-input edit-search-input" @bind-Value="CustomerInput">
+                         @if (_shownCustomers != null)
+                         {
+                             <option selected="selected" disabled="" value="-1">Vælg en loppe</option>
+                             foreach (var customer in _shownCustomers)
+                             {
+                                 <option value="@customer.Id">@customer.Name</option>
+                             }
+                         }
+                    </InputSelect>*@
 
                     @* <input class="search-input edit-search-input-form" type="search" value="" placeholder="Eks. Hans Henriksen" *@
                     @*        @oninput="Search"/> *@
@@ -84,18 +88,14 @@
                         placeholder="Eks. Handicap, tæt på rygerrum mm."
                         @bind="Reservation.Comments"></textarea>
         </div>
-        @* <div> *@
-        @*     <label>Bod type: </label> *@
-        @*     <InputText @bind-Value="Temp.Comments"></InputText> *@
-        @* </div> *@
-        @* <div> *@
-        @*     <label>Leje af tøj stativ: </label> *@
-        @*     <InputNumber @bind-Value="Temp.Comments"></InputNumber> *@
-        @* </div> *@
-        @* <div> *@
-        @*     <label>Bemærkninger: </label> *@
-        @*     <InputText @bind-Value="Temp.Comments"></InputText> *@
-        @* </div> *@
+        @*<div>
+             <label>Bod type: </label> 
+             <InputText @bind-Value="Reservation.Comments"></InputText> 
+         </div> 
+         <div> 
+             <label>Leje af tøj stativ: </label> 
+             <InputNumber @bind-Value="Reservation.Comments"></InputNumber> 
+         </div>*@
         <div id="move-down">
             <button type="submit" class="button create-button button--outline">@(Reservation.Id == 0 ? "Opret booking" : "Gem ændringer")</button>
             <button type="button" class="button button del-button button--outline" @onclick="@Modal.ModalCancel">Cancel</button>
@@ -117,7 +117,7 @@
     private List<Customer>? _customers;
     private IEnumerable<Customer>? _shownCustomers;
     private string _lastSearchTerm = string.Empty;
-    public int CustomerInput;
+    public int CustomerInput; // public Customer CustomerInput if you want to use select2
     
     protected override async Task OnInitializedAsync()
     {
@@ -160,7 +160,7 @@
     {
         if (Reservation.ReservationOwnerId == 0)
         {
-            Reservation.ReservationOwnerId = CustomerInput;
+            Reservation.ReservationOwnerId = CustomerInput; // CustomerInput.Id if you want to use select2
         }
         await OnValidSubmit.InvokeAsync(context);
 
