@@ -7,6 +7,8 @@
 @using Flea.Models
 @using Flea.Utility
 
+<HeaderTitle Value="Lopper"/>
+
 <div>
     <div class="view-head">
         <input class="search-input" type="search" value="" placeholder="Søg efter loppe" @oninput="Search">
@@ -19,7 +21,7 @@
         @foreach (var customer in _shownCustomers)
         {
             <div>
-            <CustomerUserListItem Customer="@customer" OnDelete="@DeleteCustomer"/>
+            <CustomerUserListItem Customer="@customer" OnEdit="@UpdateCustomer" OnDelete="@DeleteCustomer"/>
             </div>
         }
     }
@@ -53,6 +55,12 @@
         await _dbFactory.SaveNew(_temp);
         _temp = new Customer(0); // reset _temp
         _child.ModalCancel();
+        await UpdateCustomersList();
+    }
+
+    public async Task UpdateCustomer(EditContext context)
+    {
+        await _dbFactory.Save((Customer) context.Model);
         await UpdateCustomersList();
     }
 

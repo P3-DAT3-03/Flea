@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
@@ -7,6 +7,7 @@ namespace Flea.Models
 {
 	public class Customer : IModelEntity<Customer, BingoContext>
 	{
+		// ReSharper disable once AutoPropertyCanBeMadeGetOnly.Global
 		public int Id { get; set; }
 
 		[StringLength(64)]
@@ -19,11 +20,9 @@ namespace Flea.Models
 
 		public Customer() : this(0) {}
 		
-		public Customer(int id)
+		public Customer(int id) : this(string.Empty, string.Empty)
 		{
 			Id = id;
-			Name = string.Empty;
-			PhoneNumber = string.Empty;
 		}
 		
 		public Customer(string name, string phoneNumber)
@@ -32,12 +31,8 @@ namespace Flea.Models
 			PhoneNumber = phoneNumber;
 		}
 
-		public Reservation CreateReservation(int priority, int tables, bool paid, string comments)
-		{
-			return new Reservation(priority, tables, paid, comments, this);
-		}
-		public Customer Clone() => (Customer) this.MemberwiseClone();
+		public Customer Clone() => (Customer) MemberwiseClone();
 		
-		DbSet<Customer> IModelEntity<Customer, BingoContext>.GetDbSet(BingoContext ctx) => ctx.Customers;
+		DbSet<Customer> IModelEntity<Customer, BingoContext>.GetDbSet(BingoContext ctx) => ctx.Customers!;
 	}
 }

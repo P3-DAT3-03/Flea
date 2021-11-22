@@ -19,8 +19,8 @@
 
 @code
 {
-    private static MainLayout _instance;
-    private static string _headerTitle;
+    private static MainLayout _instance = null!;
+    private static string _headerTitle = string.Empty;
     
     public static string HeaderTitle
     {
