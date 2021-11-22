@@ -20,6 +20,7 @@ namespace Flea.Models
         /// The date at which the event will be held.
         /// </summary>
         public DateTime DateTime { get; set; }
+        public string Name { get; set; }
         
         public List<Cluster> Clusters { get; set; }
         public List<Reservation> Reservations = new();
@@ -34,6 +35,7 @@ namespace Flea.Models
         public Event(DateTime dateTime)
         {
             DateTime = dateTime; 
+            Name = dateTime.Day.ToString() + ". " + Months[dateTime.Month] + ", " + dateTime.Year.ToString();
 
             Clusters = new List<Cluster>
             { 
@@ -43,10 +45,7 @@ namespace Flea.Models
                 new Cluster("M", 12, 12)
             };
         }
-        
-        public string Name => 
-            DateTime.Day.ToString() + ". " + Months[DateTime.Month] + ", " + DateTime.Year.ToString();
-        
+
         public int ComputeMissingPayments => 
             Reservations.Aggregate(0, (acc, reservation) => reservation.Paid ? acc : acc + 1);
 
