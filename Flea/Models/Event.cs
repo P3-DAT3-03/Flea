@@ -35,7 +35,8 @@ namespace Flea.Models
         public Event(DateTime dateTime)
         {
             DateTime = dateTime;
-
+            UpdateName();
+            
             Clusters = new List<Cluster>
             { 
                 new Cluster("A", 4, 8), new Cluster("B", 4, 8), new Cluster("C", 4, 8), new Cluster("D", 4, 8),
