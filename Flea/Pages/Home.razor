@@ -15,22 +15,12 @@
             <div>
                 <h5>Hvor mange loppemarkeder ønsker I at oprette?</h5>
                 <label>Antal loppemarkeder: </label>
-                <input type="text" @bind-value="_tempEvents.EventAmount">
+                <input type="text" @bind="_tempEvents.EventAmount">
             </div>
-            @if (_tempEvents.EventAmount > 0)
-            {
-                _tempEvents.Events.Clear();
-                for (int i = 0; i < _tempEvents.EventAmount; i++)
-                {
-                    _tempEvents.Events.Add(new Event(DateTime.Today));
-                }
-                _tempEvents.EventAmount = 1;
-            }
             <CreateEventForm EventList="_tempEvents" OnValidSubmit="CreateEvents" Modal="_child"></CreateEventForm>
         </Modal>
     </div>
 
-    <!-- Creates event items for each event that matches the user's search term -->
     @if (_shownEvents is not null && _shownEvents.Any())
     {
         @foreach (var e in _shownEvents)
@@ -48,11 +38,30 @@
 
 
 @code {
-    
+
     public class EventList
     {
-        public List<Event> Events { get; set; } = new();
-        public int EventAmount { get; set; } = 1;
+        private int _eventAmount = 1;
+
+        public List<Event> Events { get; set; } = new() {new Event(DateTime.Today)};
+        public int EventAmount
+        {
+            get { return _eventAmount; }
+            set
+            {
+                _eventAmount = value;
+                CreateEventListPlaceholders();
+            }
+        } 
+        
+        public void CreateEventListPlaceholders()
+        {
+            this.Events.Clear();
+            for (int i = 0; i < this.EventAmount; i++)
+            {
+                this.Events.Add(new Event(DateTime.Today));
+            }
+        }
     }
 
     private EventList _tempEvents = new();
@@ -60,18 +69,19 @@
     private List<Event>? _events;
     private IEnumerable<Event>? _shownEvents;
     private string _lastSearchTerm = string.Empty;
-    
 
     public async Task CreateEvents()
     {
         var q = _dbFactory.Update();
         foreach (var e in _tempEvents.Events)
         {
+            e.UpdateName();
             q.New(e);
         }
         await q.Save();
-        _child.ModalCancel();
         await UpdateEventList();
+        _child.ModalCancel();
+        _tempEvents.EventAmount = 1;
     }
 
     private async Task UpdateEventList()

@@ -10,7 +10,7 @@ namespace Flea.Models
         
         public string[] Months =
         {
-            "Januar", "Februar", "Marts", "April", "Maj", "Juni", "Juli", 
+            "", "Januar", "Februar", "Marts", "April", "Maj", "Juni", "Juli", 
             "August", "September", "Oktober", "November", "December"
         };
         
@@ -34,8 +34,7 @@ namespace Flea.Models
         /* the constructor creates the event and all the needed clusters in the bingo fleamarket format*/
         public Event(DateTime dateTime)
         {
-            DateTime = dateTime; 
-            Name = dateTime.Day.ToString() + ". " + Months[dateTime.Month] + ", " + dateTime.Year.ToString();
+            DateTime = dateTime;
 
             Clusters = new List<Cluster>
             { 
@@ -44,6 +43,11 @@ namespace Flea.Models
                 new Cluster("I", 4, 8), new Cluster("J", 4, 8), new Cluster("K", 4, 8), new Cluster("L", 4, 8),
                 new Cluster("M", 12, 12)
             };
+        }
+
+        public void UpdateName()
+        {
+            this.Name = this.DateTime.Day.ToString() + ". " + Months[this.DateTime.Month] + ", " + this.DateTime.Year.ToString();
         }
 
         public int ComputeMissingPayments => 
