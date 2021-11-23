@@ -1,3 +1,4 @@
+@using Flea.Utility
 @inject NavigationManager _navigationManager
 
 <li class="list-item list-item--tappable">
@@ -15,17 +16,18 @@
 </li>
 
 @code {
-    [Parameter]
-    public string Icon { get; set; }
+
+    [Parameter, RequiredParameter]
+    public string Icon { get; set; } = null!;
 
     [Parameter]
     public string IconClass { get; set; } = "material-icons-outlined";
 
-    [Parameter]
-    public string Href { get; set; }
-    
-    [Parameter]
-    public RenderFragment ChildContent { get; set; }
+    [Parameter, RequiredParameter]
+    public string Href { get; set; } = null!;
+
+    [Parameter, RequiredParameter]
+    public RenderFragment ChildContent { get; set; } = null!;
 
     private void Navigate()
     {
@@ -40,10 +42,13 @@
             getPath = "/Home";
         }
 
-        if (Href == getPath)
-        {
-            return true;
-        }
-        return false;
+        return Href == getPath;
     }
+
+    protected override Task OnInitializedAsync()
+    {
+        ParameterChecker.CheckParameters(this);
+        return base.OnInitializedAsync();
+    }
+
 }

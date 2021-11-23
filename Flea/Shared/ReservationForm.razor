@@ -1,8 +1,11 @@
 ﻿@using Flea.Models
 @using Flea.Utility
+<<<<<<< HEAD
 @using Microsoft.EntityFrameworkCore
 @using System.Text.Json
 @inject IDbContextFactory<BingoContext> _dbFactory
+=======
+>>>>>>> 38d881d8cf12a710cd3565a051e576934ae98dc4
 
 
 <EditForm Model="Reservation" OnValidSubmit="OnSubmit">
@@ -113,15 +116,15 @@
     </div>
 </EditForm>
 
-@code
-{
-    [Parameter]
-    public Reservation Reservation { get; set; } = null!;
+@code {
 
-    [Parameter]
+    [Parameter, RequiredParameter]
+    public Reservation Reservation { get; set; } = null!;
+    
+    [Parameter, RequiredParameter]
     public EventCallback<EditContext> OnValidSubmit { get; set; }
 
-    [Parameter]
+    [Parameter, RequiredParameter]
     public Modal Modal { get; set; } = null!;
 
     private string _display = "none";
@@ -134,10 +137,7 @@
 
     protected override async Task OnInitializedAsync()
     {
-        if (Reservation == null!)
-        {
-            throw new ArgumentNullException(nameof(Reservation), "Parameter Reservation can never be null");
-        }
+        ParameterChecker.CheckParameters(this);
 
         await base.OnInitializedAsync();
         await UpdateReservationList();

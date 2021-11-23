@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace Flea.Models
 {
-    public class Event
+    public class Event : IModelEntity<Event, BingoContext>
     {
         public int Id { get; set; }
         public string Name { get; set; }
@@ -15,9 +16,13 @@ namespace Flea.Models
         public DateTime DateTime { get; set; }
         
         public List<Cluster> Clusters { get; set; }
-        public List<Reservation> Reservations;
+        public List<Reservation> Reservations { get; set; }
         public Event PreviousEvent { get; set; }
 
+        public Event()
+        {
+            
+        }
 
         /* the constructor creates the event and all the needed clusters in the bingo fleamarket formet*/
         public Event(string name, DateTime dateTime)
@@ -36,5 +41,8 @@ namespace Flea.Models
 
 
         public int ComputeRemainingTables => Clusters.Aggregate(0, (acc, cluster) => acc + cluster.TablesNotPlaced);
+
+
+        public DbSet<Event> GetDbSet(BingoContext ctx) => ctx.Events!;
     }
 }

@@ -1,6 +1,3 @@
-using System.Collections.Generic;
-using System.Reflection;
-using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 
 namespace Flea.Models
@@ -16,28 +13,26 @@ namespace Flea.Models
     /// A <see cref="DbContext"/> type that contains a
     /// <see cref="DbSet{TEntity}"/> property for the entity type.
     /// </typeparam>
-    public interface IModelEntity<TEntity, in TContext>
-        where TEntity: class, IModelEntity<TEntity, TContext>, new()
-        where TContext: DbContext
+    public interface IModelEntity<TEntity, TContext>
+        where TEntity : class, IModelEntity<TEntity, TContext>, new()
+        where TContext : DbContext
     {
         /// <summary>
-        /// A field containing the method info for the
-        /// <see cref="GetDbSet"/> method. This is used
-        /// to get DbSet in a static context.
+        /// A static instance of the entity used
+        /// to fetch <see cref="DbSet{TEntity}"/>.
         /// </summary>
         // ReSharper disable once StaticMemberInGenericType
-        private static readonly TEntity _entity;
+        private static readonly TEntity Entity;
 
         /// <summary>
-        /// Invokes the method referenced through the method info
-        /// object stored in <see cref="GetDbSetMethod"/>.
+        /// Gets a DbSet through a static instance field.
         /// </summary>
-        /// <returns></returns>
-        private static DbSet<TEntity> GetDbSetStatic(TContext ctx) => _entity.GetDbSet(ctx);
-        
+        /// <returns>A DbSet for the entity type</returns>
+        public static DbSet<TEntity> GetDbSetStatic(TContext ctx) => Entity.GetDbSet(ctx);
+
         static IModelEntity()
         {
-            _entity = new TEntity();
+            Entity = new TEntity();
         }
 
         /// <summary>
@@ -49,50 +44,6 @@ namespace Flea.Models
         /// is to be retrieved from.
         /// </param>
         /// <returns>The relevant <see cref="DbSet{TEntity}"/></returns>
-        protected DbSet<TEntity> GetDbSet(TContext ctx);
-
-        /// <summary>
-        /// Saves changes to an existing entity.
-        /// </summary>
-        /// <param name="ctx">The database context to perform the action on.</param>
-        public async Task Save(TContext ctx)
-        {
-            var set = GetDbSet(ctx);
-            set.Update((TEntity) this);
-            await ctx.SaveChangesAsync();
-        }
-
-        /// <summary>
-        /// Save a new entity.
-        /// </summary>
-        /// <param name="ctx">The database context to perform the action on.</param>
-        public async Task SaveNew(TContext ctx)
-        {
-            var set = GetDbSet(ctx);
-            await set.AddAsync((TEntity) this);
-            await ctx.SaveChangesAsync();
-        }
-
-        /// <summary>
-        /// Delete an entity.
-        /// </summary>
-        /// <param name="ctx">The database context to perform the action on.</param>
-        public async Task Delete(TContext ctx)
-        {
-            var set = GetDbSet(ctx);
-            set.Remove((TEntity)this);
-            await ctx.SaveChangesAsync();
-        }
-
-        /// <summary>
-        /// Gets all entities of this type.
-        /// </summary>
-        /// <param name="ctx">The database context to perform the action on.</param>
-        /// <returns>A list of entities.</returns>
-        public static Task<List<TEntity>> GetAll(TContext ctx)
-        {
-            var set = GetDbSetStatic(ctx);
-            return set.ToListAsync();
-        }
+        public DbSet<TEntity> GetDbSet(TContext ctx);
     }
 }

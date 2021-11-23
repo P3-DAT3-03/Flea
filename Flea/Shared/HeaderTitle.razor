@@ -1,11 +1,14 @@
+@using Flea.Utility
 @code {
-    [Parameter]
-    public string Value { get; set; }
-    
-    protected override Task OnInitializedAsync()
-    {
-        MainLayout.HeaderTitle = Value;
-        return base.OnInitializedAsync();
+
+    [Parameter, RequiredParameter]
+    public string Value {
+        set
+        {
+            if (value == null!)
+                throw new ArgumentNullException(nameof(Value), "Parameter HeaderTitle.Value is not allowed to be null.");
+            MainLayout.HeaderTitle = value;
+        } 
     }
 
 }

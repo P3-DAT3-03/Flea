@@ -1,4 +1,4 @@
-@page "/ReservationOverview"
+@page "/Reservations"
 
 @inject IDbContextFactory<BingoContext> _dbFactory
 
@@ -6,7 +6,6 @@
 @using Microsoft.EntityFrameworkCore
 @using Flea.Models
 @using Flea.Utility
-
 
 @* <button class="button button--outline create-button" @onclick="NewReservation">Opret ny booking</button> *@
 
@@ -37,7 +36,7 @@
 @code
 {
     private Modal _child = null!;
-    private Reservation _temp = new (0, 0, false, "");
+	private Reservation _temp = new (1, 1, false, "",new Models.Customer("", ""), null!);
     private string _lastSearchTerm = string.Empty;
 
     private List<Reservation>? _reservations;
