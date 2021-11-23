@@ -134,5 +134,66 @@ namespace Flea.Tests
 			Assert.AreEqual(customerA.Id, retrievedEvent.Reservations[0].ReservationOwner.Id);
 			Assert.AreEqual(customerB.Id, retrievedEvent.Reservations[1].ReservationOwner.Id);
 		}
+		
+		/// <summary>
+		/// Fetches the principal entity in a relation in such a manner
+		/// that the dependants are included through an inverse property.
+		/// The presence of all expected entities is checked in order to
+		/// verify the operation.
+		///
+		/// This is the same test as <see cref="GetEntityWithInverseProperty"/>
+		/// except the string version of the include command is used instead of
+		/// the lambda version.
+		/// </summary>
+		[Test]
+		public async Task GetEntityWithInversePropertyTextInclude()
+		{
+			// Initialise entities
+			var @event = new Event("Test event", DateTime.Today);
+			var customerA = new Customer("Test customer A", "12345678");
+			var customerB = new Customer("Test customer B", "12345678");
+			var reservationA = new Reservation(1, 2, false, "comment", customerA, @event);
+			var reservationB = new Reservation(1, 2, true, "comment2", customerB, @event);
+
+			await Factory.Update()
+				.New(@event)
+				.New(customerA, customerB)
+				.New(reservationA, reservationB)
+				.Save();
+
+			var retrievedEvent = await Factory.Get<BingoContext, Event>()
+				.Include("Reservations.ReservationOwner")
+				.First(e => e.Id == @event.Id);
+
+			// Check that the event itself was retrieved
+			Assert.NotNull(retrievedEvent);
+			Assert.AreEqual(@event.Id, retrievedEvent.Id);
+
+			// Check that the reservations are retrieved
+			Assert.NotNull(retrievedEvent.Reservations);
+			Assert.AreEqual(2, retrievedEvent.Reservations.Count);
+			// We assume that they are retrieved and inserted in order of id
+			Assert.AreEqual(1, retrievedEvent.Reservations[0].Id);
+			Assert.AreEqual(2, retrievedEvent.Reservations[1].Id);
+			
+			// Check that the reservation owners are retrieved
+			Assert.AreEqual(customerA.Id, retrievedEvent.Reservations[0].ReservationOwner.Id);
+			Assert.AreEqual(customerB.Id, retrievedEvent.Reservations[1].ReservationOwner.Id);
+		}
+
+		/// <summary>
+		/// We test that an exception is thrown when a method is called
+		/// after a finalizing operation has been called.
+		/// </summary>
+		[Test]
+		public async Task UseAfterDisposeShouldThrow()
+		{
+			var query = Factory.Update().New(new Customer("Test user", "12345678"));
+			await query.Save(); // This causes a dispose call.
+			Assert.Throws<Exception>(() =>
+			{
+				query.New(new Customer("Test user", "12345678"));
+			});
+		}
 	}
 }

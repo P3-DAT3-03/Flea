@@ -1,9 +1,10 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
 namespace Flea.Models
 {
+    [Index("ReservationOwnerId", "EventId", IsUnique = true)]
     public class Reservation : IModelEntity<Reservation, BingoContext>
     {
         /*TODO maybe add priority as Enum instead of as a int.
