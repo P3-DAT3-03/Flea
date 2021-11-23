@@ -1,4 +1,4 @@
-@page "/Reservations"
+@page "/Event/{EventId:int}/Reservations"
 
 @inject IDbContextFactory<BingoContext> _dbFactory
 
@@ -35,8 +35,13 @@
 
 @code
 {
+    [Parameter]
+    public int EventId { get; set; }
+    
+    public Event Event = null!;
+
     private Modal _child = null!;
-	private Reservation _temp = new (1, 1, false, "",new Models.Customer("", ""), null!);
+	private Reservation _temp = new();
     private string _lastSearchTerm = string.Empty;
 
     private List<Reservation>? _reservations;
@@ -52,8 +57,12 @@
     // Create new reservation
     public async Task CreateReservation(EditContext editContext)
     {
-        await _dbFactory.SaveNew(_temp);
-        _temp = new Reservation(0, 0, false, ""); // reset _temp
+        await _dbFactory.Update()
+            .With(Event)
+            .With(_temp.ReservationOwner)
+            .New(_temp)
+            .Save();
+        _temp = new Reservation(1, 1, false, "", new Customer("", ""), Event);
         _child.ModalCancel();
         await UpdateReservationList();
     }
@@ -102,13 +111,21 @@
     
     private async Task UpdateReservationList()
     {
-        await using var context = _dbFactory.CreateDbContext();
-        _reservations = await context.Reservations.Include(r => r.ReservationOwner).ToListAsync();
+        _reservations = await _dbFactory.Get<BingoContext, Reservation>()
+            .Where(reservation => reservation.Event.Id == EventId)
+            .Include(reservation => reservation.ReservationOwner)
+            .All();
         Search(_lastSearchTerm);
     }
     
     protected override async Task OnInitializedAsync()
     {
+        var e = await _dbFactory.Get<BingoContext, Event>()
+            .First(e => e.Id == EventId);
+        
+        Event = e ?? throw new Exception("TODO create good error for user");
+        _temp = new Reservation(1, 1, false, "", new Customer("", ""), Event);
+        
         await UpdateReservationList();
         await base.OnInitializedAsync();
     }

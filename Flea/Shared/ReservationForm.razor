@@ -1,11 +1,8 @@
 ﻿@using Flea.Models
 @using Flea.Utility
-<<<<<<< HEAD
 @using Microsoft.EntityFrameworkCore
 @using System.Text.Json
 @inject IDbContextFactory<BingoContext> _dbFactory
-=======
->>>>>>> 38d881d8cf12a710cd3565a051e576934ae98dc4
 
 
 <EditForm Model="Reservation" OnValidSubmit="OnSubmit">
@@ -133,14 +130,15 @@
     private List<Customer>? _customers;
     private IEnumerable<Customer>? _shownCustomers;
     private string _lastSearchTerm = string.Empty;
-    public int CustomerInput; // public Customer CustomerInput if you want to use select2
 
     protected override async Task OnInitializedAsync()
     {
+        Console.WriteLine("----------FORM INIT----------");
         ParameterChecker.CheckParameters(this);
 
         await base.OnInitializedAsync();
         await UpdateReservationList();
+        Console.WriteLine("----------FORM END----------");
     }
 
     public void Select(Customer c)
@@ -183,7 +181,6 @@
 
     private async Task OnSubmit(EditContext context)
     {
-        Console.WriteLine(JsonSerializer.Serialize(Reservation));
         await OnValidSubmit.InvokeAsync(context);
     }
 }
