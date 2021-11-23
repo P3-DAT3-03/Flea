@@ -1,8 +1,8 @@
 ﻿@using Flea.Models
 @using Flea.Utility
 @using Microsoft.EntityFrameworkCore
+@using System.Text.Json
 @inject IDbContextFactory<BingoContext> _dbFactory
-@using NEvaldas.Blazor.Select2
 
 
 <EditForm Model="Reservation" OnValidSubmit="OnSubmit">
@@ -12,13 +12,29 @@
             <div class="edit-form-div">
                 <div>Søg efter loppe:</div>
                 <div class="search-box" style="display: grid;">
+                    <div class="dropdown">
+                        <input class="search-input edit-search-input-form" type="search" value="@_selectedCustomer?.Name" placeholder="Søge efter loppe" @oninput="Search">
+                        <div class="floating-dropdown" style="display: @_display;">
+                            <div>
+                                @if (_shownCustomers != null)
+                                {
+                                    <option selected="selected" disabled="" value="-1">Vælg en loppe</option>
+                                    foreach (var customer in _shownCustomers)
+                                    {
+                                        <option value="@customer.Id" @onclick="() => Select(customer)">@customer.Name</option>
+                                    }
+                                }
+                            </div>
+                        </div>
+                    </div>
+
                     @*<Select2 TItem="Customer"
                              Id="simple-string-example"
                              Data="@(_shownCustomers?.ToList())"
                              @bind-Value="@CustomerInput">
                     </Select2>*@
-                    
-                    <input class="search-input edit-search-input-form" type="search" placeholder="Eks. Hans Henriksen"
+
+                    @*<input class="search-input edit-search-input-form" type="search" placeholder="Eks. Hans Henriksen"
                            list="customer" @bind="CustomerInput"/>
                     
                     <datalist id="customer">
@@ -30,8 +46,8 @@
                                 <option value="@customer.Id">@customer.Name</option>
                             }
                         }
-                    </datalist>
-                    
+                    </datalist>*@
+
                     @*<InputSelect class="search-input edit-search-input" @bind-Value="CustomerInput">
                          @if (_shownCustomers != null)
                          {
@@ -71,13 +87,15 @@
         <div class="edit-form-div">
             <div>Antal stande: </div>
             <InputNumber class="search-input edit-search-input" placeholder="Eks. 3"
-                         @bind-Value="Reservation.TableCount"></InputNumber>
+                         @bind-Value="Reservation.TableCount">
+            </InputNumber>
         </div>
         <div class="edit-form-div">
             <div>Betalt?: </div>
             <label class="checkbox">
                 <InputCheckbox type="checkbox" class="checkbox__input"
-                               @bind-Value="Reservation.Paid"></InputCheckbox>
+                               @bind-Value="Reservation.Paid">
+                </InputCheckbox>
                 <div class="checkbox__checkmark"></div>
                 <div id="move-div">@(Reservation.Paid ? "Betalt" : "Ej betalt")</div>
             </label>
@@ -88,14 +106,6 @@
                         placeholder="Eks. Handicap, tæt på rygerrum mm."
                         @bind="Reservation.Comments"></textarea>
         </div>
-        @*<div>
-             <label>Bod type: </label> 
-             <InputText @bind-Value="Reservation.Comments"></InputText> 
-         </div> 
-         <div> 
-             <label>Leje af tøj stativ: </label> 
-             <InputNumber @bind-Value="Reservation.Comments"></InputNumber> 
-         </div>*@
         <div id="move-down">
             <button type="submit" class="button create-button button--outline">@(Reservation.Id == 0 ? "Opret booking" : "Gem ændringer")</button>
             <button type="button" class="button button del-button button--outline" @onclick="@Modal.ModalCancel">Cancel</button>
@@ -103,7 +113,7 @@
     </div>
 </EditForm>
 
-@code 
+@code
 {
     [Parameter]
     public Reservation Reservation { get; set; } = null!;
@@ -114,33 +124,48 @@
     [Parameter]
     public Modal Modal { get; set; } = null!;
 
+    private string _display = "none";
+    private Customer? _selectedCustomer;
+    
     private List<Customer>? _customers;
     private IEnumerable<Customer>? _shownCustomers;
     private string _lastSearchTerm = string.Empty;
     public int CustomerInput; // public Customer CustomerInput if you want to use select2
-    
+
     protected override async Task OnInitializedAsync()
     {
         if (Reservation == null!)
         {
-            throw new ArgumentNullException(nameof(Reservation),"Parameter Reservation can never be null");
+            throw new ArgumentNullException(nameof(Reservation), "Parameter Reservation can never be null");
         }
 
         await base.OnInitializedAsync();
         await UpdateReservationList();
-
     }
-    
+
+    public void Select(Customer c)
+    {
+        _selectedCustomer = c;
+        Reservation.ReservationOwner = c;
+        _display = "none";
+    }
+
     public void Search(ChangeEventArgs e) => Search(e.Value?.ToString()!.ToLower() ?? "");
+
     public void Search(string searchTerm)
     {
+        if (searchTerm != "")
+        {
+            _display = "display";
+        }
     // If no input show everything
         if (searchTerm == "")
         {
             _shownCustomers = _customers;
         }
-        else 
-        {// Finds by name
+        else
+        {
+    // Finds by name
             _shownCustomers = from c
                 in _customers
                 where c.Name.ToLower().Contains(searchTerm)
@@ -148,7 +173,7 @@
         }
         _lastSearchTerm = searchTerm;
     }
-    
+
     private async Task UpdateReservationList()
     {
         await using var context = _dbFactory.CreateDbContext();
@@ -158,11 +183,7 @@
 
     private async Task OnSubmit(EditContext context)
     {
-        if (Reservation.ReservationOwnerId == 0)
-        {
-            Reservation.ReservationOwnerId = CustomerInput; // CustomerInput.Id if you want to use select2
-        }
+        Console.WriteLine(JsonSerializer.Serialize(Reservation));
         await OnValidSubmit.InvokeAsync(context);
-
     }
 }

@@ -186,7 +186,7 @@ a, .btn-link {
 
 .edit-search-input {
     background-image: none;
-    width: auto;
+    width: 100%;
 }
 
 /* Grid container for reservation and customer*/

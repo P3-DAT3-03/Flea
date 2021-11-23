@@ -19,9 +19,6 @@ namespace Flea.Models
         
         public Event Event { get; set; }
         
-        public int ReservationOwnerId { get; set; }
-        
-        [ForeignKey(nameof(ReservationOwnerId))]
         public Customer ReservationOwner { get; set; }
 
         public Reservation(int priority, int tableCount, bool paid, string comments, Customer reservationOwner)
