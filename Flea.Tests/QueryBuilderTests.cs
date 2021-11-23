@@ -134,7 +134,7 @@ namespace Flea.Tests
 			Assert.AreEqual(customerA.Id, retrievedEvent.Reservations[0].ReservationOwner.Id);
 			Assert.AreEqual(customerB.Id, retrievedEvent.Reservations[1].ReservationOwner.Id);
 		}
-
+		
 		/// <summary>
 		/// Fetches the principal entity in a relation in such a manner
 		/// that the dependants are included through an inverse property.
