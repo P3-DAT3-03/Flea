@@ -29,6 +29,13 @@
 </div>
 
 @code {
+
+    private string titleHeader = "Loppemarkeder";
+
+    private void UpdateTitleHeader() { MainLayout.HeaderTitle = titleHeader; }
+    
+    protected override void OnInitialized() { UpdateTitleHeader(); }
+    
     // Placeholder event class. Replace with Event.cs in Model
     public class DummyEvent
     {
@@ -60,4 +67,5 @@
     //DummyEventDB.Add(new DummyEvent("17. Oktober, 2022", 130, 23));
     //DummyEventDB.Add(new DummyEvent("28. Oktober, 2021", 130, 23));
     }
+    
 }

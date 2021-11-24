@@ -1,0 +1,30 @@
+<svg id="book" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+  <g id="home-icon" stroke="#fff" stroke-width="1">
+    <circle cx="12" cy="12" r="12" stroke="none"/>
+    <circle cx="12" cy="12" r="11.5" fill="none"/>
+  </g>
+  <g id="Subtraction_4" data-name="Subtraction 4" transform="translate(7.5 5.5)">
+    <path d="M 9.5 12.5 L 0.5 12.5 L 0.5 0.5002785921096802 L 6.500269889831543 0.5000214576721191 L 6.500269889831543 3.000020027160645 L 6.500269889831543 3.500020027160645 L 7.000269889831543 3.500020027160645 L 9.5 3.500020027160645 L 9.5 12.5 Z" stroke="none"/>
+    <path d="M 9 12 L 9 4.000020027160645 L 6.000269889831543 4.000020027160645 L 6.000269889831543 1.000042915344238 L 1 1.000257134437561 L 1 12 L 9 12 M 10 13 L 0 13 L 0 0.0003000000142492354 L 7.000269889831543 -8.881784197001252e-16 L 7.000269889831543 3.000020027160645 L 10 3.000020027160645 L 10 13 Z" stroke="none" fill="#fff"/>
+  </g>
+  <g id="Path_34" data-name="Path 34" transform="translate(13.596 5.5)">
+    <path d="M 2.993060111999512 3.241035223007202 L 0.7772311568260193 0.9709329009056091 L 1.005645990371704 0.7264100313186646 L 3.210587501525879 3.014384984970093 L 2.993060111999512 3.241035223007202 Z" stroke="none"/>
+    <path d="M 0.9999971389770508 4.76837158203125e-07 L 3.904297113418579 3.013670444488525 L 2.996097087860107 3.959960460662842 L 0.0859372615814209 0.978520393371582 L 0.9999971389770508 4.76837158203125e-07 Z" stroke="none" fill="#fff"/>
+  </g>
+  <g id="Rectangle_96" data-name="Rectangle 96" transform="translate(10 8.5)" fill="#007aff" stroke="#007aff" stroke-width="1">
+    <rect width="2.502" height="1" stroke="none"/>
+    <rect x="0.5" y="0.5" width="1.502" fill="none"/>
+  </g>
+  <g id="Rectangle_97" data-name="Rectangle 97" transform="translate(10 10.5)" fill="#007aff" stroke="#007aff" stroke-width="1">
+    <rect width="5.593" height="1" stroke="none"/>
+    <rect x="0.5" y="0.5" width="4.593" fill="none"/>
+  </g>
+  <g id="Rectangle_98" data-name="Rectangle 98" transform="translate(10 12.5)" fill="#007aff" stroke="#007aff" stroke-width="1">
+    <rect width="4.593" height="1" stroke="none"/>
+    <rect x="0.5" y="0.5" width="3.593" fill="none"/>
+  </g>
+  <g id="Rectangle_99" data-name="Rectangle 99" transform="translate(10 14.5)" fill="#007aff" stroke="#007aff" stroke-width="1">
+    <rect width="5.593" height="1" stroke="none"/>
+    <rect x="0.5" y="0.5" width="4.593" fill="none"/>
+  </g>
+</svg>

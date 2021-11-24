@@ -1,0 +1,15 @@
+.navigation-tab {
+    background-color: var(--ios-bg);
+    border-top: 2px solid white;
+    border-bottom: 2px solid white;
+    width: 5rem;
+    height: 5rem;
+}
+
+.tabbar__label {
+    font-size: 15px;
+    font-family: Poppins, sans-serif;
+    padding-top: 2px;
+    text-transform: capitalize;
+}
+

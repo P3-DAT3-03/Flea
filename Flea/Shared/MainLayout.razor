@@ -1,20 +1,27 @@
 @inherits LayoutComponentBase
 
-<div class="page">
-    <div class="sidebar">
-        <NavMenu/>
-    </div>
-
-    <div class="main">
-        <div class="top-row px-4">
-            <span>Banko Lopper</span>
-            <span id="HeaderTitle">@_headerTitle</span>
+<div class="container">
+    
+    <header class="site-header">
+        <div class="logo">
+            <a href="#" class="brand"><img src="./icons/logo.svg" alt="brand"/></a>
         </div>
-
-        <div class="content px-4">
+        
+        <div class="page-title">@_headerTitle</div>
+    </header>
+    
+    <div class="below-header">
+        
+        <div class="navigation-bar">
+            <NavMenu/>
+        </div>
+            
+        <div class="content">
             @Body
         </div>
+        
     </div>
+
 </div>
 
 @code

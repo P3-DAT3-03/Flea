@@ -1,12 +1,12 @@
 @inject NavigationManager _navigationManager
 
-<li class="list-item list-item--tappable">
+<li class="list-item list-item--tappable navigation-tab">
     <div class="tabbar tabbar--top tabbar--material">
         <label class="tabbar__item tabbar--material__item">
             <input type="radio" name="tabbar-material-c" checked="@IsChecked()" @onclick="Navigate">
             <button class="tabbar__button tabbar--material__button">
                 <i class="tabbar__icon tabbar--material__icon">
-                    <span class="@IconClass">@Icon</span>
+                    <img src="./icons/@Icon" alt="brand"/>
                 </i>
                 <div class="tabbar__label tabbar--material__label">@ChildContent</div>
             </button>
@@ -40,10 +40,6 @@
             getPath = "/Home";
         }
 
-        if (Href == getPath)
-        {
-            return true;
-        }
-        return false;
+        return Href == getPath;
     }
 }

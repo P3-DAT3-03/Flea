@@ -25,6 +25,10 @@
 
 @code
 {
+    private string titleHeader = "Bookinger til den 28. februar, 2021";
+
+    private void UpdateTitleHeader() { MainLayout.HeaderTitle = titleHeader; }
+
     private Modal _child;
     private Reservation _temp = new (1, 1, false, "",new Models.Customer("", ""));
     private string _search = "";
@@ -100,6 +104,7 @@
     
     protected override void OnInitialized()
     {
+        UpdateTitleHeader();
         _shownReservation = _reservations;
     }
 }

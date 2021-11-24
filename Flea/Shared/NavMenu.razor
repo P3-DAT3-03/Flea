@@ -1,18 +1,29 @@
 ﻿@inject NavigationManager _navigationManager
 @using Flea.Pages
 
-<!-- Flea logo -->
-<div class="logo">
-    <img src="./loppe.svg" alt="Du blind, så det kan være lige møj"/>
-</div>
-
 <!-- NavBar -->
 <div>
     <ul class="list">
-        <NavTab Href="/Home" Icon="home">Hjem</NavTab>
-        <NavTab Href="/Booking" Icon="description">Book</NavTab>
-        <NavTab Href="/Placing" Icon="place">Placér</NavTab>
-        <NavTab Href="/Market" Icon="storefront">Market</NavTab>
-        <NavTab Href="/Customer" Icon="person_outline">Loppe</NavTab>
+        <NavTab Href="/Home" Icon="hjem.svg">Hjem</NavTab>
+        <NavTab Href="/Customers" Icon="lopper.svg">Lopper</NavTab>
+        <NavTab Href="/Settings" Icon="indstillinger.svg">Info</NavTab>
     </ul>
+
+        @if (!SecondaryMenuIsVisible)
+        {
+            <hr>
+
+            <ul class="list">
+                <NavTab Href="/Booking" Icon="book.svg">Book</NavTab>
+                <NavTab Href="/Placing" Icon="placer.svg">Placér</NavTab>
+                <NavTab Href="/Market" Icon="marked.svg">Marked</NavTab>
+            </ul>
+        }
 </div>
+
+@code {
+
+    [Parameter]
+    public bool SecondaryMenuIsVisible { get; set; }
+    
+}

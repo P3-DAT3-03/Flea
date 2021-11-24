@@ -1,0 +1,18 @@
+@page "/Settings"
+
+@code {
+
+    private string titleHeader = "Standard Indstillinger til nye Loppemarkeder";
+
+    private void UpdateTitleHeader()
+    {
+        MainLayout.HeaderTitle = titleHeader;
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await Task.Delay(1);
+        UpdateTitleHeader();
+    }
+
+}

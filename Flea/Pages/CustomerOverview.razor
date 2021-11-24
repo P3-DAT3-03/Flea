@@ -32,6 +32,12 @@
 
 @code
 {
+    private string titleHeader = "Lopper";
+
+    private void UpdateTitleHeader() { MainLayout.HeaderTitle = titleHeader; }
+    
+    protected override void OnInitialized() { UpdateTitleHeader(); }
+    
     private Modal _child = null!;
     private Customer _temp = new(0);
     private string _lastSearchTerm = string.Empty;
