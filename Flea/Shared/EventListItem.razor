@@ -1,9 +1,10 @@
-
 @using Event = Flea.Models.Event;
+@inject NavigationManager _navigationManager;
+
 
 <div class="event-list">
     <div class="font-size-xx-large">@Event.Name </div>
-    <button class="button button--outline">Booking ></button>
+    <button class="button button--outline" @onclick='() => Navigate($"/Event/{Event.Id}/Reservations")'>Booking></button>
     <div class="font-size-larger-unicorn">@Event.ComputeRemainingTables ledige stande </div>
     <button class="button button--outline">Placering ></button>
     <div class="font-size-larger">@Event.ComputeMissingPayments mangler at betale </div>
@@ -13,6 +14,11 @@
 @code {
     [Parameter]
     public Event Event { get; set; }
+
+    public void Navigate(string destination)
+    {
+        _navigationManager.NavigateTo(destination);
+    }
 
     // Add functionality for buttons here.
 }

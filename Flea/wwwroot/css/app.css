@@ -152,6 +152,7 @@ a, .btn-link {
 /* TopBar - To make navbar transparent so it match sidebar color*/
 .list, .tabbar--material{
     background-color: transparent;
+    background: none;
 }
     
 /* SideBar - To edit li padding in SideBar*/
