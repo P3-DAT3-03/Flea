@@ -1,0 +1,43 @@
+﻿@using Event = Flea.Models.Event;
+@using Microsoft.AspNetCore.Components
+@using EventList = Flea.Pages.Home.EventList;
+
+<EditForm Model="EventList" OnValidSubmit="OnValidSubmit">
+    <div class="edit-form">
+        @foreach (Event temp in EventList.Events)
+        {
+            <div class="edit-form">
+                <div class="edit-form-div">
+                    <label>Dato:</label>
+                    <input type="date" @bind="temp.DateTime"/>
+                </div>
+            </div>
+        }
+        <div>
+            <button type="submit" class="button create-button button--outline">Tilføj loppemarked</button>
+            <button type="button" class="button button del-button button--outline" @onclick="Modal.ModalCancel">Annuller</button>
+        </div>
+    </div>
+</EditForm>
+
+
+@code {
+    
+    [Parameter]
+    public EventList EventList { get; set; }
+
+    [Parameter]
+    public EventCallback<EditContext> OnValidSubmit { get; set; }
+    
+    [Parameter]
+    public Modal Modal { get; set; }
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        if (EventList == null)
+        {
+            throw new ArgumentNullException(nameof(EventList),"Parameter EventList can never be null");
+        }
+    }
+}

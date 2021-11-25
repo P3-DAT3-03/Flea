@@ -1,24 +1,18 @@
+
+@using Event = Flea.Models.Event;
+
 <div class="event-list">
-    <div class="font-size-xx-large">@Date </div>
+    <div class="font-size-xx-large">@Event.Name </div>
     <button class="button button--outline">Booking ></button>
-    <div class="font-size-larger-unicorn">@RemainingTables ledige stande </div>
+    <div class="font-size-larger-unicorn">@Event.ComputeRemainingTables ledige stande </div>
     <button class="button button--outline">Placering ></button>
-    <div class="font-size-larger">@MissingPayments mangler at betale </div>
+    <div class="font-size-larger">@Event.ComputeMissingPayments mangler at betale </div>
     <button class="button button--outline">Loppemarked ></button>
 </div>
 
 @code {
     [Parameter]
-    public int Id { get; set; }
-    
-    [Parameter]
-    public string Date { get; set; }
-    
-    [Parameter]
-    public int RemainingTables { get; set; }
-    
-    [Parameter]
-    public int MissingPayments { get; set; }
-    
+    public Event Event { get; set; }
+
     // Add functionality for buttons here.
 }
