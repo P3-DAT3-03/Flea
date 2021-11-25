@@ -6,7 +6,7 @@
     <div class="txt">@Reservation.TableCount Stande</div>
     <div class="txt">@(Reservation.Paid ? "Betalt" : "Ej betalt")</div>
     <button class="button del-button button--outline" @onclick="Delete">Slet</button>
-    <Modal ButtonName="Rediger" @ref="_child">
+    <Modal ButtonCSS="button button--outline create-button" ButtonName="Rediger" @ref="_child">
         <ReservationForm Reservation="_temp" OnValidSubmit="OnSubmit" Modal="_child"></ReservationForm>
     </Modal>
 </div>
