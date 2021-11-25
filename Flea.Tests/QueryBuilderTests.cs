@@ -102,7 +102,7 @@ namespace Flea.Tests
 		public async Task GetEntityWithInverseProperty()
 		{
 			// Initialise entities
-			var @event = new Event("Test event", DateTime.Today);
+			var @event = new Event(DateTime.Today);
 			var customerA = new Customer("Test customer A", "12345678");
 			var customerB = new Customer("Test customer B", "12345678");
 			var reservationA = new Reservation(1, 2, false, "comment", customerA, @event);
@@ -149,7 +149,7 @@ namespace Flea.Tests
 		public async Task GetEntityWithInversePropertyTextInclude()
 		{
 			// Initialise entities
-			var @event = new Event("Test event", DateTime.Today);
+			var @event = new Event(DateTime.Today);
 			var customerA = new Customer("Test customer A", "12345678");
 			var customerB = new Customer("Test customer B", "12345678");
 			var reservationA = new Reservation(1, 2, false, "comment", customerA, @event);
