@@ -13,6 +13,11 @@
         
         public Cluster Cluster { get; set; }
         
+        /// <summary>
+        /// 
+        /// </summary>
+        public int ClusterIndex { get; set; }
+        
         public Reservation? Reservation { get; set; }
         public TableType Type { get; set; }
 

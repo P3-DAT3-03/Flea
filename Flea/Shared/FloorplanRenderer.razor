@@ -1,0 +1,70 @@
+@using Blazor.Extensions
+@using Blazor.Extensions.Canvas.Canvas2D
+@using Flea.Models.Floorplan
+@using Flea.Utility
+<BECanvas height="@Height" width="@Width" @ref="_canvas">
+
+</BECanvas>
+
+@code {
+
+    private BECanvasComponent _canvas = null!;
+    private Canvas2DContext _context = null!;
+
+    private FloorplanTemplate _template = null!;
+    private uint _canvasWidth = 100;
+    private uint _canvasHeight = 100;
+    private uint _gridUnitX = 0;
+    private uint _gridUnitY = 0;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        _context = await _canvas.CreateCanvas2DAsync();
+        await _context.SetFillStyleAsync(BackgroundColor);
+        await _context.FillRectAsync(0, 0, Width, Height);
+    }
+
+    protected override void OnInitialized()
+    {
+        ParameterChecker.CheckParameters(this);
+        base.OnInitialized();
+    }
+
+    [Parameter]
+    public uint Width
+    {
+        get => _canvasWidth;
+        set
+        {
+            _canvasWidth = value;
+            _gridUnitX = value / Template.GridWidth;
+        }
+    }
+
+    [Parameter]
+    public uint Height
+    {
+        get => _canvasHeight;
+        set
+        {
+            _canvasHeight = value;
+            _gridUnitY = value / Template.GridHeight;
+        }
+    }
+
+    [Parameter, RequiredParameter]
+    public FloorplanTemplate Template
+    {
+        get => _template;
+        set
+        {
+            _template = value;
+            _gridUnitX = Width / value.GridWidth;
+            _gridUnitY = Height / value.GridHeight;
+        }
+    }
+
+    [Parameter]
+    public string BackgroundColor { get; set; } = "black";
+
+}

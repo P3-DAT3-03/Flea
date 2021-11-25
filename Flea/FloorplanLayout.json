@@ -1,0 +1,21 @@
+{
+  "GridWidth": 200,
+  "GridHeight": 200,
+  "TableClasses": {
+    "Vertical": {
+      "Width": 1,
+      "Height": 2
+    },
+    "Horizontal": {
+      "Width": 2,
+      "Height": 1
+    }
+  },
+  "Clusters": {
+    "A": [{
+      "Class": "Vertical",
+      "X": 0,
+      "y": 1
+    }]
+  }
+}
