@@ -13,3 +13,24 @@
     text-transform: capitalize;
 }
 
+.active-tab {
+    border-left: 8px solid var(--ios-blue);
+    height: 76px;
+}
+
+.inactive-tab {
+    height: 76px;
+}
+
+.tabbar--material__button:after {
+    content: unset;
+}
+
+.active-tab .tabbar__button {
+    width: 72px;
+}
+
+.tabbar__button {
+    height: 76px;
+    width: 80px;
+}
