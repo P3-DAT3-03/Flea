@@ -426,12 +426,12 @@ references:
   commentId: M:Flea.Models.Event.#ctor
   fullName: Flea.Models.Event.Event()
   nameWithType: Event.Event()
-- uid: Flea.Models.Event.#ctor(System.String,System.DateTime)
-  name: Event(String, DateTime)
-  href: api/Flea.Models.Event.html#Flea_Models_Event__ctor_System_String_System_DateTime_
-  commentId: M:Flea.Models.Event.#ctor(System.String,System.DateTime)
-  fullName: Flea.Models.Event.Event(System.String, System.DateTime)
-  nameWithType: Event.Event(String, DateTime)
+- uid: Flea.Models.Event.#ctor(System.DateTime)
+  name: Event(DateTime)
+  href: api/Flea.Models.Event.html#Flea_Models_Event__ctor_System_DateTime_
+  commentId: M:Flea.Models.Event.#ctor(System.DateTime)
+  fullName: Flea.Models.Event.Event(System.DateTime)
+  nameWithType: Event.Event(DateTime)
 - uid: Flea.Models.Event.#ctor*
   name: Event
   href: api/Flea.Models.Event.html#Flea_Models_Event__ctor_
@@ -452,6 +452,19 @@ references:
   isSpec: "True"
   fullName: Flea.Models.Event.Clusters
   nameWithType: Event.Clusters
+- uid: Flea.Models.Event.ComputeMissingPayments
+  name: ComputeMissingPayments
+  href: api/Flea.Models.Event.html#Flea_Models_Event_ComputeMissingPayments
+  commentId: P:Flea.Models.Event.ComputeMissingPayments
+  fullName: Flea.Models.Event.ComputeMissingPayments
+  nameWithType: Event.ComputeMissingPayments
+- uid: Flea.Models.Event.ComputeMissingPayments*
+  name: ComputeMissingPayments
+  href: api/Flea.Models.Event.html#Flea_Models_Event_ComputeMissingPayments_
+  commentId: Overload:Flea.Models.Event.ComputeMissingPayments
+  isSpec: "True"
+  fullName: Flea.Models.Event.ComputeMissingPayments
+  nameWithType: Event.ComputeMissingPayments
 - uid: Flea.Models.Event.ComputeRemainingTables
   name: ComputeRemainingTables
   href: api/Flea.Models.Event.html#Flea_Models_Event_ComputeRemainingTables
@@ -504,6 +517,12 @@ references:
   isSpec: "True"
   fullName: Flea.Models.Event.Id
   nameWithType: Event.Id
+- uid: Flea.Models.Event.Months
+  name: Months
+  href: api/Flea.Models.Event.html#Flea_Models_Event_Months
+  commentId: F:Flea.Models.Event.Months
+  fullName: Flea.Models.Event.Months
+  nameWithType: Event.Months
 - uid: Flea.Models.Event.Name
   name: Name
   href: api/Flea.Models.Event.html#Flea_Models_Event_Name
@@ -543,6 +562,19 @@ references:
   isSpec: "True"
   fullName: Flea.Models.Event.Reservations
   nameWithType: Event.Reservations
+- uid: Flea.Models.Event.UpdateName
+  name: UpdateName()
+  href: api/Flea.Models.Event.html#Flea_Models_Event_UpdateName
+  commentId: M:Flea.Models.Event.UpdateName
+  fullName: Flea.Models.Event.UpdateName()
+  nameWithType: Event.UpdateName()
+- uid: Flea.Models.Event.UpdateName*
+  name: UpdateName
+  href: api/Flea.Models.Event.html#Flea_Models_Event_UpdateName_
+  commentId: Overload:Flea.Models.Event.UpdateName
+  isSpec: "True"
+  fullName: Flea.Models.Event.UpdateName
+  nameWithType: Event.UpdateName
 - uid: Flea.Models.IModelEntity`2
   name: IModelEntity<TEntity, TContext>
   href: api/Flea.Models.IModelEntity-2.html
