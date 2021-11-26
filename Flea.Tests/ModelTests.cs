@@ -14,7 +14,7 @@ namespace Flea.Tests
         [Test]
         public void EventTests()
         {
-            Event hello = new Event("hello", DateTime.Now);
+            Event hello = new Event(DateTime.Now);
             Assert.True(13 == hello.Clusters.Count, "There should always be 13 clusters");
 
             Assert.AreEqual(108, hello.ComputeRemainingTables);
@@ -41,7 +41,7 @@ namespace Flea.Tests
             const string name = "Ole";
             const string number = "88888888";
             Customer Ole = new Customer(name, number);
-            Reservation OleReservation = new Reservation(priority, tableCount, paid, comment, Ole);
+            Reservation OleReservation = new Reservation(priority, tableCount, paid, comment, Ole, null!);
             OleReservation.Tables.Add(new Table());
             Assert.AreEqual(OleReservation.TableCount, tableCount, "reservation does not have the right tablecount based on input");
         }
@@ -64,7 +64,7 @@ namespace Flea.Tests
             const string name = "Ole";
             const string number = "88888888";
             Customer Ole = new Customer(name, number);
-            Reservation OleReservation = new Reservation(priority, reservedTableCount, paid, comment, Ole);
+            Reservation OleReservation = new Reservation(priority, reservedTableCount, paid, comment, Ole, null!);
             Cluster m = new Cluster("m", 4, tableAmount);
             Assert.AreEqual(m.CustomerCount, 4);
 

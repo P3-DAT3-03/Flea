@@ -6,16 +6,15 @@
     <div class="txt">@Reservation.TableCount Stande</div>
     <div class="txt">@(Reservation.Paid ? "Betalt" : "Ej betalt")</div>
     <button class="button del-button button--outline" @onclick="Delete">Slet</button>
-    <Modal ButtonName="Rediger" @ref="_child">
+    <Modal ButtonCSS="button button--outline create-button" ButtonName="Rediger" @ref="_child">
         <ReservationForm Reservation="_temp" OnValidSubmit="OnSubmit" Modal="_child"></ReservationForm>
     </Modal>
 </div>
-@* <button class="button edit-button" @onclick="Edit">Rediger</button> *@
 
 @code {
-    private Modal _child;
-    private Reservation _temp = new(1, 0, false, "",new Models.Customer("", ""));
-    private Reservation _reservation;
+    private Modal _child = null!;
+    private Reservation _temp = new(1, 1, false, "", new Customer("", ""), null!);
+    private Reservation _reservation = null!;
 
     [Parameter]
     public Reservation Reservation
@@ -29,25 +28,24 @@
     }
 
     [Parameter]
-    public EventCallback<string> OnDelete { get; set; }
+    public EventCallback<Reservation> OnDelete { get; set; }
     
     [Parameter]
-    public EventCallback<EditContext>OnEdit { get; set; }
+    public EventCallback<EditContext> OnEdit { get; set; }
 
     public async Task Delete()
     {
-        await OnDelete.InvokeAsync(Reservation.ReservationOwner.Name);
+        await OnDelete.InvokeAsync(Reservation);
     }
 
     public async Task OnSubmit(EditContext context)
     {
         _child.ModalCancel();
-
-        Reservation.TableCount = _temp.TableCount;
-        Reservation.Paid = _temp.Paid;
-        Reservation.Comments = _temp.Comments;
+        
+        _reservation.TableCount = _temp.TableCount;
+        _reservation.Paid = _temp.Paid;
+        _reservation.Comments = _temp.Comments;
         
         await OnEdit.InvokeAsync(context);
-        
     }
 }

@@ -15,19 +15,17 @@
         <div class="navigation-bar">
             <NavMenu/>
         </div>
-            
-        <div class="content">
+
+        <div class="content px-4" style="overflow-y: scroll; height: calc(100vh - 56px);">
             @Body
         </div>
-        
     </div>
-
 </div>
 
 @code
 {
-    private static MainLayout _instance;
-    private static string _headerTitle;
+    private static MainLayout _instance = null!;
+    private static string _headerTitle = string.Empty;
     
     public static string HeaderTitle
     {

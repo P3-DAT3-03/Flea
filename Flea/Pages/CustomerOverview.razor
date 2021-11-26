@@ -7,10 +7,12 @@
 @using Flea.Models
 @using Flea.Utility
 
+<HeaderTitle Value="Lopper"/>
+
 <div>
     <div class="view-head">
         <input class="search-input" type="search" value="" placeholder="Søg efter loppe..." @oninput="Search">
-        <Modal ButtonName="Opret ny loppe" @ref="_child">
+        <Modal ButtonCSS="button button--outline create-button" ButtonName="Opret ny loppe" @ref="_child">
             <CustomerForm Customer="_temp" OnValidSubmit="CreateCustomer" Modal="_child"></CustomerForm>
         </Modal>
     </div>
@@ -19,9 +21,10 @@
         @foreach (var customer in _shownCustomers)
         {
             <div>
-            <CustomerUserListItem Customer="@customer" OnDelete="@DeleteCustomer"/>
+            <CustomerUserListItem Customer="@customer" OnEdit="@UpdateCustomer" OnDelete="@DeleteCustomer"/>
             </div>
         }
+        <div style="display: inline-block"></div>
     }
     else
     {
@@ -32,12 +35,7 @@
 
 @code
 {
-    private string titleHeader = "Lopper";
 
-    private void UpdateTitleHeader() { MainLayout.HeaderTitle = titleHeader; }
-    
-    protected override void OnInitialized() { UpdateTitleHeader(); }
-    
     private Modal _child = null!;
     private Customer _temp = new(0);
     private string _lastSearchTerm = string.Empty;
@@ -59,6 +57,12 @@
         await _dbFactory.SaveNew(_temp);
         _temp = new Customer(0); // reset _temp
         _child.ModalCancel();
+        await UpdateCustomersList();
+    }
+
+    public async Task UpdateCustomer(EditContext context)
+    {
+        await _dbFactory.Save((Customer) context.Model);
         await UpdateCustomersList();
     }
 

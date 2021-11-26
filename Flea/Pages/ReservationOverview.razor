@@ -1,110 +1,131 @@
-@using Flea.Models
+@page "/Event/{EventId:int}/Reservations"
+
+@inject IDbContextFactory<BingoContext> _dbFactory
+
+@using Reservation = Flea.Models.Reservation
 @using Microsoft.EntityFrameworkCore
-
-@page "/ReservationOverview"
-
-@* <button class="button button--outline create-button" @onclick="NewReservation">Opret ny booking</button> *@
+@using Flea.Models
+@using Flea.Utility
 
 <div>
     <div class="view-head">
-        <input class="search-input" type="search" value="" placeholder="Søg efter booking" @oninput="Searchbar">
-        <Modal ButtonName="Opret ny booking" @ref="_child">
-            <ReservationForm Reservation="_temp" OnValidSubmit="NewReservation" Modal="_child"></ReservationForm>
+        <input class="search-input" type="search" value="" placeholder="Søg efter booking" @oninput="Search">
+        <Modal ButtonCSS="button button--outline create-button" ButtonName="Opret ny booking"  @ref="_child">
+            <ReservationForm Reservation="_temp" OnValidSubmit="CreateReservation" Modal="_child"></ReservationForm>
         </Modal>
     </div>
-
-    @foreach (var value in _shownReservation)
+    @if (_shownReservation is not null && _shownReservation.Any())
     {
-        <div>
-            <ReservationUserListItem Reservation="value"
-                                     OnDelete="@DeleteReservationInformation"
-                                     OnEdit="@EditReservationInformation"/>
-        </div>
+        @foreach (var reservation in _shownReservation)
+        {
+            <div>
+                <ReservationUserListItem Reservation="reservation"
+                                         OnDelete="@DeleteReservation"
+                                         OnEdit="@EditReservation"/>
+            </div>
+        }
+        <div style="display: inline-block"></div>
+    }
+    else
+    {
+        <h2>Der er ingen bookinger at vise...</h2>
     }
 </div>
 
 @code
 {
-    private string titleHeader = "Bookinger til den 28. februar, 2021";
-
-    private void UpdateTitleHeader() { MainLayout.HeaderTitle = titleHeader; }
-
-    private Modal _child;
-    private Reservation _temp = new (1, 1, false, "",new Models.Customer("", ""));
-    private string _search = "";
+    [Parameter]
+    public int EventId { get; set; }
     
-    
-    // Dummy data
-    private static Models.Customer _dummyCustomer = new Models.Customer("Christoffer Trebbien Jønsson", "12345678");
-    
-    private List<Reservation> _reservations = new()
-    {
-        new Reservation(1, 3, true, "", _dummyCustomer){Id = 1},
-        new Reservation(1, 3, true, "", _dummyCustomer){Id = 2},
-        new Reservation(1, 3, true, "", _dummyCustomer){Id = 3}
-    };
+    public Event Event = null!;
 
-    private IEnumerable<Reservation> _shownReservation;
+    private Modal _child = null!;
+	private Reservation _temp = new();
+    private string _lastSearchTerm = string.Empty;
 
+    private List<Reservation>? _reservations;
+    private IEnumerable<Reservation>? _shownReservation;
+    
     // Delete the reservation
-    public void DeleteReservationInformation(string name)
+    public async Task DeleteReservation(Reservation reservation)
     {
-        var nameFound = _reservations.Find(r => r.ReservationOwner.Name == name);
-        
-        if (nameFound != null)
-        {
-            _reservations.Remove(nameFound);
-            _shownReservation = _shownReservation.Where(reservation => reservation != nameFound);
-        }
+        await _dbFactory.Delete(reservation);
+        await UpdateReservationList();
+    }
+    
+    // Create new reservation
+    public async Task CreateReservation(EditContext editContext)
+    {
+        await _dbFactory.Update()
+            .With(Event)
+            .With(_temp.ReservationOwner)
+            .New(_temp)
+            .Save();
+        _temp = new Reservation(1, 1, false, "", new Customer("", ""), Event);
+        _child.ModalCancel();
+        await UpdateReservationList();
     }
     
     // Edits the reservation
-    public void EditReservationInformation(EditContext editContext)
+    public async Task EditReservation(EditContext editContext)
     {
-        
-    }
-    
-    // Makes a new reservation
-    public void NewReservation()
-    {
-        
+        await _dbFactory.Save((Reservation) editContext.Model);
+        _child.ModalCancel();
+        await UpdateReservationList();
     }
 
-    // The searchbar function, it works WOW
-    public void Searchbar(ChangeEventArgs e)
+    // Searchbar function
+    public void Search(ChangeEventArgs e) => Search(e.Value?.ToString()!.ToLower() ?? "");
+    
+    public void Search(string searchTerm)
     {
-        // If you search with nothing in the bar
-        var input = e.Value?.ToString()?.ToLower()?? "";
-        if (input == "")
+        // If no input show everything
+        if (searchTerm == "")
         {
             _shownReservation = _reservations;
         }
-        else if (Char.IsDigit(input[0]))
-        {// Finds by Booths
+        else if (char.IsDigit(searchTerm[0]))
+        {   // Finds by Booths
             _shownReservation = from c
                 in _reservations
-                where c.TableCount.ToString().Contains(input)
+                where c.TableCount.ToString().Contains(searchTerm)
                 select c;
         }
-        else if (input.Contains("betalt"))
-        {
+        else if (searchTerm.Contains("betalt"))
+        {   // Finds by betalt or ej betalt
             _shownReservation = from c
                 in _reservations
-                where c.Paid != input.Contains("ej")
+                where c.Paid != searchTerm.Contains("ej")
                 select c;
         }
         else
         {// Finds by name
             _shownReservation = from c
                 in _reservations
-                where c.ReservationOwner.Name.ToLower().Contains(input)
+                where c.ReservationOwner.Name.ToLower().Contains(searchTerm)
                 select c;
         }
+        _lastSearchTerm = searchTerm;
     }
     
-    protected override void OnInitialized()
+    private async Task UpdateReservationList()
     {
-        UpdateTitleHeader();
-        _shownReservation = _reservations;
+        _reservations = await _dbFactory.Get<BingoContext, Reservation>()
+            .Where(reservation => reservation.Event.Id == EventId)
+            .Include(reservation => reservation.ReservationOwner)
+            .All();
+        Search(_lastSearchTerm);
+    }
+    
+    protected override async Task OnInitializedAsync()
+    {
+        var e = await _dbFactory.Get<BingoContext, Event>()
+            .First(e => e.Id == EventId);
+        
+        Event = e ?? throw new Exception("TODO create good error for user");
+        _temp = new Reservation(1, 1, false, "", new Customer("", ""), Event);
+        
+        await UpdateReservationList();
+        await base.OnInitializedAsync();
     }
 }
