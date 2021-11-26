@@ -12,10 +12,509 @@
     }
   },
   "Clusters": {
-    "A": [{
-      "Class": "Vertical",
-      "X": 0,
-      "y": 1
-    }]
+    "A": [
+      {
+        "X": 0,
+        "Y": 0,
+        "Class": "Vertical"
+      },
+      {
+        "X": 1,
+        "Y": 0,
+        "Class": "Horizontal"
+      },
+      {
+        "X": 3,
+        "Y": 0,
+        "Class": "Horizontal"
+      },
+      {
+        "X": 5,
+        "Y": 0,
+        "Class": "Vertical"
+      },
+      {
+        "X": 0,
+        "Y": 3,
+        "Class": "Vertical"
+      },
+      {
+        "X": 1,
+        "Y": 4,
+        "Class": "Horizontal"
+      },
+      {
+        "X": 3,
+        "Y": 4,
+        "Class": "Horizontal"
+      },
+      {
+        "X": 5,
+        "Y": 3,
+        "Class": "Vertical"
+      }
+    ],
+    "B": [
+      {
+        "X": 6,
+        "Y": 0,
+        "Class": "Vertical"
+      },
+      {
+        "X": 7,
+        "Y": 0,
+        "Class": "Horizontal"
+      },
+      {
+        "X": 9,
+        "Y": 0,
+        "Class": "Horizontal"
+      },
+      {
+        "X": 11,
+        "Y": 0,
+        "Class": "Vertical"
+      },
+      {
+        "X": 6,
+        "Y": 3,
+        "Class": "Vertical"
+      },
+      {
+        "X": 7,
+        "Y": 4,
+        "Class": "Horizontal"
+      },
+      {
+        "X": 9,
+        "Y": 4,
+        "Class": "Horizontal"
+      },
+      {
+        "X": 11,
+        "Y": 3,
+        "Class": "Vertical"
+      }
+    ],
+    "C": [
+      {
+        "X": 12,
+        "Y": 0,
+        "Class": "Vertical"
+      },
+      {
+        "X": 13,
+        "Y": 0,
+        "Class": "Horizontal"
+      },
+      {
+        "X": 15,
+        "Y": 0,
+        "Class": "Horizontal"
+      },
+      {
+        "X": 17,
+        "Y": 0,
+        "Class": "Vertical"
+      },
+      {
+        "X": 12,
+        "Y": 3,
+        "Class": "Vertical"
+      },
+      {
+        "X": 13,
+        "Y": 4,
+        "Class": "Horizontal"
+      },
+      {
+        "X": 15,
+        "Y": 4,
+        "Class": "Horizontal"
+      },
+      {
+        "X": 17,
+        "Y": 3,
+        "Class": "Vertical"
+      }
+    ],
+    "D": [
+      {
+        "X": 18,
+        "Y": 0,
+        "Class": "Vertical"
+      },
+      {
+        "X": 19,
+        "Y": 0,
+        "Class": "Horizontal"
+      },
+      {
+        "X": 21,
+        "Y": 0,
+        "Class": "Horizontal"
+      },
+      {
+        "X": 23,
+        "Y": 0,
+        "Class": "Vertical"
+      },
+      {
+        "X": 18,
+        "Y": 3,
+        "Class": "Vertical"
+      },
+      {
+        "X": 19,
+        "Y": 4,
+        "Class": "Horizontal"
+      },
+      {
+        "X": 21,
+        "Y": 4,
+        "Class": "Horizontal"
+      },
+      {
+        "X": 23,
+        "Y": 3,
+        "Class": "Vertical"
+      }
+    ],
+    "E": [
+      {
+        "X": 0,
+        "Y": 6,
+        "Class": "Vertical"
+      },
+      {
+        "X": 1,
+        "Y": 6,
+        "Class": "Horizontal"
+      },
+      {
+        "X": 3,
+        "Y": 6,
+        "Class": "Horizontal"
+      },
+      {
+        "X": 5,
+        "Y": 6,
+        "Class": "Vertical"
+      },
+      {
+        "X": 0,
+        "Y": 9,
+        "Class": "Vertical"
+      },
+      {
+        "X": 1,
+        "Y": 10,
+        "Class": "Horizontal"
+      },
+      {
+        "X": 3,
+        "Y": 10,
+        "Class": "Horizontal"
+      },
+      {
+        "X": 5,
+        "Y": 9,
+        "Class": "Vertical"
+      }
+    ],
+    "F": [
+      {
+        "X": 6,
+        "Y": 6,
+        "Class": "Vertical"
+      },
+      {
+        "X": 7,
+        "Y": 6,
+        "Class": "Horizontal"
+      },
+      {
+        "X": 9,
+        "Y": 6,
+        "Class": "Horizontal"
+      },
+      {
+        "X": 11,
+        "Y": 6,
+        "Class": "Vertical"
+      },
+      {
+        "X": 6,
+        "Y": 9,
+        "Class": "Vertical"
+      },
+      {
+        "X": 7,
+        "Y": 10,
+        "Class": "Horizontal"
+      },
+      {
+        "X": 9,
+        "Y": 10,
+        "Class": "Horizontal"
+      },
+      {
+        "X": 11,
+        "Y": 9,
+        "Class": "Vertical"
+      }
+    ],
+    "G": [
+      {
+        "X": 12,
+        "Y": 6,
+        "Class": "Vertical"
+      },
+      {
+        "X": 13,
+        "Y": 6,
+        "Class": "Horizontal"
+      },
+      {
+        "X": 15,
+        "Y": 6,
+        "Class": "Horizontal"
+      },
+      {
+        "X": 17,
+        "Y": 6,
+        "Class": "Vertical"
+      },
+      {
+        "X": 12,
+        "Y": 9,
+        "Class": "Vertical"
+      },
+      {
+        "X": 13,
+        "Y": 10,
+        "Class": "Horizontal"
+      },
+      {
+        "X": 15,
+        "Y": 10,
+        "Class": "Horizontal"
+      },
+      {
+        "X": 17,
+        "Y": 9,
+        "Class": "Vertical"
+      }
+    ],
+    "H": [
+      {
+        "X": 18,
+        "Y": 6,
+        "Class": "Vertical"
+      },
+      {
+        "X": 19,
+        "Y": 6,
+        "Class": "Horizontal"
+      },
+      {
+        "X": 21,
+        "Y": 6,
+        "Class": "Horizontal"
+      },
+      {
+        "X": 23,
+        "Y": 6,
+        "Class": "Vertical"
+      },
+      {
+        "X": 18,
+        "Y": 9,
+        "Class": "Vertical"
+      },
+      {
+        "X": 19,
+        "Y": 10,
+        "Class": "Horizontal"
+      },
+      {
+        "X": 21,
+        "Y": 10,
+        "Class": "Horizontal"
+      },
+      {
+        "X": 23,
+        "Y": 9,
+        "Class": "Vertical"
+      }
+    ],
+    "I": [
+      {
+        "X": 0,
+        "Y": 12,
+        "Class": "Vertical"
+      },
+      {
+        "X": 1,
+        "Y": 12,
+        "Class": "Horizontal"
+      },
+      {
+        "X": 3,
+        "Y": 12,
+        "Class": "Horizontal"
+      },
+      {
+        "X": 5,
+        "Y": 12,
+        "Class": "Vertical"
+      },
+      {
+        "X": 0,
+        "Y": 15,
+        "Class": "Vertical"
+      },
+      {
+        "X": 1,
+        "Y": 16,
+        "Class": "Horizontal"
+      },
+      {
+        "X": 3,
+        "Y": 16,
+        "Class": "Horizontal"
+      },
+      {
+        "X": 5,
+        "Y": 15,
+        "Class": "Vertical"
+      }
+    ],
+    "J": [
+      {
+        "X": 6,
+        "Y": 12,
+        "Class": "Vertical"
+      },
+      {
+        "X": 7,
+        "Y": 12,
+        "Class": "Horizontal"
+      },
+      {
+        "X": 9,
+        "Y": 12,
+        "Class": "Horizontal"
+      },
+      {
+        "X": 11,
+        "Y": 12,
+        "Class": "Vertical"
+      },
+      {
+        "X": 6,
+        "Y": 15,
+        "Class": "Vertical"
+      },
+      {
+        "X": 7,
+        "Y": 16,
+        "Class": "Horizontal"
+      },
+      {
+        "X": 9,
+        "Y": 16,
+        "Class": "Horizontal"
+      },
+      {
+        "X": 11,
+        "Y": 15,
+        "Class": "Vertical"
+      }
+    ],
+    "K": [
+      {
+        "X": 12,
+        "Y": 12,
+        "Class": "Vertical"
+      },
+      {
+        "X": 13,
+        "Y": 12,
+        "Class": "Horizontal"
+      },
+      {
+        "X": 15,
+        "Y": 12,
+        "Class": "Horizontal"
+      },
+      {
+        "X": 17,
+        "Y": 12,
+        "Class": "Vertical"
+      },
+      {
+        "X": 12,
+        "Y": 15,
+        "Class": "Vertical"
+      },
+      {
+        "X": 13,
+        "Y": 16,
+        "Class": "Horizontal"
+      },
+      {
+        "X": 15,
+        "Y": 16,
+        "Class": "Horizontal"
+      },
+      {
+        "X": 17,
+        "Y": 15,
+        "Class": "Vertical"
+      }
+    ],
+    "L": [
+      {
+        "X": 18,
+        "Y": 12,
+        "Class": "Vertical"
+      },
+      {
+        "X": 19,
+        "Y": 12,
+        "Class": "Horizontal"
+      },
+      {
+        "X": 21,
+        "Y": 12,
+        "Class": "Horizontal"
+      },
+      {
+        "X": 23,
+        "Y": 12,
+        "Class": "Vertical"
+      },
+      {
+        "X": 18,
+        "Y": 15,
+        "Class": "Vertical"
+      },
+      {
+        "X": 19,
+        "Y": 16,
+        "Class": "Horizontal"
+      },
+      {
+        "X": 21,
+        "Y": 16,
+        "Class": "Horizontal"
+      },
+      {
+        "X": 23,
+        "Y": 15,
+        "Class": "Vertical"
+      }
+    ]
   }
 }

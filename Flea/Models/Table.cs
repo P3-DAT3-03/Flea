@@ -21,7 +21,7 @@
         public Reservation? Reservation { get; set; }
         public TableType Type { get; set; }
 
-        public Table(TableType type = TableType.Table, Reservation? reservation = null)
+        public Table(int clusterIndex, TableType type = TableType.Table, Reservation? reservation = null)
         {
             Type = type;
             Reservation = reservation;

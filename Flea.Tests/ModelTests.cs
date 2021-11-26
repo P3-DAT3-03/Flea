@@ -42,14 +42,14 @@ namespace Flea.Tests
             const string number = "88888888";
             Customer Ole = new Customer(name, number);
             Reservation OleReservation = new Reservation(priority, tableCount, paid, comment, Ole, null!);
-            OleReservation.Tables.Add(new Table());
+            OleReservation.Tables.Add(new Table(0));
             Assert.AreEqual(OleReservation.TableCount, tableCount, "reservation does not have the right tablecount based on input");
         }
 
         [Test]
         public void TableTests()
         {
-            Table m1 = new Table();
+            Table m1 = new Table(0);
             Assert.AreEqual(m1.Type, Table.TableType.Table);
         }
 
@@ -65,7 +65,7 @@ namespace Flea.Tests
             const string number = "88888888";
             Customer Ole = new Customer(name, number);
             Reservation OleReservation = new Reservation(priority, reservedTableCount, paid, comment, Ole, null!);
-            Cluster m = new Cluster("m", 4, tableAmount);
+            Cluster m = new Cluster("m", 4);
             Assert.AreEqual(m.CustomerCount, 4);
 
             m.Tables[tableAmount - 1].Reservation = OleReservation;

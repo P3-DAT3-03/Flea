@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Flea.Models.Floorplan;
 using Microsoft.EntityFrameworkCore;
 
 namespace Flea.Models
@@ -29,17 +30,16 @@ namespace Flea.Models
         {
             DateTime = dateTime;
             Name = name;
-
-            Clusters = new List<Cluster>
-                { 
-                new Cluster("A", 4, 8), new Cluster("B", 4, 8), new Cluster("C", 4, 8), new Cluster("D", 4, 8),
-                new Cluster("E", 4, 8), new Cluster("F", 4, 8), new Cluster("G", 4, 8), new Cluster("H", 4, 8),
-                new Cluster("I", 4, 8), new Cluster("J", 4, 8), new Cluster("K", 4, 8), new Cluster("L", 4, 8),
-                new Cluster("M", 12, 12)
-                };
         }
-
-
+        
+        public Event(string name, DateTime dateTime, FloorplanTemplate template)
+        {
+            DateTime = dateTime;
+            Name = name;
+            Clusters = template.CreateClusters(4);
+        }
+        
+        
         public int ComputeRemainingTables => Clusters.Aggregate(0, (acc, cluster) => acc + cluster.TablesNotPlaced);
 
 

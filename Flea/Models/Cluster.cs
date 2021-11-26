@@ -12,21 +12,19 @@ namespace Flea.Models
         public List<Table> Tables { get; set; }
         public int CustomerCount { get; set; }
 
-        public Cluster(string name, int customerCount, int tableAmount)
+        public Cluster(string name, int customerCount, List<Table> tables)
         {
             Name = name;
             CustomerCount = customerCount;
-            Tables = new List<Table> {Capacity = customerCount};
-            for (var i = 0; i < tableAmount; i++)
-            {
-                Tables.Add(new Table());
-            }
+            Tables = tables;
         }
 
+        [Obsolete("Should not be used. For EF use only.")]
         public Cluster(string name, int customerCount)
         {
             Name = name;
             CustomerCount = customerCount;
+            Tables = null!;
         }
 
         public int ReservationCount =>

@@ -1,0 +1,79 @@
+@using Blazor.Extensions
+@using Blazor.Extensions.Canvas.Canvas2D
+@using Flea.Models
+@using Flea.Models.Floorplan
+@using Flea.Utility
+<BECanvas height="@Height" width="@Width" @ref="_canvas"/>
+
+@code {
+
+    // TODO only render visible objects
+    
+    private BECanvasComponent _canvas = null!;
+    private Canvas2DContext _context = null!;
+
+    private uint _gridUnit = 10;
+
+    public async Task Render()
+    {
+        foreach (var (name, tableDefinitions) in Template.Clusters)
+        {
+            foreach (var (tableDefinition, i) in tableDefinitions.Select((definition, i) => (definition, i)))
+            {
+                await DrawTable(
+                    tableDefinition,
+                    Event.Clusters
+                        .First(c => c.Name == name)
+                        .Tables[i]
+                    );
+            }
+        }
+    }
+    
+    private async Task DrawTable(TableDefinition tableDefinition, Table table)
+    {
+        var tableClass = Template.GetTableClass(tableDefinition);
+        await _context.BeginPathAsync();
+        await _context.SetStrokeStyleAsync("white");
+        await StrokeRect(tableDefinition.X, tableDefinition.Y, tableClass.Width, tableClass.Height);
+        await _context.EndBatchAsync();
+    }
+
+    private Task StrokeRect(uint x, uint y, uint width, uint height)
+    {
+        return _context.StrokeRectAsync(
+            _gridUnit * x,
+            _gridUnit * y,
+            _gridUnit * width,
+            _gridUnit * height);
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        _context = await _canvas.CreateCanvas2DAsync();
+        await _context.SetFillStyleAsync(BackgroundColor);
+        await _context.FillRectAsync(0, 0, Width, Height);
+    }
+
+    protected override void OnInitialized()
+    {
+        ParameterChecker.CheckParameters(this);
+        base.OnInitialized();
+    }
+
+    [Parameter]
+    public uint Width { get; set; } = 100;
+
+    [Parameter]
+    public uint Height { get; set; } = 100;
+
+    [Parameter, RequiredParameter]
+    public Event Event { get; set; } = null!;
+    
+    [Parameter, RequiredParameter]
+    public FloorplanTemplate Template { get; set; } = null!;
+
+    [Parameter]
+    public string BackgroundColor { get; set; } = "black";
+
+}
