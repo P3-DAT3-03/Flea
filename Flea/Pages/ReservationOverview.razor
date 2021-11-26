@@ -69,7 +69,7 @@
     // Edits the reservation
     public async Task EditReservation(EditContext editContext)
     {
-        await _dbFactory.Save(_temp);
+        await _dbFactory.Save((Reservation) editContext.Model);
         _child.ModalCancel();
         await UpdateReservationList();
     }

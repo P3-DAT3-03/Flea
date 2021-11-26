@@ -13,7 +13,7 @@
 
 @code {
     private Modal _child = null!;
-    private Reservation _temp = new(1, 0, false, "",new Models.Customer("", ""), null!);
+    private Reservation _temp = new(1, 1, false, "", new Customer("", ""), null!);
     private Reservation _reservation = null!;
 
     [Parameter]
@@ -47,6 +47,5 @@
         Reservation.Comments = _temp.Comments;
         
         await OnEdit.InvokeAsync(context);
-        
     }
 }

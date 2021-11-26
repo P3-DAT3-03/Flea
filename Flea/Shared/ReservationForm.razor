@@ -27,52 +27,6 @@
                             </div>
                         </div>
                     </div>
-
-                    @*<Select2 TItem="Customer"
-                             Id="simple-string-example"
-                             Data="@(_shownCustomers?.ToList())"
-                             @bind-Value="@CustomerInput">
-                    </Select2>*@
-
-                    @*<input class="search-input edit-search-input-form" type="search" placeholder="Eks. Hans Henriksen"
-                           list="customer" @bind="CustomerInput"/>
-                    
-                    <datalist id="customer">
-                        @if (_shownCustomers != null)
-                        {
-                            <option selected="selected" disabled="" value="-1">Vælg en loppe</option>
-                            foreach (var customer in _shownCustomers)
-                            {
-                                <option value="@customer.Id">@customer.Name</option>
-                            }
-                        }
-                    </datalist>*@
-
-                    @*<InputSelect class="search-input edit-search-input" @bind-Value="CustomerInput">
-                         @if (_shownCustomers != null)
-                         {
-                             <option selected="selected" disabled="" value="-1">Vælg en loppe</option>
-                             foreach (var customer in _shownCustomers)
-                             {
-                                 <option value="@customer.Id">@customer.Name</option>
-                             }
-                         }
-                    </InputSelect>*@
-
-                    @* <input class="search-input edit-search-input-form" type="search" value="" placeholder="Eks. Hans Henriksen" *@
-                    @*        @oninput="Search"/> *@
-                    @* *@
-                    @* <select class="search-input edit-search-input" id="customer" type="search" *@
-                    @*         @bind="CustomerInput"> *@
-                    @*     @if (_shownCustomers != null) *@
-                    @*     { *@
-                    @*         <option selected="selected" disabled="" value="-1">Vælg en loppe</option> *@
-                    @*         foreach (var customer in _shownCustomers) *@
-                    @*         { *@
-                    @*             <option value="@customer.Id">@customer.Name</option> *@
-                    @*         } *@
-                    @*     } *@
-                    @* </select> *@
                 </div>
             </div>
         }
@@ -91,7 +45,7 @@
             </InputNumber>
         </div>
         <div class="edit-form-div">
-            <div>Betalt?: </div>
+            <div>Betalings status: </div>
             <label class="checkbox">
                 <InputCheckbox type="checkbox" class="checkbox__input"
                                @bind-Value="Reservation.Paid">
@@ -104,7 +58,8 @@
             <div>Bemærkninger: </div>
             <textarea   class="search-input edit-search-input text-area"
                         placeholder="Eks. Handicap, tæt på rygerrum mm."
-                        @bind="Reservation.Comments"></textarea>
+                        @bind="Reservation.Comments">
+            </textarea>
         </div>
         <div id="move-down">
             <button type="submit" class="button create-button button--outline">@(Reservation.Id == 0 ? "Opret booking" : "Gem ændringer")</button>
@@ -133,12 +88,10 @@
 
     protected override async Task OnInitializedAsync()
     {
-        Console.WriteLine("----------FORM INIT----------");
         ParameterChecker.CheckParameters(this);
 
         await base.OnInitializedAsync();
         await UpdateReservationList();
-        Console.WriteLine("----------FORM END----------");
     }
 
     public void Select(Customer c)
@@ -156,14 +109,14 @@
         {
             _display = "display";
         }
-    // If no input show everything
+        // If no input show everything
         if (searchTerm == "")
         {
             _shownCustomers = _customers;
         }
         else
         {
-    // Finds by name
+        // Finds by name
             _shownCustomers = from c
                 in _customers
                 where c.Name.ToLower().Contains(searchTerm)
