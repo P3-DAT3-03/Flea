@@ -1,5 +1,5 @@
-using System;
 using System.Collections.Generic;
+using System;
 using Microsoft.EntityFrameworkCore;
 
 namespace Flea.Models
@@ -59,7 +59,7 @@ namespace Flea.Models
             Event = null!;
             ReservationOwner = null!;
         }
-
+        
         public Reservation Clone() => (Reservation) MemberwiseClone();
         public DbSet<Reservation> GetDbSet(BingoContext ctx) => ctx.Reservations!;
     }
