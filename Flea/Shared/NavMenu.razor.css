@@ -1,8 +1,4 @@
 .list {
-    padding: 20px 0;
-}
-
-.hr {
-    color: white;
-    height: 2px;
+    padding-top: 20px;
+    border-bottom: 2px solid var(--ios-g4);
 }

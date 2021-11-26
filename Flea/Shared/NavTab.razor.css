@@ -1,9 +1,13 @@
 .navigation-tab {
     background-color: var(--ios-bg);
-    border-top: 2px solid white;
-    border-bottom: 2px solid white;
+    border-top: 2px solid var(--ios-g4);
+    border-bottom: 2px solid var(--ios-g4);
     width: 5rem;
     height: 5rem;
+}
+
+.navigation-tab:first-child {
+    border-top: 3px solid var(--ios-g4);
 }
 
 .tabbar__label {

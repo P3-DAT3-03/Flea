@@ -8,7 +8,7 @@
 
 .site-header {
     background-color: var(--ios-g1);
-    border-bottom: 2px solid white;
+    border-bottom: 2px solid var(--ios-g4);
     justify-content: space-between;
     align-items: center;
     margin: 0;
@@ -35,7 +35,7 @@
 
 .navigation-bar {
     background-color: var(--ios-g1);
-    border-right: 2px solid white;
+    border-right: 2px solid var(--ios-g4);
     width: 5rem;
     height: 100vh;
     position: sticky;

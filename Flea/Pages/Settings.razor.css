@@ -2,7 +2,7 @@
     display: flex;
     flex-flow: column;
     padding: 55px;
-    border: 2px solid white;
+    border: 2px solid var(--ios-g1);
     border-radius: 20px;
     width: 640px;
     height: 520px;
