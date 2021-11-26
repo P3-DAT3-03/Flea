@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Flea.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -35,7 +36,14 @@ namespace Flea.Utility
 			where TEntity : class, IModelEntity<TEntity, TContext>, new()
 		{
 			CheckDisposeStatus();
-			IModelEntity<TEntity, TContext>.GetDbSetStatic(Context!).Attach(other);
+			try
+			{ 
+				IModelEntity<TEntity, TContext>.GetDbSetStatic(Context!).Attach(other);
+			}
+			catch (InvalidOperationException e)
+			{
+				
+			}
 			return this;
 		}
 		

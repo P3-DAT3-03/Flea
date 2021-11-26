@@ -42,9 +42,9 @@
     {
         _child.ModalCancel();
         
-        Reservation.TableCount = _temp.TableCount;
-        Reservation.Paid = _temp.Paid;
-        Reservation.Comments = _temp.Comments;
+        _reservation.TableCount = _temp.TableCount;
+        _reservation.Paid = _temp.Paid;
+        _reservation.Comments = _temp.Comments;
         
         await OnEdit.InvokeAsync(context);
     }
