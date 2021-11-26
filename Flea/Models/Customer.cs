@@ -7,14 +7,19 @@ namespace Flea.Models
 {
 	public class Customer : IModelEntity<Customer, BingoContext>
 	{
-		// ReSharper disable once AutoPropertyCanBeMadeGetOnly.Global
 		public int Id { get; set; }
 
-		[StringLength(64)]
+		[StringLength(64, ErrorMessage = "Navnet er for langt.")]
+		[Required(ErrorMessage = "Lopper skal have et navn.")]
 		public string Name { get; set; }
+		[StringLength(64)]
+		public string Nickname { get; set; }
 		
-		[StringLength(8)]
+		[StringLength(8, ErrorMessage = "Telefonnummeret er for langt.")]
+		[MinLength(8, ErrorMessage = "Telefonnummeret er for kort.")]
+		[Required(ErrorMessage = "Lopper skal have et telefonnummer.")]
 		[Column(TypeName = "VARCHAR")]
+		[RegularExpression(@"^[0-9]+$", ErrorMessage = "Der er kun tal i telefonnumre.")]
 		[DataType(DataType.PhoneNumber)]
 		public string PhoneNumber { get; set; }
 

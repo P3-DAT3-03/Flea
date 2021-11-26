@@ -52,11 +52,18 @@ namespace Flea.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(64)
+                        .HasColumnType("character varying(64)");
+
+                    b.Property<string>("Nickname")
+                        .IsRequired()
+                        .HasMaxLength(64)
+                        .HasColumnType("character varying(64)");
 
                     b.Property<string>("PhoneNumber")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(8)
+                        .HasColumnType("VARCHAR");
 
                     b.HasKey("Id");
 
@@ -98,7 +105,7 @@ namespace Flea.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int?>("EventId")
+                    b.Property<int>("EventId")
                         .HasColumnType("integer");
 
                     b.Property<bool>("Paid")
@@ -117,7 +124,8 @@ namespace Flea.Migrations
 
                     b.HasIndex("EventId");
 
-                    b.HasIndex("ReservationOwnerId");
+                    b.HasIndex("ReservationOwnerId", "EventId")
+                        .IsUnique();
 
                     b.ToTable("Reservations");
                 });
@@ -166,8 +174,10 @@ namespace Flea.Migrations
             modelBuilder.Entity("Flea.Models.Reservation", b =>
                 {
                     b.HasOne("Flea.Models.Event", "Event")
-                        .WithMany()
-                        .HasForeignKey("EventId");
+                        .WithMany("Reservations")
+                        .HasForeignKey("EventId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Flea.Models.Customer", "ReservationOwner")
                         .WithMany()
@@ -203,6 +213,8 @@ namespace Flea.Migrations
             modelBuilder.Entity("Flea.Models.Event", b =>
                 {
                     b.Navigation("Clusters");
+
+                    b.Navigation("Reservations");
                 });
 
             modelBuilder.Entity("Flea.Models.Reservation", b =>
