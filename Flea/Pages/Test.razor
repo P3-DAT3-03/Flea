@@ -1,6 +1,26 @@
 ﻿@page "/Test"
+@using Flea.Models.Floorplan
+@using Flea.Models
+@using System.Text.Json
+@using System.IO
+@using System.Diagnostics
 <HeaderTitle Value="Test page"/>
-<Floorplan Width="200" Height="200"/>
+<Floorplan Width="400" Height="400" Template="_template" Event="_event"/>
 @code {
-    
+
+    private FloorplanTemplate? _template;
+    private Event? _event;
+
+    protected override void OnInitialized()
+    {
+        //using var stream = File.OpenRead("FloorplanLayout.json");
+        _template =  JsonSerializer.Deserialize<FloorplanTemplate>(File.ReadAllText("FloorplanLayout.json"));
+        Console.WriteLine(_template);
+        Debug.Assert(_template != null);
+        _event = new Event("event 1", DateTime.Now, _template);
+        Console.WriteLine(_event);
+        
+        base.OnInitialized();
+    }
+
 }

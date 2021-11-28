@@ -3,7 +3,7 @@
 @using Flea.Models
 @using Flea.Models.Floorplan
 @using Flea.Utility
-<BECanvas height="@Height" width="@Width" @ref="_canvas"/>
+<BECanvas height="@((long)Height)" width="@((long)Width)" @ref="_canvas"/>
 
 @code {
 
@@ -53,12 +53,13 @@
         _context = await _canvas.CreateCanvas2DAsync();
         await _context.SetFillStyleAsync(BackgroundColor);
         await _context.FillRectAsync(0, 0, Width, Height);
+        await Render();
     }
 
-    protected override void OnInitialized()
+    public override async Task SetParametersAsync(ParameterView parameters)
     {
+        await base.SetParametersAsync(parameters);
         ParameterChecker.CheckParameters(this);
-        base.OnInitialized();
     }
 
     [Parameter]
