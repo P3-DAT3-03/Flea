@@ -15,7 +15,7 @@
     margin: 2em 2em 0 2em;
 }
 
-.edit-search-input-form{
+.edit-search-input-form {
     width: 100%;
 }
 
@@ -49,3 +49,44 @@
 .floating-dropdown option {
     padding-bottom: 5px;
 }
+
+.close {
+    overflow: hidden;
+    position: relative;
+    border: none;
+    padding: 0;
+    width: 2em;
+    height: 2em;
+    border-radius: 50%;
+    background: transparent;
+    color: var(--ios-g4);
+    font: inherit;
+    text-indent: 100%;
+    cursor: pointer;
+    right: 45px
+}
+
+.close-hidden{
+    display: none;
+}
+
+.close :focus {
+     outline: solid 0 transparent;
+     box-shadow: 0 0 0 2px var(--ios-g6);
+ }
+
+.close :hover {
+     background: rgba(29, 161, 142, .1)
+ }
+
+.close:before, .close:after {
+   position: absolute;
+   top: 0%; left: calc(50% - .0625em);
+   width: .125em; height: 70%;
+   border-radius: .125em;
+   transform: rotate(45deg);
+   background: currentcolor;
+   content: '';
+}
+
+.close:after { transform: rotate(-45deg); }

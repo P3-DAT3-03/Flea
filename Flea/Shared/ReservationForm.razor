@@ -13,7 +13,12 @@
                 <div>Søg efter loppe:</div>
                 <div class="search-box" style="display: grid;">
                     <div class="dropdown">
-                        <input class="search-input edit-search-input-form" type="search" value="@_selectedCustomer?.Name" placeholder="Søge efter loppe" @oninput="Search">
+                        <div>
+                            <input class="search-input edit-search-input-form" type="search"
+                                   value="@_selectedCustomer?.Name" placeholder="Søge efter loppe"
+                                   @oninput="Search">
+                            <button class="@_close" type="button" @onclick="ResetSelectedCustomer"></button>
+                        </div>
                         <div class="floating-dropdown" style="display: @_display;">
                             <div>
                                 @if (_shownCustomers != null)
@@ -72,7 +77,7 @@
 
     [Parameter, RequiredParameter]
     public Reservation Reservation { get; set; } = null!;
-    
+
     [Parameter, RequiredParameter]
     public EventCallback<EditContext> OnValidSubmit { get; set; }
 
@@ -80,8 +85,9 @@
     public Modal Modal { get; set; } = null!;
 
     private string _display = "none";
+    private string _close = "close-hidden";
     private Customer? _selectedCustomer;
-    
+
     private List<Customer>? _customers;
     private IEnumerable<Customer>? _shownCustomers;
     private string _lastSearchTerm = string.Empty;
@@ -94,11 +100,19 @@
         await UpdateReservationList();
     }
 
+    public void ResetSelectedCustomer()
+    {
+        _selectedCustomer = null!;
+        Reservation.ReservationOwner = null!;
+        _close = "close-hidden";
+    }
+    
     public void Select(Customer c)
     {
         _selectedCustomer = c;
         Reservation.ReservationOwner = c;
         _display = "none";
+        _close = "close";
     }
 
     public void Search(ChangeEventArgs e) => Search(e.Value?.ToString()!.ToLower() ?? "");
@@ -109,14 +123,15 @@
         {
             _display = "display";
         }
-        // If no input show everything
+    // If no input show everything
         if (searchTerm == "")
         {
+            _close = "close-hidden";
             _shownCustomers = _customers;
         }
         else
         {
-        // Finds by name
+    // Finds by name
             _shownCustomers = from c
                 in _customers
                 where c.Name.ToLower().Contains(searchTerm)
@@ -136,4 +151,5 @@
     {
         await OnValidSubmit.InvokeAsync(context);
     }
+
 }
