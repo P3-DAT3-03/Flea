@@ -47,8 +47,13 @@ namespace Flea.Models
 
 		protected override ValidationResult IsValid(object? value, ValidationContext validationContext)
 		{
-			return (value is Customer {Id: <= 0} ? new ValidationResult(ErrorMessage) : ValidationResult.Success) 
-			       ?? new ValidationResult(ErrorMessage);
+			if (value is not Customer customer)
+				return new ValidationResult(ErrorMessage);
+			return customer.Id switch
+			{
+				<= 0 => new ValidationResult(ErrorMessage),
+				_ => ValidationResult.Success!
+			};
 		}  
 	}
 
