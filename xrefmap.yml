@@ -103,6 +103,51 @@ references:
   isSpec: "True"
   fullName: Flea.Migrations.phonenumber_to_string.Up
   nameWithType: phonenumber_to_string.Up
+- uid: Flea.Migrations.various_changes
+  name: various_changes
+  href: api/Flea.Migrations.various_changes.html
+  commentId: T:Flea.Migrations.various_changes
+  fullName: Flea.Migrations.various_changes
+  nameWithType: various_changes
+- uid: Flea.Migrations.various_changes.BuildTargetModel(ModelBuilder)
+  name: BuildTargetModel(ModelBuilder)
+  href: api/Flea.Migrations.various_changes.html#Flea_Migrations_various_changes_BuildTargetModel_ModelBuilder_
+  commentId: M:Flea.Migrations.various_changes.BuildTargetModel(ModelBuilder)
+  fullName: Flea.Migrations.various_changes.BuildTargetModel(ModelBuilder)
+  nameWithType: various_changes.BuildTargetModel(ModelBuilder)
+- uid: Flea.Migrations.various_changes.BuildTargetModel*
+  name: BuildTargetModel
+  href: api/Flea.Migrations.various_changes.html#Flea_Migrations_various_changes_BuildTargetModel_
+  commentId: Overload:Flea.Migrations.various_changes.BuildTargetModel
+  isSpec: "True"
+  fullName: Flea.Migrations.various_changes.BuildTargetModel
+  nameWithType: various_changes.BuildTargetModel
+- uid: Flea.Migrations.various_changes.Down(MigrationBuilder)
+  name: Down(MigrationBuilder)
+  href: api/Flea.Migrations.various_changes.html#Flea_Migrations_various_changes_Down_MigrationBuilder_
+  commentId: M:Flea.Migrations.various_changes.Down(MigrationBuilder)
+  fullName: Flea.Migrations.various_changes.Down(MigrationBuilder)
+  nameWithType: various_changes.Down(MigrationBuilder)
+- uid: Flea.Migrations.various_changes.Down*
+  name: Down
+  href: api/Flea.Migrations.various_changes.html#Flea_Migrations_various_changes_Down_
+  commentId: Overload:Flea.Migrations.various_changes.Down
+  isSpec: "True"
+  fullName: Flea.Migrations.various_changes.Down
+  nameWithType: various_changes.Down
+- uid: Flea.Migrations.various_changes.Up(MigrationBuilder)
+  name: Up(MigrationBuilder)
+  href: api/Flea.Migrations.various_changes.html#Flea_Migrations_various_changes_Up_MigrationBuilder_
+  commentId: M:Flea.Migrations.various_changes.Up(MigrationBuilder)
+  fullName: Flea.Migrations.various_changes.Up(MigrationBuilder)
+  nameWithType: various_changes.Up(MigrationBuilder)
+- uid: Flea.Migrations.various_changes.Up*
+  name: Up
+  href: api/Flea.Migrations.various_changes.html#Flea_Migrations_various_changes_Up_
+  commentId: Overload:Flea.Migrations.various_changes.Up
+  isSpec: "True"
+  fullName: Flea.Migrations.various_changes.Up
+  nameWithType: various_changes.Up
 - uid: Flea.Models
   name: Flea.Models
   href: api/Flea.Models.html
@@ -401,6 +446,19 @@ references:
   isSpec: "True"
   fullName: Flea.Models.Customer.Name
   nameWithType: Customer.Name
+- uid: Flea.Models.Customer.Nickname
+  name: Nickname
+  href: api/Flea.Models.Customer.html#Flea_Models_Customer_Nickname
+  commentId: P:Flea.Models.Customer.Nickname
+  fullName: Flea.Models.Customer.Nickname
+  nameWithType: Customer.Nickname
+- uid: Flea.Models.Customer.Nickname*
+  name: Nickname
+  href: api/Flea.Models.Customer.html#Flea_Models_Customer_Nickname_
+  commentId: Overload:Flea.Models.Customer.Nickname
+  isSpec: "True"
+  fullName: Flea.Models.Customer.Nickname
+  nameWithType: Customer.Nickname
 - uid: Flea.Models.Customer.PhoneNumber
   name: PhoneNumber
   href: api/Flea.Models.Customer.html#Flea_Models_Customer_PhoneNumber
@@ -880,6 +938,25 @@ references:
   isSpec: "True"
   fullName: Flea.Models.Table.Type
   nameWithType: Table.Type
+- uid: Flea.Models.ValidCustomer
+  name: ValidCustomer
+  href: api/Flea.Models.ValidCustomer.html
+  commentId: T:Flea.Models.ValidCustomer
+  fullName: Flea.Models.ValidCustomer
+  nameWithType: ValidCustomer
+- uid: Flea.Models.ValidCustomer.IsValid(System.Object,System.ComponentModel.DataAnnotations.ValidationContext)
+  name: IsValid(Object, ValidationContext)
+  href: api/Flea.Models.ValidCustomer.html#Flea_Models_ValidCustomer_IsValid_System_Object_System_ComponentModel_DataAnnotations_ValidationContext_
+  commentId: M:Flea.Models.ValidCustomer.IsValid(System.Object,System.ComponentModel.DataAnnotations.ValidationContext)
+  fullName: Flea.Models.ValidCustomer.IsValid(System.Object, System.ComponentModel.DataAnnotations.ValidationContext)
+  nameWithType: ValidCustomer.IsValid(Object, ValidationContext)
+- uid: Flea.Models.ValidCustomer.IsValid*
+  name: IsValid
+  href: api/Flea.Models.ValidCustomer.html#Flea_Models_ValidCustomer_IsValid_
+  commentId: Overload:Flea.Models.ValidCustomer.IsValid
+  isSpec: "True"
+  fullName: Flea.Models.ValidCustomer.IsValid
+  nameWithType: ValidCustomer.IsValid
 - uid: Flea.Pages
   name: Flea.Pages
   href: api/Flea.Pages.html

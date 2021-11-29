@@ -29,11 +29,23 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/Flea.Migrations.various_changes.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Flea.Migrations.various_changes.html",
+          "hash": "qaZl31NBY0vVicVHkwT0fLVxFBYa29w5Z+F53bjZB/0="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/Flea.Migrations.yml",
       "output": {
         ".html": {
           "relative_path": "api/Flea.Migrations.html",
-          "hash": "wQFwuxU0r6NPuH/qSih1A+ic1KL8EiAifwQtbmaP+zQ="
+          "hash": "lp/8hmh1X5l7ENJgqg5OAvBqiKx1nN75LZUIiACI1Ak="
         }
       },
       "is_incremental": false,
@@ -69,7 +81,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Flea.Models.Customer.html",
-          "hash": "1+AgfE7oZmQyZ23MtOLSMIvXzLm/l3iGp/4JU09opg0="
+          "hash": "AB0JOcFsz61/LxaMKd9z3IL7UwZXUQqejVlU5j7CooY="
         }
       },
       "is_incremental": false,
@@ -105,7 +117,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Flea.Models.Reservation.html",
-          "hash": "/E+AoX3e/iHzfH8D0SO+5NFxmUGBwxX6xKkyLrCsn9g="
+          "hash": "k20sXmiavccm+HUvXueFdkdwU0ge6PIeGRO3v067VBc="
         }
       },
       "is_incremental": false,
@@ -137,11 +149,23 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/Flea.Models.ValidCustomer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Flea.Models.ValidCustomer.html",
+          "hash": "WnrW1TNS6aQjO9OMB8eOZlT9OU0gImowp+deYag/oRU="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/Flea.Models.yml",
       "output": {
         ".html": {
           "relative_path": "api/Flea.Models.html",
-          "hash": "2JFxE+81PLQchSmL6B3gG4vuVwsTHk3kTms0gnVKFXA="
+          "hash": "SPkbTh17NR1xjSQBXlJFY7yIfCxOvR9f1MRlnhMvjC4="
         }
       },
       "is_incremental": false,
@@ -321,7 +345,7 @@
       "output": {
         ".html": {
           "relative_path": "api/toc.html",
-          "hash": "jbhyYmpxQV/ZcP1Mdbpzkm3OYxEZLy4i0eLL/MNVfN0="
+          "hash": "Wza/FLIjQdDqA3UUHEXDmBHImyMX1MYu5VxNRiH2ECg="
         }
       },
       "is_incremental": false,
@@ -408,7 +432,7 @@
         "ManagedReferenceDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build",
-          "total_file_count": 25,
+          "total_file_count": 27,
           "skipped_file_count": 0
         },
         "TocDocumentProcessor": {
