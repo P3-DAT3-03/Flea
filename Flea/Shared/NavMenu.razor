@@ -1,18 +1,37 @@
 ﻿@inject NavigationManager _navigationManager
 @using Flea.Pages
 
-<!-- Flea logo -->
-<div class="logo">
-    <img src="./loppe.svg" alt=""/>
-</div>
-
 <!-- NavBar -->
 <div>
     <ul class="list">
-        <NavTab Href="/Home" Icon="home">Hjem</NavTab>
-        <NavTab Href="/Reservations" Icon="description">Booking</NavTab>
-        <NavTab Href="/Placing" Icon="place">Placér</NavTab>
-        <NavTab Href="/Market" Icon="storefront">Market</NavTab>
-        <NavTab Href="/Customers" Icon="person_outline">Loppe</NavTab>
+        <NavTab Href="/Home" Icon="hjem.svg">Hjem</NavTab>
+        <NavTab Href="/Customers" Icon="lopper.svg">Lopper</NavTab>
     </ul>
+
+        @if (!SecondaryMenuIsVisible)
+        {
+            <ul class="list">
+                <NavTab Href="/Reservations" Icon="book.svg">Book</NavTab>
+                <NavTab Href="/Placing" Icon="placer.svg">Placér</NavTab>
+                <NavTab Href="/Market" Icon="marked.svg">Marked</NavTab>
+            </ul>
+        }
 </div>
+
+@code {
+
+    [Parameter]
+    public bool SecondaryMenuIsVisible { get; set; }
+
+    private void OnLocationChanged(Object? o, LocationChangedEventArgs args)
+    {
+        StateHasChanged();
+    }
+
+    protected override Task OnInitializedAsync()
+    {
+        _navigationManager.LocationChanged += OnLocationChanged;
+        return base.OnInitializedAsync();
+    }
+
+}

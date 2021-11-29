@@ -1,6 +1,14 @@
 @page "/Placing"
-<h1>Placing</h1>
+
 
 @code {
+    
+    private string titleHeader = "Placering af Lopper til den 28. februar, 2021";
+    
+    // TODO Make title header dynamic, get date from database ^^
+
+    private void UpdateTitleHeader() { MainLayout.HeaderTitle = titleHeader; }
+    
+    protected override void OnInitialized() { UpdateTitleHeader(); }
     
 }
