@@ -9,25 +9,33 @@ namespace Flea.Models
 {
     public class Event : IModelEntity<Event, BingoContext>
     {
+        
+        public string[] Months =
+        {
+            "", "Januar", "Februar", "Marts", "April", "Maj", "Juni", "Juli", 
+            "August", "September", "Oktober", "November", "December"
+        };
+        
         public int Id { get; set; }
-        
-        public string Name { get; set; }
-        
+
         /// <summary>
         /// The date at which the event will be held.
         /// </summary>
         public DateTime DateTime { get; set; }
+        public string Name { get; set; }
         
         
         public List<Cluster> Clusters { get; set; }
-        public List<Reservation> Reservations;
+        public List<Reservation> Reservations { get; set; }= new();
+        public Event PreviousEvent { get; set; }
+
 
         /* the constructor creates the event and all the needed clusters in the bingo fleamarket formet*/
         public Event() {}
-        public Event(string name, DateTime dateTime)
+        public Event(DateTime dateTime)
         {
             DateTime = dateTime;
-            Name = name;
+            UpdateName();
 
             Clusters = new List<Cluster>();
             // Top
@@ -63,6 +71,13 @@ namespace Flea.Models
             Clusters.Add(new Cluster("7", 3, 3, ClusterType.Vertical));
         }
 
+        public void UpdateName()
+        {
+            this.Name = this.DateTime.Day.ToString() + ". " + Months[this.DateTime.Month] + ", " + this.DateTime.Year.ToString();
+        }
+
+        public int ComputeMissingPayments => 
+            Reservations.Aggregate(0, (acc, reservation) => reservation.Paid ? acc : acc + 1);
 
         public int ComputeRemainingTables => Clusters.Aggregate(0, (acc, cluster) => acc + cluster.TablesNotPlaced);
         DbSet<Event> IModelEntity<Event, BingoContext>.GetDbSet(BingoContext ctx) => ctx.Events;

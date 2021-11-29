@@ -439,3 +439,4 @@ FodyWeavers.xsd
 appsettings.json
 appsettings.*.json
 .DS_Store
+.idea/.idea.Flea/.idea/dataSources.xml

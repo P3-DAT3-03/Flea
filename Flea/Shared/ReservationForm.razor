@@ -1,13 +1,35 @@
 ﻿@using Flea.Models
+@using Flea.Utility
+@using Microsoft.EntityFrameworkCore
+@using System.Text.Json
+@inject IDbContextFactory<BingoContext> _dbFactory
 
-<EditForm Model="Reservation" OnValidSubmit="OnValidSubmit">
+
+<EditForm Model="Reservation" OnValidSubmit="OnSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
     <div class="edit-form">
         @if (Reservation.Id == 0)
         {
             <div class="edit-form-div">
                 <div>Søg efter loppe:</div>
-                <InputText class="search-input edit-search-input" placeholder="Eks. Hans Henriksen"
-                           @bind-Value="Reservation.ReservationOwner.Name"/> @*Indsæt søgefelt med oprettet kunder *@
+                <div class="search-box" style="display: grid;">
+                    <div class="dropdown">
+                        <input class="search-input edit-search-input-form" type="search" value="@_selectedCustomer?.Name" placeholder="Søge efter loppe" @oninput="Search">
+                        <div class="floating-dropdown" style="display: @_display;">
+                            <div>
+                                @if (_shownCustomers != null)
+                                {
+                                    <option selected="selected" disabled="" value="-1">Vælg en loppe</option>
+                                    foreach (var customer in _shownCustomers)
+                                    {
+                                        <option value="@customer.Id" @onclick="() => Select(customer)">@customer.Name</option>
+                                    }
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         }
         else
@@ -15,64 +37,105 @@
             <div class="edit-form-div">
                 <div>Loppe:</div>
                 <InputText class="search-input edit-search-input" disabled=""
-                           @bind-Value="Reservation.ReservationOwner.Name"/> @*Indsæt søgefelt med oprettet kunder *@
+                           @bind-Value="Reservation.ReservationOwner.Name"/>
             </div>
         }
         <div class="edit-form-div">
             <div>Antal stande: </div>
             <InputNumber class="search-input edit-search-input" placeholder="Eks. 3"
-                         @bind-Value="Reservation.TableCount"></InputNumber>
+                         @bind-Value="Reservation.TableCount">
+            </InputNumber>
         </div>
         <div class="edit-form-div">
-            <div>Betalt?: </div>
+            <div>Betalings status: </div>
             <label class="checkbox">
                 <InputCheckbox type="checkbox" class="checkbox__input"
-                               @bind-Value="Reservation.Paid"></InputCheckbox>
+                               @bind-Value="Reservation.Paid">
+                </InputCheckbox>
                 <div class="checkbox__checkmark"></div>
                 <div id="move-div">@(Reservation.Paid ? "Betalt" : "Ej betalt")</div>
             </label>
         </div>
         <div class="edit-form-div">
             <div>Bemærkninger: </div>
-            <InputText class="search-input edit-search-input" placeholder="Eks. Handicap, tæt på rygerrum mm."
-                       @bind-Value="Reservation.Comments"></InputText>
+            <textarea   class="search-input edit-search-input text-area"
+                        placeholder="Eks. Handicap, tæt på rygerrum mm."
+                        @bind="Reservation.Comments">
+            </textarea>
         </div>
-        @* <div> *@
-        @*     <label>Bod type: </label> *@
-        @*     <InputText @bind-Value="Temp.Comments"></InputText> *@
-        @* </div> *@
-        @* <div> *@
-        @*     <label>Leje af tøj stativ: </label> *@
-        @*     <InputNumber @bind-Value="Temp.Comments"></InputNumber> *@
-        @* </div> *@
-        @* <div> *@
-        @*     <label>Bemærkninger: </label> *@
-        @*     <InputText @bind-Value="Temp.Comments"></InputText> *@
-        @* </div> *@
         <div id="move-down">
             <button type="submit" class="button create-button button--outline">@(Reservation.Id == 0 ? "Opret booking" : "Gem ændringer")</button>
-            <button class="button button del-button button--outline" type="button" @onclick="@Modal.ModalCancel">Cancel</button>
+            <button type="button" class="button button del-button button--outline" @onclick="@Modal.ModalCancel">Cancel</button>
         </div>
     </div>
 </EditForm>
 
 @code {
 
-    [Parameter]
+    [Parameter, RequiredParameter]
     public Reservation Reservation { get; set; } = null!;
     
-    [Parameter]
+    [Parameter, RequiredParameter]
     public EventCallback<EditContext> OnValidSubmit { get; set; }
 
-    [Parameter]
-    public Modal Modal { get; set; }
+    [Parameter, RequiredParameter]
+    public Modal Modal { get; set; } = null!;
 
-    protected override void OnInitialized()
+    private string _display = "none";
+    private Customer? _selectedCustomer;
+    
+    private List<Customer>? _customers;
+    private IEnumerable<Customer>? _shownCustomers;
+    private string _lastSearchTerm = string.Empty;
+
+    protected override async Task OnInitializedAsync()
     {
-        base.OnInitialized();
-        if (Reservation == null!)
+        ParameterChecker.CheckParameters(this);
+
+        await base.OnInitializedAsync();
+        await UpdateReservationList();
+    }
+
+    public void Select(Customer c)
+    {
+        _selectedCustomer = c;
+        Reservation.ReservationOwner = c;
+        _display = "none";
+    }
+
+    public void Search(ChangeEventArgs e) => Search(e.Value?.ToString()!.ToLower() ?? "");
+
+    public void Search(string searchTerm)
+    {
+        if (searchTerm != "")
         {
-            throw new ArgumentNullException(nameof(Reservation),"Parameter Reservation can never be null");
+            _display = "display";
         }
+        // If no input show everything
+        if (searchTerm == "")
+        {
+            _shownCustomers = _customers;
+        }
+        else
+        {
+        // Finds by name
+            _shownCustomers = from c
+                in _customers
+                where c.Name.ToLower().Contains(searchTerm)
+                select c;
+        }
+        _lastSearchTerm = searchTerm;
+    }
+
+    private async Task UpdateReservationList()
+    {
+        await using var context = _dbFactory.CreateDbContext();
+        _customers = await _dbFactory.GetAll<BingoContext, Customer>();
+        Search(_lastSearchTerm);
+    }
+
+    private async Task OnSubmit(EditContext context)
+    {
+        await OnValidSubmit.InvokeAsync(context);
     }
 }

@@ -1,5 +1,7 @@
-﻿ignore:
+ignore:
   - "Flea/Migrations/**"
-  - "Flea/Shared/**" 
+  - "Flea/Shared/**"
   - "Flea/Pages/**"
   - "Flea/wwwroot/**"
+  - "Flea/Startup.cs"
+  - "Flea/Program.cs"

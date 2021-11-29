@@ -1,0 +1,40 @@
+.navigation-tab {
+    background-color: var(--ios-bg);
+    border-top: 2px solid var(--ios-g4);
+    border-bottom: 2px solid var(--ios-g4);
+    width: 5rem;
+    height: 5rem;
+}
+
+.navigation-tab:first-child {
+    border-top: 3px solid var(--ios-g4);
+}
+
+.tabbar__label {
+    font-size: 15px;
+    font-family: Poppins, sans-serif;
+    padding-top: 2px;
+    text-transform: capitalize;
+}
+
+.active-tab {
+    border-left: 8px solid var(--ios-blue);
+    height: 76px;
+}
+
+.inactive-tab {
+    height: 76px;
+}
+
+.tabbar--material__button:after {
+    content: unset;
+}
+
+.active-tab .tabbar__button {
+    width: 72px;
+}
+
+.tabbar__button {
+    height: 76px;
+    width: 80px;
+}

@@ -1,0 +1,100 @@
+@page "/Settings"
+
+<div class="settings-form">
+    <div class="content">
+        <div class="form-title">
+            Ændringer her vil <span>IKKE</span> ændre markeder som allerede er oprettet
+        </div>
+        
+        <div class="flea-settings">
+            <div class="week-day-num">
+                
+                <div class="title">
+                    Ugedag og nr:
+                </div>
+                
+                <div class="week-day">
+                    <select name="days" id="days">
+                        <option value="monday">Mandag</option>
+                        <option value="tuesday">Tirsdag</option>
+                        <option value="wednesday">Onsdag</option>
+                        <option value="thursday">Torsdag</option>
+                        <option value="friday">Fredag</option>
+                        <option value="saturday">Lørdag</option>
+                        <option value="sunday">Søndag</option>
+                    </select>
+                </div>
+                
+                <div class="week-num">
+                    <select name="nums" id="nums">
+                        <option value="first">1</option>
+                        <option value="second">2</option>
+                        <option value="third">3</option>
+                        <option value="fourth">4</option>
+                        <option value="fifth">5</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="info-text">
+                Loppemarkeder afholdes nu <span>første lørdag</span> i måneden
+            </div>
+            
+            <div class="booth-price">
+                
+                <div class="title">
+                    Stand Pris:
+                </div>
+                
+                <input class="input-form" type="number" id="booth-price" placeholder="100">
+            </div>
+            
+            <div class="clothing-racks">
+                
+                <div class="title">
+                    Antal Stativer:
+                </div>
+                
+                <input class="input-form" type="number" id="clothing-racks" placeholder="7">
+            </div>
+            
+            <div class="rack-price">
+                
+                <div class="title">
+                    Stativ Pris:
+                </div>
+                
+                <input class="input-form" type="number" id="rack-price" placeholder="50">
+            </div>
+        </div>
+        
+        <hr/>
+        
+        <div class="buttons">
+            <button class="cancel button" type="button" @onclick="HandleCancel">Annuller</button>
+            <button class="submit button" type="submit">Gem Ændringer</button>
+        </div>
+    </div>
+</div>
+
+@code {
+
+    private string titleHeader = "Standard Indstillinger til nye Loppemarkeder";
+
+    private void UpdateTitleHeader()
+    {
+        MainLayout.HeaderTitle = titleHeader;
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await Task.Delay(1);
+        UpdateTitleHeader();
+    }
+    
+    private void HandleCancel()
+    {
+        
+    }
+
+}
