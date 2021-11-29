@@ -3,19 +3,55 @@
 @using Flea.Models
 @using Flea.Models.Floorplan
 @using Flea.Utility
-<BECanvas height="@((long)Height)" width="@((long)Width)" @ref="_canvas"/>
+
+@implements IDisposable
+@inject IJSRuntime _jsRuntime
+
+<section class="floorplan-viewer">
+    <BECanvas @ref="_canvas"/>
+    <div class="floorplan-viewer__input" @onclick="OnClick"></div>
+</section>
 
 @code {
 
-    // TODO only render visible objects
-    
+    // TODO chain tables within clusters (this is mainly a template thing)
+    // TODO maybe move some rendering calls to client side
+    // TODO selective rendering
+
+    public class RenderStyle
+    {
+        public static readonly RenderStyle Default = new("black", "white", 1);
+
+        public readonly string FillColor;
+        public readonly string StrokeColor;
+        public readonly int StrokeWidth;
+
+        public RenderStyle(string fillColor, string strokeColor, int strokeWidth)
+        {
+            FillColor = fillColor;
+            StrokeColor = strokeColor;
+            StrokeWidth = strokeWidth;
+        }
+
+        public async Task ApplyTo(Canvas2DContext context)
+        {
+            await context.SetFillStyleAsync(FillColor);
+            await context.SetStrokeStyleAsync(StrokeColor);
+            await context.SetLineWidthAsync(StrokeWidth);
+        }
+    }
+
+    private Dictionary<string, RenderStyle> _tableStyles = new();
+    private DotNetObjectReference<Floorplan>? _objectReference;
+
     private BECanvasComponent _canvas = null!;
     private Canvas2DContext _context = null!;
 
-    private uint _gridUnit = 10;
+    private uint _gridUnit = 20;
 
     public async Task Render()
     {
+        await _context.ClearRectAsync(0, 0, Width, Height);
         foreach (var (name, tableDefinitions) in Template.Clusters)
         {
             foreach (var (tableDefinition, i) in tableDefinitions.Select((definition, i) => (definition, i)))
@@ -29,31 +65,83 @@
             }
         }
     }
-    
+
+    public void SetTableStyle(Table table, RenderStyle style) => _tableStyles[table.Name] = style;
+
+    public void ClearTableStyle(Table table) => _tableStyles.Remove(table.Name);
+
     private async Task DrawTable(TableDefinition tableDefinition, Table table)
     {
-        var tableClass = Template.GetTableClass(tableDefinition);
+        var (width, height) = Template.GetTableClass(tableDefinition);
+        (width, height) = GridToCanvas(width, height);
+        var (x,y) = GridToCanvas(tableDefinition.X, tableDefinition.Y);
+
         await _context.BeginPathAsync();
-        await _context.SetStrokeStyleAsync("white");
-        await StrokeRect(tableDefinition.X, tableDefinition.Y, tableClass.Width, tableClass.Height);
+
+        if (_tableStyles.TryGetValue(table.Name, out var style) is false)
+            style = RenderStyle.Default;
+        await style!.ApplyTo(_context);
+
+        await _context.RectAsync(x, y, width, height);
+        await _context.FillAsync();
+        if (style.StrokeWidth > 0)
+            await _context.StrokeAsync();
+
         await _context.EndBatchAsync();
     }
 
     private Task StrokeRect(uint x, uint y, uint width, uint height)
     {
-        return _context.StrokeRectAsync(
-            _gridUnit * x,
-            _gridUnit * y,
-            _gridUnit * width,
-            _gridUnit * height);
+        (x,y) = GridToCanvas(x, y);
+        (width, height) = GridToCanvas(width, height);
+        return _context.StrokeRectAsync(x, y, width, height);
+    }
+
+    // TODO explain why one is floating point and the other isn't
+    private (uint x, uint y) GridToCanvas(uint x, uint y) => (x * _gridUnit, y * _gridUnit);
+    private (float x, float y) CanvasToGrid(float x, float y) => (x / _gridUnit, y / _gridUnit);
+
+    private async Task OnClick(MouseEventArgs e)
+    {
+        // If no selection handler is present then we can simply stop here
+        if (OnTableSelect is null)
+            return;
+
+        var (x,y) = CanvasToGrid((float) e.OffsetX, (float) e.OffsetY);
+        foreach (var (clusterName, tableDefinitions) in Template.Clusters)
+        {
+            foreach (var (tableDefinition, i) in tableDefinitions.Select((definition, i) => (definition, i)))
+            {
+                if (tableDefinition.IsInBounds(x, y, Template) is false)
+                    continue;
+
+                var table = Event.GetClusterByName(clusterName)?.Tables[i];
+
+                if (table is null)
+                    throw new Exception("Event and FloorplanTemplate do not match. (Missing cluster)");
+
+                await OnTableSelect.Invoke(table);
+                return;
+            }
+        }
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        _objectReference = DotNetObjectReference.Create(this);
+        
+        await base.OnInitializedAsync();
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        _context = await _canvas.CreateCanvas2DAsync();
-        await _context.SetFillStyleAsync(BackgroundColor);
-        await _context.FillRectAsync(0, 0, Width, Height);
-        await Render();
+    // We only want to fetch the context once
+        if (_context == null!)
+        {
+            _context = await _canvas.CreateCanvas2DAsync();
+            await _jsRuntime.InvokeVoidAsync("BindDotNetInstance", _objectReference!);
+            await LinkCanvasSize();
+        }
     }
 
     public override async Task SetParametersAsync(ParameterView parameters)
@@ -62,19 +150,46 @@
         ParameterChecker.CheckParameters(this);
     }
 
-    [Parameter]
-    public uint Width { get; set; } = 100;
+    /*
+     * Js Interop
+     */
 
-    [Parameter]
+    private async Task LinkCanvasSize()
+    {
+        await _jsRuntime.InvokeVoidAsync("LinkCanvasToParentSize", ".floorplan-viewer canvas");
+    }
+
+    [JSInvokable]
+    public async Task OnCanvasResize(uint width, uint height)
+    {
+        Width = width;
+        Height = height;
+        await Render();
+    }
+    
+    /*
+     * Component parameters
+     */
+
+    // TODO Move out of parameter section
+    public uint Width { get; set; } = 100;
     public uint Height { get; set; } = 100;
 
     [Parameter, RequiredParameter]
     public Event Event { get; set; } = null!;
-    
+
     [Parameter, RequiredParameter]
     public FloorplanTemplate Template { get; set; } = null!;
 
     [Parameter]
+    public Func<Table, Task>? OnTableSelect { get; set; }
+
+    [Parameter]
     public string BackgroundColor { get; set; } = "black";
+
+    public void Dispose()
+    {
+        _objectReference?.Dispose();
+    }
 
 }

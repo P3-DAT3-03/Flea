@@ -5,20 +5,31 @@
 @using System.IO
 @using System.Diagnostics
 <HeaderTitle Value="Test page"/>
-<Floorplan Width="400" Height="400" Template="_template" Event="_event"/>
+<Floorplan OnTableSelect="TableSelected" Template="_template" Event="_event" @ref="_plan"/>
 @code {
 
+    private Floorplan _plan = null!;
     private FloorplanTemplate? _template;
     private Event? _event;
 
+    private Table? _selected;
+
+    private readonly Floorplan.RenderStyle _selectedStyle = new Floorplan.RenderStyle("blue", "white", 1);
+    
+    private Task TableSelected(Table table)
+    {
+        if (_selected is not null)
+            _plan.ClearTableStyle(_selected);
+        _plan.SetTableStyle(table, _selectedStyle);
+        _selected = table;
+        return _plan.Render();
+    }
+    
     protected override void OnInitialized()
     {
-        //using var stream = File.OpenRead("FloorplanLayout.json");
         _template =  JsonSerializer.Deserialize<FloorplanTemplate>(File.ReadAllText("FloorplanLayout.json"));
-        Console.WriteLine(_template);
         Debug.Assert(_template != null);
         _event = new Event("event 1", DateTime.Now, _template);
-        Console.WriteLine(_event);
         
         base.OnInitialized();
     }

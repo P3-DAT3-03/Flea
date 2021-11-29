@@ -17,6 +17,7 @@ namespace Flea.Models
             Name = name;
             CustomerCount = customerCount;
             Tables = tables;
+            tables.ForEach(table => table.Cluster = this);
         }
 
         [Obsolete("Should not be used. For EF use only.")]

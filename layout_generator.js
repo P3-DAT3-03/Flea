@@ -23,7 +23,7 @@ const Posititioner = (startPosition, width, height, rowLength) => index => ({
 });
 
 const clusters = (() => {
-    let p = Posititioner({X: 0, Y: 0}, 6, 6, 4);
+    let p = Posititioner({X: 0, Y: 0}, 7, 6, 4);
     return Object.fromEntries(
         ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L"]
             .map((key, i) => [key, DefaultCluster(p(i))])

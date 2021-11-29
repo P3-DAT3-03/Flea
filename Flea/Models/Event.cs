@@ -38,7 +38,8 @@ namespace Flea.Models
             Name = name;
             Clusters = template.CreateClusters(4);
         }
-        
+
+        public Cluster? GetClusterByName(string name) => Clusters.FirstOrDefault(c => c.Name == name);
         
         public int ComputeRemainingTables => Clusters.Aggregate(0, (acc, cluster) => acc + cluster.TablesNotPlaced);
 

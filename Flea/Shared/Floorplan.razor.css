@@ -1,0 +1,19 @@
+﻿.floorplan-viewer {
+    position: relative;
+    height: 600px;
+}
+
+.floorplan-viewer canvas {
+    display: block;
+    position: absolute;
+    z-index: 0;
+}
+
+.floorplan-viewer__input {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}

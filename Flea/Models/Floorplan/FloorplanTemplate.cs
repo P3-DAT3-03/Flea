@@ -15,6 +15,8 @@ namespace Flea.Models.Floorplan
 
         public Dictionary<string, TableDefinition[]> Clusters { get; set; } = null!;
 
+        public IEnumerable<TableDefinition> Tables => Clusters.SelectMany(cluster => cluster.Value);
+
         public TableClass GetTableClass(TableDefinition table) => TableClasses[table.Class];
 
         public TableDefinition GetTable(Table table) => Clusters[table.Cluster.Name][table.ClusterIndex];
