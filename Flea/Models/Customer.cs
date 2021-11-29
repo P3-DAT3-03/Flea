@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 
@@ -32,6 +33,7 @@ namespace Flea.Models
 		public Customer(string name, string phoneNumber)
 		{
 			Name = name;
+			Nickname = "";
 			PhoneNumber = phoneNumber;
 		}
 
@@ -39,4 +41,15 @@ namespace Flea.Models
 		
 		DbSet<Customer> IModelEntity<Customer, BingoContext>.GetDbSet(BingoContext ctx) => ctx.Customers!;
 	}
+	
+	public class ValidCustomer : ValidationAttribute
+	{
+
+		protected override ValidationResult IsValid(object? value, ValidationContext validationContext)
+		{
+			return (value is Customer {Id: <= 0} ? new ValidationResult(ErrorMessage) : ValidationResult.Success) 
+			       ?? new ValidationResult(ErrorMessage);
+		}  
+	}
+
 }
