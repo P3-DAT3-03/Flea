@@ -1,5 +1,6 @@
+﻿using System;
 using System.Collections.Generic;
-using System;
+using System.ComponentModel.DataAnnotations;
 using Microsoft.EntityFrameworkCore;
 
 namespace Flea.Models
@@ -12,14 +13,24 @@ namespace Flea.Models
          *TODO consider if Tables should be a array based on TableCount instead of a list.*/
 
         public int Id { get; set; }
+        
+        [Required(ErrorMessage = "En reservation skal have et antal borde.")]
+        [Range(1, 3, ErrorMessage = "Prioteten skal være mellem {1} og {2}.")]
         public int Priority { get; set; }
+        
+        [Required(ErrorMessage = "En reservation skal have et antal borde.")]
+        [Range(1, 8, ErrorMessage = "Antal border skal være mellem {1} og {2}.")]
         public int TableCount { get; set; }
+        
+        [Required(ErrorMessage = "En reservation skal have en betalings status.")]
         public bool Paid { get; set; }
         public string Comments { get; set; }
         public List<Table> Tables { get; set; } = new();
         
         public Event Event { get; set; }
         
+        [Required(ErrorMessage = "En reservation skal have en kunde.")]
+        [ValidCustomer(ErrorMessage = "En reservation skal have en kunde.")]
         public Customer ReservationOwner { get; set; }
 
         public Reservation() {}
@@ -59,7 +70,7 @@ namespace Flea.Models
             Event = null!;
             ReservationOwner = null!;
         }
-        
+
         public Reservation Clone() => (Reservation) MemberwiseClone();
         public DbSet<Reservation> GetDbSet(BingoContext ctx) => ctx.Reservations!;
     }
