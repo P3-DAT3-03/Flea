@@ -29,7 +29,6 @@ namespace Flea.Models
         
         public Event Event { get; set; }
         
-        [Required(ErrorMessage = "En reservation skal have en kunde.")]
         [ValidCustomer(ErrorMessage = "En reservation skal have en kunde.")]
         public Customer ReservationOwner { get; set; }
 

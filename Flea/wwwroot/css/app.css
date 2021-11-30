@@ -74,6 +74,7 @@
 
 
 :root {
+    --ios-orange-raw: 255, 159, 10;
     /* iOS dark theme background and foreground */
     --ios-bg: #000;
     --ios-fg: #fff;
@@ -100,15 +101,13 @@
     --ios-pink: rgb(255, 55, 95);
     --ios-brown: rgb(172, 142, 104);
     
-    --table-large: 3em;
-    --table-small: 1.5em;
-    --table-small-gap: 0.75em;
-    --ios-blue: rgb(0, 122, 255);
-    --ios-green: rgb(48, 209, 88);
+    --table-large: 2.50em;
+    --table-small: 1.25em;
+    --table-small-gap: 0.625em;
     
     background: var(--ios-bg);
     color: var(--ios-fg);
-    
+    height: 50vh;
 }
 .center {
     margin: 0 auto;
@@ -116,7 +115,8 @@
 }
 .container.event-placement {
     display: grid;
-    grid-column-gap: var(--table-small);
+    grid-template-columns: 70% 30%;
+    height: 100%;
 }
 
 .guides {
@@ -151,16 +151,33 @@
 }
 
 .side-panel {
+    position: relative;
     height: 100%;
     float: left;
     width: 100%;
+    margin-top: -1.3rem;
+    margin-left: 1.3rem;
     transition: 4s;
     background-color: var(--ios-g1);
 }
-.side-panel.off {
-    width: 0;
+.side-panel .name {
+    padding: 1em;
+    font-size: larger;
 }
-
+.side-panel .phone {
+    padding: 1em;
+    font-size: medium;
+}
+.side-panel .booths {
+    padding: 1em;
+    font-size: medium;
+}
+.side-panel .paid {
+    padding: 1em;
+}
+.side-panel .unpaid {
+    padding: 1em;
+}
 .table {
     display: flex;
     align-items: center;
@@ -371,7 +388,7 @@ a, .btn-link {
 /* Edit button for each booking and customer*/
 .edit-button{
     color: var(--ios-orange);
-    background-color: rgba(var(--ios-orange-t), 0.25);
+    background-color: rgba(var(--ios-orange-raw), 0.25);
     border-radius: 9px;
 }
 
@@ -379,6 +396,17 @@ a, .btn-link {
 .txt {
     display: flex;
     align-items: center;
+}
+
+.force--bottom{
+    position: absolute;
+    bottom: 2.6rem;
+    width: 100%;
+    left: 0;
+}
+.scroll {
+    overflow-y: scroll;
+    height: 100%;
 }
 
 

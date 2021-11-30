@@ -1,4 +1,4 @@
-@page "/Placing/{EventId}"
+@page "/Event/{EventId}/Placement"
 @inject IDbContextFactory<BingoContext> _dbFactory
 
 @using Flea.Models
@@ -6,102 +6,128 @@
 @using Microsoft.EntityFrameworkCore
 @using Table = Flea.Models.Table
 @using Cluster = Flea.Models.Cluster
-
+<style>
+</style>
 <div class="container event-placement">
     @if (_clusters != null)
     {
-        <div class="cluster-container">
-            @* 2 clusters(2,4) opråber 2 clusters(4,2) *@
-            @{
-                var top = _clusters.Where(c => 
-                    char.IsDigit(c.Name[0]) && int.Parse(c.Name) < 5);
-                
-                var topMiddle = _clusters.Where(c => 
-                    char.IsLetter(c.Name[0]) && c.Name[0] >= 'M' && c.Name[0] <= 'P');
-                
-                var middle = _clusters.Where(c => 
-                    char.IsLetter(c.Name[0]) && c.Name[0] >= 'A' && c.Name[0] <= 'L');
-
-                var bottom = _clusters.Where(c => 
-                    char.IsDigit(c.Name[0]) && int.Parse(c.Name) >= 5);
-            }
-            <div class="clusters upper center">
-                @{ var i = 0;}
-                @foreach (var cluster in top)
-                {
-                    <Cluster
-                        Inner="@cluster"
-                        StartNode="@_startNode"
-                        Paths="@_paths"
-                        SelectedCluster="@_selectedCluster"
-                        OnTableSelect="@TableSelected"/>
-                    if (i++ == 1){<div class="rando">Oplæser</div>}
+        <div>
+            <div class="cluster-container">
+                @{
+                    var top = _clusters.Where(c =>
+                        char.IsDigit(c.Name[0]) && int.Parse(c.Name) < 5);
+    
+                    var topMiddle = _clusters.Where(c =>
+                        char.IsLetter(c.Name[0]) && c.Name[0] >= 'M' && c.Name[0] <= 'P');
+    
+                    var middle = _clusters.Where(c =>
+                        char.IsLetter(c.Name[0]) && c.Name[0] >= 'A' && c.Name[0] <= 'L');
+    
+                    var bottom = _clusters.Where(c =>
+                        char.IsDigit(c.Name[0]) && int.Parse(c.Name) >= 5);
                 }
+                @* 2 clusters(2,4) opråber 2 clusters(4,2) *@
+                <div class="clusters upper center">
+                    @{ var i = 0;}
+                    @foreach (var cluster in top)
+                    {
+                        <Cluster
+                            Inner="@cluster"
+                            StartNode="@_startNode"
+                            Paths="@_paths"
+                            SelectedCluster="@_selectedCluster"
+                            OnTableSelect="@TableSelected"/>
+                        if (i++ == 1)
+                        {<div class="rando">Oplæser</div>}
+                    }
+                </div>
+                <div class="clusters middle-top center">
+                    @foreach (var cluster in topMiddle)
+                    {
+                        <Cluster
+                            Inner="@cluster"
+                            StartNode="@_startNode"
+                            Paths="@_paths"
+                            SelectedCluster="@_selectedCluster"
+                            OnTableSelect="@TableSelected"/>
+                    }
+                </div>
+                <div class="clusters middle center">
+                    @foreach (var cluster in middle)
+                    {
+                        <Cluster
+                            Inner="@cluster"
+                            StartNode="@_startNode"
+                            Paths="@_paths"
+                            SelectedCluster="@_selectedCluster"
+                            OnTableSelect="@TableSelected"/>
+                    }
+                </div>
+                @* 3 clusters(4,3,3) *@
+                <div class="clusters lower center">
+                    @foreach (var cluster in bottom)
+                    {
+                        <Cluster
+                            Inner="@cluster"
+                            StartNode="@_startNode"
+                            Paths="@_paths"
+                            SelectedCluster="@_selectedCluster"
+                            OnTableSelect="@TableSelected"/>
+                    }
+                </div>
+                @* tilgængelig, reseveret, start node, mulig sti *@
             </div>
-            <div class="clusters middle-top center">
-                @foreach (var cluster in topMiddle)
-                {
-                    <Cluster
-                        Inner="@cluster"
-                        StartNode="@_startNode"
-                        Paths="@_paths"
-                        SelectedCluster="@_selectedCluster"
-                        OnTableSelect="@TableSelected"/>
-                }
-            </div>
-            <div class="clusters middle center">
-                @foreach (var cluster in middle)
-                {
-                    <Cluster
-                        Inner="@cluster"
-                        StartNode="@_startNode"
-                        Paths="@_paths"
-                        SelectedCluster="@_selectedCluster"
-                        OnTableSelect="@TableSelected"/>
-                }
-            </div>
-            @* 3 clusters(4,3,3) *@
-            <div class="clusters lower center">
-                @foreach (var cluster in bottom)
-                {
-                    <Cluster
-                        Inner="@cluster"
-                        StartNode="@_startNode"
-                        Paths="@_paths"
-                        SelectedCluster="@_selectedCluster"
-                        OnTableSelect="@TableSelected"/>
-                }
-            </div>
-            @* tilgængelig, reseveret, start node, mulig sti *@
-        </div>
-        <div class="guides center">
-            <div class="guide">
-                <div class="ball white"></div>
-                <p>Tilgængelig</p>
-            </div>
-            <div class="guide">
-                <div class="ball red"></div>
-                <p>Reserveret</p>
-            </div>
-            <div class="guide">
-                <div class="ball blue"></div>
-                <p>Start</p>
-            </div>
-            <div class="guide">
-                <div class="ball pink"></div>
-                <p>Sti</p>
-            </div>
+            <div class="guides center">
+                        <div class="guide">
+                            <div class="ball white"></div>
+                            <p>Tilgængelig</p>
+                        </div>
+                        <div class="guide">
+                            <div class="ball red"></div>
+                            <p>Reserveret</p>
+                        </div>
+                        <div class="guide">
+                            <div class="ball blue"></div>
+                            <p>Start</p>
+                        </div>
+                        <div class="guide">
+                            <div class="ball pink"></div>
+                            <p>Sti</p>
+                        </div>
+                    </div>
         </div>
         <div class="side-panel">
             @if (_shownReservation != null)
             {
-                <h3>@_shownReservation?.ReservationOwner.Name</h3>
-                <h3>@_shownReservation?.ReservationOwner.PhoneNumber</h3>
-                <h4>Table count: @_shownReservation?.TableCount</h4>
-                if (_shownReservation != _selectedReservation)
+                Console.WriteLine($"{_shownReservation.Id} {_shownReservation.Paid} {_shownReservation.ReservationOwner.Name}");
+                var customer = _shownReservation?.ReservationOwner;
+                <div class="name">@customer?.Name</div>
+                <div class="phone">+45 @customer?.PhoneNumber</div>
+                <div class="@(_shownReservation!.Paid ? "paid" : "unpaid")"> @(_shownReservation.Paid ? "betalt" : "ej betalt")</div>
+                <div class="booths">Antal stande: @_shownReservation?.TableCount</div>
+                <div class="force--bottom">
+                    <br/>
+                    <button class="button--large--cta" @onclick="() => _shownReservation = null" style="width: 95%; margin: 0 auto; background-color: var(--ios-red)">Annuler Placering</button>
+                    <br/>
+                    <button class="button--large--cta" style="width: 95%; margin: 0 auto; background-color: var(--ios-blue)">Gem Placering</button>
+                </div>
+            }
+            else
+            {
+                <br/>
+                <input class="search-input" type="search" value="" @oninput="Search" placeholder="Søg efter loppemarked..."/>
+                <br/>
+                var reservations = _event?.Reservations.Where(r => r.Comments.Length > 0) ?? new List<Reservation>();
+                foreach (var reservation in reservations)
                 {
-                    <button class="del-button" @onclick="DeleteReservation">Unassign Reservation</button>
+                    <ReservationListItem Reservation="@reservation" ReservationSelected="@ShowReservation"></ReservationListItem>
                 }
+                <div class="force--bottom">
+                    <br/>
+                    <button class="button--large--cta" style="width: 95%; margin: 0 auto; background-color: var(--ios-g2)">Rediger</button>
+                    <br/>
+                    <button class="button--large--cta" style="width: 95%; margin: 0 auto; background-color: var(--ios-blue)">Udfyld Resten</button>
+                </div>
             }
         </div>
     }
@@ -110,8 +136,6 @@
         <p>Loading Event</p>
     }
 </div>
-
-
 @code {
     [Parameter]
     public string EventId { get; set; }
@@ -123,6 +147,18 @@
     private Table? _startNode { get; set; }
     private List<int[]> _paths { get; set; }
     private Cluster _selectedCluster { get; set; }
+
+    private void Search()
+    {
+        Console.WriteLine("Searching");
+    }
+
+    private async void ShowReservation(Reservation res)
+    {
+        _shownReservation = res;
+        Console.WriteLine($"{_shownReservation.Id} {_shownReservation.Paid} {_shownReservation.ReservationOwner.Name}");
+        Console.WriteLine($"{res.Id} {res.Paid} {res.ReservationOwner.Name}");
+    }
     
     private async void TableSelected((Table, Cluster, int) id)
     {
@@ -222,6 +258,7 @@
         _shownReservation = null;
         StateHasChanged();
     }
+    
     private int[]? SelectedPaths(Cluster cluster,  int offset, int direction)
     {
         if (_selectedReservation == null) return null;
@@ -259,6 +296,8 @@
             .ThenInclude(c=> c.Tables)
             .ThenInclude(t => t.Reservation)
             .ThenInclude(r => r!.ReservationOwner)
+            .Include(e => e.Reservations)
+            .ThenInclude(r => r.ReservationOwner)
             .AsSplitQuery()
             .OrderBy(e=> e.Id)
             .FirstOrDefaultAsync(e => e.Id == int.Parse(EventId));
@@ -277,7 +316,7 @@
             }
             _clusters = _event.Clusters;
         } else
-            await _dbFactory.Save(new Event("Crazy event", DateTime.Now)); // Todo: Remove when out of test phase
+            await _dbFactory.Save(new Event(DateTime.Now)); // Todo: Remove when out of test phase
         await base.OnInitializedAsync();
     }
 

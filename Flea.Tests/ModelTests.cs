@@ -65,7 +65,7 @@ namespace Flea.Tests
             const string number = "88888888";
             Customer Ole = new Customer(name, number);
             Reservation OleReservation = new Reservation(priority, reservedTableCount, paid, comment, Ole, null!);
-            Cluster m = new Cluster("m", 4, tableAmount);
+            Cluster m = new Cluster("m", 4, tableAmount, ClusterType.Vertical);
             Assert.AreEqual(m.CustomerCount, 4);
 
             m.Tables[tableAmount - 1].Reservation = OleReservation;

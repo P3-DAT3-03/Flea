@@ -1,0 +1,12 @@
+﻿@using Flea.Models
+<div class="card" style="background-color: var(--ios-g3)">
+    <div class="card__content" @onclick="async () => await ReservationSelected.InvokeAsync(Reservation)">@Reservation.ReservationOwner.Name</div>
+</div>
+
+@code {
+    [Parameter] 
+    public Reservation Reservation { get; set; }
+    
+    [Parameter]
+    public EventCallback<Reservation> ReservationSelected { get; set; }
+}

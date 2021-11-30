@@ -50,6 +50,13 @@ namespace Flea.Migrations
                 nullable: false,
                 defaultValue: "");
 
+            migrationBuilder.AddColumn<int>(
+                name: "Type",
+                table: "Cluster",
+                type: "integer",
+                nullable: false,
+                defaultValue: 0);
+
             migrationBuilder.CreateIndex(
                 name: "IX_Reservations_ReservationOwnerId_EventId",
                 table: "Reservations",
@@ -78,6 +85,10 @@ namespace Flea.Migrations
             migrationBuilder.DropColumn(
                 name: "Nickname",
                 table: "Customers");
+
+            migrationBuilder.DropColumn(
+                name: "Type",
+                table: "Cluster");
 
             migrationBuilder.AlterColumn<int>(
                 name: "EventId",

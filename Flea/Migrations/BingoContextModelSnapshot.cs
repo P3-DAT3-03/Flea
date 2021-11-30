@@ -58,6 +58,11 @@ namespace Flea.Migrations
                         .HasMaxLength(64)
                         .HasColumnType("character varying(64)");
 
+                    b.Property<string>("Nickname")
+                        .IsRequired()
+                        .HasMaxLength(64)
+                        .HasColumnType("character varying(64)");
+
                     b.Property<string>("PhoneNumber")
                         .IsRequired()
                         .HasMaxLength(8)
@@ -82,7 +87,12 @@ namespace Flea.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<int?>("PreviousEventId")
+                        .HasColumnType("integer");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("PreviousEventId");
 
                     b.ToTable("Events");
                 });
@@ -98,7 +108,7 @@ namespace Flea.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int?>("EventId")
+                    b.Property<int>("EventId")
                         .HasColumnType("integer");
 
                     b.Property<bool>("Paid")
@@ -117,7 +127,8 @@ namespace Flea.Migrations
 
                     b.HasIndex("EventId");
 
-                    b.HasIndex("ReservationOwnerId");
+                    b.HasIndex("ReservationOwnerId", "EventId")
+                        .IsUnique();
 
                     b.ToTable("Reservations");
                 });
@@ -154,11 +165,22 @@ namespace Flea.Migrations
                         .HasForeignKey("EventId");
                 });
 
+            modelBuilder.Entity("Flea.Models.Event", b =>
+                {
+                    b.HasOne("Flea.Models.Event", "PreviousEvent")
+                        .WithMany()
+                        .HasForeignKey("PreviousEventId");
+
+                    b.Navigation("PreviousEvent");
+                });
+
             modelBuilder.Entity("Flea.Models.Reservation", b =>
                 {
                     b.HasOne("Flea.Models.Event", "Event")
-                        .WithMany()
-                        .HasForeignKey("EventId");
+                        .WithMany("Reservations")
+                        .HasForeignKey("EventId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Flea.Models.Customer", "ReservationOwner")
                         .WithMany()
@@ -194,6 +216,8 @@ namespace Flea.Migrations
             modelBuilder.Entity("Flea.Models.Event", b =>
                 {
                     b.Navigation("Clusters");
+
+                    b.Navigation("Reservations");
                 });
 
             modelBuilder.Entity("Flea.Models.Reservation", b =>
