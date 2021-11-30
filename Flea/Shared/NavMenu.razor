@@ -1,27 +1,50 @@
 ﻿@inject NavigationManager _navigationManager
 @using Flea.Pages
+@using System.Security.Policy
 
 <!-- NavBar -->
 <div>
     <ul class="list">
-        <NavTab Href="/Home" Icon="hjem.svg">Hjem</NavTab>
-        <NavTab Href="/Customers" Icon="lopper.svg">Lopper</NavTab>
+        <NavTab Href="/Home" Icon="start-icon.svg">Start</NavTab>
+        <NavTab Href="/Customers" Icon="customers-icon.svg">Lopper</NavTab>
     </ul>
 
-        @if (!SecondaryMenuIsVisible)
+        @if (SecondaryMenuIsVisible)
         {
             <ul class="list">
-                <NavTab Href="/Reservations" Icon="book.svg">Book</NavTab>
-                <NavTab Href="/Placing" Icon="placer.svg">Placér</NavTab>
-                <NavTab Href="/Market" Icon="marked.svg">Marked</NavTab>
+                <NavTab Href="/Reservations" Icon="reservations-icon.svg">Book</NavTab>
+                <NavTab Href="/Placing" Icon="placement-icon.svg">Placér</NavTab>
+                <NavTab Href="/Market" Icon="market-icon.svg">Marked</NavTab>
             </ul>
         }
 </div>
 
 @code {
 
+    /*  TODO: Consider removing, if not used
     [Parameter]
     public bool SecondaryMenuIsVisible { get; set; }
+    */
+
+    private bool SecondaryMenuIsVisible
+    {
+        get
+        {
+            var getPath = "/" + _navigationManager.ToBaseRelativePath(_navigationManager.Uri);
+
+            switch (getPath)
+            {
+                case "/":
+                case "/Home":
+                case "/Customers":
+                    return false;
+                default:
+                    return true;
+            }
+        }
+        
+        //return true;
+    }
 
     private void OnLocationChanged(Object? o, LocationChangedEventArgs args)
     {
