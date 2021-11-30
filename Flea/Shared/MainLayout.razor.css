@@ -31,17 +31,19 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    height: 100%;
 }
 
 .navigation-bar {
     background-color: var(--ios-g1);
     border-right: 2px solid var(--ios-g4);
     width: 5rem;
-    height: 100vh;
+    height: 100%;
     position: sticky;
 }
 
 .content {
-    padding: 20px;
     flex: 1;
+    overflow-y: scroll;
+    height: 100%;
 }

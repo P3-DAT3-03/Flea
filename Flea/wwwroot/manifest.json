@@ -1,9 +1,9 @@
 ﻿{
-  "name": "Alligator.io",
-  "short_name": "Alligator",
+  "name": "Bango Lopper",
+  "short_name": "Bango Lopper",
   "theme_color": "#138e69",
   "background_color": "#f8ea48",
-  "display": "fullscreen",
+  "display": "standalone",
   "Scope": "/",
   "start_url": "/",
   "icons": [

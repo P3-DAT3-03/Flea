@@ -11,7 +11,7 @@
 <div class="container event-placement">
     @if (_clusters != null)
     {
-        <div>
+        <div class="cluster-body">
             <div class="cluster-container">
                 @{
                     var top = _clusters.Where(c =>
@@ -99,23 +99,21 @@
         <div class="side-panel">
             @if (_shownReservation != null)
             {
-                Console.WriteLine($"{_shownReservation.Id} {_shownReservation.Paid} {_shownReservation.ReservationOwner.Name}");
                 var customer = _shownReservation?.ReservationOwner;
                 <div class="name">@customer?.Name</div>
                 <div class="phone">+45 @customer?.PhoneNumber</div>
                 <div class="@(_shownReservation!.Paid ? "paid" : "unpaid")"> @(_shownReservation.Paid ? "betalt" : "ej betalt")</div>
                 <div class="booths">Antal stande: @_shownReservation?.TableCount</div>
+                <div class="comments">@_shownReservation?.Comments</div>
                 <div class="force--bottom">
                     <br/>
-                    <button class="button--large--cta" @onclick="() => _shownReservation = null" style="width: 95%; margin: 0 auto; background-color: var(--ios-red)">Annuler Placering</button>
+                    <button class="button--large--cta" @onclick="HideReservation" style="width: 95%; margin: 0 auto; background-color: var(--ios-red)">Annuler Placering</button>
                     <br/>
                     <button class="button--large--cta" style="width: 95%; margin: 0 auto; background-color: var(--ios-blue)">Gem Placering</button>
                 </div>
             }
             else
             {
-                <br/>
-                <input class="search-input" type="search" value="" @oninput="Search" placeholder="Søg efter loppemarked..."/>
                 <br/>
                 var reservations = _event?.Reservations.Where(r => r.Comments.Length > 0) ?? new List<Reservation>();
                 foreach (var reservation in reservations)
@@ -152,12 +150,19 @@
     {
         Console.WriteLine("Searching");
     }
-
-    private async void ShowReservation(Reservation res)
+    
+    private void ShowReservation(Reservation res)
     {
         _shownReservation = res;
-        Console.WriteLine($"{_shownReservation.Id} {_shownReservation.Paid} {_shownReservation.ReservationOwner.Name}");
-        Console.WriteLine($"{res.Id} {res.Paid} {res.ReservationOwner.Name}");
+        _selectedReservation = res;
+    }
+    
+    private void HideReservation()
+    {
+        _shownReservation = null;
+        _selectedReservation = null;
+        _paths.Clear();
+        _startNode = null;
     }
     
     private async void TableSelected((Table, Cluster, int) id)
@@ -324,7 +329,6 @@
     {
         // Db Integration get the selected Event 
         // Get the clusters and find a sane way to place them all :c
-        _selectedReservation = new Reservation(1, 3, true, ""){ReservationOwner = new Customer("Loke Walsted", "1007823")};
         _paths = new List<int[]>();
         _startNode = null;
     }
