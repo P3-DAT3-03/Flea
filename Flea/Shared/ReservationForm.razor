@@ -6,6 +6,8 @@
 
 
 <EditForm Model="Reservation" OnValidSubmit="OnSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
     <div class="edit-form">
         @if (Reservation.Id == 0)
         {

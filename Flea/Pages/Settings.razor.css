@@ -1,0 +1,58 @@
+.settings-form {
+    display: flex;
+    flex-flow: column;
+    padding: 55px;
+    border: 2px solid var(--ios-g1);
+    border-radius: 20px;
+    width: 640px;
+    height: 520px;
+    font-family: Poppins, sans-serif;
+    font-size: 20px;
+}
+
+.content {
+    gap: 48px;
+}
+
+.form-title {
+    text-align: center;
+}
+
+span {
+    font-weight: bold;
+    color: var(--ios-blue);
+}
+
+.title {
+    font-weight: bold;
+}
+
+.info-text {
+    text-align: right;
+}
+
+.input-form {
+    background-color: var(--ios-g2);
+    width: 438px;
+    height: 48px;
+    font-size: 20px;
+    padding-left: 20px;
+}
+
+.buttons {
+    flex-flow: row;
+    justify-content: space-between;
+}
+
+.button {
+    border-radius: 3px;
+    padding: 4px 10px;
+}
+
+.cancel {
+    background-color: var(--ios-red);
+}
+
+.submit {
+    background-color: var(--ios-blue);
+}

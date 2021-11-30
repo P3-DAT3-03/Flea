@@ -90,6 +90,8 @@
     --ios-red: rgb(255, 69, 58);
     --ios-orange-t: 255, 159, 10;
     --ios-orange: rgb(var(--ios-orange-t));
+    --ios-blue: rgb(0, 122, 255);
+    --ios-green: rgb(48, 209, 88);
     
     background: var(--ios-bg);
     color: var(--ios-fg);
