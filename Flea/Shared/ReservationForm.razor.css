@@ -34,20 +34,26 @@
     position: relative;
 }
 
-.floating-dropdown div {
+.floating-dropdown .show-customer {
     position: absolute;
     z-index: 1001;
-    background-color: #1c1c1e;
+    background-color: var(--ios-g2);
     width: 100%;
     box-sizing: border-box;
-    border-radius: 0 0 9px 9px;
+    border-radius: 9px 9px 9px 9px;
     padding-bottom: 10px;
     padding-top: 10px;
     padding-left: 10px;
+    margin-top: 0;
+    font-size: small;
 }
 
-.floating-dropdown option {
-    padding-bottom: 5px;
+.show-customer div {
+    padding-bottom: 10px;
+}
+
+.show-customer div{
+    list-style: none;
 }
 
 .close {

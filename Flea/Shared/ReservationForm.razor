@@ -22,18 +22,25 @@
                             <button class="@_close" type="button" @onclick="ResetSelectedCustomer"></button>
                         </div>
                         <div class="floating-dropdown" style="display: @_display">
-                            <div>
+                            
                                 @if (_shownCustomers != null)
                                 {
-                                    <div selected="selected" disabled="" value="-1">Vælg en loppe</div>
-                                    <div>
+                                    <div class="show-customer">
+                                        @if (!_shownCustomers.Any())
+                                        {
+                                            <div style="color: var(--ios-g5)" selected="selected" disabled="" value="-1">Ingen loppe at vise</div>
+                                        }
+                                        else
+                                        {
+                                            <div style="color: var(--ios-g5)" selected="selected" disabled="" value="-1">Vælg en loppe</div>
+                                        }
+                                        
                                         @foreach (var customer in _shownCustomers)
                                         {
                                             <div value="@customer.Id" @onclick="() => Select(customer)">@customer.Name</div>
                                         }
                                     </div>
                                 }
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -95,7 +102,7 @@
     private List<Customer>? _customers;
     private IEnumerable<Customer>? _shownCustomers;
     private string _lastSearchTerm = string.Empty;
-
+    
     protected override async Task OnInitializedAsync()
     {
         ParameterChecker.CheckParameters(this);
@@ -127,15 +134,16 @@
         {
             _display = "display";
         }
-    // If no input show everything
+        // If no input hide everything
         if (searchTerm == "")
         {
             _close = "close-hidden";
+            _display = "none";
             _shownCustomers = _customers;
         }
         else
         {
-    // Finds by name
+        // Finds by name
             _shownCustomers = from c
                 in _customers
                 where c.Name.ToLower().Contains(searchTerm)
