@@ -180,66 +180,98 @@ a, .btn-link {
 }
 
 /* Search field*/
-.search-input{
+.search-input {
     width: 50%;
-    height: 40px;
+    height: 48px;
     vertical-align: baseline;
     background-color: var(--ios-g1);
 }
 
-.edit-search-input {
+.search-input-fill {
+    width: 100%;
+}
+
+.search-no-icon{
     background-image: none;
     width: 100%;
 }
 
 /* Grid container for reservation and customer*/
-.customer-item, 
-.reservation-li {
+.customer-item {
     background-color: var(--ios-g1);
     padding: 10px;
     border-radius: 11px;
     display: grid;
-    
+    grid-template-columns: auto 30% 25% 10% 15%;
     grid-gap: 10px;
     margin-bottom: 20px;
 }
 
+
 /* Template for reservation*/
-.reservation-li {
-    grid-template-columns: auto 12.5% 12.5% 10% 15%;
-}
-
-/* Template for customer*/
-.customer-item{
-    grid-template-columns: auto 30% 25% 10% 15%;
-}
-
-/* Create new booking and customer button*/
-.create-button {
-    float: right;
-}
-
-/* Delete button for each booking and customer*/
-.del-button{
+.reservation-item {
     background: transparent;
-    border-color: var(--ios-red);
-    color: var(--ios-red);
+    padding: 15px 20px;
+    border: 1px solid var(--ios-fg);
+    border-radius: 11px;
+    display: grid;
+    grid-template-columns: auto 14em 13em;
+    grid-gap: 10px;
+    margin-bottom: 20px;
 }
 
-/* Edit button for each booking and customer*/
-.edit-button{
-    color: var(--ios-orange);
-    background-color: rgba(var(--ios-orange-t), 0.25);
-    border-radius: 9px;
-}
-
-/* Allign text for displayed data in grid columns */
-.txt {
-    display: flex;
+/* Make Name center*/
+.allign-name-center  {
+    display: inline-grid;
     align-items: center;
 }
 
+.reservation-item .stand-paymentstatus div:nth-child(2)  {
+    text-align: center;
+    margin: auto;
+    background: green;
+    padding: 4px 10px;
+    border-radius: 3px;
+}
 
+.reservation-item div:nth-child(3) {
+    display: flex;
+    column-gap: 20px
+}
+
+.stand-paymentstatus {
+    display: flex;
+}
+
+/* Make stand and betaling center*/
+.stand-paymentstatus div {
+    display: inline-grid;
+    align-items: center;
+}
+
+/* Make button float right*/
+.float-right {
+    float: right;
+}
+
+/* Padding for button style*/
+.button {
+    padding: 10px 30px;
+}
+
+/* Make button red*/
+.red {
+    background-color: var(--ios-red);
+}
+
+/* Make button grey 2*/
+.grey2 {
+    background-color: var(--ios-g2);
+}
+
+.blue {
+    background-color: var(--ios-blue);
+}
 
 
 

@@ -1,14 +1,18 @@
 @using Flea.Models
 @using Reservation = Flea.Models.Reservation
 
-<div class="reservation-li">
-    <div class="txt">@Reservation.ReservationOwner.Name</div>
-    <div class="txt">@Reservation.TableCount Stande</div>
-    <div class="txt">@(Reservation.Paid ? "Betalt" : "Ej betalt")</div>
-    <button class="button del-button button--outline" @onclick="Delete">Slet</button>
-    <Modal ButtonCSS="button button--outline create-button" ButtonName="Rediger" @ref="_child">
-        <ReservationForm Reservation="_temp" OnValidSubmit="OnSubmit" Modal="_child"></ReservationForm>
-    </Modal>
+<div class="reservation-item">
+    <div class="allign-name-center">@Reservation.ReservationOwner.Name</div>
+    <div class="stand-paymentstatus">
+        <div class="txt">@Reservation.TableCount Stande</div>
+        <div class="txt paymentstatus">@(Reservation.Paid ? "Betalt" : "Ej betalt")</div>
+    </div>
+    <div>
+        <button class="button red" @onclick="Delete">Slet</button>
+        <Modal ButtonCSS="button grey2" ButtonName="Rediger" @ref="_child">
+            <ReservationForm Reservation="_temp" OnValidSubmit="OnSubmit" Modal="_child"></ReservationForm>
+        </Modal>
+    </div>
 </div>
 
 @code {

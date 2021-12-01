@@ -1,28 +1,17 @@
-﻿#move-down {
-    margin-top: 40px;
-}
-
-#move-div {
-    display: inline-block;
-    margin-left: 10px;
-}
-
-.edit-form {
-    display: grid;
-    grid-gap: 1em;
-    grid-template-columns: 1fr;
-    align-items: stretch;
+﻿.reservation-overview {
     margin: 2em 2em 0 2em;
 }
 
-.edit-search-input-form {
+.reservation-overview > div {
+    display: grid;
+    grid-template-columns: 35% 65%;
+    align-items: baseline;
     width: 100%;
+    margin-bottom: 1em;
 }
 
-.edit-form-div {
-    display: grid;
-    grid-template-columns: 40% 60%;
-    align-items: center;
+.reservation-overview > div:nth-child(5) {
+    display: inline;
 }
 
 .text-area {
@@ -30,13 +19,13 @@
     padding: 10px;
 }
 
-.floating-dropdown {
+.floating-dropdown{
     position: relative;
 }
 
 .floating-dropdown .show-customer {
     position: absolute;
-    z-index: 1001;
+    z-index: 1000;
     background-color: var(--ios-g2);
     width: 100%;
     box-sizing: border-box;
@@ -48,14 +37,16 @@
     font-size: small;
 }
 
-.show-customer div {
+.show-customer {
+    width: 100%;
+}
+
+.show-customer > div {
     padding-bottom: 10px;
+    font-size: small;
 }
 
-.show-customer div{
-    list-style: none;
-}
-
+/* This is yoinked form the internet ----*/
 .close {
     overflow: hidden;
     position: relative;
@@ -96,3 +87,5 @@
 }
 
 .close:after { transform: rotate(-45deg); }
+
+/* -------------- */

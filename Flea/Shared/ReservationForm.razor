@@ -6,79 +6,77 @@
 
 
 <EditForm Model="Reservation" OnValidSubmit="OnSubmit">
-    <DataAnnotationsValidator />
-    <ValidationSummary />
-    <div class="edit-form">
+    <DataAnnotationsValidator/>
+    <ValidationSummary/>
+    <div class="reservation-overview">
         @if (Reservation.Id == 0)
         {
-            <div class="edit-form-div">
+            <div>
                 <div>Søg efter loppe:</div>
-                <div class="search-box" style="display: grid;">
-                    <div class="dropdown">
-                        <div>
-                            <input class="search-input edit-search-input-form" type="search"
-                                   value="@_selectedCustomer?.Name" placeholder="Søge efter loppe"
-                                   @oninput="Search">
-                            <button class="@_close" type="button" @onclick="ResetSelectedCustomer"></button>
-                        </div>
-                        <div class="floating-dropdown" style="display: @_display">
-                            @if (_shownCustomers != null)
+                <div>
+                    <div>
+                        <input class="search-input search-input-fill" type="search"
+                               value="@_selectedCustomer?.Name" placeholder="Søge efter loppe"
+                               @oninput="Search">
+                        <button class="@_close" type="button" @onclick="ResetSelectedCustomer"></button>
+                    </div>
+                    <div class="floating-dropdown" style="display: @_display">
+                        @if (_shownCustomers != null)
+                        {
+                            <div class="show-customer">
+                                @if (!_shownCustomers.Any())
                                 {
-                                    <div class="show-customer">
-                                        @if (!_shownCustomers.Any())
-                                        {
-                                            <div style="color: var(--ios-g5)" selected="selected" disabled="" value="-1">Ingen loppe at vise</div>
-                                        }
-                                        else
-                                        {
-                                            <div style="color: var(--ios-g5)" selected="selected" disabled="" value="-1">Vælg en loppe</div>
-                                        }
-                                        
-                                        @foreach (var customer in _shownCustomers)
-                                        {
-                                            <div value="@customer.Id" @onclick="() => Select(customer)">@customer.Name</div>
-                                        }
-                                    </div>
+                                    <div style="color: var(--ios-g5)" selected="selected" disabled="" value="-1">Ingen loppe at vise</div>
                                 }
-                        </div>
+                                else
+                                {
+                                    <div style="color: var(--ios-g5)" selected="selected" disabled="" value="-1">Vælg en loppe</div>
+                                }
+
+                                @foreach (var customer in _shownCustomers)
+                                {
+                                    <div value="@customer.Id" @onclick="() => Select(customer)">@customer.Name</div>
+                                }
+                            </div>
+                        }
                     </div>
                 </div>
             </div>
         }
         else
         {
-            <div class="edit-form-div">
+            <div>
                 <div>Loppe:</div>
-                <InputText class="search-input edit-search-input" disabled=""
+                <InputText class="search-input search-no-icon" disabled=""
                            @bind-Value="Reservation.ReservationOwner.Name"/>
             </div>
         }
-        <div class="edit-form-div">
+        <div>
             <div>Antal stande: </div>
-            <InputNumber class="search-input edit-search-input" placeholder="Eks. 3"
+            <InputNumber class="search-input search-no-icon" placeholder="Eks. 3"
                          @bind-Value="Reservation.TableCount">
             </InputNumber>
         </div>
-        <div class="edit-form-div">
+        <div>
             <div>Betalings status: </div>
             <label class="checkbox">
                 <InputCheckbox type="checkbox" class="checkbox__input"
                                @bind-Value="Reservation.Paid">
                 </InputCheckbox>
                 <div class="checkbox__checkmark"></div>
-                <div id="move-div">@(Reservation.Paid ? "Betalt" : "Ej betalt")</div>
+                <div>@(Reservation.Paid ? "Betalt" : "Ej betalt")</div>
             </label>
         </div>
-        <div class="edit-form-div">
+        <div>
             <div>Bemærkninger: </div>
-            <textarea   class="search-input edit-search-input text-area"
+            <textarea   class="search-input search-no-icon text-area"
                         placeholder="Eks. Handicap, tæt på rygerrum mm."
                         @bind="Reservation.Comments">
             </textarea>
         </div>
-        <div id="move-down">
-            <button type="submit" class="button create-button button--outline">@(Reservation.Id == 0 ? "Opret booking" : "Gem ændringer")</button>
-            <button type="button" class="button button del-button button--outline" @onclick="@Modal.ModalCancel">Cancel</button>
+        <div>
+            <button type="button" class="button red" @onclick="@Modal.ModalCancel">Anullere</button>
+            <button type="submit" class="button blue float-right">@(Reservation.Id == 0 ? "Opret booking" : "Gem ændringer")</button>
         </div>
     </div>
 </EditForm>
@@ -101,7 +99,7 @@
     private List<Customer>? _customers;
     private IEnumerable<Customer>? _shownCustomers;
     private string _lastSearchTerm = string.Empty;
-    
+
     protected override async Task OnInitializedAsync()
     {
         ParameterChecker.CheckParameters(this);
@@ -116,7 +114,7 @@
         Reservation.ReservationOwner = null!;
         _close = "close-hidden";
     }
-    
+
     public void Select(Customer c)
     {
         _selectedCustomer = c;
@@ -133,7 +131,7 @@
         {
             _display = "display";
         }
-        // If no input hide everything
+    // If no input hide everything
         if (searchTerm == "")
         {
             _close = "close-hidden";
@@ -142,7 +140,7 @@
         }
         else
         {
-        // Finds by name
+    // Finds by name
             _shownCustomers = from c
                 in _customers
                 where c.Name.ToLower().Contains(searchTerm)
