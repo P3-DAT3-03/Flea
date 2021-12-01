@@ -1,14 +1,11 @@
-@page "/Placing"
+@page "/Placement"
+
+<HeaderTitle Value="@(titlePrefix + " " + titleDate)"/>
 
 
 @code {
     
-    private string titleHeader = "Placering af Lopper til den 28. februar, 2021";
-    
-    // TODO Make title header dynamic, get date from database ^^
+    private string titlePrefix = "Placering af Lopper til den";
+    private string titleDate = "28. februar, 2021";
 
-    private void UpdateTitleHeader() { MainLayout.HeaderTitle = titleHeader; }
-    
-    protected override void OnInitialized() { UpdateTitleHeader(); }
-    
 }
