@@ -93,6 +93,9 @@
     --ios-blue: rgb(0, 122, 255);
     --ios-green: rgb(48, 209, 88);
     
+    /* Colours */
+    --white: rgba(255, 255, 255, 1);
+    
     background: var(--ios-bg);
     color: var(--ios-fg);
 }

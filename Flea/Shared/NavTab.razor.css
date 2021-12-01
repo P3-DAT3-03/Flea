@@ -27,7 +27,7 @@
 }
 
 .active-tab .tabbar__label {
-    color: rgba(255, 255, 255, 1);
+    color: var(--white);
 }
 
 .tabbar--material__button:after {
