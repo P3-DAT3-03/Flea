@@ -6,8 +6,9 @@
 
 
 <EditForm Model="Reservation" OnValidSubmit="OnSubmit">
-    <DataAnnotationsValidator />
-    <ValidationSummary />
+    <DataAnnotationsValidator/>
+    <CustomValidator @ref="_validator"/>
+    <ValidationSummary/>
     <div class="edit-form">
         @if (Reservation.Id == 0)
         {
@@ -16,30 +17,30 @@
                 <div class="search-box" style="display: grid;">
                     <div class="dropdown">
                         <div>
-                            <input class="search-input edit-search-input-form" type="search"
+                            <input class="search-input edit-search-input-form @_customerValidationClass" type="search"
                                    value="@_selectedCustomer?.Name" placeholder="Søge efter loppe"
                                    @oninput="Search">
                             <button class="@_close" type="button" @onclick="ResetSelectedCustomer"></button>
                         </div>
                         <div class="floating-dropdown" style="display: @_display">
                             @if (_shownCustomers != null)
-                                {
-                                    <div class="show-customer">
-                                        @if (!_shownCustomers.Any())
-                                        {
-                                            <div style="color: var(--ios-g5)" selected="selected" disabled="" value="-1">Ingen loppe at vise</div>
-                                        }
-                                        else
-                                        {
-                                            <div style="color: var(--ios-g5)" selected="selected" disabled="" value="-1">Vælg en loppe</div>
-                                        }
-                                        
-                                        @foreach (var customer in _shownCustomers)
-                                        {
-                                            <div value="@customer.Id" @onclick="() => Select(customer)">@customer.Name</div>
-                                        }
-                                    </div>
-                                }
+                            {
+                                <div class="show-customer">
+                                    @if (!_shownCustomers.Any())
+                                    {
+                                        <div style="color: var(--ios-g5)" selected="selected" disabled="" value="-1">Ingen loppe at vise</div>
+                                    }
+                                    else
+                                    {
+                                        <div style="color: var(--ios-g5)" selected="selected" disabled="" value="-1">Vælg en loppe</div>
+                                    }
+
+                                    @foreach (var customer in _shownCustomers)
+                                    {
+                                        <div value="@customer.Id" @onclick="() => Select(customer)">@customer.Name</div>
+                                    }
+                                </div>
+                            }
                         </div>
                     </div>
                 </div>
@@ -94,6 +95,7 @@
     [Parameter, RequiredParameter]
     public Modal Modal { get; set; } = null!;
 
+    private string _customerValidationClass = string.Empty;
     private string _display = "none";
     private string _close = "close-hidden";
     private Customer? _selectedCustomer;
@@ -101,7 +103,9 @@
     private List<Customer>? _customers;
     private IEnumerable<Customer>? _shownCustomers;
     private string _lastSearchTerm = string.Empty;
-    
+
+    private CustomValidator _validator = null!;
+
     protected override async Task OnInitializedAsync()
     {
         ParameterChecker.CheckParameters(this);
@@ -114,14 +118,16 @@
     {
         _selectedCustomer = null;
         _close = "close-hidden";
+        _customerValidationClass = string.Empty;
     }
-    
+
     public void Select(Customer c)
     {
         _selectedCustomer = c;
         Reservation.ReservationOwner = c;
         _display = "none";
         _close = "close";
+        _customerValidationClass = "modified valid";
     }
 
     public void Search(ChangeEventArgs e) => Search(e.Value?.ToString()!.ToLower() ?? "");
@@ -132,7 +138,7 @@
         {
             _display = "display";
         }
-        // If no input hide everything
+    // If no input hide everything
         if (searchTerm == "")
         {
             _close = "close-hidden";
@@ -141,7 +147,7 @@
         }
         else
         {
-        // Finds by name
+    // Finds by name
             _shownCustomers = from c
                 in _customers
                 where c.Name.ToLower().Contains(searchTerm)
@@ -159,6 +165,23 @@
 
     private async Task OnSubmit(EditContext context)
     {
+        _validator.ClearErrors();
+
+        var errors = new Dictionary<string, List<string>>();
+
+        if (_selectedCustomer == null)
+            _customerValidationClass = "invalid";
+            errors.Add(
+                nameof(Reservation.ReservationOwner),
+                new() {"Der skal vælges en loppe før bookingen kan oprettes."}
+                );
+
+        if (errors.Any())
+        {
+            _validator.DisplayErrors(errors);
+            return;
+        }
+
         await OnValidSubmit.InvokeAsync(context);
     }
 
