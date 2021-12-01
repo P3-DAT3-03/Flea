@@ -93,9 +93,6 @@
     --ios-blue: rgb(0, 122, 255);
     --ios-green: rgb(48, 209, 88);
     
-    /* Colours */
-    --white: rgba(255, 255, 255, 1);
-    
     background: var(--ios-bg);
     color: var(--ios-fg);
 }
@@ -179,7 +176,7 @@ a, .btn-link {
 
 .view-head {
     height: 40px;
-    margin-bottom: 50px;
+    margin-bottom: 20px;
 }
 
 /* Search field*/
@@ -219,9 +216,15 @@ a, .btn-link {
 
 /* Create new booking and customer button*/
 .create-button {
-    border-radius: 9px;
-    height: 40px;
+    border-radius: 3px;
+    height: 48px;
     float: right;
+    background-color: var(--ios-blue);
+    border: none;
+    color: var(--ios-fg);
+    padding: 10px 30px;
+    text-transform: capitalize;
+    font-size: 20px;
 }
 
 /* Delete button for each booking and customer*/

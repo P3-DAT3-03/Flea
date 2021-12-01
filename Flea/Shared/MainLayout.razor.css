@@ -35,7 +35,7 @@
 
 .navigation-bar {
     background-color: var(--ios-g1);
-    border-right: 2px solid var(--ios-g4);
+    border-right: 3px solid var(--ios-g4);
     width: 5rem;
     height: 100vh;
     position: sticky;

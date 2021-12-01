@@ -4,11 +4,11 @@
 
 <div class="event-list">
     <div class="font-size-xx-large">@Event.Name </div>
-    <button class="button button--outline" @onclick='() => Navigate($"/Event/{Event.Id}/Reservations")'>Bookinger</button>
+    <button class="button nav" @onclick='() => Navigate($"/Event/{Event.Id}/Reservations")'>Bookinger</button>
     <div class="font-size-larger-unicorn">@Event.ComputeRemainingTables ledige stande </div>
-    <button class="button button--outline" @onclick='() => Navigate($"/Event/{Event.Id}/Placement")'>Placeringer</button>
+    <button class="button nav" @onclick='() => Navigate($"/Event/{Event.Id}/Placement")'>Placeringer</button>
     <div class="font-size-larger">@Event.ComputeMissingPayments mangler at betale </div>
-    <button class="button button--outline" @onclick='() => Navigate($"/Event/{Event.Id}/Market")'>Loppemarked</button>
+    <button class="button nav" @onclick='() => Navigate($"/Event/{Event.Id}/Market")'>Loppemarked</button>
 </div>
 
 @code {

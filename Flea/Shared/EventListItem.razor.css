@@ -1,19 +1,22 @@
 .event-list {
-    background-color: var(--ios-g1);
+    background-color: var(--ios-bg);
     padding: 10px;
-    border-radius: 11px;
+    border-radius: 20px;
+    border: 2px solid var(--ios-fg);
     display: grid;
-    grid-template-columns: auto 20%;
+    grid-template-columns: auto max-content;
     grid-template-rows: auto auto auto;
     grid-gap: 10px;
     margin-bottom: 20px;
 }
 
-.button--outline {
-    background-color: transparent;
-    border: 1px solid var(--ios-fg);
+.nav {
+    background-color: var(--ios-g3);
     color: var(--ios-fg);
-    border-radius: 9px;
+    border-radius: 3px;
+    border: none;
+    height: 48px;
+    width: 280px;
 }
 
 .font-size-xx-large {
