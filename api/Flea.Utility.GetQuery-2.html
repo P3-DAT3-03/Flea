@@ -150,7 +150,7 @@
     <a href="https://github.com/P3-DAT3-03/Flea/new/main/apiSpec/new?filename=Flea_Utility_GetQuery_2__ctor_IDbContextFactory__0__.md&amp;value=---%0Auid%3A%20Flea.Utility.GetQuery%602.%23ctor(IDbContextFactory%7B%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/P3-DAT3-03/Flea/blob/main/Flea/Utility/GetQuery.cs/#L198">View Source</a>
+    <a href="https://github.com/P3-DAT3-03/Flea/blob/main/Flea/Utility/GetQuery.cs/#L238">View Source</a>
   </span>
   <a id="Flea_Utility_GetQuery_2__ctor_" data-uid="Flea.Utility.GetQuery`2.#ctor*"></a>
   <h4 id="Flea_Utility_GetQuery_2__ctor_IDbContextFactory__0__" data-uid="Flea.Utility.GetQuery`2.#ctor(IDbContextFactory{`0})">GetQuery(IDbContextFactory&lt;TContext&gt;)</h4>
@@ -435,6 +435,140 @@ allowing for chaining of commands.</p>
         <td><span class="parametername">TProperty</span></td>
         <td><p>The type of the property being returned from the selector.
 This will in almost all cases be inferred by the compiler.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/P3-DAT3-03/Flea/new/main/apiSpec/new?filename=Flea_Utility_GetQuery_2_OrderAscending__1_System_Linq_Expressions_Expression_System_Func__1___0___.md&amp;value=---%0Auid%3A%20Flea.Utility.GetQuery%602.OrderAscending%60%601(System.Linq.Expressions.Expression%7BSystem.Func%7B%601%2C%60%600%7D%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/P3-DAT3-03/Flea/blob/main/Flea/Utility/GetQuery.cs/#L207">View Source</a>
+  </span>
+  <a id="Flea_Utility_GetQuery_2_OrderAscending_" data-uid="Flea.Utility.GetQuery`2.OrderAscending*"></a>
+  <h4 id="Flea_Utility_GetQuery_2_OrderAscending__1_System_Linq_Expressions_Expression_System_Func__1___0___" data-uid="Flea.Utility.GetQuery`2.OrderAscending``1(System.Linq.Expressions.Expression{System.Func{`1,``0}})">OrderAscending&lt;TKey&gt;(Expression&lt;Func&lt;TEntity, TKey&gt;&gt;)</h4>
+  <div class="markdown level1 summary"><p>Order the selection by a given key in ascending order.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public GetQuery&lt;TContext, TEntity&gt; OrderAscending&lt;TKey&gt;(Expression&lt;Func&lt;TEntity, TKey&gt;&gt; selector)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Linq.Expressions.Expression</span>&lt;<span class="xref">System.Func</span>&lt;TEntity, TKey&gt;&gt;</td>
+        <td><span class="parametername">selector</span></td>
+        <td><p>A lambda expression that selects the key to order by.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Flea.Utility.GetQuery-2.html">GetQuery</a>&lt;TContext, TEntity&gt;</td>
+        <td><p>A reference to the current <a class="xref" href="Flea.Utility.GetQuery-2.html">GetQuery&lt;TContext, TEntity&gt;</a> (<code>this</code>)
+allowing for chaining of commands.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TKey</span></td>
+        <td><p>The type of the selected key.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/P3-DAT3-03/Flea/new/main/apiSpec/new?filename=Flea_Utility_GetQuery_2_OrderDescending__1_System_Linq_Expressions_Expression_System_Func__1___0___.md&amp;value=---%0Auid%3A%20Flea.Utility.GetQuery%602.OrderDescending%60%601(System.Linq.Expressions.Expression%7BSystem.Func%7B%601%2C%60%600%7D%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/P3-DAT3-03/Flea/blob/main/Flea/Utility/GetQuery.cs/#L227">View Source</a>
+  </span>
+  <a id="Flea_Utility_GetQuery_2_OrderDescending_" data-uid="Flea.Utility.GetQuery`2.OrderDescending*"></a>
+  <h4 id="Flea_Utility_GetQuery_2_OrderDescending__1_System_Linq_Expressions_Expression_System_Func__1___0___" data-uid="Flea.Utility.GetQuery`2.OrderDescending``1(System.Linq.Expressions.Expression{System.Func{`1,``0}})">OrderDescending&lt;TKey&gt;(Expression&lt;Func&lt;TEntity, TKey&gt;&gt;)</h4>
+  <div class="markdown level1 summary"><p>Order the selection by a given key in descending order.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public GetQuery&lt;TContext, TEntity&gt; OrderDescending&lt;TKey&gt;(Expression&lt;Func&lt;TEntity, TKey&gt;&gt; selector)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Linq.Expressions.Expression</span>&lt;<span class="xref">System.Func</span>&lt;TEntity, TKey&gt;&gt;</td>
+        <td><span class="parametername">selector</span></td>
+        <td><p>A lambda expression that selects the key to order by.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Flea.Utility.GetQuery-2.html">GetQuery</a>&lt;TContext, TEntity&gt;</td>
+        <td><p>A reference to the current <a class="xref" href="Flea.Utility.GetQuery-2.html">GetQuery&lt;TContext, TEntity&gt;</a> (<code>this</code>)
+allowing for chaining of commands.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TKey</span></td>
+        <td><p>The type of the selected key.</p>
 </td>
       </tr>
     </tbody>

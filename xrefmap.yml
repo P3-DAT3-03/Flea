@@ -1325,6 +1325,42 @@ references:
   fullName.vb: Flea.Utility.GetQuery(Of TContext, TEntity).Include(Of TProperty)(System.Linq.Expressions.Expression(Of System.Func(Of TEntity, TProperty)))
   nameWithType: GetQuery<TContext, TEntity>.Include<TProperty>(Expression<Func<TEntity, TProperty>>)
   nameWithType.vb: GetQuery(Of TContext, TEntity).Include(Of TProperty)(Expression(Of Func(Of TEntity, TProperty)))
+- uid: Flea.Utility.GetQuery`2.OrderAscending*
+  name: OrderAscending
+  href: api/Flea.Utility.GetQuery-2.html#Flea_Utility_GetQuery_2_OrderAscending_
+  commentId: Overload:Flea.Utility.GetQuery`2.OrderAscending
+  isSpec: "True"
+  fullName: Flea.Utility.GetQuery<TContext, TEntity>.OrderAscending
+  fullName.vb: Flea.Utility.GetQuery(Of TContext, TEntity).OrderAscending
+  nameWithType: GetQuery<TContext, TEntity>.OrderAscending
+  nameWithType.vb: GetQuery(Of TContext, TEntity).OrderAscending
+- uid: Flea.Utility.GetQuery`2.OrderAscending``1(System.Linq.Expressions.Expression{System.Func{`1,``0}})
+  name: OrderAscending<TKey>(Expression<Func<TEntity, TKey>>)
+  href: api/Flea.Utility.GetQuery-2.html#Flea_Utility_GetQuery_2_OrderAscending__1_System_Linq_Expressions_Expression_System_Func__1___0___
+  commentId: M:Flea.Utility.GetQuery`2.OrderAscending``1(System.Linq.Expressions.Expression{System.Func{`1,``0}})
+  name.vb: OrderAscending(Of TKey)(Expression(Of Func(Of TEntity, TKey)))
+  fullName: Flea.Utility.GetQuery<TContext, TEntity>.OrderAscending<TKey>(System.Linq.Expressions.Expression<System.Func<TEntity, TKey>>)
+  fullName.vb: Flea.Utility.GetQuery(Of TContext, TEntity).OrderAscending(Of TKey)(System.Linq.Expressions.Expression(Of System.Func(Of TEntity, TKey)))
+  nameWithType: GetQuery<TContext, TEntity>.OrderAscending<TKey>(Expression<Func<TEntity, TKey>>)
+  nameWithType.vb: GetQuery(Of TContext, TEntity).OrderAscending(Of TKey)(Expression(Of Func(Of TEntity, TKey)))
+- uid: Flea.Utility.GetQuery`2.OrderDescending*
+  name: OrderDescending
+  href: api/Flea.Utility.GetQuery-2.html#Flea_Utility_GetQuery_2_OrderDescending_
+  commentId: Overload:Flea.Utility.GetQuery`2.OrderDescending
+  isSpec: "True"
+  fullName: Flea.Utility.GetQuery<TContext, TEntity>.OrderDescending
+  fullName.vb: Flea.Utility.GetQuery(Of TContext, TEntity).OrderDescending
+  nameWithType: GetQuery<TContext, TEntity>.OrderDescending
+  nameWithType.vb: GetQuery(Of TContext, TEntity).OrderDescending
+- uid: Flea.Utility.GetQuery`2.OrderDescending``1(System.Linq.Expressions.Expression{System.Func{`1,``0}})
+  name: OrderDescending<TKey>(Expression<Func<TEntity, TKey>>)
+  href: api/Flea.Utility.GetQuery-2.html#Flea_Utility_GetQuery_2_OrderDescending__1_System_Linq_Expressions_Expression_System_Func__1___0___
+  commentId: M:Flea.Utility.GetQuery`2.OrderDescending``1(System.Linq.Expressions.Expression{System.Func{`1,``0}})
+  name.vb: OrderDescending(Of TKey)(Expression(Of Func(Of TEntity, TKey)))
+  fullName: Flea.Utility.GetQuery<TContext, TEntity>.OrderDescending<TKey>(System.Linq.Expressions.Expression<System.Func<TEntity, TKey>>)
+  fullName.vb: Flea.Utility.GetQuery(Of TContext, TEntity).OrderDescending(Of TKey)(System.Linq.Expressions.Expression(Of System.Func(Of TEntity, TKey)))
+  nameWithType: GetQuery<TContext, TEntity>.OrderDescending<TKey>(Expression<Func<TEntity, TKey>>)
+  nameWithType.vb: GetQuery(Of TContext, TEntity).OrderDescending(Of TKey)(Expression(Of Func(Of TEntity, TKey)))
 - uid: Flea.Utility.GetQuery`2.Take(System.Int32)
   name: Take(Int32)
   href: api/Flea.Utility.GetQuery-2.html#Flea_Utility_GetQuery_2_Take_System_Int32_
