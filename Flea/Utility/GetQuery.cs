@@ -195,9 +195,49 @@ namespace Flea.Utility
 			return this;
 		}
 
+		/// <summary>
+		/// Order the selection by a given key in ascending order.
+		/// </summary>
+		/// <param name="selector">A lambda expression that selects the key to order by.</param>
+		/// <typeparam name="TKey">The type of the selected key.</typeparam>
+		/// <returns>
+		/// A reference to the current <see cref="GetQuery{TContext,TEntity}"/> (<c>this</c>)
+		/// allowing for chaining of commands.
+		/// </returns>
+		public GetQuery<TContext, TEntity> OrderAscending<TKey>(Expression<Func<TEntity, TKey>> selector)
+		{
+			CheckDisposeStatus();
+			_query = _query switch
+			{
+				IOrderedQueryable<TEntity> orderedQuery => orderedQuery.ThenBy(selector),
+				_ => _query.OrderBy(selector),
+			};
+			return this;
+		}
+
+		/// <summary>
+		/// Order the selection by a given key in descending order.
+		/// </summary>
+		/// <param name="selector">A lambda expression that selects the key to order by.</param>
+		/// <typeparam name="TKey">The type of the selected key.</typeparam>
+		/// <returns>
+		/// A reference to the current <see cref="GetQuery{TContext,TEntity}"/> (<c>this</c>)
+		/// allowing for chaining of commands.
+		/// </returns>
+		public GetQuery<TContext, TEntity> OrderDescending<TKey>(Expression<Func<TEntity, TKey>> selector)
+		{
+			CheckDisposeStatus();
+			_query = _query switch
+			{
+				IOrderedQueryable<TEntity> orderedQuery => orderedQuery.ThenByDescending(selector),
+				_ => _query.OrderByDescending(selector),
+			};
+			return this;
+		}
+
 		public GetQuery(IDbContextFactory<TContext> factory) : base(factory)
 		{
-			_query = IModelEntity<TEntity, TContext>.GetDbSetStatic(Context);
+			_query = IModelEntity<TEntity, TContext>.GetDbSetStatic(Context!);
 		}
 	}
 }
