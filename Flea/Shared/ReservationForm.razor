@@ -117,6 +117,7 @@
     public void ResetSelectedCustomer()
     {
         _selectedCustomer = null;
+        Reservation.ReservationOwner = null!;
         _close = "close-hidden";
         _customerValidationClass = string.Empty;
     }
