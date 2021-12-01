@@ -216,8 +216,6 @@ a, .btn-link {
 
 /* Create new booking and customer button*/
 .create-button {
-    border-radius: 9px;
-    height: 40px;
     float: right;
 }
 
@@ -226,7 +224,6 @@ a, .btn-link {
     background: transparent;
     border-color: var(--ios-red);
     color: var(--ios-red);
-    border-radius: 9px;
 }
 
 /* Edit button for each booking and customer*/
