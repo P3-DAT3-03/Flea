@@ -9,22 +9,24 @@
         <NavTab Href="/Customers" Icon="customers-icon.svg">Lopper</NavTab>
     </ul>
 
-        @if (SecondaryMenuIsVisible)
-        {
-            <ul class="list">
-                <NavTab Href="/Reservations" Icon="reservations-icon.svg">Book</NavTab>
-                <NavTab Href="/Placing" Icon="placement-icon.svg">Placér</NavTab>
-                <NavTab Href="/Market" Icon="market-icon.svg">Marked</NavTab>
-            </ul>
-        }
+    @if (SecondaryMenuIsVisible)
+    {
+        <ul class="list">
+            <NavTab Href="@ReservationsLink()" Icon="reservations-icon.svg">Book</NavTab>
+            <NavTab Href="@PlacementLink()" Icon="placement-icon.svg">Placér</NavTab>
+            <NavTab Href="@MarketLink()" Icon="market-icon.svg">Marked</NavTab>
+        </ul>
+    }
 </div>
 
 @code {
-
-    /*  TODO: Consider removing, if not used
+    
     [Parameter]
-    public bool SecondaryMenuIsVisible { get; set; }
-    */
+    public static int EventId { get; set; }
+
+    private string ReservationsLink() { return "/Event/" + EventId + "/Reservations"; }
+    private string PlacementLink() { return "/Event/" + EventId + "/Placement"; }
+    private string MarketLink() { return "/Event/" + EventId + "/Market"; }
 
     private bool SecondaryMenuIsVisible
     {
@@ -42,8 +44,6 @@
                     return true;
             }
         }
-        
-        //return true;
     }
 
     private void OnLocationChanged(Object? o, LocationChangedEventArgs args)
@@ -55,6 +55,18 @@
     {
         _navigationManager.LocationChanged += OnLocationChanged;
         return base.OnInitializedAsync();
+    }
+
+    void ReservationsString()
+    {
+        // Reservations
+            // /Event/{EventId:int}/Reservations
+        
+        // Placement
+            // /Event/{EventId:int}/Placement
+        
+        // Market
+            // /Event/{EventId:int}/Market
     }
 
 }

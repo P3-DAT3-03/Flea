@@ -242,7 +242,10 @@ a, .btn-link {
     align-items: center;
 }
 
-
+.date {
+    font-weight: bold;
+    color: var(--ios-blue);
+}
 
 
 

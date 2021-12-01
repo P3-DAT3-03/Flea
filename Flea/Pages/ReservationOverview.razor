@@ -6,6 +6,9 @@
 @using Microsoft.EntityFrameworkCore
 @using Flea.Models
 @using Flea.Utility
+@using System.Globalization
+
+<HeaderTitle Value="@(titlePrefix + " <span class='date'>" + titleDate + "</span>")"/>
 
 <div>
     <div class="view-head">
@@ -34,6 +37,9 @@
 
 @code
 {
+    private string titlePrefix = "Bookinger til den";
+    private string titleDate = "";
+    
     [Parameter]
     public int EventId { get; set; }
     
@@ -124,7 +130,11 @@
         
         Event = e ?? throw new Exception("TODO create good error for user");
         _temp = new Reservation(1, 1, false, "", new Customer("", ""), Event);
+
+        var eventDate = Event.DateTime;
         
+        titleDate = eventDate.ToString("d. MMMM, yyyy", CultureInfo.CreateSpecificCulture("da-DK"));
+
         await UpdateReservationList();
         await base.OnInitializedAsync();
     }
