@@ -9,6 +9,8 @@
     <DataAnnotationsValidator/>
     <ValidationSummary/>
     <div class="reservation-overview">
+    <CustomValidator @ref="_validator"/>
+    <ValidationSummary/>
         @if (Reservation.Id == 0)
         {
             <div>
@@ -92,6 +94,7 @@
     [Parameter, RequiredParameter]
     public Modal Modal { get; set; } = null!;
 
+    private string _customerValidationClass = string.Empty;
     private string _display = "none";
     private string _close = "close-hidden";
     private Customer? _selectedCustomer;
@@ -99,7 +102,9 @@
     private List<Customer>? _customers;
     private IEnumerable<Customer>? _shownCustomers;
     private string _lastSearchTerm = string.Empty;
-
+    
+    private CustomValidator _validator = null!;
+    
     protected override async Task OnInitializedAsync()
     {
         ParameterChecker.CheckParameters(this);
@@ -111,8 +116,8 @@
     public void ResetSelectedCustomer()
     {
         _selectedCustomer = null;
-        Reservation.ReservationOwner = null!;
         _close = "close-hidden";
+        _customerValidationClass = string.Empty;
     }
 
     public void Select(Customer c)
@@ -121,6 +126,7 @@
         Reservation.ReservationOwner = c;
         _display = "none";
         _close = "close";
+        _customerValidationClass = "modified valid";
     }
 
     public void Search(ChangeEventArgs e) => Search(e.Value?.ToString()!.ToLower() ?? "");
@@ -158,6 +164,23 @@
 
     private async Task OnSubmit(EditContext context)
     {
+        _validator.ClearErrors();
+
+        var errors = new Dictionary<string, List<string>>();
+
+        if (_selectedCustomer == null)
+            _customerValidationClass = "invalid";
+            errors.Add(
+                nameof(Reservation.ReservationOwner),
+                new() {"Der skal vælges en loppe før bookingen kan oprettes."}
+                );
+
+        if (errors.Any())
+        {
+            _validator.DisplayErrors(errors);
+            return;
+        }
+
         await OnValidSubmit.InvokeAsync(context);
     }
 
