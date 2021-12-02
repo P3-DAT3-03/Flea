@@ -4,13 +4,11 @@
 @using System.Text.Json
 @inject IDbContextFactory<BingoContext> _dbFactory
 
-
 <EditForm Model="Reservation" OnValidSubmit="OnSubmit">
     <DataAnnotationsValidator/>
-    <ValidationSummary/>
-    <div class="reservation-overview">
     <CustomValidator @ref="_validator"/>
     <ValidationSummary/>
+    <div class="reservation-overview">
         @if (Reservation.Id == 0)
         {
             <div>
@@ -183,5 +181,4 @@
 
         await OnValidSubmit.InvokeAsync(context);
     }
-
 }
