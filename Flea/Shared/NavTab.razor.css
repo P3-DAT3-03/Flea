@@ -26,6 +26,10 @@
     height: 76px;
 }
 
+.active-tab .tabbar__label {
+    color: rgba(255, 255, 255, 1);
+}
+
 .tabbar--material__button:after {
     content: unset;
 }

@@ -74,7 +74,6 @@
 
 
 :root {
-    --ios-orange-raw: 255, 159, 10;
     /* iOS dark theme background and foreground */
     --ios-bg: #000;
     --ios-fg: #fff;
@@ -446,7 +445,7 @@ a, .btn-link {
 /* Edit button for each booking and customer*/
 .edit-button{
     color: var(--ios-orange);
-    background-color: rgba(var(--ios-orange-raw), 0.25);
+    background-color: rgba(var(--ios-orange-t), 0.25);
     border-radius: 9px;
 }
 
@@ -462,6 +461,10 @@ a, .btn-link {
 }
 
 
+.date {
+    font-weight: bold;
+    color: var(--ios-blue);
+}
 
 
 

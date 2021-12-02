@@ -4,11 +4,11 @@
 
 <div class="event-list">
     <div class="font-size-xx-large">@Event.Name </div>
-    <button class="button button--outline" @onclick='() => Navigate($"/Event/{Event.Id}/Reservations")'>Booking ></button>
+    <button class="button button--outline" @onclick='() => Navigate($"/Event/{Event.Id}/Reservations")'>Bookinger</button>
     <div class="font-size-larger-unicorn">@Event.ComputeRemainingTables ledige stande </div>
-    <button class="button button--outline" @onclick='() => Navigate($"/Event/{Event.Id}/Placement")'>Placering ></button>
+    <button class="button button--outline" @onclick='() => Navigate($"/Event/{Event.Id}/Placement")'>Placeringer</button>
     <div class="font-size-larger">@Event.ComputeMissingPayments mangler at betale </div>
-    <button class="button button--outline">Loppemarked ></button>
+    <button class="button button--outline" @onclick='() => Navigate($"/Event/{Event.Id}/Market")'>Loppemarked</button>
 </div>
 
 @code {
@@ -17,6 +17,7 @@
 
     public void Navigate(string destination)
     {
+        NavMenu.EventId = Event.Id;
         _navigationManager.NavigateTo(destination);
     }
 
