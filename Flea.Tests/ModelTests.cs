@@ -15,7 +15,8 @@ namespace Flea.Tests
         public void EventTests()
         {
             Event hello = new Event(DateTime.Now);
-            Assert.True(13 == hello.Clusters.Count, "There should always be 13 clusters");
+            // real world is fucked so there is more than 13
+            Assert.True(23 == hello.Clusters.Count, "There should always be 23 clusters");
 
             Assert.AreEqual(108, hello.ComputeRemainingTables);
 
