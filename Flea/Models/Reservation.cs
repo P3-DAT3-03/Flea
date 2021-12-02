@@ -5,6 +5,12 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Flea.Models
 {
+    public enum PaymentStatus
+    {
+        NotPaid,
+        Paid,
+        Other,
+    }
     [Index("ReservationOwnerId", "EventId", IsUnique = true)]
     public class Reservation : IModelEntity<Reservation, BingoContext>
     {
@@ -23,7 +29,7 @@ namespace Flea.Models
         public int TableCount { get; set; }
         
         [Required(ErrorMessage = "En reservation skal have en betalings status.")]
-        public bool Paid { get; set; }
+        public PaymentStatus PaymentStatus { get; set; }
         public string Comments { get; set; }
         public List<Table> Tables { get; set; } = new();
         
@@ -39,15 +45,15 @@ namespace Flea.Models
         /// </summary>
         /// <param name="priority"></param>
         /// <param name="tableCount"></param>
-        /// <param name="paid"></param>
+        /// <param name="status"></param>
         /// <param name="comments"></param>
         /// <param name="reservationOwner"></param>
         /// <param name="event"></param>
-        public Reservation(int priority, int tableCount, bool paid, string comments, Customer reservationOwner, Event @event)
+        public Reservation(int priority, int tableCount, PaymentStatus status, string comments, Customer reservationOwner, Event @event)
         {
             Priority = priority;
             TableCount = tableCount;
-            Paid = paid;
+            PaymentStatus = status;
             Comments = comments;
             ReservationOwner = reservationOwner;
             Event = @event;
@@ -59,11 +65,11 @@ namespace Flea.Models
         /// </summary>
         [Obsolete("This constructor should never be called manually. Intended only for EF use.")]
         // ReSharper disable once UnusedMember.Global
-        public Reservation(int priority, int tableCount, bool paid, string comments)
+        public Reservation(int priority, int tableCount, PaymentStatus status, string comments)
         {
             Priority = priority;
             TableCount = tableCount;
-            Paid = paid;
+            PaymentStatus = status;
             Comments = comments;
             
             Event = null!;

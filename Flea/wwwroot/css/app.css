@@ -110,17 +110,57 @@
     height: 50vh;
 }
 
+.red {
+    background-color: var(--ios-red);
+}
+.orange {
+    background-color: var(--ios-orange);
+}
+.blue {
+    background-color: var(--ios-blue);
+}
+
+.green {
+    background-color: var(--ios-green);
+}
+
+
+.pink {
+    background-color: var(--ios-pink);
+}
+.white {
+    background-color: var(--ios-fg);
+}
+.grey1 {
+    background-color: var(--ios-g1);
+}
+.grey2 {
+    background-color: var(--ios-g2);
+}
+
+.large-button {
+    margin: 0 auto;
+    width: calc(100% - 1em);
+}
+
 .padded-content {
-    padding: 20px;
-    padding-top: 1.1rem;
-    overflow-y: scroll;
+    padding: 1.1rem 20px 20px;
+    height: calc(100% - 2.2rem);
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.scrollable {
     height: 100%;
+    overflow-y: scroll;
 }
 
 .center {
     margin: 0 auto;
     width: fit-content;
 }
+
 .container.event-placement {
     display: grid;
     grid-template-columns: 70% 30%;
@@ -132,12 +172,14 @@
     grid-template-columns: repeat(4, max-content);
     grid-column-gap: var(--table-small);
 }
+
 .guide {
     display: flex;
     justify-content: center;
     align-items: center;
     margin-right: var(--table-small);
 }
+
 .ball {
     width: 1em;
     height: 1em;
@@ -145,21 +187,10 @@
     border-radius: 100%;
     border: var(--ios-fg) solid;
 }
-.ball.red {
-    background-color: var(--ios-red);
-}
-.ball.blue {
-    background-color: var(--ios-blue);
-}
-.ball.pink {
-    background-color: var(--ios-pink);
-}
-.ball.white {
-    background-color: var(--ios-fg);
-}
+
 body, html {
-    height: 100%;
-    width: 100%;
+    height: 100vh;
+    width: 100vw;
     margin: 0;
 }
 .side-panel {
@@ -187,7 +218,7 @@ body, html {
     padding: 1em;
     font-size: medium;
 }
-.side-panel .paid {
+.side-panel .payment-status {
     padding: 1em;
 }
 .side-panel .unpaid {
@@ -198,7 +229,6 @@ body, html {
     align-items: center;
     justify-content: center;
     border: 1px solid var(--ios-bg);
-    background-color: var(--ios-fg);
     color: var(--ios-bg);
 }
 .table.vertical {
@@ -212,15 +242,6 @@ body, html {
 .table.bottom {
     margin-top: var(--table-small);
 }
-.table.reserved {
-    background-color: var(--ios-red);
-}
-.table.path {
-    background-color: var(--ios-pink);
-}
-.table.start {
-    background-color: var(--ios-blue);
-}
 
 .cluster.border{
     border: var(--ios-fg) solid 2px;
@@ -229,6 +250,7 @@ body, html {
     height: max-content;
     padding-top: 1.1rem;
 }
+
 .cluster {
     position: relative;
     display: grid;

@@ -3,7 +3,8 @@
 @using Microsoft.EntityFrameworkCore
 @using System.Text.Json
 @inject IDbContextFactory<BingoContext> _dbFactory
-
+@using Table = Flea.Models.Table
+@using Cluster = Flea.Models.Cluster
 
 <EditForm Model="Reservation" OnValidSubmit="OnSubmit">
     <DataAnnotationsValidator />
@@ -49,11 +50,11 @@
         <div class="edit-form-div">
             <div>Betalings status: </div>
             <label class="checkbox">
-                <InputCheckbox type="checkbox" class="checkbox__input"
-                               @bind-Value="Reservation.Paid">
-                </InputCheckbox>
-                <div class="checkbox__checkmark"></div>
-                <div id="move-div">@(Reservation.Paid ? "Betalt" : "Ej betalt")</div>
+                <InputSelect @bind-Value="Reservation.PaymentStatus" class="select-input  select-input--underbar">
+                            <option value="@PaymentStatus.NotPaid">Ej betalt</option>
+                            <option value="@PaymentStatus.Paid">Betalt</option>
+                            <option value="@PaymentStatus.Other">Aftale</option>
+                </InputSelect>
             </label>
         </div>
         <div class="edit-form-div">

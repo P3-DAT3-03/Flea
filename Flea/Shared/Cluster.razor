@@ -1,7 +1,6 @@
 @using Flea.Models
 <div class="cluster border">
-    <div class="cluster @Class">
-        
+    <div class="cluster">
         @for (var i = 0; i < Inner.Tables.Count; i++)
         {
             var tableClass = Inner.Type switch
@@ -14,30 +13,13 @@
                     },
                 ClusterType.Horizontal => "horizontal",
                 _ => "vertical"
-                };
-            _pathId = -1;
-            if (SelectedCluster != null && Paths != null && Inner.Id == SelectedCluster.Id)
-            {
-                var t = Inner.Tables[i].Id;
-                for (var j = 0; j < Paths.Count; j++)
-                {
-                    if (StartNode?.Id != t && Paths[j].Contains(t))
-                    {
-                        tableClass += " path";
-                        _pathId = j;
-                        break;
-                    }
-                }
-                if (StartNode?.Id == t)
-                    tableClass += " start";
-            }
-            <Table
-                TableIndex="@i"
-                Inner="@Inner.Tables[i]"
-                Class="@tableClass"
-                PathId="@_pathId"
-                OnTableSelect="@(async id => await OnTableSelect.InvokeAsync(id))">
-            </Table>
+            };
+            tableClass += SetColor!(Inner, Inner.Tables[i]);
+            var value = SetValue!(Inner, Inner.Tables[i]);
+            var pathId = i;
+            <div class="table @tableClass" value="@value" @onclick="()=>OnTableClicked(Inner.Tables[pathId], value)">
+                @i
+            </div>
         }
         @if (Inner.Type == ClusterType.Round)
         {
@@ -47,27 +29,31 @@
 </div>
 @code {
     [Parameter]
-    public string? Class { get; set; }
-    
-    [Parameter]
     public Models.Cluster Inner { get; set; } = null!;
-
-    [Parameter]
-    public List<int[]>? Paths { get; set; }
     
     [Parameter]
-    public Models.Table? StartNode { get; set; }
+     public SelectColor? SetColor { get; set; }
     
     [Parameter]
-    public Models.Cluster? SelectedCluster { get; set; }
+    public SelectValue? SetValue { get; set; }
 
     [Parameter]
-    public EventCallback<(Models.Table,Models.Cluster,int)> OnTableSelect { get; set; }
+    public EventCallback<(Table,Models.Cluster,int)> OnTableSelect { get; set; }
 
     private int _pathId = -1;
+    
+    public delegate int SelectValue(Models.Cluster cluster, Table table);
 
+    public delegate string SelectColor(Models.Cluster cluster, Table table);
+    
+    private async Task OnTableClicked(Table table, int pathId)
+    {
+        await OnTableSelect.InvokeAsync((table, Inner, pathId));
+    }
+    
     protected override void OnInitialized()
     {
-        Class ??= "";
+        SetColor ??= (_, _) => " white";
+        SetValue ??= (_, _) => -1;
     }
 }

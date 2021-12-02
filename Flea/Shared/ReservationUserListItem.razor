@@ -4,7 +4,14 @@
 <div class="reservation-li">
     <div class="txt">@Reservation.ReservationOwner.Name</div>
     <div class="txt">@Reservation.TableCount Stande</div>
-    <div class="txt">@(Reservation.Paid ? "Betalt" : "Ej betalt")</div>
+    @{
+        var paid = Reservation.PaymentStatus switch {
+            PaymentStatus.NotPaid => ("orange", "Ej betalt"),
+            PaymentStatus.Paid => ("green", "Betalt"),
+            _ => ("blue", "Aftale")
+        };
+    }
+    <div class="txt">@paid.Item2</div>
     <button class="button del-button button--outline" @onclick="Delete">Slet</button>
     <Modal ButtonCSS="button button--outline create-button" ButtonName="Rediger" @ref="_child">
         <ReservationForm Reservation="_temp" OnValidSubmit="OnSubmit" Modal="_child"></ReservationForm>
@@ -13,7 +20,7 @@
 
 @code {
     private Modal _child = null!;
-    private Reservation _temp = new(1, 1, false, "", new Customer("", ""), null!);
+    private Reservation _temp = new(1, 1, PaymentStatus.NotPaid, "", new Customer("", ""), null!);
     private Reservation _reservation = null!;
 
     [Parameter]
@@ -43,7 +50,7 @@
         _child.ModalCancel();
         
         _reservation.TableCount = _temp.TableCount;
-        _reservation.Paid = _temp.Paid;
+        _reservation.PaymentStatus = _temp.PaymentStatus;
         _reservation.Comments = _temp.Comments;
         
         await OnEdit.InvokeAsync(context);

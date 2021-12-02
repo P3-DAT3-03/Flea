@@ -77,7 +77,7 @@ namespace Flea.Models
         }
 
         public int ComputeMissingPayments => 
-            Reservations.Aggregate(0, (acc, reservation) => reservation.Paid ? acc : acc + 1);
+            Reservations.Aggregate(0, (acc, reservation) => reservation.PaymentStatus == PaymentStatus.Paid ? acc : acc + 1);
 
         public int ComputeRemainingTables => Clusters.Aggregate(0, (acc, cluster) => acc + cluster.TablesNotPlaced);
         DbSet<Event> IModelEntity<Event, BingoContext>.GetDbSet(BingoContext ctx) => ctx.Events;

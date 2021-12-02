@@ -3,15 +3,17 @@ using System;
 using Flea.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Flea.Migrations
 {
     [DbContext(typeof(BingoContext))]
-    partial class BingoContextModelSnapshot : ModelSnapshot
+    [Migration("20211201133849_added_paymentstatus")]
+    partial class added_paymentstatus
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

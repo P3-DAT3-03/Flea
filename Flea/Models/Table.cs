@@ -2,15 +2,15 @@
 
 namespace Flea.Models
 {
+    public enum TableType
+    {
+        Table,
+        Empty,
+        Rack,
+    }
     public class Table :  IModelEntity<Table, BingoContext>
     {
-        public enum TableType
-        {
-            Table,
-            Empty,
-            Rack,
-        }
-        
+
         public int Id { get; set; }
         
         public Cluster Cluster { get; set; }
