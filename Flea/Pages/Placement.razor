@@ -6,7 +6,11 @@
 @using Microsoft.EntityFrameworkCore
 @using Table = Flea.Models.Table
 @using Cluster = Flea.Models.Cluster
+@using System.Globalization
 
+@if(titleDate != ""){
+    <HeaderTitle Value="@(titlePrefix + " <span class='date'>" + titleDate + "</span>")"/>
+}
 <div class="container event-placement">
     @if (_clusters != null)
     {
@@ -120,6 +124,9 @@
 @code {
     [Parameter]
     public string EventId { get; set; }
+    
+    private string titlePrefix = "Placering til den";
+    private string titleDate = "";
     
     private Event? _event;
     private List<Cluster>? _clusters { get; set; }
@@ -332,6 +339,8 @@
         _event = await GetEvent();
         if (_event != null)
         {
+            var eventDate = _event.DateTime;
+            titleDate = eventDate.ToString("d. MMMM, yyyy", CultureInfo.CreateSpecificCulture("da-DK"));
             _event.Clusters.Sort((a, b) => a.Name[0] - b.Name[0]);
             _event.Clusters.Reverse();
             foreach (var cluster in _event.Clusters)
@@ -339,8 +348,7 @@
                 cluster.Tables.Sort((a,b) => a.Id - b.Id);
             }
             _clusters = _event.Clusters;
-        } else
-            await _dbFactory.Save(new Event(DateTime.Now)); // Todo: Remove when out of test phase
+        }
         await base.OnInitializedAsync();
     }
 
