@@ -204,6 +204,13 @@ body, html {
     background-color: var(--ios-g1);
 }
 
+.side-panel .card {
+    width: -moz-available;          /* WebKit-based browsers will ignore this. */
+    width: -webkit-fill-available;  /* Mozilla-based browsers will ignore this. */
+    width: fill-available;
+    margin: 0 0 16px;
+}
+
 .side-panel .buttons {
     position: absolute;
     bottom: 2em;
