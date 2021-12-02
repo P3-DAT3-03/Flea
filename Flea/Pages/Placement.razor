@@ -43,16 +43,19 @@
             {
                 var customer = _selectedReservation?.ReservationOwner;
                 <div class="name">@customer?.Name</div>
-                <div class="phone">+45 @customer?.PhoneNumber</div>
                 var paid = _selectedReservation?.PaymentStatus switch {
-                    PaymentStatus.NotPaid => ("green", "Ej betalt"),
-                    PaymentStatus.Paid => ("orange", "Betalt"),
+                    PaymentStatus.NotPaid => ("orange", "Ej betalt"),
+                    PaymentStatus.Paid => ("green", "Har betalt"),
                     _ => ("blue", "Aftale")
-                };
-                <div class="payment-status @(paid.Item1)"> @(paid.Item2)</div>
+                    };
+                <br/>
+                <div class="container">
+                    <div class="phone">+45 @customer?.PhoneNumber</div>
+                    <div class="status @(paid.Item1) bold">@(paid.Item2)</div>
+                </div>
                 <div class="booths">Antal stande: @_selectedReservation?.TableCount</div>
                 <div class="comments">@_selectedReservation?.Comments</div>
-                <div class="force--bottom">
+                <div class="buttons">
                     <br/>
                      @if (_selectedReservation?.Tables.Count > 0){
                          <button class="button--large--cta large-button red" @onclick="RemoveTablesFromReservation">Slet Placering</button>
@@ -79,15 +82,15 @@
                 {
                     <ReservationListItem Reservation="@reservation" ReservationSelected="@ShowReservation"></ReservationListItem>
                 }
-                <div class="force--bottom">
+                <div class="buttons">
                     <br/>
                     @if (_editMode)
                     {
-                        <button class="button--large--cta grey2 large-button" @onclick=" () => _editMode = false">Indsæt</button>
+                        <button class="button--large--cta grey2 large-button" @onclick="() => _editMode = false">Indsæt</button>
                     }
                     else
                     {
-                        <button class="button--large--cta grey2 large-button" @onclick=" () => _editMode = true">Rediger</button>
+                        <button class="button--large--cta grey2 large-button" @onclick="() => _editMode = true">Rediger</button>
                     }
                         
                     <br/>
@@ -197,7 +200,6 @@
         }
         if (table == _startNode)
         {
-            Console.WriteLine("AAAAA");
             _paths.Clear();
             _startNode = null;
             return;
