@@ -14,6 +14,10 @@ namespace Flea.Migrations
                 name: "IX_Reservations_ReservationOwnerId",
                 table: "Reservations");
 
+            migrationBuilder.DropColumn(
+                name: "Paid",
+                table: "Reservations");
+
             migrationBuilder.AlterColumn<int>(
                 name: "EventId",
                 table: "Reservations",
@@ -23,6 +27,20 @@ namespace Flea.Migrations
                 oldClrType: typeof(int),
                 oldType: "integer",
                 oldNullable: true);
+
+            migrationBuilder.AddColumn<int>(
+                name: "EmptyTableCount",
+                table: "Reservations",
+                type: "integer",
+                nullable: false,
+                defaultValue: 0);
+
+            migrationBuilder.AddColumn<int>(
+                name: "PaymentStatus",
+                table: "Reservations",
+                type: "integer",
+                nullable: false,
+                defaultValue: 0);
 
             migrationBuilder.AlterColumn<string>(
                 name: "PhoneNumber",
@@ -83,6 +101,14 @@ namespace Flea.Migrations
                 table: "Reservations");
 
             migrationBuilder.DropColumn(
+                name: "EmptyTableCount",
+                table: "Reservations");
+
+            migrationBuilder.DropColumn(
+                name: "PaymentStatus",
+                table: "Reservations");
+
+            migrationBuilder.DropColumn(
                 name: "Nickname",
                 table: "Customers");
 
@@ -97,6 +123,13 @@ namespace Flea.Migrations
                 nullable: true,
                 oldClrType: typeof(int),
                 oldType: "integer");
+
+            migrationBuilder.AddColumn<bool>(
+                name: "Paid",
+                table: "Reservations",
+                type: "boolean",
+                nullable: false,
+                defaultValue: false);
 
             migrationBuilder.AlterColumn<string>(
                 name: "PhoneNumber",

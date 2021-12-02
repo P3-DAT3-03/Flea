@@ -10,8 +10,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Flea.Migrations
 {
     [DbContext(typeof(BingoContext))]
-    [Migration("20211201133849_added_paymentstatus")]
-    partial class added_paymentstatus
+    [Migration("20211202150006_various_changes")]
+    partial class various_changes
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -109,6 +109,9 @@ namespace Flea.Migrations
                     b.Property<string>("Comments")
                         .IsRequired()
                         .HasColumnType("text");
+
+                    b.Property<int>("EmptyTableCount")
+                        .HasColumnType("integer");
 
                     b.Property<int>("EventId")
                         .HasColumnType("integer");

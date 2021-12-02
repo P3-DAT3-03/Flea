@@ -53,7 +53,19 @@
                     <div class="phone">+45 @customer?.PhoneNumber</div>
                     <div class="status @(paid.Item1) bold">@(paid.Item2)</div>
                 </div>
-                <div class="booths">Antal stande: @_selectedReservation?.TableCount</div>
+                <br/>
+                <div class="booths">
+                    @{
+                        var tableCount = _selectedReservation?.TableCount - _selectedReservation?.EmptyTableCount;
+                        var eTableCount = _selectedReservation?.EmptyTableCount;
+                    }
+                    Skal have stande: <span style="color: var(--ios-blue)">@(tableCount > 0 ? $"{tableCount}" : "")</span> @(tableCount > 0 && eTableCount > 0 ? "+ " : "")
+                    @if (eTableCount > 0)
+                    {
+                        <span style="color: var(--ios-orange)">@eTableCount</span>
+                    }
+                </div>
+                <h3>Bemærkninger</h3>
                 <div class="comments">@_selectedReservation?.Comments</div>
                 <div class="buttons">
                     <br/>

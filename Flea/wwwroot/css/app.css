@@ -207,7 +207,7 @@ body, html {
 .side-panel .buttons {
     position: absolute;
     bottom: 2em;
-    padding: 0 1em;
+    padding: 0 0.5em;
     width: -moz-available;          /* WebKit-based browsers will ignore this. */
     width: -webkit-fill-available;  /* Mozilla-based browsers will ignore this. */
     width: fill-available;

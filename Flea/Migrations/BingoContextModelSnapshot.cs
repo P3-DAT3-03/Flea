@@ -108,6 +108,9 @@ namespace Flea.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<int>("EmptyTableCount")
+                        .HasColumnType("integer");
+
                     b.Property<int>("EventId")
                         .HasColumnType("integer");
 
