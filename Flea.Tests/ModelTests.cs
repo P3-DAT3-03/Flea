@@ -14,11 +14,11 @@ namespace Flea.Tests
         [Test]
         public void EventTests()
         {
-            Event hello = new Event(DateTime.Now);
+            Event @event = new Event(DateTime.Now);
             // real world is fucked so there is more than 13
-            Assert.True(23 == hello.Clusters.Count, "There should always be 23 clusters");
+            Assert.True(23 == @event.Clusters.Count, "There should always be 23 clusters");
 
-            Assert.AreEqual(108, hello.ComputeRemainingTables);
+            Assert.AreEqual(130, @event.ComputeRemainingTables);
 
 
         }
