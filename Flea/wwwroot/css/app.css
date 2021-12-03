@@ -198,11 +198,12 @@ a, .btn-link {
 
 /* Grid container for reservation and customer*/
 .customer-item {
-    background-color: var(--ios-g1);
-    padding: 10px;
+    background: transparent;
+    padding: 15px 20px;
+    border: 1px solid var(--ios-fg);
     border-radius: 11px;
     display: grid;
-    grid-template-columns: auto 30% 25% 10% 15%;
+    grid-template-columns: auto 40% 20% 25.5%; /*auto 17em 12em 12em*/
     grid-gap: 10px;
     margin-bottom: 20px;
 }
