@@ -75,7 +75,7 @@
                         @bind="Reservation.Comments">
             </textarea>
         </div>
-        <div>
+        <div id="display-inline">
             <button type="button" class="button red" @onclick="@Modal.ModalCancel">Anullere</button>
             <button type="submit" class="button blue float-right">@(Reservation.Id == 0 ? "Opret booking" : "Gem ændringer")</button>
         </div>

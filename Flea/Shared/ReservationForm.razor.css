@@ -10,7 +10,7 @@
     margin-bottom: 1em;
 }
 
-.reservation-overview > div:nth-child(5) {
+#display-inline {
     display: inline;
 }
 

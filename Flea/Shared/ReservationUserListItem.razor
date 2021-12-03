@@ -7,7 +7,7 @@
         <div class="txt">@Reservation.TableCount Stande</div>
         <div class="txt paymentstatus">@(Reservation.Paid ? "Betalt" : "Ej betalt")</div>
     </div>
-    <div>
+    <div id="col-gap">
         <button class="button red" @onclick="Delete">Slet</button>
         <Modal ButtonCSS="button grey2" ButtonName="Rediger" @ref="_child">
             <ReservationForm Reservation="_temp" OnValidSubmit="OnSubmit" Modal="_child"></ReservationForm>

@@ -215,7 +215,7 @@ a, .btn-link {
     border: 1px solid var(--ios-fg);
     border-radius: 11px;
     display: grid;
-    grid-template-columns: auto 14em 13em;
+    grid-template-columns: auto 14em 12em; /*27% 27%*/
     grid-gap: 10px;
     margin-bottom: 20px;
 }
@@ -226,7 +226,7 @@ a, .btn-link {
     align-items: center;
 }
 
-.reservation-item .stand-paymentstatus div:nth-child(2)  {
+.stand-paymentstatus .paymentstatus {
     text-align: center;
     margin: auto;
     background: green;
@@ -234,8 +234,7 @@ a, .btn-link {
     border-radius: 3px;
 }
 
-.reservation-item div:nth-child(3) {
-    display: flex;
+#col-gap {
     column-gap: 20px
 }
 
