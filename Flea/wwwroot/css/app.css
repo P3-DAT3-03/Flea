@@ -273,6 +273,11 @@ a, .btn-link {
     background-color: var(--ios-blue);
 }
 
+.date {
+    font-weight: bold;
+    color: var(--ios-blue);
+}
+
 
 
 

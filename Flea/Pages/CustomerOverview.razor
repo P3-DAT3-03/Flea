@@ -101,7 +101,7 @@
         _customers = await _dbFactory.GetAll<BingoContext,Customer>();
         Search(_lastSearchTerm);
     }
-    
+
     protected override async Task OnInitializedAsync()
     {
         await UpdateCustomersList();
