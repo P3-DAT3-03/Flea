@@ -8,7 +8,7 @@
     <div class="font-size-larger-unicorn">@Event.ComputeRemainingTables ledige stande </div>
     <button class="button button--outline" @onclick='() => Navigate($"/Event/{Event.Id}/Placement")'>Placeringer</button>
     <div class="font-size-larger">@Event.ComputeMissingPayments mangler at betale </div>
-    <button class="button button--outline" @onclick='() => Navigate($"/Event/{Event.Id}/Market")'>Loppemarked</button>
+    <button class="button button--outline" @onclick='() => Navigate($"/Event/{Event.Id}/Floorplan")'>Loppemarked</button>
 </div>
 
 @code {

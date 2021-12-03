@@ -1,4 +1,4 @@
-@page "/Event/{EventId}/Placement"
+@page "/Event/{EventId:int}/Placement"
 @inject IDbContextFactory<BingoContext> _dbFactory
 
 @using Flea.Models
@@ -8,8 +8,8 @@
 @using Cluster = Flea.Models.Cluster
 @using System.Globalization
 
-@if(titleDate != ""){
-    <HeaderTitle Value="@(titlePrefix + " <span class='date'>" + titleDate + "</span>")"/>
+@if(_titleDate != ""){
+    <HeaderTitle Value="@(_titlePrefix + " <span class='date'>" + _titleDate + "</span>")"/>
 }
 <div class="container event-placement">
     @if (_clusters != null)
@@ -123,10 +123,10 @@
 
 @code {
     [Parameter]
-    public string EventId { get; set; }
+    public int EventId { get; set; }
     
-    private string titlePrefix = "Placering til den";
-    private string titleDate = "";
+    private string _titlePrefix = "Placering til den";
+    private string _titleDate = "";
     
     private Event? _event;
     private List<Cluster>? _clusters { get; set; }
@@ -330,7 +330,7 @@
                 .Include("Reservations.Tables")
                 .AsSplitQuery()
                 .OrderBy(e => e.Id)
-                .FirstOrDefaultAsync(e => e.Id == int.Parse(EventId));
+                .FirstOrDefaultAsync(e => e.Id == EventId);
         return null;
     }
     
@@ -340,7 +340,7 @@
         if (_event != null)
         {
             var eventDate = _event.DateTime;
-            titleDate = eventDate.ToString("d. MMMM, yyyy", CultureInfo.CreateSpecificCulture("da-DK"));
+            _titleDate = eventDate.ToString("d. MMMM, yyyy", CultureInfo.CreateSpecificCulture("da-DK"));
             _event.Clusters.Sort((a, b) => a.Name[0] - b.Name[0]);
             _event.Clusters.Reverse();
             foreach (var cluster in _event.Clusters)

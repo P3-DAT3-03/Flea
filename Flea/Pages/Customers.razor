@@ -21,8 +21,7 @@
         <div class="scrollable">
             @foreach (var customer in _shownCustomers)
             {
-                
-                    <CustomerUserListItem Customer="@customer" OnEdit="@UpdateCustomer" OnDelete="@DeleteCustomer"/>
+                <CustomerUserListItem Customer="@customer" OnEdit="@UpdateCustomer" OnDelete="@DeleteCustomer"/>
             }
         </div>
         <div style="display: inline-block"></div>

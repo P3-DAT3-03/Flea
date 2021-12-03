@@ -1,0 +1,96 @@
+﻿@page "/Event/{EventId:int}/Tableplan"
+@inject IDbContextFactory<BingoContext> _dbFactory
+@using Flea.Models
+@using Microsoft.EntityFrameworkCore
+@using Cluster = Flea.Models.Cluster
+@using System.Globalization
+@if (_titleDate != "")
+{
+    <HeaderTitle Value="@(_titlePrefix + " " + _titleDate)"/>
+}
+<div class="container event-placement">
+    @if (Event?.Clusters != null)
+    {
+        <div class="cluster-body">
+            <ClusterContainer 
+                SetColor="@SetColor"
+                SetValue="@( (_,_) => -1)"
+                OnTableSelect="@(_ => {})"
+                Clusters="@Event?.Clusters"/>
+            <div class="guides center">
+                <div class="guide">
+                    <div class="ball red"></div>
+                    <p>Intet bord</p>
+                </div>
+                <div class="guide">
+                    <div class="ball white"></div>
+                    <p>Bord</p>
+                </div>
+            </div>
+        </div>
+        <div class="side-panel">
+            <h3>Oversigt over Bord Plan</h3>
+            <h3>@(Event.ComputeTableCount-Event.ComputeRemainingTables)</h3>
+            <p>Stande er blevet udlejet</p>
+            <h3>@Event.ComputeReservationCount</h3>
+            <p>Lopper til dette marked</p>
+            <h3>@(Event.ComputeTableCount-Event.ComputeEmptyTableCount)</h3>
+            <p>Stande <span style="color: var(--ios-green)">med</span> borde</p>
+            <h3>@Event.ComputeEmptyTableCount</h3>
+            <p>Stande <span style="color: var(--ios-red)">uden</span> borde</p>
+            <br/>
+            <div class="buttons">
+                <br/>
+                <a class="button--large--cta large-button grey2" href="@($"Event/{EventId}/Market")">Gå Til Markede</a>
+                <br/>
+                <a class="button--large--cta large-button blue" href="@($"Event/{EventId}/Floorplan")">Se Gulv Plan</a>
+            </div>
+        </div>
+    }
+</div>
+
+
+@code {
+    [Parameter]
+    public int EventId { get; set; }
+
+    private readonly string _titlePrefix = "Bord Plan til den";
+    private string _titleDate = "";
+
+    public Event? Event;
+
+    private string SetColor(Cluster cluster, Table table)
+    {
+        return table.Type == TableType.Empty ? " red" : " white";
+    }
+    
+    private async Task<Event?> GetEvent()
+    {
+        await using var context = _dbFactory.CreateDbContext();
+        if (context.Events != null)
+            return await context.Events
+                .Include("Clusters.Tables.Reservation.ReservationOwner")
+                .Include("Clusters.Tables.Reservation.Tables")
+                .AsSplitQuery()
+                .FirstOrDefaultAsync(e => e.Id == EventId);
+        return null;
+    }
+    
+    protected override async Task OnInitializedAsync()
+    {
+        Event = await GetEvent();
+        if (Event != null)
+        {
+            var eventDate = Event.DateTime;
+            _titleDate = eventDate.ToString("d. MMMM, yyyy", CultureInfo.CreateSpecificCulture("da-DK"));
+            Event.Clusters.Sort((a, b) => a.Name[0] - b.Name[0]);
+            Event.Clusters.Reverse();
+            foreach (var cluster in Event.Clusters)
+            {
+                cluster.Tables.Sort((a,b) => a.Id - b.Id);
+            }
+        }
+        await base.OnInitializedAsync();
+    }
+
+}

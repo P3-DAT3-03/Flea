@@ -47,6 +47,9 @@ namespace Flea.Models
 
         public int ReservationCount =>
             Tables.Aggregate(0, (acc, table) => table.Reservation != null ? acc + 1 : acc);
+        
+        public int EmptyTableCount =>
+            Tables.Aggregate(0, (acc, table) => table.Type == TableType.Empty ? acc + 1 : acc);
 
         public int TablesNotPlaced => Tables.Count - ReservationCount;
 

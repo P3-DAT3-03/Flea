@@ -77,9 +77,17 @@ namespace Flea.Models
         }
 
         public int ComputeMissingPayments => 
-            Reservations.Aggregate(0, (acc, reservation) => reservation.PaymentStatus == PaymentStatus.Paid ? acc : acc + 1);
+            Reservations.Aggregate(0, (acc, reservation) => reservation.PaymentStatus == PaymentStatus.NotPaid ? acc : acc + 1);
+        
+        public int ComputeArrived => 
+            Reservations.Aggregate(0, (acc, reservation) => reservation.Arrived ? acc + 1 : acc);
+        public int ComputeReservationCount => 
+            Reservations.Aggregate(0, (acc, _) =>  acc + 1);
 
         public int ComputeRemainingTables => Clusters.Aggregate(0, (acc, cluster) => acc + cluster.TablesNotPlaced);
+        
+        public int ComputeTableCount => Clusters.Aggregate(0, (acc, cluster) => acc + cluster.Tables.Count);
+        public int ComputeEmptyTableCount => Clusters.Aggregate(0, (acc, cluster) => acc + cluster.EmptyTableCount);
         DbSet<Event> IModelEntity<Event, BingoContext>.GetDbSet(BingoContext ctx) => ctx.Events;
     }
 }

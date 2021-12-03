@@ -1,0 +1,151 @@
+@page "/Event/{EventId:int}/Reservations"
+
+@inject IDbContextFactory<BingoContext> _dbFactory
+
+@using Reservation = Flea.Models.Reservation
+@using Microsoft.EntityFrameworkCore
+@using Flea.Models
+@using Flea.Utility
+@using System.Globalization
+
+<HeaderTitle Value="@(titlePrefix + " <span class='date'>" + titleDate + "</span>")"/>
+
+<div class="padded-content">
+    <div class="view-head">
+        <input class="search-input" type="search" value="" placeholder="Søg efter booking" @oninput="Search">
+        <Modal ButtonCSS="button button--outline create-button" ButtonName="Opret ny booking"  @ref="_child">
+            <ReservationForm Reservation="_temp" OnValidSubmit="CreateReservation" Modal="_child"></ReservationForm>
+        </Modal>
+    </div>
+    @if (_shownReservation is not null && _shownReservation.Any())
+    {
+        @foreach (var reservation in _shownReservation)
+        {
+            <div>
+                <ReservationUserListItem Reservation="reservation"
+                                         OnDelete="@DeleteReservation"
+                                         OnEdit="@EditReservation"/>
+            </div>
+        }
+        <div style="display: inline-block"></div>
+    }
+    else
+    {
+        <h2>Der er ingen bookinger at vise...</h2>
+    }
+</div>
+
+@code
+{
+    private string titlePrefix = "Bookinger til den";
+    private string titleDate = "";
+    
+    [Parameter]
+    public int EventId { get; set; }
+    
+    public Event Event = null!;
+
+    private Modal _child = null!;
+	private Reservation _temp = new();
+    private string _lastSearchTerm = string.Empty;
+
+    private List<Reservation>? _reservations;
+    private IEnumerable<Reservation>? _shownReservation;
+    
+    // Delete the reservation
+    public async Task DeleteReservation(Reservation reservation)
+    {
+        await _dbFactory.Delete(reservation);
+        await UpdateReservationList();
+    }
+    
+    // Create new reservation
+    public async Task CreateReservation(EditContext editContext)
+    {
+        await _dbFactory.Update()
+            .With(Event)
+            .With(_temp.ReservationOwner)
+            .New(_temp)
+            .Save();
+        _temp = new Reservation(1, 1, PaymentStatus.NotPaid, "", new Customer("", ""), Event);
+        _child.ModalCancel();
+        await UpdateReservationList();
+    }
+    
+    // Edits the reservation
+    public async Task EditReservation(EditContext editContext)
+    {
+        await _dbFactory.Save((Reservation) editContext.Model);
+        _child.ModalCancel();
+        await UpdateReservationList();
+    }
+
+    // Searchbar function
+    public void Search(ChangeEventArgs e) => Search(e.Value?.ToString()!.ToLower() ?? "");
+    
+    public void Search(string searchTerm)
+    {
+        // If no input show everything
+        if (searchTerm == "")
+        {
+            _shownReservation = _reservations;
+        }
+        else if (char.IsDigit(searchTerm[0]))
+        {   // Finds by Booths
+            _shownReservation = from c
+                in _reservations
+                where c.TableCount.ToString().Contains(searchTerm)
+                select c;
+        }
+        else if (searchTerm.Contains("ej betalt"))
+        {   // Finds by ej betalt
+            _shownReservation = from r
+                in _reservations
+                where r.PaymentStatus == PaymentStatus.NotPaid
+                select r;
+        }else if (searchTerm.Contains("betalt"))
+        {   // Finds by betalt
+            _shownReservation = from r
+                in _reservations
+                where r.PaymentStatus == PaymentStatus.Paid
+                select r;
+        }else if (searchTerm.Contains("aftale"))
+        {   // Finds by aftale
+            _shownReservation = from r
+                in _reservations
+                where r.PaymentStatus == PaymentStatus.Other
+                select r;
+        }
+        else
+        {// Finds by name
+            _shownReservation = from c
+                in _reservations
+                where c.ReservationOwner.Name.ToLower().Contains(searchTerm)
+                select c;
+        }
+        _lastSearchTerm = searchTerm;
+    }
+    
+    private async Task UpdateReservationList()
+    {
+        _reservations = await _dbFactory.Get<BingoContext, Reservation>()
+            .Where(reservation => reservation.Event.Id == EventId)
+            .Include(reservation => reservation.ReservationOwner)
+            .All();
+        Search(_lastSearchTerm);
+    }
+    
+    protected override async Task OnInitializedAsync()
+    {
+        var e = await _dbFactory.Get<BingoContext, Event>()
+            .First(e => e.Id == EventId);
+        
+        Event = e ?? throw new Exception("TODO create good error for user");
+        _temp = new Reservation(1, 1, PaymentStatus.NotPaid, "", new Customer("", ""), Event);
+        var eventDate = Event.DateTime;
+        titleDate = eventDate.ToString("d. MMMM, yyyy", CultureInfo.CreateSpecificCulture("da-DK"));
+
+        await UpdateReservationList();
+        await base.OnInitializedAsync();
+    }
+}

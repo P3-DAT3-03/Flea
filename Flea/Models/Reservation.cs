@@ -32,6 +32,8 @@ namespace Flea.Models
         
         [Required(ErrorMessage = "En reservation skal have en betalings status.")]
         public PaymentStatus PaymentStatus { get; set; }
+        
+        public bool Arrived { get; set; }
         public string Comments { get; set; }
         public List<Table> Tables { get; set; } = new();
         
