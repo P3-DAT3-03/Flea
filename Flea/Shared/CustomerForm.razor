@@ -1,4 +1,4 @@
-﻿@using Flea.Models
+@using Flea.Models
 @using Flea.Pages
 @using Flea.Utility
 
@@ -6,36 +6,38 @@
         <DataAnnotationsValidator />
         <ValidationSummary />
         
-        <div class="edit-form">
-        @if (Customer.Id == 0)
-        {
-            <div class="edit-form-div">
-                <div>Navn på loppe:</div>
-                <InputText class="search-input edit-search-input" maxlength="64" placeholder="Eks. Hans Henriksen"
-                           @bind-Value="Customer.Name"/> @*Indsæt søgefelt med oprettet kunder *@
+        <div class="customer-form">
+            <div class="customer-form__fields">
+                @if (Customer.Id == 0)
+                        {
+                            <div>
+                                <div>Navn på loppe:</div>
+                                <InputText class="search-input search-input-fill" maxlength="64" placeholder="Eks. Hans Henriksen"
+                                           @bind-Value="Customer.Name"/>
+                            </div>
+                        }
+                        else
+                        {
+                            <div>
+                                <div>Loppe:</div>
+                                <InputText class="search-input search-no-icon" disabled=""
+                                           @bind-Value="Customer.Name"/>
+                            </div>
+                        }
+                        <div>
+                            <div>Kalde navn på loppe:</div>
+                            <InputText class="search-input search-no-icon" maxlength="64" placeholder="Eks. Børge"
+                                       @bind-Value="Customer.Nickname"/>
+                        </div>
+                        <div>
+                            <div>Telefon-nummer: </div>
+                            <InputText class="search-input search-no-icon" type="tel" maxlength="8" onkeypress="return event.charCode >= 48 && event.charCode <= 57" placeholder="Eks. 12345678"
+                                       @bind-Value="Customer.PhoneNumber"></InputText>
+                        </div>
             </div>
-        }
-        else
-        {
-            <div class="edit-form-div">
-                <div>Loppe:</div>
-                <InputText class="search-input edit-search-input" disabled=""
-                           @bind-Value="Customer.Name"/>
-            </div>
-        }
-        <div class="edit-form-div">
-            <div>Kalde navn på loppe:</div>
-            <InputText class="search-input edit-search-input" maxlength="64" placeholder="Eks. Børge"
-                       @bind-Value="Customer.Nickname"/>
-        </div>
-        <div class="edit-form-div">
-            <div>Telefon-nummer: </div>
-            <InputText class="search-input edit-search-input" maxlength="8" onkeypress="return event.charCode >= 48 && event.charCode <= 57" placeholder="Eks. 12345678"
-                       @bind-Value="Customer.PhoneNumber"></InputText>
-        </div>
-        <div id="move-down">
-            <button type="submit" class="button create-button button--outline">@(Customer.Id == 0 ? "Opret Loppe" : "Gem ændringer")</button>
-            <button class="button button del-button button--outline" type="button" @onclick="@Modal.Close">Cancel</button>
+        <div class="flex-end" style="gap: 12px">
+            <button class="button outlined c-red" type="button" @onclick="@Modal.Close">Cancel</button>
+            <button type="submit" class="button c-blue">@(Customer.Id == 0 ? "Opret Loppe" : "Gem ændringer")</button>
         </div>
     </div>
 </EditForm>

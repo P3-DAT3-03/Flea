@@ -1,0 +1,15 @@
+﻿.arrow {
+    display: inline-block;
+    width: 12.5px;
+    height: 12.5px;
+    border-top: 2px solid var(--white);
+    border-right: 2px solid var(--white);
+    transform: rotate(45deg);
+}
+
+.flex-center-gap {
+    display: flex;
+    align-items: center;
+    column-gap: 2.5em;
+}
+

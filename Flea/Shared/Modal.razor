@@ -1,8 +1,8 @@
 <button class="@ButtonCSS" @onclick="@Open">@ButtonName</button>
 @if (_showModal)
 {
-    <div class="modal fade show modal-display" id="myModal" aria-modal="true" role="dialog"
-         style="overflow-y: scroll; height: calc(100vh - 56px);">
+    <div class="modal fade show modal-display" id="myModal" aria-modal="true" role="dialog">
+        <div @onclick="Close" class="modal-backdrop"></div>
         <div class="modal-dialog">
             <div class="modal-content">
                 @ChildContent
@@ -10,14 +10,15 @@
         </div>
     </div>
 }
+
 @code
 {
     [Parameter]
     public RenderFragment? ChildContent { get; set; }
-    
+
     [Parameter]
     public string ButtonName { get; set; } = string.Empty;
-    
+
     [Parameter]
     public string ButtonCSS { get; set; } = string.Empty;
 

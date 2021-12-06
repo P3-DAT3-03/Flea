@@ -12,7 +12,7 @@
 <div>
     <div class="view-head">
         <input class="search-input" type="search" value="" placeholder="Søg efter loppe..." @oninput="Search">
-        <Modal ButtonCSS="button button--outline create-button" ButtonName="Opret ny loppe" @ref="_child">
+        <Modal ButtonCSS="button c-blue float-right" ButtonName="Opret ny loppe" @ref="_child">
             <CustomerForm Customer="_temp" OnValidSubmit="CreateCustomer" Modal="_child"></CustomerForm>
         </Modal>
     </div>
@@ -20,9 +20,7 @@
     {
         @foreach (var customer in _shownCustomers)
         {
-            <div>
             <CustomerUserListItem Customer="@customer" OnEdit="@UpdateCustomer" OnDelete="@DeleteCustomer"/>
-            </div>
         }
         <div style="display: inline-block"></div>
     }
