@@ -196,57 +196,54 @@ a, .btn-link {
     width: 100%;
 }
 
-/* Grid container for reservation and customer*/
-.customer-item {
+.customer, .reservation {
     background: transparent;
     padding: 15px 20px;
     border: 1px solid var(--ios-fg);
     border-radius: 11px;
-    display: grid;
-    grid-template-columns: auto 17em 12em 12em; /*40% 20% 25.5%;*/
-    grid-gap: 10px;
-    margin-bottom: 20px;
-}
-
-
-/* Template for reservation*/
-.reservation-item {
-    background: transparent;
-    padding: 15px 20px;
-    border: 1px solid var(--ios-fg);
-    border-radius: 11px;
-    display: grid;
-    grid-template-columns: auto 14em 12em; /*27% 27%*/
-    grid-gap: 10px;
-    margin-bottom: 20px;
-}
-
-/* Make Name center*/
-.allign-name-center  {
-    display: inline-grid;
+    display: flex;
     align-items: center;
+    margin-bottom: 20px;
+    gap: 20px;
 }
 
-.stand-paymentstatus .paymentstatus {
-    text-align: center;
-    margin: auto;
-    background: green;
+.customer__id {
+    flex-basis: 36px;
+    flex-grow: 0;
+}
+
+.customer__name {
+    flex-basis: auto;
+    flex-grow: 1;
+}
+
+.customer__phone {
+    flex-basis: 14em;
+    flex-grow: 0;
+    flex-shrink: 1;
+}
+
+.reservation__name {
+    flex-basis: auto;
+    flex-grow: 1;
+}
+
+.reservation__payment-status {
     padding: 4px 10px;
     border-radius: 3px;
+    flex-basis: 78px;
+    box-sizing: border-box;
+    text-align: center;
 }
 
-#col-gap {
-    column-gap: 20px
+.reservation__table-names {
+    flex-basis: 20%;
+    text-align: right;
+    color: var(--blue);
 }
 
-.stand-paymentstatus {
-    display: flex;
-}
-
-/* Make stand and betaling center*/
-.stand-paymentstatus div {
-    display: inline-grid;
-    align-items: center;
+.reservation__actions {
+    margin-left: 13%;
 }
 
 /* Make button float right*/

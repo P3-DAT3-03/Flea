@@ -9,12 +9,18 @@
 
 @using System.Globalization
 
-<HeaderTitle Value="@(titlePrefix + " <span class='date'>" + titleDate + "</span>")"/>
+@{
+    var title = TitleDate;
+    if (title is not null)
+    {
+        <HeaderTitle Value="@($"Bookinger til den <span class='date'>{TitleDate}</span>")"/>
+    }
+}
 
 <div>
     <div class="view-head">
         <input class="search-input" type="search" value="" placeholder="Søg efter booking" @oninput="Search">
-        <Modal ButtonCSS="button blue float-right" ButtonName="Opret ny booking"  @ref="_child">
+        <Modal ButtonCSS="button float-right c-blue" ButtonName="Opret ny booking"  @ref="_child">
             <ReservationForm Reservation="_temp" OnValidSubmit="CreateReservation" Modal="_child"></ReservationForm>
         </Modal>
     </div>
@@ -38,13 +44,12 @@
 
 @code
 {
-    private string titlePrefix = "Bookinger til den";
-    private string titleDate = "";
+    private string? TitleDate => Event?.DateTime.ToString("d. MMMM, yyyy", CultureInfo.CreateSpecificCulture("da-DK"));
     
     [Parameter]
     public int EventId { get; set; }
     
-    public Event Event = null!;
+    public Event? Event;
 
     private Modal _child = null!;
 	private Reservation _temp = new();
@@ -64,11 +69,11 @@
     public async Task CreateReservation(EditContext editContext)
     {
         await _dbFactory.Update()
-            .With(Event)
+            .With(Event!)
             .With(_temp.ReservationOwner)
             .New(_temp)
             .Save();
-        _temp = new Reservation(1, 1, false, "", new Customer("", ""), Event);
+        _temp = new Reservation(1, 1, false, "", new Customer("", ""), Event!);
         _child.Close();
         await UpdateReservationList();
     }
@@ -131,10 +136,6 @@
         
         Event = e ?? throw new Exception("TODO create good error for user");
         _temp = new Reservation(1, 1, false, "", new Customer("", ""), Event);
-
-        var eventDate = Event.DateTime;
-        
-        titleDate = eventDate.ToString("d. MMMM, yyyy", CultureInfo.CreateSpecificCulture("da-DK"));
 
         await UpdateReservationList();
         await base.OnInitializedAsync();

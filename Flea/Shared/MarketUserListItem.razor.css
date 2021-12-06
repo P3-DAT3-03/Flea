@@ -2,8 +2,8 @@
     display: inline-block;
     width: 12.5px;
     height: 12.5px;
-    border-top: 2px solid var(--ios-blue);
-    border-right: 2px solid var(--ios-blue);
+    border-top: 2px solid var(--white);
+    border-right: 2px solid var(--white);
     transform: rotate(45deg);
 }
 

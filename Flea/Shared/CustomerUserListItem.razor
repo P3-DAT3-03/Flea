@@ -2,15 +2,13 @@
 @using Flea.Utility
 @using Customer = Flea.Models.Customer
 
-<div class="customer-item">
-    <div class="allign-name-center">@Customer.Id.ToString().PadLeft(4, '0')</div>
-    <div class="allign-name-center">@Customer.Name @(Customer.Nickname.Length > 0 ? $"({Customer.Nickname})" : "")</div>
-    <div class="allign-name-center">
-        <div>+45 @Customer.PhoneNumber</div>
-    </div>
-    <div id="col-gap">
-        <button class="button red" @onclick="Delete">Slet</button>
-        <Modal ButtonCSS="button grey2" ButtonName="Rediger" @ref="_modal">
+<div class="customer">
+    <div class="customer__id">@Customer.Id.ToString().PadLeft(4, '0')</div>
+    <div class="customer__name">@Customer.Name @(Customer.Nickname.Length > 0 ? $"({Customer.Nickname})" : "")</div>
+    <div class="customer__phone">+45 @Customer.PhoneNumber</div>
+    <div class="flex-end" style="gap: 12px">
+        <button class="button c-red" @onclick="Delete">Slet</button>
+        <Modal ButtonCSS="button c-g2" ButtonName="Rediger" @ref="_modal">
             <CustomerForm Customer="_temp" OnValidSubmit="OnSubmit" Modal="_modal"></CustomerForm>
         </Modal>
     </div>

@@ -5,12 +5,18 @@
 @using Microsoft.EntityFrameworkCore
 @inject IDbContextFactory<BingoContext> _dbFactory
 
-<HeaderTitle Value="@(titlePrefix + " " + _titleDate)"/>
+@{
+    var title = TitleDate;
+    if (title is not null)
+    {
+        <HeaderTitle Value="@($"Oversigt over Loppemarkede den {TitleDate}")"/>
+    }
+}
 
 <div>
     <div class="view-head">
         <input class="search-input" type="search" value="" placeholder="Søg efter booking" @oninput="Search">
-        <button class="button blue float-right">Gulv Plans Oversigt</button>
+        <button class="button c-blue float-right">Gulv Plans Oversigt</button>
     </div>
     @if (_shownReservation is not null && _shownReservation.Any())
     {
@@ -29,16 +35,12 @@
 </div>
 
 @code {
-    private string titlePrefix = "Oversigt over Loppemarkedet den";
-    private string _titleDate = "28. februar, 2021";
+    private string? TitleDate => Event?.DateTime.ToString("d. MMMM, yyyy", CultureInfo.CreateSpecificCulture("da-DK"));
 
     [Parameter]
     public int EventId { get; set; }
 
-    public Event Event = null!;
-
-    private Modal _child = null!;
-    private Reservation _temp = new();
+    public Event? Event;
     private string _lastSearchTerm = string.Empty;
 
     private List<Reservation>? _reservations;
@@ -96,11 +98,6 @@
             .First(e => e.Id == EventId);
 
         Event = e ?? throw new Exception("TODO create good error for user");
-        _temp = new Reservation(1, 1, false, "", new Customer("", ""), Event);
-
-        var eventDate = Event.DateTime;
-
-        _titleDate = eventDate.ToString("d. MMMM, yyyy", CultureInfo.CreateSpecificCulture("da-DK"));
 
         await UpdateReservationList();
         await base.OnInitializedAsync();

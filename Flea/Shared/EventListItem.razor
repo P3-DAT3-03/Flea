@@ -28,7 +28,7 @@
                         <input class="search-input edit-search-input" style="width: 50%;" type="date" @bind="_temporaryModel.DateTime"/>
                     </div>
                 </section>
-                <div class="flex-between">
+                <div class="flex-end" style="gap: 12px">
                     <button type="button" class="button c-red outlined" @onclick="_modal.Close">Annuller</button>
                     <button type="submit" class="button c-blue">Opdater</button>
                 </div>
@@ -37,7 +37,7 @@
         <div class="font-size-larger-unicorn">@Event.ComputeRemainingTables ledige stande </div>
         <button class="button c-g2" @onclick='() => Navigate($"/Event/{Event.Id}/Placement")'>Slet</button>
         <div class="font-size-larger">@Event.ComputeMissingPayments mangler at betale </div>
-        <button class="button button--outline" style="visibility: hidden;height: 40px;">-</button>
+        <button class="button button--outline" style="visibility: hidden;height: 52px;">-</button>
     }
 </div>
 

@@ -1,17 +1,13 @@
-﻿.reservation-overview {
+﻿.reservation-form {
     margin: 2em 2em 0 2em;
 }
 
-.reservation-overview > div {
+.reservation-form__fields > div {
     display: grid;
     grid-template-columns: 35% 65%;
     align-items: baseline;
     width: 100%;
     margin-bottom: 1em;
-}
-
-#display-inline {
-    display: inline;
 }
 
 .text-area {

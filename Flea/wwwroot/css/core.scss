@@ -66,6 +66,15 @@
   justify-content: space-between;
 }
 
+.flex-end {
+  display: flex;
+  justify-content: end;
+}
+
+.bg-primary {
+  background-color: color(primary);
+}
+
 // This mixin must always be last in the file for color
 // to override properly on components.
 @include define_colors(
@@ -80,4 +89,5 @@
         $red: #{255, 69, 58},
         $orange: #{255, 159, 10},
         $blue: #{10, 132, 255},
+        $green: #{48, 209, 88},
 );

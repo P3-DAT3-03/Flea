@@ -28,6 +28,20 @@
     background-color: rgba(var(--g1-t), 1);
 }
 
+.flex-between {
+    display: flex;
+    justify-content: space-between;
+}
+
+.flex-end {
+    display: flex;
+    justify-content: end;
+}
+
+.bg-primary {
+    background-color: rgba(var(--primary-t), 1);
+}
+
 :root {
     --white-t: 255, 255, 255;
     --white: rgb(var(--white-t));
@@ -55,6 +69,8 @@
     --orange: rgb(var(--orange-t));
     --blue-t: 10, 132, 255;
     --blue: rgb(var(--blue-t));
+    --green-t: 48, 209, 88;
+    --green: rgb(var(--green-t));
 }
 
 .fg-white {
@@ -213,7 +229,14 @@
     --primary-t: var(--blue-t);
 }
 
-.flex-between {
-    display: flex;
-    justify-content: space-between;
+.fg-green {
+    color: var(--green);
+}
+
+.bg-green {
+    background-color: var(--green);
+}
+
+.c-green {
+    --primary-t: var(--green-t);
 }
