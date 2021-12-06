@@ -1,0 +1,219 @@
+.panel {
+    background-color: rgba(var(--g1-t), 1);
+    padding: 10px;
+    border: 11px;
+}
+
+.button {
+    border-radius: 3px;
+    --primary-t: var(--orange-t);
+    background-color: rgba(var(--primary-t), 1);
+}
+.button.button--outline, .button.outlined {
+    background-color: transparent;
+    border: 1px solid rgba(var(--primary-t), 1);
+    color: rgba(var(--primary-t), 1);
+}
+.button.button--tinted, .button.tinted {
+    background-color: rgba(var(--primary-t), 0.25);
+    color: rgba(var(--primary-t), 1);
+}
+.button.plain, .button.button--quiet {
+    color: rgba(var(--primary-t), 1);
+    background: transparent;
+}
+
+.search-input {
+    height: 40px;
+    background-color: rgba(var(--g1-t), 1);
+}
+
+:root {
+    --white-t: 255, 255, 255;
+    --white: rgb(var(--white-t));
+    --fg-t: var(--white-t);
+    --fg: rgb(var(--fg-t));
+    --black-t: 0, 0, 0;
+    --black: rgb(var(--black-t));
+    --bg-t: var(--black-t);
+    --bg: rgb(var(--bg-t));
+    --g1-t: 28, 28, 30;
+    --g1: rgb(var(--g1-t));
+    --g2-t: 44, 44, 46;
+    --g2: rgb(var(--g2-t));
+    --g3-t: 58, 58, 60;
+    --g3: rgb(var(--g3-t));
+    --g4-t: 72, 72, 74;
+    --g4: rgb(var(--g4-t));
+    --g5-t: 99, 99, 102;
+    --g5: rgb(var(--g5-t));
+    --g6-t: 142, 142, 147;
+    --g6: rgb(var(--g6-t));
+    --red-t: 255, 69, 58;
+    --red: rgb(var(--red-t));
+    --orange-t: 255, 159, 10;
+    --orange: rgb(var(--orange-t));
+    --blue-t: 10, 132, 255;
+    --blue: rgb(var(--blue-t));
+}
+
+.fg-white {
+    color: var(--white);
+}
+
+.bg-white {
+    background-color: var(--white);
+}
+
+.c-white {
+    --primary-t: var(--white-t);
+}
+
+.fg-fg {
+    color: var(--fg);
+}
+
+.bg-fg {
+    background-color: var(--fg);
+}
+
+.c-fg {
+    --primary-t: var(--fg-t);
+}
+
+.fg-black {
+    color: var(--black);
+}
+
+.bg-black {
+    background-color: var(--black);
+}
+
+.c-black {
+    --primary-t: var(--black-t);
+}
+
+.fg-bg {
+    color: var(--bg);
+}
+
+.bg-bg {
+    background-color: var(--bg);
+}
+
+.c-bg {
+    --primary-t: var(--bg-t);
+}
+
+.fg-g1 {
+    color: var(--g1);
+}
+
+.bg-g1 {
+    background-color: var(--g1);
+}
+
+.c-g1 {
+    --primary-t: var(--g1-t);
+}
+
+.fg-g2 {
+    color: var(--g2);
+}
+
+.bg-g2 {
+    background-color: var(--g2);
+}
+
+.c-g2 {
+    --primary-t: var(--g2-t);
+}
+
+.fg-g3 {
+    color: var(--g3);
+}
+
+.bg-g3 {
+    background-color: var(--g3);
+}
+
+.c-g3 {
+    --primary-t: var(--g3-t);
+}
+
+.fg-g4 {
+    color: var(--g4);
+}
+
+.bg-g4 {
+    background-color: var(--g4);
+}
+
+.c-g4 {
+    --primary-t: var(--g4-t);
+}
+
+.fg-g5 {
+    color: var(--g5);
+}
+
+.bg-g5 {
+    background-color: var(--g5);
+}
+
+.c-g5 {
+    --primary-t: var(--g5-t);
+}
+
+.fg-g6 {
+    color: var(--g6);
+}
+
+.bg-g6 {
+    background-color: var(--g6);
+}
+
+.c-g6 {
+    --primary-t: var(--g6-t);
+}
+
+.fg-red {
+    color: var(--red);
+}
+
+.bg-red {
+    background-color: var(--red);
+}
+
+.c-red {
+    --primary-t: var(--red-t);
+}
+
+.fg-orange {
+    color: var(--orange);
+}
+
+.bg-orange {
+    background-color: var(--orange);
+}
+
+.c-orange {
+    --primary-t: var(--orange-t);
+}
+
+.fg-blue {
+    color: var(--blue);
+}
+
+.bg-blue {
+    background-color: var(--blue);
+}
+
+.c-blue {
+    --primary-t: var(--blue-t);
+}
+
+.flex-between {
+    display: flex;
+    justify-content: space-between;
+}

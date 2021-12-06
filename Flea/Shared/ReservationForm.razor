@@ -65,7 +65,7 @@
         </div>
         <div id="move-down">
             <button type="submit" class="button create-button button--outline">@(Reservation.Id == 0 ? "Opret booking" : "Gem ændringer")</button>
-            <button type="button" class="button button del-button button--outline" @onclick="@Modal.ModalCancel">Cancel</button>
+            <button type="button" class="button button del-button button--outline" @onclick="@Modal.Close">Cancel</button>
         </div>
     </div>
 </EditForm>

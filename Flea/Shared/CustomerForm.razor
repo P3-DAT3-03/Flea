@@ -35,7 +35,7 @@
         </div>
         <div id="move-down">
             <button type="submit" class="button create-button button--outline">@(Customer.Id == 0 ? "Opret Loppe" : "Gem ændringer")</button>
-            <button class="button button del-button button--outline" type="button" @onclick="@Modal.ModalCancel">Cancel</button>
+            <button class="button button del-button button--outline" type="button" @onclick="@Modal.Close">Cancel</button>
         </div>
     </div>
 </EditForm>

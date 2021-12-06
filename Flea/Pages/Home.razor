@@ -13,14 +13,15 @@
 <div>
     <div class="view-head">
         <input class="search-input" type="search" value="" @oninput="Search" placeholder="Søg efter loppemarked..."/>
-        <Modal ButtonCSS="button button--outline create-button" ButtonName="Tilføj nyt loppemarked" @ref="_child">
+        <Modal ButtonCSS="button c-blue create-button" ButtonName="Tilføj nyt loppemarked" @ref="_modal">
             <div>
                 <h5>Hvor mange loppemarkeder ønsker I at oprette?</h5>
                 <label>Antal loppemarkeder: </label>
                 <input type="text" @bind="_tempEvents.EventAmount">
             </div>
-            <CreateEventForm EventList="_tempEvents" OnValidSubmit="CreateEvents" Modal="_child"></CreateEventForm>
+            <CreateEventForm EventList="_tempEvents" OnValidSubmit="CreateEvents" Modal="_modal"></CreateEventForm>
         </Modal>
+        <button style="margin-right: 15px; float: right;" class="button outlined c-blue" @onclick="ToggleEditState">@EditButtonLabel</button>
     </div>
 
     @if (_shownEvents is not null && _shownEvents.Any())
@@ -28,7 +29,7 @@
         @foreach (var e in _shownEvents)
         {
             <div>
-                <EventListItem Event="@e"></EventListItem>
+                <EventListItem IsEditMode="_isInEditMode" OnDelete="OnEventDeleted" Event="e"></EventListItem>
             </div>
         }
         <div style="display: inline-block"></div>
@@ -49,7 +50,7 @@
         public List<Event> Events { get; set; } = new() {new Event(DateTime.Today)};
         public int EventAmount
         {
-            get { return _eventAmount; }
+            get => _eventAmount;
             set
             {
                 _eventAmount = value;
@@ -59,19 +60,27 @@
         
         public void CreateEventListPlaceholders()
         {
-            this.Events.Clear();
-            for (int i = 0; i < this.EventAmount; i++)
+            Events.Clear();
+            for (int i = 0; i < EventAmount; i++)
             {
-                this.Events.Add(new Event(DateTime.Today));
+                Events.Add(new Event(DateTime.Today));
             }
         }
     }
 
     private EventList _tempEvents = new();
-    private Modal _child = null!;
+    private Modal _modal = null!;
     private List<Event>? _events;
     private IEnumerable<Event>? _shownEvents;
     private string _lastSearchTerm = string.Empty;
+    private bool _isInEditMode;
+
+    private string EditButtonLabel => _isInEditMode ? "Annuller" : "Rediger";
+
+    public void ToggleEditState()
+    {
+        _isInEditMode = !_isInEditMode;
+    }
 
     public async Task CreateEvents()
     {
@@ -83,7 +92,7 @@
         }
         await q.Save();
         await UpdateEventList();
-        _child.ModalCancel();
+        _modal.Close();
         _tempEvents.EventAmount = 1;
     }
 
@@ -97,6 +106,13 @@
         Search(_lastSearchTerm);
     }
 
+    private Task OnEventDeleted(Event @event)
+    {
+        _events!.Remove(@event);
+        Search(_lastSearchTerm); // Refresh the list
+        return Task.CompletedTask;
+    }
+    
     public void Search(ChangeEventArgs e) => Search(e.Value?.ToString()?.ToLower() ?? "");
     
     public void Search(string searchTerm)

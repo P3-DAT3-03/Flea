@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 
 namespace Flea.Models
 {
+    [SuppressMessage("ReSharper", "UnusedAutoPropertyAccessor.Global")]
     public class Event : IModelEntity<Event, BingoContext>
     {
-        
-        public string[] Months =
+        private readonly string[] _months =
         {
             "", "Januar", "Februar", "Marts", "April", "Maj", "Juni", "Juli", 
             "August", "September", "Oktober", "November", "December"
@@ -39,17 +40,19 @@ namespace Flea.Models
             
             Clusters = new List<Cluster>
             { 
-                new Cluster("A", 4, 8), new Cluster("B", 4, 8), new Cluster("C", 4, 8), new Cluster("D", 4, 8),
-                new Cluster("E", 4, 8), new Cluster("F", 4, 8), new Cluster("G", 4, 8), new Cluster("H", 4, 8),
-                new Cluster("I", 4, 8), new Cluster("J", 4, 8), new Cluster("K", 4, 8), new Cluster("L", 4, 8),
-                new Cluster("M", 12, 12)
+                new("A", 4, 8), new("B", 4, 8), new("C", 4, 8), new("D", 4, 8),
+                new("E", 4, 8), new("F", 4, 8), new("G", 4, 8), new("H", 4, 8),
+                new("I", 4, 8), new("J", 4, 8), new("K", 4, 8), new("L", 4, 8),
+                new("M", 12, 12)
             };
         }
 
         public void UpdateName()
         {
-            this.Name = this.DateTime.Day.ToString() + ". " + Months[this.DateTime.Month] + ", " + this.DateTime.Year.ToString();
+            Name = DateTime.Day + ". " + _months[DateTime.Month] + ", " + DateTime.Year;
         }
+
+        public Event Clone() => (Event) MemberwiseClone();
 
         public int ComputeMissingPayments => 
             Reservations.Aggregate(0, (acc, reservation) => reservation.Paid ? acc : acc + 1);
