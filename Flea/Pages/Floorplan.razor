@@ -71,11 +71,11 @@
     private string SetColor(Cluster cluster, Table table)
     {
         return table.Reservation switch {
-        {PaymentStatus: PaymentStatus.NotPaid } => " red",
-        {PaymentStatus: PaymentStatus.Other } => " blue",
-        {Arrived: true } => " green",
+            {PaymentStatus: PaymentStatus.NotPaid } => " red",
+            {PaymentStatus: PaymentStatus.Other } => " blue",
+            {Arrived: true } => " green",
             _ => " white"
-            };
+        };
     }
 
     private async Task<Event?> GetEvent()

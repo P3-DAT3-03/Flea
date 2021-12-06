@@ -23,6 +23,7 @@ namespace Flea.Models
 		[DataType(DataType.PhoneNumber)]
 		public string PhoneNumber { get; set; }
 
+		[Obsolete("This constructor should never be called manually. Intended only for EF use.")]
 		public Customer() : this(0) {}
 		
 		public Customer(int id) : this(string.Empty, string.Empty)

@@ -263,14 +263,11 @@
 
     private async Task ConfirmSelection()
     {
-        for (var i = 0; i < _selectedReservation?.TableCount; i++)
-        {
-            var table = _selectedCluster?.Tables.Find(t => t.Id == _paths[_selectedPath][i]);
-            if (table == null) continue;
-            table.Reservation = _selectedReservation;
-            await _dbFactory.Save(table);
-        }
-        StateHasChanged();
+        if (_selectedCluster == null || _selectedReservation == null) return;;
+        var tables = _event?.AssignReservation(_selectedCluster, _paths[_selectedPath], _selectedReservation);
+        if (tables != null)
+            foreach (var table in tables)
+                await _dbFactory.Save(table);
     }
 
     private async void RemoveTablesFromReservation()

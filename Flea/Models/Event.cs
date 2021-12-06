@@ -22,15 +22,15 @@ namespace Flea.Models
         /// The date at which the event will be held.
         /// </summary>
         public DateTime DateTime { get; set; }
-        public string Name { get; set; }
-        
-        
-        public List<Cluster> Clusters { get; set; }
+        public string Name { get; set; } = null!;
+
+
+        public List<Cluster> Clusters { get; set; } = null!;
         public List<Reservation> Reservations { get; set; }= new();
-        public Event PreviousEvent { get; set; }
 
 
         /* the constructor creates the event and all the needed clusters in the bingo fleamarket formet*/
+        [Obsolete("This constructor should never be called manually. Intended only for EF use.")]
         public Event() {}
         public Event(DateTime dateTime)
         {
@@ -77,7 +77,7 @@ namespace Flea.Models
         }
 
         public int ComputeMissingPayments => 
-            Reservations.Aggregate(0, (acc, reservation) => reservation.PaymentStatus == PaymentStatus.NotPaid ? acc : acc + 1);
+            Reservations.Aggregate(0, (acc, reservation) => reservation.PaymentStatus == PaymentStatus.NotPaid ? acc + 1 : acc);
         
         public int ComputeArrived => 
             Reservations.Aggregate(0, (acc, reservation) => reservation.Arrived ? acc + 1 : acc);
@@ -88,6 +88,13 @@ namespace Flea.Models
         
         public int ComputeTableCount => Clusters.Aggregate(0, (acc, cluster) => acc + cluster.Tables.Count);
         public int ComputeEmptyTableCount => Clusters.Aggregate(0, (acc, cluster) => acc + cluster.EmptyTableCount);
+
+        public IEnumerable<Table> AssignReservation(Cluster cluster, int[] tableIds, Reservation r)
+        {
+            var tables = cluster.Tables.FindAll(t => tableIds.Contains(t.Id));
+            tables.ForEach(t=> t.Reservation = r);
+            return tables;
+        }
         DbSet<Event> IModelEntity<Event, BingoContext>.GetDbSet(BingoContext ctx) => ctx.Events;
     }
 }

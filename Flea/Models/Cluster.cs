@@ -17,8 +17,8 @@ namespace Flea.Models
 
         public int Id { get; set; }
         
-        public string Name { get; set; }
-        public List<Table> Tables { get; set; }
+        public string Name { get; set; } = null!;
+        public List<Table> Tables { get; set; } = null!;
         public int CustomerCount { get; set; }
         public ClusterType Type { get; set; }
 
@@ -33,13 +33,8 @@ namespace Flea.Models
                 Tables.Add(new Table());
             }
         }
-
-        public Cluster(string name, int customerCount)
-        {
-            Name = name;
-            CustomerCount = customerCount;
-        }
-
+        
+        [Obsolete("This constructor should never be called manually. Intended only for EF use.")]
         public Cluster()
         {
             Id = 0;
@@ -55,10 +50,6 @@ namespace Flea.Models
 
         /*TODO need to implement a function that checks if a placement is possible based on the cluster criterea,
          * fx if it sould cause too many customers to be seated*/
-        public bool VerifyPlacements => throw new NotImplementedException();
-
-        /*TODO this function needs to make it possible for the cluster to assign reservations to tables,
-         * and verify if theyre correct based on a table and reservation as input*/
-        public bool AssignReservationToTables => throw new NotImplementedException();
+        public bool VerifyPlacements =>  throw new NotImplementedException();
     }
 }

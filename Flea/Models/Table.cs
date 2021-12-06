@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System;
+using Microsoft.EntityFrameworkCore;
 
 namespace Flea.Models
 {
@@ -13,8 +14,8 @@ namespace Flea.Models
 
         public int Id { get; set; }
         
-        public Cluster Cluster { get; set; }
-        
+        public Cluster Cluster { get; set; } = null!;
+
         public Reservation? Reservation { get; set; }
         public TableType Type { get; set; }
 
@@ -24,11 +25,7 @@ namespace Flea.Models
             Reservation = reservation;
         }
 
-        public Table(TableType type)
-        {
-            Type = type;
-        }
-
+        [Obsolete("This constructor should never be called manually. Intended only for EF use.")]
         public Table()
         {
             Id = 0;
