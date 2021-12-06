@@ -27,10 +27,10 @@ namespace Flea.Tests
             Reservation reservation = new Reservation(priority, tableCount, status, comment, customer, @event);
             reservation.Arrived = true;
             @event.Reservations.Add(reservation);
-            @event.AssignReservation(@event.Clusters[5], new []{0}, reservation);
+            @event.AssignReservation(@event.Clusters[8], new []{0}, reservation);
             for (var i = 0; i < 4; i++)
             {
-                @event.Clusters[5].Tables[i].Type = TableType.Empty;
+                @event.Clusters[8].Tables[i].Type = TableType.Empty;
             }
             Assert.AreEqual(122, @event.ComputeRemainingTables);
             Assert.AreEqual(1, @event.ComputeReservationCount);
