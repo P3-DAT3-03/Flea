@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 
@@ -37,38 +35,36 @@ namespace Flea.Models
             DateTime = dateTime;
             UpdateName();
 
-            Clusters = new List<Cluster>();
-            // Top
-            Clusters.Add(new Cluster("1", 2, 2, ClusterType.Vertical));
-            Clusters.Add(new Cluster("2", 4, 4, ClusterType.Vertical));
-            Clusters.Add(new Cluster("3", 4, 4, ClusterType.Vertical));
-            Clusters.Add(new Cluster("4", 2, 2, ClusterType.Vertical));
-            // Middle
-
-            Clusters.Add(new Cluster("A", 4, 8, ClusterType.Round));
-            Clusters.Add(new Cluster("D", 4, 8, ClusterType.Round));
-            Clusters.Add(new Cluster("G", 4, 8, ClusterType.Round));
-            Clusters.Add(new Cluster("J", 4, 8, ClusterType.Round));
-
-            Clusters.Add(new Cluster("B", 4, 8, ClusterType.Round));
-            Clusters.Add(new Cluster("E", 4, 8, ClusterType.Round));
-            Clusters.Add(new Cluster("H", 4, 8, ClusterType.Round));
-            Clusters.Add(new Cluster("K", 4, 8, ClusterType.Round));
-            
-            Clusters.Add(new Cluster("C", 4, 8, ClusterType.Round));
-            Clusters.Add(new Cluster("F", 4, 8, ClusterType.Round));
-            Clusters.Add(new Cluster("I", 4, 8, ClusterType.Round));
-            Clusters.Add(new Cluster("L", 4, 8, ClusterType.Round));
-            
-            Clusters.Add(new Cluster("M", 3, 3, ClusterType.Vertical));
-            Clusters.Add(new Cluster("N", 3, 3, ClusterType.Vertical));
-            Clusters.Add(new Cluster("O", 3, 3, ClusterType.Vertical));
-            Clusters.Add(new Cluster("P", 3, 3, ClusterType.Vertical));
-
-            //Bottom
-            Clusters.Add(new Cluster("5", 4, 4, ClusterType.Vertical));
-            Clusters.Add(new Cluster("6", 3, 3, ClusterType.Vertical));
-            Clusters.Add(new Cluster("7", 3, 3, ClusterType.Vertical));
+            Clusters = new List<Cluster>
+            {
+                // Top
+                new ("1", 2, 2, ClusterType.Vertical),
+                new ("2", 4, 4, ClusterType.Vertical),
+                new ("3", 4, 4, ClusterType.Vertical),
+                new ("4", 2, 2, ClusterType.Vertical),
+                // Top Middle
+                new ("M", 3, 3, ClusterType.Vertical),
+                new ("N", 3, 3, ClusterType.Vertical),
+                new ("O", 3, 3, ClusterType.Vertical),
+                new ("P", 3, 3, ClusterType.Vertical),
+                // Middle
+                new ("A", 4, 8, ClusterType.Round),
+                new ("D", 4, 8, ClusterType.Round),
+                new ("G", 4, 8, ClusterType.Round),
+                new ("J", 4, 8, ClusterType.Round),
+                new ("B", 4, 8, ClusterType.Round),
+                new ("E", 4, 8, ClusterType.Round),
+                new ("H", 4, 8, ClusterType.Round),
+                new ("K", 4, 8, ClusterType.Round),
+                new ("C", 4, 8, ClusterType.Round),
+                new ("F", 4, 8, ClusterType.Round),
+                new ("I", 4, 8, ClusterType.Round),
+                new ("L", 4, 8, ClusterType.Round),
+                //Bottom
+                new ("5", 4, 4, ClusterType.Vertical),
+                new ("6", 3, 3, ClusterType.Vertical),
+                new ("7", 3, 3, ClusterType.Vertical)
+            };
         }
 
         public void UpdateName()

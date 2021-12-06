@@ -34,6 +34,7 @@
                 Inner="@cluster"
                 SetColor="@SetColor"
                 SetValue="@SetValue"
+                SetTableInner="@SetTableContent"
                 OnTableSelect="@(p=> OnTableSelect.InvokeAsync(p))"/>
         }
     </div>
@@ -44,6 +45,7 @@
                 Inner="@cluster"
                 SetColor="@SetColor"
                 SetValue="@SetValue"
+                SetTableInner="@SetTableContent"
                 OnTableSelect="@(p=> OnTableSelect.InvokeAsync(p))"/>
         }
     </div>
@@ -55,6 +57,7 @@
                 Inner="@cluster"
                 SetColor="@SetColor"
                 SetValue="@SetValue"
+                SetTableInner="@SetTableContent"
                 OnTableSelect="@(p=> OnTableSelect.InvokeAsync(p))"/>
         }
     </div>
@@ -63,9 +66,11 @@
 
 @code {
     [Parameter]
-    public  Cluster.SelectColor SetColor { get; set; }
+    public  Cluster.SelectColor? SetColor { get; set; }
     [Parameter]
-    public  Cluster.SelectValue SetValue { get; set; }
+    public  Cluster.SelectValue? SetValue { get; set; }
+    [Parameter]
+    public  Cluster.SetTableContent? SetTableContent { get; set; }
     [Parameter]
     public EventCallback<(Table, Models.Cluster,int)> OnTableSelect { get; set; }
 

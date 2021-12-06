@@ -19,6 +19,7 @@
                 SetColor="@SetColor"
                 SetValue="@SetValue"
                 OnTableSelect="@TableSelected"
+                SetTableContent="@((_,_)=>"")"
                 Clusters="@_clusters"/>
             <div class="guides center">
                 <div class="guide">
@@ -72,7 +73,7 @@
                 <h3>Bemærkninger</h3>
                 <div class="comments">@_selectedReservation?.Comments</div>
                 <div class="buttons">
-                    <br/>
+                     <br/>
                      @if (_selectedReservation?.Tables.Count > 0){
                          <button class="button--large--cta large-button red" @onclick="RemoveTablesFromReservation">Slet Placering</button>
                          <br/>

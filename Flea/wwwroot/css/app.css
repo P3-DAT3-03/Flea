@@ -226,6 +226,7 @@ body, html {
     font-size: x-large;
     font-weight: bolder;
 }
+
 .side-panel .container {
     display: flex;
     flex-direction: row;

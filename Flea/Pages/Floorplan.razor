@@ -6,7 +6,7 @@
 @using System.Globalization
 @if (_titleDate != "")
 {
-    <HeaderTitle Value="@(_titlePrefix + " " + _titleDate)"/>
+    <HeaderTitle Value="@(_titlePrefix + " <span class='date'>" + _titleDate + "</span>")"/>
 }
 <div class="container event-placement">
     @if (Event?.Clusters != null)
@@ -15,7 +15,8 @@
             <ClusterContainer 
                 SetColor="@SetColor"
                 SetValue="@( (_,_) => -1)"
-                OnTableSelect="@(_ => {})"
+                OnTableSelect="@(_ =>{})"
+                SetTableContent="@((_,_)=>"")"
                 Clusters="@Event?.Clusters"/>
             <div class="guides center">
                 <div class="guide">

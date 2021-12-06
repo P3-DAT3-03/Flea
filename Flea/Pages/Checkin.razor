@@ -1,0 +1,153 @@
+﻿@page "/Event/{EventId:int}/Checkin/{ReservationId:int}"
+@inject IDbContextFactory<BingoContext> _dbFactory
+@using Flea.Models
+@using Microsoft.EntityFrameworkCore
+@using Cluster = Flea.Models.Cluster
+@using System.Globalization
+@using Flea.Utility
+@inject NavigationManager NavManager
+@if (_titleDate != "")
+{
+    <HeaderTitle Value="@(_titlePrefix + " <span class='date'>" + _titleName + "</span>" + " på den " + " <span class='date'>" + _titleDate + "</span>")"/>
+}
+<div class="container event-placement">
+    @if (Event?.Clusters != null)
+    {
+        <div class="cluster-body">
+            <ClusterContainer 
+                SetColor="@SetColor"
+                SetValue="@( (_,_) => -1)"
+                SetTableContent="@SetTableContent"
+                OnTableSelect="@(_ => {})"
+                Clusters="@Event?.Clusters"/>
+            <div class="guides center">
+                <div class="guide">
+                    <div class="ball red"></div>
+                    <p>Her er du</p>
+                </div>
+                <div class="guide">
+                    <div class="ball blue"></div>
+                    <p>Dine Borde</p>
+                </div>
+                <div class="guide">
+                    <div class="ball green"></div>
+                    <p>Dine Tomme stande</p>
+                </div>
+                <div class="guide">
+                    <div class="ball white"></div>
+                    <p>Ikke Ankommet</p>
+                </div>
+            </div>
+        </div>
+        <div class="side-panel">
+            <h3>Welkommen</h3>
+            @if (ReservationId > 0)
+            {
+                <h4>@_customer?.Name</h4>
+                var paid = _reservation?.PaymentStatus switch {
+                    PaymentStatus.NotPaid => ("orange", "Ej betalt"),
+                    PaymentStatus.Paid => ("green", "Har betalt"),
+                    _ => ("blue", "Aftale")
+                };
+                <br/>
+                <div class="container">
+                    <label for="payment-status">Betalings status:</label>
+                    <div id="payment-status" class="status @(paid.Item1) bold">@(paid.Item2)</div>
+                </div>
+                <br/>
+                <h4>Bemærkninger</h4>
+                <div class="comments">@_reservation?.Comments</div>
+            }
+            <div class="buttons">
+                <br/>
+                <button class="button--large--cta large-button red" @onclick="DeleteReservation">Fjern Booking</button>
+                <br/>
+                <button class="button--large--cta large-button blue" @onclick="CheckinCustomer">Check Loppe Ind</button>
+            </div>
+        </div>
+    }
+</div>
+<style>
+    .lower .border:nth-child(2){
+        border-color: var(--ios-red);
+    }
+</style>
+
+@code {
+
+    [Parameter]
+    public int EventId { get; set; }
+    [Parameter]
+    public int ReservationId { get; set; }
+    
+    private string _titlePrefix = "Check ind af ";
+    private string _titleDate = "";
+    private string _titleName = "";
+
+    private Reservation? _reservation;
+    private Customer? _customer;
+
+    public Event? Event;
+
+    private string SetColor(Cluster cluster, Table table)
+    {
+        if (table.Reservation == null || ReservationId != table.Reservation.Id) return " white";
+        return table.Type == TableType.Empty ? " orange" : " blue";
+    }
+
+    private string SetTableContent(Cluster cluster, Table table)
+    {
+        if (table.Reservation == null || ReservationId != table.Reservation.Id) return "";
+        return table.Id.ToString(); // TODO: Replace with cluster index.
+    }
+    private async Task DeleteReservation()
+    {
+        if(_reservation == null) return;
+        await _dbFactory.Delete(_reservation);
+        NavManager.NavigateTo("/Event/"+EventId+"/Market");
+    }
+
+    private async Task CheckinCustomer()
+    {
+        if(_reservation == null) return;
+        _reservation.Arrived = true;
+        await _dbFactory.Update()
+            .Update(_reservation)
+            .Save();
+        NavManager.NavigateTo("/Event/"+EventId+"/Market");
+    }
+
+    private async Task<Event?> GetEvent()
+    {
+        await using var context = _dbFactory.CreateDbContext();
+        if (context.Events != null)
+            return await context.Events
+                .Include("Clusters.Tables.Reservation.ReservationOwner")
+                .Include("Clusters.Tables.Reservation.Tables")
+                .AsSplitQuery()
+                .OrderBy(e => e.Id)
+                .FirstOrDefaultAsync(e => e.Id == EventId);
+        return null;
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        Event = await GetEvent();
+        if (Event != null)
+        {
+            var eventDate = Event.DateTime;
+            _reservation = Event.Reservations.Find(r => r.Id == ReservationId);
+            _customer = _reservation?.ReservationOwner;
+            _titleDate = eventDate.ToString("d. MMMM, yyyy", CultureInfo.CreateSpecificCulture("da-DK"));
+            _titleName = _reservation?.ReservationOwner.Name ?? string.Empty;
+            Event.Clusters.Sort((a, b) => a.Name[0] - b.Name[0]);
+            Event.Clusters.Reverse();
+            foreach (var cluster in Event.Clusters)
+            {
+                cluster.Tables.Sort((a, b) => a.Id - b.Id);
+            }
+        }
+        await base.OnInitializedAsync();
+    }
+
+}
