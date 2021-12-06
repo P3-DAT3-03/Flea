@@ -28,13 +28,12 @@
 
     @if (_shownEvents is not null && _shownEvents.Any())
     {
-        @foreach (var e in _shownEvents)
-        {
-            <div>
+        <div class="scrollable">
+            @foreach (var e in _shownEvents)
+            {
                 <EventListItem IsEditMode="_isInEditMode" OnDelete="OnEventDeleted" Event="e"></EventListItem>
-            </div>
-        }
-        <div style="display: inline-block"></div>
+            }
+        </div>
     }
     else
     {

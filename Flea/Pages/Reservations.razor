@@ -5,9 +5,9 @@
 @using Reservation = Flea.Models.Reservation
 @using Microsoft.EntityFrameworkCore
 @using Flea.Models
-@using Flea.Utility
 
 @using System.Globalization
+@using Flea.Utility
 
 @{
     var title = TitleDate;
@@ -26,15 +26,14 @@
     </div>
     @if (_shownReservation is not null && _shownReservation.Any())
     {
-        @foreach (var reservation in _shownReservation)
-        {
-            <div>
+        <div class="scrollable">
+            @foreach (var reservation in _shownReservation)
+            {
                 <ReservationUserListItem Reservation="reservation"
                                          OnDelete="@DeleteReservation"
                                          OnEdit="@EditReservation"/>
-            </div>
-        }
-        <div style="display: inline-block"></div>
+            }
+        </div>
     }
     else
     {

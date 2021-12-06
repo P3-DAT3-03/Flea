@@ -20,13 +20,12 @@
     </div>
     @if (_shownReservation is not null && _shownReservation.Any())
     {
-        @foreach (var reservation in _shownReservation)
-        {
-            <div>
+        <div class="scrollable">
+            @foreach (var reservation in _shownReservation)
+            {
                 <MarketUserListItem EventId="EventId" Reservation="reservation"></MarketUserListItem>
-            </div>
-        }
-        <div style="display: inline-block"></div>
+            }
+        </div>
     }
     else
     {
