@@ -119,7 +119,7 @@ in simplifying various basic database operations.</p>
     <a href="https://github.com/P3-DAT3-03/Flea/new/main/apiSpec/new?filename=Flea_Utility_DatabaseHelperExtensions_Delete__2_IDbContextFactory___0____1_.md&amp;value=---%0Auid%3A%20Flea.Utility.DatabaseHelperExtensions.Delete%60%602(IDbContextFactory%7B%60%600%7D%2C%60%601)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/P3-DAT3-03/Flea/blob/main/Flea/Utility/DatabaseHelperExtensions.cs/#L81">View Source</a>
+    <a href="https://github.com/P3-DAT3-03/Flea/blob/main/Flea/Utility/DatabaseHelperExtensions.cs/#L64">View Source</a>
   </span>
   <a id="Flea_Utility_DatabaseHelperExtensions_Delete_" data-uid="Flea.Utility.DatabaseHelperExtensions.Delete*"></a>
   <h4 id="Flea_Utility_DatabaseHelperExtensions_Delete__2_IDbContextFactory___0____1_" data-uid="Flea.Utility.DatabaseHelperExtensions.Delete``2(IDbContextFactory{``0},``1)">Delete&lt;TContext, TEntity&gt;(IDbContextFactory&lt;TContext&gt;, TEntity)</h4>
@@ -407,84 +407,6 @@ in simplifying various basic database operations.</p>
       <tr>
         <td><span class="parametername">TEntity</span></td>
         <td><p>The type of the entity that is being updated.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/P3-DAT3-03/Flea/new/main/apiSpec/new?filename=Flea_Utility_DatabaseHelperExtensions_SaveNew__2_IDbContextFactory___0____1_.md&amp;value=---%0Auid%3A%20Flea.Utility.DatabaseHelperExtensions.SaveNew%60%602(IDbContextFactory%7B%60%600%7D%2C%60%601)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/P3-DAT3-03/Flea/blob/main/Flea/Utility/DatabaseHelperExtensions.cs/#L64">View Source</a>
-  </span>
-  <a id="Flea_Utility_DatabaseHelperExtensions_SaveNew_" data-uid="Flea.Utility.DatabaseHelperExtensions.SaveNew*"></a>
-  <h4 id="Flea_Utility_DatabaseHelperExtensions_SaveNew__2_IDbContextFactory___0____1_" data-uid="Flea.Utility.DatabaseHelperExtensions.SaveNew``2(IDbContextFactory{``0},``1)">SaveNew&lt;TContext, TEntity&gt;(IDbContextFactory&lt;TContext&gt;, TEntity)</h4>
-  <div class="markdown level1 summary"><p>Save/create a new entity in the database.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static async Task SaveNew&lt;TContext, TEntity&gt;(this IDbContextFactory&lt;TContext&gt; factory, TEntity entity)
-
-    where TContext : DbContext where TEntity : class, IModelEntity&lt;TEntity, TContext&gt;, new()</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">IDbContextFactory</span>&lt;TContext&gt;</td>
-        <td><span class="parametername">factory</span></td>
-        <td><p>The factory that will supply the database context instance.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">TEntity</span></td>
-        <td><span class="parametername">entity</span></td>
-        <td><p>The entity that should be created.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Threading.Tasks.Task</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="typeParameters">Type Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="parametername">TContext</span></td>
-        <td><p>The database context type.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="parametername">TEntity</span></td>
-        <td><p>The type of the entity that is being created.</p>
 </td>
       </tr>
     </tbody>

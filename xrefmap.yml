@@ -497,6 +497,19 @@ references:
   isSpec: "True"
   fullName: Flea.Models.Event.Event
   nameWithType: Event.Event
+- uid: Flea.Models.Event.Clone
+  name: Clone()
+  href: api/Flea.Models.Event.html#Flea_Models_Event_Clone
+  commentId: M:Flea.Models.Event.Clone
+  fullName: Flea.Models.Event.Clone()
+  nameWithType: Event.Clone()
+- uid: Flea.Models.Event.Clone*
+  name: Clone
+  href: api/Flea.Models.Event.html#Flea_Models_Event_Clone_
+  commentId: Overload:Flea.Models.Event.Clone
+  isSpec: "True"
+  fullName: Flea.Models.Event.Clone
+  nameWithType: Event.Clone
 - uid: Flea.Models.Event.Clusters
   name: Clusters
   href: api/Flea.Models.Event.html#Flea_Models_Event_Clusters
@@ -575,12 +588,6 @@ references:
   isSpec: "True"
   fullName: Flea.Models.Event.Id
   nameWithType: Event.Id
-- uid: Flea.Models.Event.Months
-  name: Months
-  href: api/Flea.Models.Event.html#Flea_Models_Event_Months
-  commentId: F:Flea.Models.Event.Months
-  fullName: Flea.Models.Event.Months
-  nameWithType: Event.Months
 - uid: Flea.Models.Event.Name
   name: Name
   href: api/Flea.Models.Event.html#Flea_Models_Event_Name
@@ -1196,22 +1203,6 @@ references:
   fullName.vb: Flea.Utility.DatabaseHelperExtensions.Save(Of TContext, TEntity)(IDbContextFactory(Of TContext), TEntity)
   nameWithType: DatabaseHelperExtensions.Save<TContext, TEntity>(IDbContextFactory<TContext>, TEntity)
   nameWithType.vb: DatabaseHelperExtensions.Save(Of TContext, TEntity)(IDbContextFactory(Of TContext), TEntity)
-- uid: Flea.Utility.DatabaseHelperExtensions.SaveNew*
-  name: SaveNew
-  href: api/Flea.Utility.DatabaseHelperExtensions.html#Flea_Utility_DatabaseHelperExtensions_SaveNew_
-  commentId: Overload:Flea.Utility.DatabaseHelperExtensions.SaveNew
-  isSpec: "True"
-  fullName: Flea.Utility.DatabaseHelperExtensions.SaveNew
-  nameWithType: DatabaseHelperExtensions.SaveNew
-- uid: Flea.Utility.DatabaseHelperExtensions.SaveNew``2(IDbContextFactory{``0},``1)
-  name: SaveNew<TContext, TEntity>(IDbContextFactory<TContext>, TEntity)
-  href: api/Flea.Utility.DatabaseHelperExtensions.html#Flea_Utility_DatabaseHelperExtensions_SaveNew__2_IDbContextFactory___0____1_
-  commentId: M:Flea.Utility.DatabaseHelperExtensions.SaveNew``2(IDbContextFactory{``0},``1)
-  name.vb: SaveNew(Of TContext, TEntity)(IDbContextFactory(Of TContext), TEntity)
-  fullName: Flea.Utility.DatabaseHelperExtensions.SaveNew<TContext, TEntity>(IDbContextFactory<TContext>, TEntity)
-  fullName.vb: Flea.Utility.DatabaseHelperExtensions.SaveNew(Of TContext, TEntity)(IDbContextFactory(Of TContext), TEntity)
-  nameWithType: DatabaseHelperExtensions.SaveNew<TContext, TEntity>(IDbContextFactory<TContext>, TEntity)
-  nameWithType.vb: DatabaseHelperExtensions.SaveNew(Of TContext, TEntity)(IDbContextFactory(Of TContext), TEntity)
 - uid: Flea.Utility.DatabaseHelperExtensions.Update*
   name: Update
   href: api/Flea.Utility.DatabaseHelperExtensions.html#Flea_Utility_DatabaseHelperExtensions_Update_
