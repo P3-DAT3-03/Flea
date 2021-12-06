@@ -104,19 +104,28 @@ namespace Flea.Tests
             const string comment = "Ole er meget gammel og grim";
             const string name = "Ole";
             const string number = "88888888";
+            const ClusterType type = ClusterType.Vertical;
             Customer customer = new Customer(name, number);
             Reservation reservation = new Reservation(priority, reservedTableCount, status, comment, customer, null!);
-            Cluster m = new Cluster("m", 4, tableAmount, ClusterType.Vertical);
-            Assert.AreEqual(m.CustomerCount, 4);
+            Cluster cluster = new Cluster("m", 4, tableAmount, type);
+            Assert.AreEqual(cluster.CustomerCount, 4);
 
-            m.Tables[tableAmount - 1].Reservation = reservation;
-            Assert.AreEqual(m.Tables[tableAmount-1].Reservation.TableCount, 4, "trouble with assesing reservation info though table");
+            cluster.Tables[tableAmount - 1].Reservation = reservation;
+            Assert.AreEqual(cluster.Tables[tableAmount-1].Reservation.TableCount, 4, "trouble with assesing reservation info though table");
 
             /*checks if tables not placed gives back one lower than table amount since 1 table is reserved*/
-            Assert.AreEqual(tableAmount - 1, m.TablesNotPlaced, "TablesNotPlaced does not give back the amount of unreserved tables");
+            Assert.AreEqual(tableAmount - 1, cluster.TablesNotPlaced, "TablesNotPlaced does not give back the amount of unreserved tables");
+            
+            Assert.AreEqual(type, cluster.Type);
 
             /*checks if reservation knows how many reservation there are*/
-            Assert.IsFalse(1 != m.ReservationCount, "reservation count doesnt have the correct amount of reservations");
+            Assert.IsFalse(1 != cluster.ReservationCount, "reservation count doesnt have the correct amount of reservations");
+            
+            Assert.AreEqual(cluster.CustomerCount, 4);
+
+            cluster = new Cluster("m", 4);
+            Assert.AreEqual("m", cluster.Name);
+            Assert.AreEqual(4, cluster.CustomerCount);
         }
     }
 }
