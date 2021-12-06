@@ -1,4 +1,4 @@
-﻿@using Flea.Models
+@using Flea.Models
 @using Flea.Pages
 @using Flea.Utility
 
@@ -33,9 +33,9 @@
             <InputText class="search-input search-no-icon" maxlength="8" onkeypress="return event.charCode >= 48 && event.charCode <= 57" placeholder="Eks. 12345678"
                        @bind-Value="Customer.PhoneNumber"></InputText>
         </div>
-        <div id="display-inline">
-            <button class="button red" type="button" @onclick="@Modal.ModalCancel">Cancel</button>
-            <button type="submit" class="button blue">@(Customer.Id == 0 ? "Opret Loppe" : "Gem ændringer")</button>
+        <div id="move-down">
+            <button type="submit" class="button create-button button--outline">@(Customer.Id == 0 ? "Opret Loppe" : "Gem ændringer")</button>
+            <button class="button button del-button button--outline" type="button" @onclick="@Modal.Close">Cancel</button>
         </div>
     </div>
 </EditForm>

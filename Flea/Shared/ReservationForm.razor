@@ -1,4 +1,4 @@
-﻿@using Flea.Models
+@using Flea.Models
 @using Flea.Utility
 @using Microsoft.EntityFrameworkCore
 @using System.Text.Json
@@ -75,9 +75,9 @@
                         @bind="Reservation.Comments">
             </textarea>
         </div>
-        <div id="display-inline">
-            <button type="button" class="button red" @onclick="@Modal.ModalCancel">Anullere</button>
-            <button type="submit" class="button blue float-right">@(Reservation.Id == 0 ? "Opret booking" : "Gem ændringer")</button>
+        <div id="move-down">
+            <button type="submit" class="button create-button button--outline">@(Reservation.Id == 0 ? "Opret booking" : "Gem ændringer")</button>
+            <button type="button" class="button button del-button button--outline" @onclick="@Modal.Close">Cancel</button>
         </div>
     </div>
 </EditForm>

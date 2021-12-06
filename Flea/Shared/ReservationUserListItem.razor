@@ -44,7 +44,7 @@
 
     public async Task OnSubmit(EditContext context)
     {
-        _child.ModalCancel();
+        _child.Close();
         
         _reservation.TableCount = _temp.TableCount;
         _reservation.Paid = _temp.Paid;

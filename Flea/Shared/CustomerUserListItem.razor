@@ -46,7 +46,7 @@
 
     private async Task OnSubmit(EditContext context)
     {
-        _modal.ModalCancel();
+        _modal.Close();
 
         Customer.Name = _temp.Name;
         _customer.PhoneNumber = _temp.PhoneNumber;
