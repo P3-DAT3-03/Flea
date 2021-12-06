@@ -17,7 +17,7 @@
     }
 }
 
-<div>
+<div class="padded-content">
     <div class="view-head">
         <input class="search-input" type="search" value="" placeholder="Søg efter booking" @oninput="Search">
         <Modal ButtonCSS="button float-right c-blue" ButtonName="Opret ny booking"  @ref="_child">
@@ -44,7 +44,7 @@
 
 @code
 {
-    private string? TitleDate => Event?.DateTime.ToString("d. MMMM, yyyy", CultureInfo.CreateSpecificCulture("da-DK"));
+    private string TitleDate => Event?.DateTime.ToString("d. MMMM, yyyy", CultureInfo.CreateSpecificCulture("da-DK"));
     
     [Parameter]
     public int EventId { get; set; }
@@ -147,9 +147,8 @@
             .First(e => e.Id == EventId);
         
         Event = e ?? throw new Exception("TODO create good error for user");
+        NavMenu.EventId = Event.Id;
         _temp = new Reservation(1, 1, PaymentStatus.NotPaid, "", new Customer("", ""), Event);
-        var eventDate = Event.DateTime;
-        titleDate = eventDate.ToString("d. MMMM, yyyy", CultureInfo.CreateSpecificCulture("da-DK"));
         await UpdateReservationList();
         await base.OnInitializedAsync();
     }

@@ -444,7 +444,7 @@ a, .btn-link {
 .reservation__payment-status {
     padding: 4px 10px;
     border-radius: 3px;
-    flex-basis: 78px;
+    flex-basis: 90px;
     box-sizing: border-box;
     text-align: center;
 }

@@ -1,4 +1,4 @@
-@using Flea.Models
+﻿@using Flea.Models
 @using Flea.Utility
 @using Microsoft.EntityFrameworkCore
 @using System.Text.Json
@@ -51,36 +51,19 @@
             {
                 <div>
                     <div>Loppe:</div>
-                    <InputText class="search-input search-no-icon" disabled=""
+                    <InputText class="search-input" disabled=""
                                @bind-Value="Reservation.ReservationOwner.Name"/>
                 </div>
             }
-            <div>
-                <div>Antal stande: </div>
-                <InputNumber class="search-input search-no-icon" placeholder="Eks. 3"
-                             @bind-Value="Reservation.TableCount">
-                </InputNumber>
-            </div>
-            <div>
-                <div>Betalings status: </div>
-                <label class="checkbox">
-                    <InputCheckbox type="checkbox" class="checkbox__input"
-                                   @bind-Value="Reservation.Paid">
-                    </InputCheckbox>
-                    <div class="checkbox__checkmark"></div>
-                    <div>@(Reservation.Paid ? "Betalt" : "Ej betalt")</div>
-                </label>
-            </div>
-        }
-        <div class="edit-form-div">
+            <div class="edit-form-div">
             <div>Antal stande: </div>
-            <InputNumber class="search-input edit-search-input" min-value="1" max-value="8"
+            <InputNumber class="search-input search-no-icon" min-value="1" max-value="8"
                          @bind-Value="Reservation.TableCount">
             </InputNumber>
         </div>
         <div class="edit-form-div">
             <div>Antal tomme stande: </div>
-            <InputNumber class="search-input edit-search-input" min-value="0" max-value="8"
+            <InputNumber class="search-input search-no-icon" min-value="0" max-value="8"
                          @bind-Value="Reservation.EmptyTableCount">
             </InputNumber>
         </div>

@@ -8,8 +8,8 @@
 @using Cluster = Flea.Models.Cluster
 @using System.Globalization
 
-@if(titleDate != ""){
-    <HeaderTitle Value="@(titlePrefix + " <span class='date'>" + titleDate + "</span>")"/>
+@if(TitleDate != ""){
+    <HeaderTitle Value="@(titlePrefix + " <span class='date'>" + TitleDate + "</span>")"/>
 }
 <div class="container event-placement">
     @if (_clusters != null)
@@ -91,9 +91,9 @@
                 <br/>
                 IEnumerable<Reservation> reservations;
                 if(_editMode)
-                    reservations = _event?.Reservations.Where(r => r.Comments.Length > 0 && r.Tables.Count > 0) ?? new List<Reservation>();
+                    reservations = Event?.Reservations.Where(r => r.Comments.Length > 0 && r.Tables.Count > 0) ?? new List<Reservation>();
                 else
-                    reservations = _event?.Reservations.Where(r => r.Comments.Length > 0 && r.Tables.Count == 0) ?? new List<Reservation>();
+                    reservations = Event?.Reservations.Where(r => r.Comments.Length > 0 && r.Tables.Count == 0) ?? new List<Reservation>();
                 foreach (var reservation in reservations)
                 {
                     <ReservationListItem Reservation="@reservation" ReservationSelected="@ShowReservation"></ReservationListItem>
@@ -126,9 +126,9 @@
     public string EventId { get; set; }
     
     private string titlePrefix = "Placering til den";
-    private string titleDate = "";
+    private string TitleDate => Event?.DateTime.ToString("d. MMMM, yyyy", CultureInfo.CreateSpecificCulture("da-DK"));
     
-    private Event? _event;
+    public Event? Event;
     private List<Cluster>? _clusters { get; set; }
     private Reservation? _selectedReservation { get; set; }
     private Table? _startNode { get; set; }
@@ -336,18 +336,16 @@
     
     protected override async Task OnInitializedAsync()
     {
-        _event = await GetEvent();
-        if (_event != null)
+        Event = await GetEvent();
+        if (Event != null)
         {
-            var eventDate = _event.DateTime;
-            titleDate = eventDate.ToString("d. MMMM, yyyy", CultureInfo.CreateSpecificCulture("da-DK"));
-            _event.Clusters.Sort((a, b) => a.Name[0] - b.Name[0]);
-            _event.Clusters.Reverse();
-            foreach (var cluster in _event.Clusters)
+            Event.Clusters.Sort((a, b) => a.Name[0] - b.Name[0]);
+            Event.Clusters.Reverse();
+            foreach (var cluster in Event.Clusters)
             {
                 cluster.Tables.Sort((a,b) => a.Id - b.Id);
             }
-            _clusters = _event.Clusters;
+            _clusters = Event.Clusters;
         }
         await base.OnInitializedAsync();
     }
