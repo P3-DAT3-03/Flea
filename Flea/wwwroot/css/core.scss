@@ -1,0 +1,93 @@
+@use "sass:meta";
+
+@mixin define_colors($args...) {
+  :root {
+    @each $name, $color in meta.keywords($args) {
+      --#{$name}-t: #{$color};
+      --#{$name}: rgb(var(--#{$name}-t));
+    }
+  }
+
+  @each $name, $color in meta.keywords($args) {
+    .fg-#{$name} {
+      color: var(--#{$name});
+    }
+
+    .bg-#{$name} {
+      background-color: var(--#{$name});
+    }
+
+    .c-#{$name} {
+      --primary-t: var(--#{$name}-t);
+      // TODO find contrasting foreground color
+    }
+  }
+}
+
+@function color($name, $opacity: 1) {
+  @return rgba(var(--#{$name}-t), $opacity);
+}
+
+.panel {
+  background-color: color(g1);
+  padding: 10px;
+  border: 11px;
+}
+
+.button {
+  border-radius: 3px;
+  --primary-t: var(--orange-t);
+  background-color: color(primary);
+
+  &.button--outline, &.outlined {
+    background-color: transparent;
+    border: 1px solid color(primary);
+    color: color(primary);
+  }
+
+  &.button--tinted, &.tinted {
+    background-color: color(primary, 0.25);
+    color: color(primary)
+  }
+
+  &.plain, &.button--quiet {
+    color: color(primary);
+    background: transparent;
+  }
+}
+
+.search-input {
+  height: 40px;
+  background-color: color(g1);
+}
+
+.flex-between {
+  display: flex;
+  justify-content: space-between;
+}
+
+.flex-end {
+  display: flex;
+  justify-content: end;
+}
+
+.bg-primary {
+  background-color: color(primary);
+}
+
+// This mixin must always be last in the file for color
+// to override properly on components.
+@include define_colors(
+        $white: #{255,255,255}, $fg: var(--white-t),
+        $black: #{0,0,0}, $bg: var(--black-t),
+        $g1: #{28, 28, 30},
+        $g2: #{44, 44, 46},
+        $g3: #{58, 58, 60},
+        $g4: #{72, 72, 74},
+        $g5: #{99, 99, 102},
+        $g6: #{142, 142, 147},
+        $red: #{255, 69, 58},
+        $orange: #{255, 159, 10},
+        $blue: #{10, 132, 255},
+        $green: #{48, 209, 88},
+);

@@ -2,54 +2,68 @@
 @using Flea.Utility
 @using Microsoft.EntityFrameworkCore
 @using System.Text.Json
+@using System.Diagnostics
 @inject IDbContextFactory<BingoContext> _dbFactory
 @using Table = Flea.Models.Table
 @using Cluster = Flea.Models.Cluster
 
 <EditForm Model="Reservation" OnValidSubmit="OnSubmit">
-    <DataAnnotationsValidator />
-    <ValidationSummary />
-    <div class="edit-form">
-        @if (Reservation.Id == 0)
-        {
-            <div class="edit-form-div">
-                <div>Søg efter loppe:</div>
-                <div class="search-box" style="display: grid;">
-                    <div class="dropdown">
-                        <input class="search-input edit-search-input-form" type="search" value="@_selectedCustomer?.Name" placeholder="Søge efter loppe" @oninput="Search">
-                        <div class="floating-dropdown" style="display: @_display;">
-                            <div>
-                                @if (_shownCustomers != null)
-                                {
-                                    <option selected="selected" disabled="" value="-1">Vælg en loppe</option>
-                                    foreach (var customer in _shownCustomers)
+    <DataAnnotationsValidator/>
+    <CustomValidator @ref="_validator"/>
+    <ValidationSummary/>
+    <div class="reservation-form">
+        <div class="reservation-form__fields">
+            @if (Reservation.Id == 0)
+            {
+                <div>
+                    <div>Søg efter loppe:</div>
+                    <div>
+                        <div>
+                            <input class="search-input search-input-fill" type="search"
+                                   value="@_selectedCustomer?.Name" placeholder="Søge efter loppe"
+                                   @oninput="Search">
+                            <button class="@_close" type="button" @onclick="ResetSelectedCustomer"></button>
+                        </div>
+                        <div class="floating-dropdown" style="display: @_display">
+                            @if (_shownCustomers != null)
+                            {
+                                <div class="show-customer">
+                                    @if (!_shownCustomers.Any())
                                     {
-                                        <option value="@customer.Id" @onclick="() => Select(customer)">@customer.Name</option>
+                                        <div style="color: var(--ios-g5)" selected="selected" disabled="" value="-1">Ingen loppe at vise</div>
                                     }
-                                }
-                            </div>
+                                    else
+                                    {
+                                        <div style="color: var(--ios-g5)" selected="selected" disabled="" value="-1">Vælg en loppe</div>
+                                    }
+
+                                    @foreach (var customer in _shownCustomers)
+                                    {
+                                        <div value="@customer.Id" @onclick="() => Select(customer)">@customer.Name</div>
+                                    }
+                                </div>
+                            }
                         </div>
                     </div>
                 </div>
-            </div>
-        }
-        else
-        {
+            }
+            else
+            {
+                <div>
+                    <div>Loppe:</div>
+                    <InputText class="search-input" disabled=""
+                               @bind-Value="Reservation.ReservationOwner.Name"/>
+                </div>
+            }
             <div class="edit-form-div">
-                <div>Loppe:</div>
-                <InputText class="search-input edit-search-input" disabled=""
-                           @bind-Value="Reservation.ReservationOwner.Name"/>
-            </div>
-        }
-        <div class="edit-form-div">
             <div>Antal stande: </div>
-            <InputNumber class="search-input edit-search-input" min-value="1" max-value="8"
+            <InputNumber class="search-input search-no-icon" min-value="1" max-value="8"
                          @bind-Value="Reservation.TableCount">
             </InputNumber>
         </div>
         <div class="edit-form-div">
             <div>Antal tomme stande: </div>
-            <InputNumber class="search-input edit-search-input" min-value="0" max-value="8"
+            <InputNumber class="search-input search-no-icon" min-value="0" max-value="8"
                          @bind-Value="Reservation.EmptyTableCount">
             </InputNumber>
         </div>
@@ -65,14 +79,15 @@
         </div>
         <div class="edit-form-div">
             <div>Bemærkninger: </div>
-            <textarea   class="search-input edit-search-input text-area"
+            <textarea   class="search-input search-no-icon text-area"
                         placeholder="Eks. Handicap, tæt på rygerrum mm."
                         @bind="Reservation.Comments">
             </textarea>
+            </div>
         </div>
-        <div id="move-down">
-            <button type="submit" class="button create-button button--outline">@(Reservation.Id == 0 ? "Opret booking" : "Gem ændringer")</button>
-            <button type="button" class="button button del-button button--outline" @onclick="@Modal.ModalCancel">Cancel</button>
+        <div class="flex-end" style="gap: 12px">
+            <button type="button" class="button outlined c-red" @onclick="@Modal.Close">Cancel</button>
+            <button type="submit" class="button c-blue">@(Reservation.Id == 0 ? "Opret booking" : "Gem ændringer")</button>
         </div>
     </div>
 </EditForm>
@@ -81,19 +96,23 @@
 
     [Parameter, RequiredParameter]
     public Reservation Reservation { get; set; } = null!;
-    
+
     [Parameter, RequiredParameter]
     public EventCallback<EditContext> OnValidSubmit { get; set; }
 
     [Parameter, RequiredParameter]
     public Modal Modal { get; set; } = null!;
 
+    private string _customerValidationClass = string.Empty;
     private string _display = "none";
+    private string _close = "close-hidden";
     private Customer? _selectedCustomer;
-    
+
     private List<Customer>? _customers;
     private IEnumerable<Customer>? _shownCustomers;
     private string _lastSearchTerm = string.Empty;
+
+    private CustomValidator _validator = null!;
 
     protected override async Task OnInitializedAsync()
     {
@@ -103,11 +122,20 @@
         await UpdateReservationList();
     }
 
+    public void ResetSelectedCustomer()
+    {
+        _selectedCustomer = null;
+        _close = "close-hidden";
+        _customerValidationClass = string.Empty;
+    }
+
     public void Select(Customer c)
     {
         _selectedCustomer = c;
         Reservation.ReservationOwner = c;
         _display = "none";
+        _close = "close";
+        _customerValidationClass = "modified valid";
     }
 
     public void Search(ChangeEventArgs e) => Search(e.Value?.ToString()!.ToLower() ?? "");
@@ -118,14 +146,16 @@
         {
             _display = "display";
         }
-        // If no input show everything
+    // If no input hide everything
         if (searchTerm == "")
         {
+            _close = "close-hidden";
+            _display = "none";
             _shownCustomers = _customers;
         }
         else
         {
-        // Finds by name
+    // Finds by name
             _shownCustomers = from c
                 in _customers
                 where c.Name.ToLower().Contains(searchTerm)
@@ -143,6 +173,27 @@
 
     private async Task OnSubmit(EditContext context)
     {
+        _validator.ClearErrors();
+
+        var errors = new Dictionary<string, List<string>>();
+
+        Console.WriteLine($"Selected customer: {_selectedCustomer?.Id}");
+        if (_selectedCustomer == null)
+        {
+            _customerValidationClass = "invalid";
+            errors.Add(
+                nameof(Reservation.ReservationOwner),
+                new() {"Der skal vælges en loppe før bookingen kan oprettes."}
+                );
+        }
+
+        if (errors.Any())
+        {
+            _validator.DisplayErrors(errors);
+            return;
+        }
+
         await OnValidSubmit.InvokeAsync(context);
     }
+
 }

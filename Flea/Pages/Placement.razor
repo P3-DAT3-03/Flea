@@ -1,4 +1,4 @@
-@page "/Event/{EventId:int}/Placement"
+@page "/Event/{EventId}/Placement"
 @inject IDbContextFactory<BingoContext> _dbFactory
 
 @using Flea.Models
@@ -8,8 +8,8 @@
 @using Cluster = Flea.Models.Cluster
 @using System.Globalization
 
-@if(_titleDate != ""){
-    <HeaderTitle Value="@(_titlePrefix + " <span class='date'>" + _titleDate + "</span>")"/>
+@if(TitleDate != ""){
+    <HeaderTitle Value="@(titlePrefix + " <span class='date'>" + TitleDate + "</span>")"/>
 }
 <div class="container event-placement">
     @if (_clusters != null)
@@ -92,9 +92,9 @@
                 <br/>
                 IEnumerable<Reservation> reservations;
                 if(_editMode)
-                    reservations = _event?.Reservations.Where(r => r.Comments.Length > 0 && r.Tables.Count > 0) ?? new List<Reservation>();
+                    reservations = Event?.Reservations.Where(r => r.Comments.Length > 0 && r.Tables.Count > 0) ?? new List<Reservation>();
                 else
-                    reservations = _event?.Reservations.Where(r => r.Comments.Length > 0 && r.Tables.Count == 0) ?? new List<Reservation>();
+                    reservations = Event?.Reservations.Where(r => r.Comments.Length > 0 && r.Tables.Count == 0) ?? new List<Reservation>();
                 foreach (var reservation in reservations)
                 {
                     <ReservationListItem Reservation="@reservation" ReservationSelected="@ShowReservation"></ReservationListItem>
@@ -126,10 +126,10 @@
     [Parameter]
     public int EventId { get; set; }
     
-    private string _titlePrefix = "Placering til den";
-    private string _titleDate = "";
+    private string titlePrefix = "Placering til den";
+    private string TitleDate => Event?.DateTime.ToString("d. MMMM, yyyy", CultureInfo.CreateSpecificCulture("da-DK"));
     
-    private Event? _event;
+    public Event? Event;
     private List<Cluster>? _clusters { get; set; }
     private Reservation? _selectedReservation { get; set; }
     private Table? _startNode { get; set; }
@@ -265,7 +265,7 @@
     private async Task ConfirmSelection()
     {
         if (_selectedCluster == null || _selectedReservation == null) return;;
-        var tables = _event?.AssignReservation(_selectedCluster, _paths[_selectedPath], _selectedReservation);
+        var tables = Event?.AssignReservation(_selectedCluster, _paths[_selectedPath], _selectedReservation);
         if (tables != null)
             foreach (var table in tables)
                 await _dbFactory.Save(table);
@@ -334,18 +334,16 @@
     
     protected override async Task OnInitializedAsync()
     {
-        _event = await GetEvent();
-        if (_event != null)
+        Event = await GetEvent();
+        if (Event != null)
         {
-            var eventDate = _event.DateTime;
-            _titleDate = eventDate.ToString("d. MMMM, yyyy", CultureInfo.CreateSpecificCulture("da-DK"));
-            _event.Clusters.Sort((a, b) => a.Name[0] - b.Name[0]);
-            _event.Clusters.Reverse();
-            foreach (var cluster in _event.Clusters)
+            Event.Clusters.Sort((a, b) => a.Name[0] - b.Name[0]);
+            Event.Clusters.Reverse();
+            foreach (var cluster in Event.Clusters)
             {
                 cluster.Tables.Sort((a,b) => a.Id - b.Id);
             }
-            _clusters = _event.Clusters;
+            _clusters = Event.Clusters;
         }
         await base.OnInitializedAsync();
     }

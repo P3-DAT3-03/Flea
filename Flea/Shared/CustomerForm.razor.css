@@ -1,22 +1,16 @@
-﻿.edit-form {
-    display: grid;
-    grid-gap: 1em;
-    grid-template-columns: 1fr;
-    align-items: stretch;
+﻿.customer-form {
     margin: 2em 2em 0 2em;
 }
 
-.edit-form-div {
+.customer-form__fields > div {
     display: grid;
-    grid-template-columns: 40% 60%;
+    grid-template-columns: 35% 65%;
+    width: 100%;
+    margin-bottom: 1em;
     align-items: center;
 }
 
-#move-down {
-    margin-top: 40px;
-}
-
-#move-div {
-    display: inline-block;
-    margin-left: 10px;
+.text-area {
+    resize: vertical;
+    padding: 10px;
 }

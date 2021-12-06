@@ -1,21 +1,76 @@
 @using Event = Flea.Models.Event;
+@using Flea.Utility
+@using Microsoft.EntityFrameworkCore
+@using Flea.Models
 @inject NavigationManager _navigationManager;
+@inject IDbContextFactory<BingoContext> _dbFactory
 
 
 <div class="event-list">
-    <div class="font-size-xx-large">@Event.Name </div>
-    <button class="button button--outline" @onclick='() => Navigate($"/Event/{Event.Id}/Reservations")'>Bookinger</button>
-    <div class="font-size-larger-unicorn">@Event.ComputeRemainingTables ledige stande </div>
-    <button class="button button--outline" @onclick='() => Navigate($"/Event/{Event.Id}/Placement")'>Placeringer</button>
-    <div class="font-size-larger">@Event.ComputeMissingPayments mangler at betale </div>
-    <button class="button button--outline" @onclick='() => Navigate($"/Event/{Event.Id}/Floorplan")'>Loppemarked</button>
+    @if (IsEditMode is false)
+    {
+        <div class="font-size-xx-large">@Event.Name </div>
+        <button class="button c-g2" @onclick='() => Navigate($"/Event/{Event.Id}/Reservations")'>Bookinger</button>
+        <div class="font-size-larger-unicorn">@Event.ComputeRemainingTables ledige stande </div>
+        <button class="button c-g2" @onclick='() => Navigate($"/Event/{Event.Id}/Placement")'>Placeringer</button>
+        <div class="font-size-larger">@Event.ComputeMissingPayments mangler at betale </div>
+        <button class="button c-g2" @onclick='() => Navigate($"/Event/{Event.Id}/Market")'>Loppemarked</button>
+    }
+    else
+    {
+        <div class="font-size-xx-large">@Event.Name </div>
+        <Modal ButtonCSS="button c-g2" ButtonName="Rediger" @ref="_modal">
+            <EditForm Model="@_temporaryModel" OnValidSubmit="OnValidSubmit">
+                <h5>Rediger loppemarked den @Event.Name</h5>
+                <section class="edit-form">
+                    <div class="edit-form-div flex-between" style="margin-bottom: 10px;">
+                        <label>Dato:</label>
+                        <input class="search-input edit-search-input" style="width: 50%;" type="date" @bind="_temporaryModel.DateTime"/>
+                    </div>
+                </section>
+                <div class="flex-end" style="gap: 12px">
+                    <button type="button" class="button c-red outlined" @onclick="_modal.Close">Annuller</button>
+                    <button type="submit" class="button c-blue">Opdater</button>
+                </div>
+            </EditForm>
+        </Modal>
+        <div class="font-size-larger-unicorn">@Event.ComputeRemainingTables ledige stande </div>
+        <button class="button c-g2" @onclick='() => Navigate($"/Event/{Event.Id}/Placement")'>Slet</button>
+        <div class="font-size-larger">@Event.ComputeMissingPayments mangler at betale </div>
+        <button class="button button--outline" style="visibility: hidden;height: 52px;">-</button>
+    }
 </div>
 
 @code {
-    [Parameter]
-    public Event Event { get; set; }
 
-    public void Navigate(string destination)
+    [Parameter, RequiredParameter]
+    public Event Event { get; set; } = null!;
+
+    [Parameter, RequiredParameter]
+    public EventCallback<Event> OnDelete { get; set; }
+
+    [Parameter]
+    public bool IsEditMode { get; set; }
+
+    private Modal _modal = null!;
+    private Event _temporaryModel = null!;
+
+    protected override Task OnInitializedAsync()
+    {
+        ParameterChecker.CheckParameters(this);
+        _temporaryModel = Event.Clone();
+        return base.OnInitializedAsync();
+    }
+
+    private async Task OnValidSubmit()
+    {
+        Event.DateTime = _temporaryModel.DateTime;
+        Event.UpdateName();
+        await _dbFactory.Update().Update(Event).Save();
+        _modal.Close();
+    }
+
+    private void Navigate(string destination)
     {
         NavMenu.EventId = Event.Id;
         _navigationManager.NavigateTo(destination);
