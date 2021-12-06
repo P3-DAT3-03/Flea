@@ -3,7 +3,6 @@
 @using Customer = Flea.Models.Customer
 
 <div class="customer-item">
-
     <div class="allign-name-center">@Customer.Id.ToString().PadLeft(4, '0')</div>
     <div class="allign-name-center">@Customer.Name @(Customer.Nickname.Length > 0 ? $"({Customer.Nickname})" : "")</div>
     <div class="allign-name-center">
