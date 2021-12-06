@@ -54,9 +54,9 @@
     // Makes a new Customer
     public async Task CreateCustomer(EditContext editContext)
     {
-        await _dbFactory.SaveNew(_temp);
+        await _dbFactory.Update().New(_temp).Save();
         _temp = new Customer(0); // reset _temp
-        _child.ModalCancel();
+        _child.Close();
         await UpdateCustomersList();
     }
 

@@ -1,4 +1,4 @@
-<button class="@ButtonCSS" @onclick="@ModalShow">@ButtonName</button>
+<button class="@ButtonCSS" @onclick="@Open">@ButtonName</button>
 @if (_showModal)
 {
     <div class="modal fade show modal-display" id="myModal" aria-modal="true" role="dialog"
@@ -22,6 +22,6 @@
     public string ButtonCSS { get; set; } = string.Empty;
 
     private bool _showModal = false;
-    private void ModalShow() => _showModal = true;
-    public void ModalCancel() => _showModal = false;
+    private void Open() => _showModal = true;
+    public void Close() => _showModal = false;
 }
