@@ -88,8 +88,10 @@ namespace Flea.Tests
         [Test]
         public void TableTests()
         {
-            Table m1 = new Table();
-            Assert.AreEqual(m1.Type, TableType.Table);
+            Table table = new Table(TableType.Empty);
+            Assert.AreEqual(table.Type, TableType.Empty);
+            table = new Table();
+            Assert.AreEqual(table.Type, TableType.Table);
         }
 
         [Test]
