@@ -1,5 +1,4 @@
 @page "/Event/{EventId:int}/Market"
-
 @using Flea.Models
 @using System.Globalization
 @using Flea.Utility
@@ -18,7 +17,7 @@
         @foreach (var reservation in _shownReservation)
         {
             <div>
-                <MarketUserListItem Reservation="reservation"/>
+                <MarketUserListItem Reservation="reservation"></MarketUserListItem>
             </div>
         }
         <div style="display: inline-block"></div>
@@ -44,34 +43,6 @@
 
     private List<Reservation>? _reservations;
     private IEnumerable<Reservation>? _shownReservation;
-
-    // Delete the reservation
-    public async Task DeleteReservation(Reservation reservation)
-    {
-        await _dbFactory.Delete(reservation);
-        await UpdateReservationList();
-    }
-
-    // Create new reservation
-    public async Task CreateReservation(EditContext editContext)
-    {
-        await _dbFactory.Update()
-            .With(Event)
-            .With(_temp.ReservationOwner)
-            .New(_temp)
-            .Save();
-        _temp = new Reservation(1, 1, false, "", new Customer("", ""), Event);
-        _child.ModalCancel();
-        await UpdateReservationList();
-    }
-
-    // Edits the reservation
-    public async Task EditReservation(EditContext editContext)
-    {
-        await _dbFactory.Save((Reservation) editContext.Model);
-        _child.ModalCancel();
-        await UpdateReservationList();
-    }
 
     // Searchbar function
     public void Search(ChangeEventArgs e) => Search(e.Value?.ToString()!.ToLower() ?? "");
