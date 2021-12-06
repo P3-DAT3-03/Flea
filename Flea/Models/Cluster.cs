@@ -33,12 +33,6 @@ namespace Flea.Models
                 Tables.Add(new Table());
             }
         }
-        
-        [Obsolete("This constructor should never be called manually. Intended only for EF use.")]
-        public Cluster()
-        {
-            Id = 0;
-        }
 
         public int ReservationCount =>
             Tables.Aggregate(0, (acc, table) => table.Reservation != null ? acc + 1 : acc);
