@@ -1,14 +1,23 @@
-﻿.modal-dialog {
+﻿.modal-backdrop {
+    position: absolute;
+    z-index: 0;
+    background-color: rgba(0,0,0,0.4);
+    -webkit-filter: blur(10px);
+    filter: blur(10px);
+    width: 100vw;
+    height: 100vh;
+}
+
+.modal-dialog {
+    position: relative;
+    z-index: 1;
     background-color: var(--ios-bg);
-    color: var(--ios-fg);
-    display: grid;
     border: 1px solid var(--ios-g4);
-    border-radius: 9px;
-    margin: 0 auto;
-    margin-top: 12.5%;
+    border-radius: 11px;
+    margin: 12.5% auto 0;
     width: 60%;
-    height: auto;
-    padding: 1em;
+    box-sizing: border-box;
+    padding: 10px 10px 1em;
 }
 
 .modal-display {

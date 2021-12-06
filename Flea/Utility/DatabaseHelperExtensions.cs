@@ -55,23 +55,6 @@ namespace Flea.Utility
 		}
 
 		/// <summary>
-		/// Save/create a new entity in the database. 
-		/// </summary>
-		/// <param name="factory">The factory that will supply the database context instance.</param>
-		/// <param name="entity">The entity that should be created.</param>
-		/// <typeparam name="TContext">The database context type.</typeparam>
-		/// <typeparam name="TEntity">The type of the entity that is being created.</typeparam>
-		public static async Task SaveNew<TContext, TEntity>(this IDbContextFactory<TContext> factory, TEntity entity)
-			where TEntity : class, IModelEntity<TEntity, TContext>, new()
-			where TContext : DbContext
-		{
-			await using var ctx = factory.CreateDbContext();
-			var set = entity.GetDbSet(ctx);
-			await set.AddAsync(entity);
-			await ctx.SaveChangesAsync();
-		}
-
-		/// <summary>
 		/// Delete an entity instance from the database.
 		/// </summary>
 		/// <param name="factory">The factory that will supply the database context instance.</param>

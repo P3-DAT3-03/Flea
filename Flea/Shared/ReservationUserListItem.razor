@@ -1,21 +1,25 @@
 @using Flea.Models
 @using Reservation = Flea.Models.Reservation
 
-<div class="reservation-li">
-    <div class="txt">@Reservation.ReservationOwner.Name</div>
-    <div class="txt">@Reservation.TableCount Stande</div>
-    @{
+<div class="reservation">
+    <div class="reservation__name">@Reservation.ReservationOwner.Name</div>
+    <div class="reservation__tables">@Reservation.TableCount Stande</div>
+     @{
         var paid = Reservation.PaymentStatus switch {
             PaymentStatus.NotPaid => ("orange", "Ej betalt"),
             PaymentStatus.Paid => ("green", "Betalt"),
             _ => ("blue", "Aftale")
         };
     }
-    <div class="txt">@paid.Item2</div>
-    <button class="button del-button button--outline" @onclick="Delete">Slet</button>
-    <Modal ButtonCSS="button button--outline create-button" ButtonName="Rediger" @ref="_child">
-        <ReservationForm Reservation="_temp" OnValidSubmit="OnSubmit" Modal="_child"></ReservationForm>
-    </Modal>
+    <div class="reservation__payment-status bg-primary @(paid.Item1)">
+        @paid.Item2
+    </div>
+    <div class="reservation__actions">
+        <button class="button c-red" @onclick="Delete">Slet</button>
+        <Modal ButtonCSS="button c-g2" ButtonName="Rediger" @ref="_child">
+            <ReservationForm Reservation="_temp" OnValidSubmit="OnSubmit" Modal="_child"></ReservationForm>
+        </Modal>
+    </div>
 </div>
 
 @code {
@@ -47,7 +51,7 @@
 
     public async Task OnSubmit(EditContext context)
     {
-        _child.ModalCancel();
+        _child.Close();
         
         _reservation.TableCount = _temp.TableCount;
         _reservation.PaymentStatus = _temp.PaymentStatus;

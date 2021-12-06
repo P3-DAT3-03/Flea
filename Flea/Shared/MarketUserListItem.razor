@@ -1,0 +1,29 @@
+﻿@using Flea.Models
+@using Reservation = Flea.Models.Reservation
+
+<div class="reservation">
+    <div class="reservation__name">@Reservation.ReservationOwner.Name</div>
+    <div class="reservation__tables">@Reservation.TableCount Stande</div>
+    <div class="reservation__payment-status bg-primary @(Reservation.Paid ? "c-green" : "c-red")">
+        @(Reservation.Paid ? "Betalt" : "Ej betalt")
+    </div>
+    <div class="reservation__table-names">Loppes stande</div>@*Loppens valgte borde skal vises her*@
+    <div class="arrow" @*href="Udfyldes senere af low key"*@></div>
+</div>
+
+@code {
+    private Modal _child = null!;
+    private Reservation _temp = new(1, 1, false, "", new Customer("", ""), null!);
+    private Reservation _reservation = null!;
+
+    [Parameter]
+    public Reservation Reservation
+    {
+        get => _reservation;
+        set
+        {
+            _reservation = value;
+            _temp = Reservation.Clone();
+        }
+    }
+}

@@ -2,14 +2,16 @@
 @using Flea.Utility
 @using Customer = Flea.Models.Customer
 
-<div class="customer-li">
-    <div class="txt">@Customer.Id.ToString().PadLeft(4, '0')</div>
-    <div class="txt">@Customer.Name @(Customer.Nickname.Length > 0 ? $"({Customer.Nickname})" : "")</div>
-    <div class="txt">+45 @Customer.PhoneNumber</div>
-    <button class="button button--outline del-button" @onclick="Delete">Slet</button>
-    <Modal ButtonCSS="button button--outline create-button" ButtonName="Rediger" @ref="_modal">
-        <CustomerForm Customer="_temp" OnValidSubmit="OnSubmit" Modal="_modal"></CustomerForm>
-    </Modal>
+<div class="customer">
+    <div class="customer__id">@Customer.Id.ToString().PadLeft(4, '0')</div>
+    <div class="customer__name">@Customer.Name @(Customer.Nickname.Length > 0 ? $"({Customer.Nickname})" : "")</div>
+    <div class="customer__phone">+45 @Customer.PhoneNumber</div>
+    <div class="flex-end" style="gap: 12px">
+        <button class="button c-red" @onclick="Delete">Slet</button>
+        <Modal ButtonCSS="button c-g2" ButtonName="Rediger" @ref="_modal">
+            <CustomerForm Customer="_temp" OnValidSubmit="OnSubmit" Modal="_modal"></CustomerForm>
+        </Modal>
+    </div>
 </div>
 
 @code {
@@ -28,7 +30,7 @@
             _temp = Customer.Clone();
         }
     }
-    
+
     [Parameter, RequiredParameter]
     public EventCallback<Customer> OnDelete { get; set; }
 
@@ -42,11 +44,11 @@
 
     private async Task OnSubmit(EditContext context)
     {
-        _modal.ModalCancel();
+        _modal.Close();
 
         Customer.Name = _temp.Name;
         _customer.PhoneNumber = _temp.PhoneNumber;
-        
+
         await OnEdit.InvokeAsync(context);
     }
 

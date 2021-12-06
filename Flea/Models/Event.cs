@@ -1,16 +1,17 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 
 namespace Flea.Models
 {
+    [SuppressMessage("ReSharper", "UnusedAutoPropertyAccessor.Global")]
     public class Event : IModelEntity<Event, BingoContext>
     {
-        
-        public string[] Months =
+        private readonly string[] _months =
         {
             "", "Januar", "Februar", "Marts", "April", "Maj", "Juni", "Juli", 
             "August", "September", "Oktober", "November", "December"
@@ -73,8 +74,10 @@ namespace Flea.Models
 
         public void UpdateName()
         {
-            this.Name = this.DateTime.Day.ToString() + ". " + Months[this.DateTime.Month] + ", " + this.DateTime.Year.ToString();
+            Name = DateTime.Day + ". " + _months[DateTime.Month] + ", " + DateTime.Year;
         }
+
+        public Event Clone() => (Event) MemberwiseClone();
 
         public int ComputeMissingPayments => 
             Reservations.Aggregate(0, (acc, reservation) => reservation.PaymentStatus == PaymentStatus.Paid ? acc : acc + 1);

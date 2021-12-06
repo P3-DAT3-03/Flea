@@ -393,66 +393,94 @@ a, .btn-link {
 }
 
 /* Search field*/
-.search-input{
+.search-input {
     width: 50%;
-    height: 40px;
+    height: 48px;
     vertical-align: baseline;
     background-color: var(--ios-g1);
 }
 
-.edit-search-input {
+.search-input-fill {
+    width: 100%;
+}
+
+.search-no-icon{
     background-image: none;
     width: 100%;
 }
 
-/* Grid container for reservation and customer*/
-.customer-item, 
-.reservation-li {
-    background-color: var(--ios-g1);
-    padding: 10px;
+.customer, .reservation {
+    background: transparent;
+    padding: 15px 20px;
+    border: 1px solid var(--ios-fg);
     border-radius: 11px;
-    display: grid;
-    
-    grid-gap: 10px;
+    display: flex;
+    align-items: center;
     margin-bottom: 20px;
+    gap: 20px;
 }
 
-/* Template for reservation*/
-.reservation-li {
-    grid-template-columns: auto 12.5% 12.5% 10% 15%;
+.customer__id {
+    flex-basis: 36px;
+    flex-grow: 0;
 }
 
-/* Template for customer*/
-.customer-item{
-    grid-template-columns: auto 30% 25% 10% 15%;
+.customer__name {
+    flex-basis: auto;
+    flex-grow: 1;
 }
 
-/* Create new booking and customer button*/
-.create-button {
-    border-radius: 9px;
-    height: 40px;
+.customer__phone {
+    flex-basis: 14em;
+    flex-grow: 0;
+    flex-shrink: 1;
+}
+
+.reservation__name {
+    flex-basis: auto;
+    flex-grow: 1;
+}
+
+.reservation__payment-status {
+    padding: 4px 10px;
+    border-radius: 3px;
+    flex-basis: 78px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.reservation__table-names {
+    flex-basis: 20%;
+    text-align: right;
+    color: var(--blue);
+}
+
+.reservation__actions {
+    margin-left: 13%;
+}
+
+/* Make button float right*/
+.float-right {
     float: right;
 }
 
-/* Delete button for each booking and customer*/
-.del-button{
-    background: transparent;
-    border-color: var(--ios-red);
-    color: var(--ios-red);
-    border-radius: 9px;
+/* Padding for button style*/
+.button {
+    padding: 10px 30px;
 }
 
-/* Edit button for each booking and customer*/
-.edit-button{
-    color: var(--ios-orange);
-    background-color: rgba(var(--ios-orange-t), 0.25);
-    border-radius: 9px;
+/* Make button red*/
+.red {
+    background-color: var(--ios-red);
 }
 
-/* Allign text for displayed data in grid columns */
-.txt {
-    display: flex;
-    align-items: center;
+/* Make button grey 2*/
+.grey2 {
+    background-color: var(--ios-g2);
+}
+
+.blue {
+    background-color: var(--ios-blue);
 }
 
 .scroll {

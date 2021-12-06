@@ -1,6 +1,7 @@
 ﻿@using Event = Flea.Models.Event;
 @using Microsoft.AspNetCore.Components
 @using EventList = Flea.Pages.Home.EventList;
+@using Flea.Utility
 
 <EditForm Model="EventList" OnValidSubmit="OnValidSubmit">
     <div class="edit-form">
@@ -13,31 +14,28 @@
                 </div>
             </div>
         }
-        <div>
-            <button type="submit" class="button create-button button--outline">Tilføj loppemarked</button>
-            <button type="button" class="button button del-button button--outline" @onclick="Modal.ModalCancel">Annuller</button>
+        <div class="flex-end" style="gap: 12px">
+            <button type="button" class="button outlined c-red" @onclick="Modal.Close">Annuller</button>
+            <button type="submit" class="button c-blue">Tilføj loppemarked</button>
         </div>
     </div>
 </EditForm>
 
 
 @code {
-    
-    [Parameter]
-    public EventList EventList { get; set; }
+
+    [Parameter, RequiredParameter]
+    public EventList EventList { get; set; } = null!;
 
     [Parameter]
     public EventCallback<EditContext> OnValidSubmit { get; set; }
-    
+
     [Parameter]
-    public Modal Modal { get; set; }
+    public Modal Modal { get; set; } = null!;
 
     protected override void OnInitialized()
     {
         base.OnInitialized();
-        if (EventList == null)
-        {
-            throw new ArgumentNullException(nameof(EventList),"Parameter EventList can never be null");
-        }
+        ParameterChecker.CheckParameters(this);
     }
 }
