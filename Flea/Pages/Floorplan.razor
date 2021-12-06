@@ -94,11 +94,10 @@
 
     protected override async Task OnInitializedAsync()
     {
+        NavMenu.EventId = EventId;
         Event = await GetEvent();
         if (Event != null)
         {
-            var eventDate = Event.DateTime;
-            _titleDate = eventDate.ToString("d. MMMM, yyyy", CultureInfo.CreateSpecificCulture("da-DK"));
             Event.Clusters.Sort((a, b) => a.Name[0] - b.Name[0]);
             Event.Clusters.Reverse();
             foreach (var cluster in Event.Clusters)

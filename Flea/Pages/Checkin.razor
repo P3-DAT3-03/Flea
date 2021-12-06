@@ -5,10 +5,10 @@
 @using Cluster = Flea.Models.Cluster
 @using System.Globalization
 @using Flea.Utility
-@inject NavigationManager NavManager
-@if (_titleDate != "")
+@inject NavigationManager _navManager
+@if (TitleDate is not null)
 {
-    <HeaderTitle Value="@(_titlePrefix + " <span class='date'>" + _titleName + "</span>" + " på den " + " <span class='date'>" + _titleDate + "</span>")"/>
+    <HeaderTitle Value="@(_titlePrefix + " <span class='date'>" + _titleName + "</span>" + " på den " + " <span class='date'>" + TitleDate + "</span>")"/>
 }
 <div class="container event-placement">
     @if (Event?.Clusters != null)
@@ -81,7 +81,7 @@
     public int ReservationId { get; set; }
     
     private string _titlePrefix = "Check ind af ";
-    private string _titleDate = "";
+    private string? TitleDate => Event?.DateTime.ToString("d. MMMM, yyyy", CultureInfo.CreateSpecificCulture("da-DK"));
     private string _titleName = "";
 
     private Reservation? _reservation;
@@ -104,7 +104,7 @@
     {
         if(_reservation == null) return;
         await _dbFactory.Delete(_reservation);
-        NavManager.NavigateTo("/Event/"+EventId+"/Market");
+        _navManager.NavigateTo("/Event/"+EventId+"/Market");
     }
 
     private async Task CheckinCustomer()
@@ -114,7 +114,7 @@
         await _dbFactory.Update()
             .Update(_reservation)
             .Save();
-        NavManager.NavigateTo("/Event/"+EventId+"/Market");
+        _navManager.NavigateTo("/Event/"+EventId+"/Market");
     }
 
     private async Task<Event?> GetEvent()
@@ -132,13 +132,12 @@
 
     protected override async Task OnInitializedAsync()
     {
+        NavMenu.EventId = EventId;
         Event = await GetEvent();
         if (Event != null)
         {
-            var eventDate = Event.DateTime;
             _reservation = Event.Reservations.Find(r => r.Id == ReservationId);
             _customer = _reservation?.ReservationOwner;
-            _titleDate = eventDate.ToString("d. MMMM, yyyy", CultureInfo.CreateSpecificCulture("da-DK"));
             _titleName = _reservation?.ReservationOwner.Name ?? string.Empty;
             Event.Clusters.Sort((a, b) => a.Name[0] - b.Name[0]);
             Event.Clusters.Reverse();

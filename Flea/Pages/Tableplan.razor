@@ -79,6 +79,7 @@
     
     protected override async Task OnInitializedAsync()
     {
+        NavMenu.EventId = EventId;
         Event = await GetEvent();
         if (Event != null)
         {

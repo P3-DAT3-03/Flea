@@ -142,11 +142,11 @@
     
     protected override async Task OnInitializedAsync()
     {
+        NavMenu.EventId = EventId;
         var e = await _dbFactory.Get<BingoContext, Event>()
             .First(e => e.Id == EventId);
         
         Event = e ?? throw new Exception("TODO create good error for user");
-        NavMenu.EventId = Event.Id;
         _temp = new Reservation(1, 1, PaymentStatus.NotPaid, "", new Customer("", ""), Event);
         await UpdateReservationList();
         await base.OnInitializedAsync();

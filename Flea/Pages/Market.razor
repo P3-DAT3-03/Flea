@@ -104,6 +104,7 @@
 
     protected override async Task OnInitializedAsync()
     {
+        NavMenu.EventId = EventId;
         var e = await _dbFactory.Get<BingoContext, Event>()
             .First(e => e.Id == EventId);
 

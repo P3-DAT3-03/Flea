@@ -337,6 +337,7 @@
         Event = await GetEvent();
         if (Event != null)
         {
+            NavMenu.EventId = Event.Id;
             Event.Clusters.Sort((a, b) => a.Name[0] - b.Name[0]);
             Event.Clusters.Reverse();
             foreach (var cluster in Event.Clusters)
