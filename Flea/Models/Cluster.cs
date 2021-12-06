@@ -22,15 +22,15 @@ namespace Flea.Models
         public int CustomerCount { get; set; }
         public ClusterType Type { get; set; }
 
-        public Cluster(string name, int customerCount, int tableAmount, ClusterType type)
+        public Cluster(string name, int customerCount, int tableCount, ClusterType type)
         {
             Name = name;
             CustomerCount = customerCount;
-            Tables = new List<Table> {Capacity = customerCount};
+            Tables = new List<Table> {Capacity = tableCount};
             Type = type;
-            for (var i = 0; i < tableAmount; i++)
+            for (var i = 0; i < tableCount; i++)
             {
-                Tables.Add(new Table());
+                Tables.Add(new Table(TableType.Table));
             }
         }
 
