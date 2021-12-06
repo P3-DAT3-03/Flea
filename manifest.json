@@ -221,6 +221,18 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/Flea.Utility.CustomValidator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Flea.Utility.CustomValidator.html",
+          "hash": "0v32J/j4bkOUc0U74fCJxhiSPXTJdNXZQCk0yk4Mm+s="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/Flea.Utility.DatabaseHelperExtensions.yml",
       "output": {
         ".html": {
@@ -309,7 +321,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Flea.Utility.html",
-          "hash": "BwY/Mt6Pg23WU6ZNBbL/Xa+XUR55LfoEknatEnrDk5Q="
+          "hash": "pjHJ/7nXrjzBnjCB6IwXBzXT+o+xbx7adlIkrYcApKo="
         }
       },
       "is_incremental": false,
@@ -345,7 +357,7 @@
       "output": {
         ".html": {
           "relative_path": "api/toc.html",
-          "hash": "Wza/FLIjQdDqA3UUHEXDmBHImyMX1MYu5VxNRiH2ECg="
+          "hash": "MYMiWqN3lT9d3x5K5LiyP8oz9feTAMpTySlNhlxmHiQ="
         }
       },
       "is_incremental": false,
@@ -432,7 +444,7 @@
         "ManagedReferenceDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build",
-          "total_file_count": 27,
+          "total_file_count": 28,
           "skipped_file_count": 0
         },
         "TocDocumentProcessor": {

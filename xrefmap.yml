@@ -1133,6 +1133,54 @@ references:
   commentId: N:Flea.Utility
   fullName: Flea.Utility
   nameWithType: Flea.Utility
+- uid: Flea.Utility.CustomValidator
+  name: CustomValidator
+  href: api/Flea.Utility.CustomValidator.html
+  commentId: T:Flea.Utility.CustomValidator
+  fullName: Flea.Utility.CustomValidator
+  nameWithType: CustomValidator
+- uid: Flea.Utility.CustomValidator.ClearErrors
+  name: ClearErrors()
+  href: api/Flea.Utility.CustomValidator.html#Flea_Utility_CustomValidator_ClearErrors
+  commentId: M:Flea.Utility.CustomValidator.ClearErrors
+  fullName: Flea.Utility.CustomValidator.ClearErrors()
+  nameWithType: CustomValidator.ClearErrors()
+- uid: Flea.Utility.CustomValidator.ClearErrors*
+  name: ClearErrors
+  href: api/Flea.Utility.CustomValidator.html#Flea_Utility_CustomValidator_ClearErrors_
+  commentId: Overload:Flea.Utility.CustomValidator.ClearErrors
+  isSpec: "True"
+  fullName: Flea.Utility.CustomValidator.ClearErrors
+  nameWithType: CustomValidator.ClearErrors
+- uid: Flea.Utility.CustomValidator.DisplayErrors(System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}})
+  name: DisplayErrors(Dictionary<String, List<String>>)
+  href: api/Flea.Utility.CustomValidator.html#Flea_Utility_CustomValidator_DisplayErrors_System_Collections_Generic_Dictionary_System_String_System_Collections_Generic_List_System_String___
+  commentId: M:Flea.Utility.CustomValidator.DisplayErrors(System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}})
+  name.vb: DisplayErrors(Dictionary(Of String, List(Of String)))
+  fullName: Flea.Utility.CustomValidator.DisplayErrors(System.Collections.Generic.Dictionary<System.String, System.Collections.Generic.List<System.String>>)
+  fullName.vb: Flea.Utility.CustomValidator.DisplayErrors(System.Collections.Generic.Dictionary(Of System.String, System.Collections.Generic.List(Of System.String)))
+  nameWithType: CustomValidator.DisplayErrors(Dictionary<String, List<String>>)
+  nameWithType.vb: CustomValidator.DisplayErrors(Dictionary(Of String, List(Of String)))
+- uid: Flea.Utility.CustomValidator.DisplayErrors*
+  name: DisplayErrors
+  href: api/Flea.Utility.CustomValidator.html#Flea_Utility_CustomValidator_DisplayErrors_
+  commentId: Overload:Flea.Utility.CustomValidator.DisplayErrors
+  isSpec: "True"
+  fullName: Flea.Utility.CustomValidator.DisplayErrors
+  nameWithType: CustomValidator.DisplayErrors
+- uid: Flea.Utility.CustomValidator.OnInitialized
+  name: OnInitialized()
+  href: api/Flea.Utility.CustomValidator.html#Flea_Utility_CustomValidator_OnInitialized
+  commentId: M:Flea.Utility.CustomValidator.OnInitialized
+  fullName: Flea.Utility.CustomValidator.OnInitialized()
+  nameWithType: CustomValidator.OnInitialized()
+- uid: Flea.Utility.CustomValidator.OnInitialized*
+  name: OnInitialized
+  href: api/Flea.Utility.CustomValidator.html#Flea_Utility_CustomValidator_OnInitialized_
+  commentId: Overload:Flea.Utility.CustomValidator.OnInitialized
+  isSpec: "True"
+  fullName: Flea.Utility.CustomValidator.OnInitialized
+  nameWithType: CustomValidator.OnInitialized
 - uid: Flea.Utility.DatabaseHelperExtensions
   name: DatabaseHelperExtensions
   href: api/Flea.Utility.DatabaseHelperExtensions.html
