@@ -5,18 +5,15 @@
 @using Microsoft.EntityFrameworkCore
 @inject IDbContextFactory<BingoContext> _dbFactory
 
-@{
-    var title = TitleDate;
-    if (title is not null)
-    {
-        <HeaderTitle Value="@($"Oversigt over Loppemarkede den {TitleDate}")"/>
-    }
+@if (TitleDate is not null)
+{
+    <HeaderTitle Value="@($"Oversigt over Loppemarkede den <span class='date'>{TitleDate}</span>")"/>
 }
 
 <div class="padded-content">
     <div class="view-head">
         <input class="search-input" type="search" value="" placeholder="Søg efter booking" @oninput="Search">
-        <button class="button c-blue float-right">Gulv Plans Oversigt</button>
+        <a class="button c-blue float-right" href="@($"/Event/{EventId}/Floorplan")">Gulv Plans Oversigt</a>
     </div>
     @if (_shownReservation is not null && _shownReservation.Any())
     {

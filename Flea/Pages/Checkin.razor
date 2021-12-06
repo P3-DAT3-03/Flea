@@ -6,9 +6,9 @@
 @using System.Globalization
 @using Flea.Utility
 @inject NavigationManager _navManager
-@if (TitleDate is not null)
+@if (TitleName is not null)
 {
-    <HeaderTitle Value="@(_titlePrefix + " <span class='date'>" + _titleName + "</span>" + " på den " + " <span class='date'>" + TitleDate + "</span>")"/>
+    <HeaderTitle Value="@($"Check ind af <span class='date'>{TitleName}</span> på den <span class='date'>{TitleDate}</span>")"/>
 }
 <div class="container event-placement">
     @if (Event?.Clusters != null)
@@ -80,9 +80,8 @@
     [Parameter]
     public int ReservationId { get; set; }
     
-    private string _titlePrefix = "Check ind af ";
     private string? TitleDate => Event?.DateTime.ToString("d. MMMM, yyyy", CultureInfo.CreateSpecificCulture("da-DK"));
-    private string _titleName = "";
+    private string? TitleName => Event?.Reservations.Find(r=>r.Id == ReservationId)?.ReservationOwner.Name;
 
     private Reservation? _reservation;
     private Customer? _customer;
@@ -138,7 +137,6 @@
         {
             _reservation = Event.Reservations.Find(r => r.Id == ReservationId);
             _customer = _reservation?.ReservationOwner;
-            _titleName = _reservation?.ReservationOwner.Name ?? string.Empty;
             Event.Clusters.Sort((a, b) => a.Name[0] - b.Name[0]);
             Event.Clusters.Reverse();
             foreach (var cluster in Event.Clusters)

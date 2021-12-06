@@ -5,8 +5,8 @@
 
 @code {
     [Parameter] 
-    public Reservation Reservation { get; set; }
-    
+    public Reservation Reservation { get; set; } = null!;
+
     [Parameter]
     public EventCallback<Reservation> ReservationSelected { get; set; }
 }

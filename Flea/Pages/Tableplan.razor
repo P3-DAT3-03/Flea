@@ -4,9 +4,9 @@
 @using Microsoft.EntityFrameworkCore
 @using Cluster = Flea.Models.Cluster
 @using System.Globalization
-@if (_titleDate != "")
+@if (TitleDate is not null)
 {
-    <HeaderTitle Value="@(_titlePrefix + " <span class='date'>" + _titleDate + "</span>")"/>
+    <HeaderTitle Value="@($"Bord Plan til den <span class='date'>{TitleDate}</span>")"/>
 }
 <div class="container event-placement">
     @if (Event?.Clusters != null)
@@ -54,9 +54,8 @@
 @code {
     [Parameter]
     public int EventId { get; set; }
-
-    private readonly string _titlePrefix = "Bord Plan til den";
-    private string _titleDate = "";
+    
+    private string? TitleDate => Event?.DateTime.ToString("d. MMMM, yyyy", CultureInfo.CreateSpecificCulture("da-DK"));
 
     public Event? Event;
 
@@ -83,8 +82,6 @@
         Event = await GetEvent();
         if (Event != null)
         {
-            var eventDate = Event.DateTime;
-            _titleDate = eventDate.ToString("d. MMMM, yyyy", CultureInfo.CreateSpecificCulture("da-DK"));
             Event.Clusters.Sort((a, b) => a.Name[0] - b.Name[0]);
             Event.Clusters.Reverse();
             foreach (var cluster in Event.Clusters)

@@ -15,7 +15,7 @@
 <div class="padded-content">
     <div class="view-head">
         <input class="search-input" type="search" value="" @oninput="Search" placeholder="Søg efter loppemarked..."/>
-        <Modal ButtonCSS="button c-blue create-button" ButtonName="Tilføj nyt loppemarked" @ref="_modal">
+        <Modal ButtonCss="button c-blue create-button" ButtonName="Tilføj nyt loppemarked" @ref="_modal">
             <div>
                 <h5>Hvor mange loppemarkeder ønsker I at oprette?</h5>
                 <label>Antal loppemarkeder: </label>
@@ -31,7 +31,7 @@
         <div class="scrollable">
             @foreach (var e in _shownEvents)
             {
-                <EventListItem IsEditMode="_isInEditMode" OnDelete="OnEventDeleted" Event="e"></EventListItem>
+                <EventListItem IsEditMode="@_isInEditMode" OnDelete="@OnEventDeleted" Event="@e"></EventListItem>
             }
         </div>
     }
@@ -107,11 +107,11 @@
         Search(_lastSearchTerm);
     }
 
-    private Task OnEventDeleted(Event @event)
+    private async Task OnEventDeleted(Event @event)
     {
+        await _dbFactory.Delete(@event);
         _events!.Remove(@event);
-        Search(_lastSearchTerm); // Refresh the list
-        return Task.CompletedTask;
+        Search(_lastSearchTerm);
     }
     
     public void Search(ChangeEventArgs e) => Search(e.Value?.ToString()?.ToLower() ?? "");

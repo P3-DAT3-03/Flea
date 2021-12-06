@@ -19,7 +19,7 @@
     else
     {
         <div class="font-size-xx-large">@Event.Name </div>
-        <Modal ButtonCSS="button c-g2" ButtonName="Rediger" @ref="_modal">
+        <Modal ButtonCss="button c-g2" ButtonName="Rediger" @ref="_modal">
             <EditForm Model="@_temporaryModel" OnValidSubmit="OnValidSubmit">
                 <h5>Rediger loppemarked den @Event.Name</h5>
                 <section class="edit-form">
@@ -35,7 +35,7 @@
             </EditForm>
         </Modal>
         <div class="font-size-larger-unicorn">@Event.ComputeRemainingTables ledige stande </div>
-        <button class="button c-g2" @onclick='() => Navigate($"/Event/{Event.Id}/Placement")'>Slet</button>
+        <button class="button c-red" @onclick='() => OnDelete.InvokeAsync(Event)'>Slet</button>
         <div class="font-size-larger">@Event.ComputeMissingPayments mangler at betale </div>
         <button class="button button--outline" style="visibility: hidden;height: 52px;">-</button>
     }

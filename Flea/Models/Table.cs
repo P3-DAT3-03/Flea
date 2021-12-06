@@ -31,6 +31,6 @@ namespace Flea.Models
             Id = 0;
         }
 
-        DbSet<Table> IModelEntity<Table, BingoContext>.GetDbSet(BingoContext ctx) => ctx.Tables;
+        DbSet<Table> IModelEntity<Table, BingoContext>.GetDbSet(BingoContext ctx) => ctx.Tables!;
     }
 }

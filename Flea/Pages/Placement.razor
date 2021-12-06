@@ -8,11 +8,11 @@
 @using Cluster = Flea.Models.Cluster
 @using System.Globalization
 
-@if(TitleDate != ""){
-    <HeaderTitle Value="@(titlePrefix + " <span class='date'>" + TitleDate + "</span>")"/>
+@if(TitleDate is not null){
+    <HeaderTitle Value="@($"Placering til den <span class='date'>{TitleDate}</span>")"/>
 }
 <div class="container event-placement">
-    @if (_clusters != null)
+    @if (Clusters != null)
     {
         <div class="cluster-body">
             <ClusterContainer 
@@ -20,7 +20,7 @@
                 SetValue="@SetValue"
                 OnTableSelect="@TableSelected"
                 SetTableContent="@((_,_)=>"")"
-                Clusters="@_clusters"/>
+                Clusters="@Clusters"/>
             <div class="guides center">
                 <div class="guide">
                     <div class="ball white"></div>
@@ -30,7 +30,7 @@
                     <div class="ball red"></div>
                     <p>Reserveret</p>
                 </div>
-                @if (_selectedReservation != null)
+                @if (SelectedReservation != null)
                 {
                     <div class="guide">
                         <div class="ball blue"></div>
@@ -44,11 +44,11 @@
             </div>
         </div>
         <div class="side-panel">
-            @if (_selectedReservation != null)
+            @if (SelectedReservation != null)
             {
-                var customer = _selectedReservation?.ReservationOwner;
+                var customer = SelectedReservation?.ReservationOwner;
                 <div class="name">@customer?.Name</div>
-                var paid = _selectedReservation?.PaymentStatus switch {
+                var paid = SelectedReservation?.PaymentStatus switch {
                     PaymentStatus.NotPaid => ("orange", "Ej betalt"),
                     PaymentStatus.Paid => ("green", "Har betalt"),
                     _ => ("blue", "Aftale")
@@ -61,8 +61,8 @@
                 <br/>
                 <div class="booths">
                     @{
-                        var tableCount = _selectedReservation?.TableCount - _selectedReservation?.EmptyTableCount;
-                        var eTableCount = _selectedReservation?.EmptyTableCount;
+                        var tableCount = SelectedReservation?.TableCount - SelectedReservation?.EmptyTableCount;
+                        var eTableCount = SelectedReservation?.EmptyTableCount;
                     }
                     Skal have stande: <span style="color: var(--ios-blue)">@(tableCount > 0 ? $"{tableCount}" : "")</span> @(tableCount > 0 && eTableCount > 0 ? "+ " : "")
                     @if (eTableCount > 0)
@@ -71,10 +71,10 @@
                     }
                 </div>
                 <h3>Bemærkninger</h3>
-                <div class="comments">@_selectedReservation?.Comments</div>
+                <div class="comments">@SelectedReservation?.Comments</div>
                 <div class="buttons">
                      <br/>
-                     @if (_selectedReservation?.Tables.Count > 0){
+                     @if (SelectedReservation?.Tables.Count > 0){
                          <button class="button--large--cta large-button red" @onclick="RemoveTablesFromReservation">Slet Placering</button>
                          <br/>
                          <button class="button--large--cta large-button grey2" @onclick="DeselectReservation">Tilbage</button>
@@ -83,7 +83,7 @@
                      {
                          <button class="button--large--cta large-button red" @onclick="DeselectReservation">Annuler Placering</button>
                          <br/>
-                         <button class="button--large--cta large-button orange" @onclick="()=> _editTypeMode = !_editTypeMode">Tom Plads</button>
+                         <button class="button--large--cta large-button orange" @onclick="()=> EditTypeMode = !EditTypeMode">Tom Plads</button>
                          <br/>
                          <button class="button--large--cta large-button blue" @onclick="ConfirmSelection">Gem Placering</button>
                      }
@@ -91,7 +91,7 @@
             } else {
                 <br/>
                 IEnumerable<Reservation> reservations;
-                if(_editMode)
+                if(EditMode)
                     reservations = Event?.Reservations.Where(r => r.Comments.Length > 0 && r.Tables.Count > 0) ?? new List<Reservation>();
                 else
                     reservations = Event?.Reservations.Where(r => r.Comments.Length > 0 && r.Tables.Count == 0) ?? new List<Reservation>();
@@ -101,13 +101,13 @@
                 }
                 <div class="buttons">
                     <br/>
-                    @if (_editMode)
+                    @if (EditMode)
                     {
-                        <button class="button--large--cta grey2 large-button" @onclick="() => _editMode = false">Indsæt</button>
+                        <button class="button--large--cta grey2 large-button" @onclick="() => EditMode = false">Indsæt</button>
                     }
                     else
                     {
-                        <button class="button--large--cta grey2 large-button" @onclick="() => _editMode = true">Rediger</button>
+                        <button class="button--large--cta grey2 large-button" @onclick="() => EditMode = true">Rediger</button>
                     }
                         
                     <br/>
@@ -126,146 +126,145 @@
     [Parameter]
     public int EventId { get; set; }
     
-    private string titlePrefix = "Placering til den";
-    private string TitleDate => Event?.DateTime.ToString("d. MMMM, yyyy", CultureInfo.CreateSpecificCulture("da-DK"));
+    private string? TitleDate => Event?.DateTime.ToString("d. MMMM, yyyy", CultureInfo.CreateSpecificCulture("da-DK"));
     
     public Event? Event;
-    private List<Cluster>? _clusters { get; set; }
-    private Reservation? _selectedReservation { get; set; }
-    private Table? _startNode { get; set; }
-    private List<int[]> _paths { get; set; }
-    private int _selectedPath { get; set; }
-    private Cluster? _selectedCluster { get; set; }
-    private bool _editMode { get; set; }
-    private bool _editTypeMode { get; set; }
+    public List<Cluster>? Clusters { get; set; }
+    public Reservation? SelectedReservation { get; set; }
+    public Table? StartNode { get; set; }
+    public List<int[]> Paths { get; set; } = null!;
+    public int SelectedPath { get; set; }
+    public Cluster? SelectedCluster { get; set; }
+    public bool EditMode { get; set; }
+    public bool EditTypeMode { get; set; }
 
     private string SetColor(Cluster cluster, Table table)
     {
         if (table.Reservation != null) return " red";
 
         // In case we have selected a path
-        if (_selectedPath != -1 && _selectedPath < _paths.Count)
+        if (SelectedPath != -1 && SelectedPath < Paths.Count)
         {
-            if (_editTypeMode && _paths[_selectedPath].Contains(table.Id) && table.Type == TableType.Empty)
+            if (EditTypeMode && Paths[SelectedPath].Contains(table.Id) && table.Type == TableType.Empty)
                 return " blue";
-            return _paths[_selectedPath].Contains(table.Id) ? " orange" : " white";
+            return Paths[SelectedPath].Contains(table.Id) ? " orange" : " white";
         }
         // In case we have not chosen a path yet
-        if (_paths.Count <= 0) return " white";
-        if (_startNode?.Id == table.Id) return " blue";
-        if (_paths.Any(path => path.Contains(table.Id))) return " orange";
+        if (Paths.Count <= 0) return " white";
+        if (StartNode?.Id == table.Id) return " blue";
+        if (Paths.Any(path => path.Contains(table.Id))) return " orange";
         return " white";
     }
 
     private int SetValue(Cluster cluster, Table table)
     {
-        for (var i = 0; i < _paths.Count; i++)
+        for (var i = 0; i < Paths.Count; i++)
         {
-            if (_paths[i].Contains(table.Id)) return i;
+            if (Paths[i].Contains(table.Id)) return i;
         }
         return -1;
     }
 
     private void ShowReservation(Reservation res)
     {
-        _selectedReservation = res;
+        SelectedReservation = res;
     }
     
     private void DeselectReservation()
     {
-        _selectedReservation = null;
-        _paths.Clear();
-        _startNode = null;
+        SelectedReservation = null;
+        Paths.Clear();
+        StartNode = null;
     }
     
     private void TableSelected((Table, Cluster, int) id)
     {
         var (table, cluster, pathId) = id;
         
-        if (_editTypeMode && _selectedPath != -1)
+        if (EditTypeMode && SelectedPath != -1)
         {
-            if (!_paths[_selectedPath].Contains(table.Id)) return;
+            if (!Paths[SelectedPath].Contains(table.Id)) return;
             table.Type = table.Type == TableType.Table ? 
                 TableType.Empty : 
                 TableType.Table;
             return;
         }
         
-        _selectedReservation ??= table.Reservation;
+        SelectedReservation ??= table.Reservation;
         
         if (table.Reservation != null)
         {
-            _startNode = null;
-            _paths.Clear();
+            StartNode = null;
+            Paths.Clear();
             return;
         }
         
         
-        if (_selectedReservation == null)
+        if (SelectedReservation == null)
         {
             Console.WriteLine("[Error Popup] No reservation has been selected");
             return;
         }
-        if (_clusters != null && !_clusters.Contains(cluster))
+        if (Clusters != null && !Clusters.Contains(cluster))
         {
             Console.WriteLine("[Error Popup] The selected cluster does not exist!");
             return;
         }
-        _selectedCluster = cluster;
+        SelectedCluster = cluster;
 
-        if (!_selectedCluster.Tables.Contains(table))
+        if (!SelectedCluster.Tables.Contains(table))
         {
             Console.WriteLine("The selected table does not exists");
             return;
         }
-        if (table == _startNode)
+        if (table == StartNode)
         {
-            _paths.Clear();
-            _startNode = null;
+            Paths.Clear();
+            StartNode = null;
             return;
         }
         
         if (pathId != -1)
         {
-            _selectedPath = pathId;
+            SelectedPath = pathId;
             return;
         }
-        _paths.Clear();
+        Paths.Clear();
 
-        _startNode = null;
-        if (_selectedReservation.TableCount == 1)
+        StartNode = null;
+        if (SelectedReservation.TableCount == 1)
         {
-            _paths.Add(new[] {table.Id});
+            Paths.Add(new[] {table.Id});
             return;
         }
-        var offset = _selectedCluster.Tables.IndexOf(table);
-        var endNode1 = SelectedPaths(_selectedCluster, offset, 1);
+        var offset = SelectedCluster.Tables.IndexOf(table);
+        var endNode1 = SelectedPaths(SelectedCluster, offset, 1);
         if (endNode1 != null)
         {
-            _paths.Add(endNode1);
-            _startNode = table;
+            Paths.Add(endNode1);
+            StartNode = table;
         }
-        if (_selectedCluster.Type != ClusterType.Round)
+        if (SelectedCluster.Type != ClusterType.Round)
         {
             if (endNode1 == null)
                 Console.WriteLine("[Error Popup] Unable to create a path using the selected start node");
             return;
         }
-        var endNode2 = SelectedPaths(_selectedCluster, offset, -1);
+        var endNode2 = SelectedPaths(SelectedCluster, offset, -1);
         if (endNode2 == null)
         {
             if (endNode1 == null)
                 Console.WriteLine("[Error Popup] Unable to create any paths using the selected start node");
             return;
         }
-        _paths.Add(endNode2);
-        _startNode = table;
+        Paths.Add(endNode2);
+        StartNode = table;
     }
 
     private async Task ConfirmSelection()
     {
-        if (_selectedCluster == null || _selectedReservation == null) return;;
-        var tables = Event?.AssignReservation(_selectedCluster, _paths[_selectedPath], _selectedReservation);
+        if (SelectedCluster == null || SelectedReservation == null) return;
+        var tables = Event?.AssignReservation(SelectedCluster, Paths[SelectedPath], SelectedReservation);
         if (tables != null)
             foreach (var table in tables)
                 await _dbFactory.Save(table);
@@ -273,26 +272,26 @@
 
     private async void RemoveTablesFromReservation()
     {
-        if (_selectedReservation == null) return;
+        if (SelectedReservation == null) return;
         Console.WriteLine("Delete Reservation");
         await using var context = _dbFactory.CreateDbContext();
-        foreach (var table in _selectedReservation.Tables)
+        foreach (var table in SelectedReservation.Tables)
         {
             table.Reservation = null;
             context.Tables?.Update(table);
         }
-        _selectedReservation.Tables.Clear();
-        context.Reservations?.Update(_selectedReservation);
+        SelectedReservation.Tables.Clear();
+        context.Reservations?.Update(SelectedReservation);
         await context.SaveChangesAsync();
-        _selectedReservation = null;
+        SelectedReservation = null;
         StateHasChanged();
     }
     
     private int[]? SelectedPaths(Cluster cluster,  int offset, int direction)
     {
-        if (_selectedReservation == null) return null;
-        var ids = new int[_selectedReservation.TableCount];
-        for (var i = 0; i < _selectedReservation.TableCount; i++)
+        if (SelectedReservation == null) return null;
+        var ids = new int[SelectedReservation.TableCount];
+        for (var i = 0; i < SelectedReservation.TableCount; i++)
         {
             if (offset >= cluster.Tables.Count) return null;
             if (cluster.Tables[offset].Reservation != null) return null;
@@ -344,7 +343,7 @@
             {
                 cluster.Tables.Sort((a,b) => a.Id - b.Id);
             }
-            _clusters = Event.Clusters;
+            Clusters = Event.Clusters;
         }
         await base.OnInitializedAsync();
     }
@@ -353,10 +352,10 @@
     {
         // Db Integration get the selected Event 
         // Get the clusters and find a sane way to place them all :c
-        _paths = new List<int[]>();
-        _startNode = null;
-        _selectedPath = -1;
-        _editMode = false;
-        _editTypeMode = false;
+        Paths = new List<int[]>();
+        StartNode = null;
+        SelectedPath = -1;
+        EditMode = false;
+        EditTypeMode = false;
     }
 }

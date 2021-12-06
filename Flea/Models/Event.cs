@@ -26,7 +26,6 @@ namespace Flea.Models
 
         public List<Cluster> Clusters { get; set; } = null!;
         public List<Reservation> Reservations { get; set; }= new();
-        public Event PreviousEvent { get; set; }
 
 
         /* the constructor creates the event and all the needed clusters in the bingo fleamarket formet*/
@@ -95,6 +94,6 @@ namespace Flea.Models
             tables.ForEach(t=> t.Reservation = r);
             return tables;
         }
-        DbSet<Event> IModelEntity<Event, BingoContext>.GetDbSet(BingoContext ctx) => ctx.Events;
+        DbSet<Event> IModelEntity<Event, BingoContext>.GetDbSet(BingoContext ctx) => ctx.Events!;
     }
 }

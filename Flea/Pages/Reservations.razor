@@ -9,18 +9,16 @@
 @using System.Globalization
 @using Flea.Utility
 
-@{
-    var title = TitleDate;
-    if (title is not null)
-    {
-        <HeaderTitle Value="@($"Bookinger til den <span class='date'>{TitleDate}</span>")"/>
-    }
+
+@if (TitleDate is not null)
+{
+    <HeaderTitle Value="@($"Bookinger til den <span class='date'>{TitleDate}</span>")"/>
 }
 
 <div class="padded-content">
     <div class="view-head">
         <input class="search-input" type="search" value="" placeholder="Søg efter booking" @oninput="Search">
-        <Modal ButtonCSS="button float-right c-blue" ButtonName="Opret ny booking"  @ref="_child">
+        <Modal ButtonCss="button float-right c-blue" ButtonName="Opret ny booking"  @ref="_child">
             <ReservationForm Reservation="_temp" OnValidSubmit="CreateReservation" Modal="_child"></ReservationForm>
         </Modal>
     </div>
@@ -29,7 +27,7 @@
         <div class="scrollable">
             @foreach (var reservation in _shownReservation)
             {
-                <ReservationUserListItem Reservation="reservation"
+                <ReservationUserListItem Reservation="@reservation"
                                          OnDelete="@DeleteReservation"
                                          OnEdit="@EditReservation"/>
             }
@@ -43,7 +41,7 @@
 
 @code
 {
-    private string TitleDate => Event?.DateTime.ToString("d. MMMM, yyyy", CultureInfo.CreateSpecificCulture("da-DK"));
+    private string? TitleDate => Event?.DateTime.ToString("d. MMMM, yyyy", CultureInfo.CreateSpecificCulture("da-DK"));
     
     [Parameter]
     public int EventId { get; set; }
@@ -51,7 +49,7 @@
     public Event? Event;
 
     private Modal _child = null!;
-	private Reservation _temp = new();
+	private Reservation _temp = new(0, 1, PaymentStatus.NotPaid, "", null!, null!);
     private string _lastSearchTerm = string.Empty;
 
     private List<Reservation>? _reservations;
@@ -72,7 +70,7 @@
             .With(_temp.ReservationOwner)
             .New(_temp)
             .Save();
-        _temp = new Reservation(1, 1, PaymentStatus.NotPaid, "", new Customer("", ""), Event);
+        _temp = new Reservation(1, 1, PaymentStatus.NotPaid, "", new Customer("", ""), Event!);
         _child.Close();
         await UpdateReservationList();
     }

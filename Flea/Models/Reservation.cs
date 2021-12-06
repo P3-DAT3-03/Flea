@@ -50,7 +50,6 @@ namespace Flea.Models
         /// </summary>
         /// <param name="priority"></param>
         /// <param name="tableCount"></param>
-        /// <param name="emptyTableCount"></param>
         /// <param name="status"></param>
         /// <param name="comments"></param>
         /// <param name="reservationOwner"></param>
