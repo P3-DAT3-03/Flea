@@ -1,5 +1,6 @@
 using NUnit.Framework;
 using System;
+using System.Linq;
 using Flea.Models;
 
 namespace Flea.Tests
@@ -27,10 +28,13 @@ namespace Flea.Tests
             Reservation reservation = new Reservation(priority, tableCount, status, comment, customer, @event);
             reservation.Arrived = true;
             @event.Reservations.Add(reservation);
-            @event.AssignReservation(@event.Clusters[8], new []{0}, reservation);
+
+            var cluster = @event.Clusters.Find(c => c.Tables.Count == 8);
+            Assert.NotNull(cluster);
+            @event.AssignReservation(cluster, new []{0}, reservation);
             for (var i = 0; i < 4; i++)
             {
-                @event.Clusters[8].Tables[i].Type = TableType.Empty;
+                cluster.Tables[i].Type = TableType.Empty;
             }
             Assert.AreEqual(122, @event.ComputeRemainingTables);
             Assert.AreEqual(1, @event.ComputeReservationCount);
