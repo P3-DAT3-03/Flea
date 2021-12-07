@@ -2,8 +2,8 @@
     font-family: Poppins, sans-serif;
     display: flex;
     flex-flow: column;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
 }
 
 .site-header {
@@ -31,17 +31,20 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    max-height: 100%;
+    height: 100%;
+    min-height: 0;
 }
 
 .navigation-bar {
     background-color: var(--ios-g1);
     border-right: 2px solid var(--ios-g4);
     width: 5rem;
-    height: 100vh;
+    height: 100%;
     position: sticky;
 }
 
 .content {
-    padding: 20px;
     flex: 1;
+    height: 100%;
 }

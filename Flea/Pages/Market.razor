@@ -13,7 +13,7 @@
     }
 }
 
-<div>
+<div class="padded-content">
     <div class="view-head">
         <input class="search-input" type="search" value="" placeholder="Søg efter booking" @oninput="Search">
         <button class="button c-blue float-right">Gulv Plans Oversigt</button>
@@ -23,7 +23,7 @@
         @foreach (var reservation in _shownReservation)
         {
             <div>
-                <MarketUserListItem Reservation="reservation"></MarketUserListItem>
+                <MarketUserListItem EventId="EventId" Reservation="reservation"></MarketUserListItem>
             </div>
         }
         <div style="display: inline-block"></div>
@@ -64,13 +64,24 @@
                 where c.TableCount.ToString().Contains(searchTerm)
                 select c;
         }
-        else if (searchTerm.Contains("betalt"))
-        {
-    // Finds by betalt or ej betalt
-            _shownReservation = from c
+        else if (searchTerm.Contains("ej betalt"))
+        {   // Finds by ej betalt
+            _shownReservation = from r
                 in _reservations
-                where c.Paid != searchTerm.Contains("ej")
-                select c;
+                where r.PaymentStatus == PaymentStatus.NotPaid
+                select r;
+        }else if (searchTerm.Contains("betalt"))
+        {   // Finds by betalt
+            _shownReservation = from r
+                in _reservations
+                where r.PaymentStatus == PaymentStatus.Paid
+                select r;
+        }else if (searchTerm.Contains("aftale"))
+        {   // Finds by aftale
+            _shownReservation = from r
+                in _reservations
+                where r.PaymentStatus == PaymentStatus.Other
+                select r;
         }
         else
         {

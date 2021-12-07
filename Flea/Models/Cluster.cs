@@ -1,22 +1,33 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace Flea.Models
 {
+    public enum ClusterType
+    {
+        Round,
+        Vertical,
+        Horizontal,
+    }
     public class Cluster
     {
+
         public int Id { get; set; }
+        
         public string Name { get; set; }
         public List<Table> Tables { get; set; }
         public int CustomerCount { get; set; }
+        public ClusterType Type { get; set; }
 
-        public Cluster(string name, int customerCount, int tableAmount)
+        public Cluster(string name, int customerCount, int tableAmount, ClusterType type)
         {
             Name = name;
             CustomerCount = customerCount;
             Tables = new List<Table> {Capacity = customerCount};
+            Type = type;
             for (var i = 0; i < tableAmount; i++)
             {
                 Tables.Add(new Table());
@@ -27,6 +38,11 @@ namespace Flea.Models
         {
             Name = name;
             CustomerCount = customerCount;
+        }
+
+        public Cluster()
+        {
+            Id = 0;
         }
 
         public int ReservationCount =>

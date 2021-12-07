@@ -10,7 +10,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Flea.Migrations
 {
     [DbContext(typeof(BingoContext))]
-    [Migration("20211129083413_various_changes")]
+    [Migration("20211202150006_various_changes")]
     partial class various_changes
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -37,6 +37,9 @@ namespace Flea.Migrations
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("text");
+
+                    b.Property<int>("Type")
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
@@ -107,11 +110,14 @@ namespace Flea.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<int>("EmptyTableCount")
+                        .HasColumnType("integer");
+
                     b.Property<int>("EventId")
                         .HasColumnType("integer");
 
-                    b.Property<bool>("Paid")
-                        .HasColumnType("boolean");
+                    b.Property<int>("PaymentStatus")
+                        .HasColumnType("integer");
 
                     b.Property<int>("Priority")
                         .HasColumnType("integer");

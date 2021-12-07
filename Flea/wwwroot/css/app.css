@@ -86,15 +86,232 @@
     --ios-g5: rgb(99, 99, 102);
     --ios-g6: rgb(142, 142, 147);
     
-    /* iOS other colors */
+    /* iOS dark theme colors */
     --ios-red: rgb(255, 69, 58);
-    --ios-orange-t: 255, 159, 10;
-    --ios-orange: rgb(var(--ios-orange-t));
-    --ios-blue: rgb(0, 122, 255);
-    --ios-green: rgb(48, 209, 88);
+    --ios-orange: rgb(255, 159, 10);
+    --ios-yellow: rgb(255,214,10);
+    --ios-green: rgb(48,209,88);
+    --ios-mint: rgb(102,212,207);
+    --ios-teal: rgb(64,200,224);
+    --ios-cyan: rgb(100,210,255);
+    --ios-blue: rgb(10, 132, 255);
+    --ios-indigo: rgb(94, 92, 230);
+    --ios-purple: rgb(191, 90, 242);
+    --ios-pink: rgb(255, 55, 95);
+    --ios-brown: rgb(172, 142, 104);
+    
+    --table-large: 2.50em;
+    --table-small: 1.25em;
+    --table-small-gap: 0.625em;
     
     background: var(--ios-bg);
     color: var(--ios-fg);
+    height: 50vh;
+}
+
+.red {
+    background-color: var(--ios-red);
+}
+.orange {
+    background-color: var(--ios-orange);
+}
+.blue {
+    background-color: var(--ios-blue);
+}
+
+.green {
+    background-color: var(--ios-green);
+}
+
+
+.pink {
+    background-color: var(--ios-pink);
+}
+.white {
+    background-color: var(--ios-fg);
+}
+.grey1 {
+    background-color: var(--ios-g1);
+}
+.grey2 {
+    background-color: var(--ios-g2);
+}
+
+
+.large-button {
+    margin: 0 auto;
+    width: calc(100% - 1em);
+}
+
+.padded-content {
+    padding: 1.1rem 20px 20px;
+    height: calc(100% - 2.2rem);
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.scrollable {
+    height: 100%;
+    overflow-y: scroll;
+}
+
+.center {
+    margin: 0 auto;
+    width: fit-content;
+}
+
+.container.event-placement {
+    display: grid;
+    grid-template-columns: 70% 30%;
+    height: 100%;
+}
+
+.guides {
+    display: grid;
+    grid-template-columns: repeat(4, max-content);
+    grid-column-gap: var(--table-small);
+}
+
+.guide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: var(--table-small);
+}
+
+.ball {
+    width: 1em;
+    height: 1em;
+    margin-right: var(--table-small-gap);
+    border-radius: 100%;
+    border: var(--ios-fg) solid;
+}
+
+body, html {
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+}
+.side-panel {
+    position: relative;
+    height: calc(100% - 2em);
+    z-index: 2;
+    float: left;
+    transition: 4s;
+    padding: 1em;
+    background-color: var(--ios-g1);
+}
+
+.side-panel .card {
+    width: -moz-available;          /* WebKit-based browsers will ignore this. */
+    width: -webkit-fill-available;  /* Mozilla-based browsers will ignore this. */
+    width: fill-available;
+    margin: 0 0 16px;
+}
+
+.side-panel .buttons {
+    position: absolute;
+    bottom: 2em;
+    padding: 0 0.5em;
+    width: -moz-available;          /* WebKit-based browsers will ignore this. */
+    width: -webkit-fill-available;  /* Mozilla-based browsers will ignore this. */
+    width: fill-available;
+    left: 0;
+}
+
+.side-panel .name {
+    font-size: x-large;
+    font-weight: bolder;
+}
+.side-panel .container {
+    display: flex;
+    flex-direction: row;
+    column-gap: 2em;
+    align-items: center;
+}
+
+.side-panel .container .status {
+    width: max-content;
+    font-weight: bolder;
+    padding: 0.5em;
+    border-radius: 3px;
+}
+
+.side-panel .booths {
+    font-size: medium;
+}
+.side-panel .comments {
+    font-size: medium;
+}
+.table {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--ios-bg);
+    color: var(--ios-bg);
+}
+.table.vertical {
+    width: var(--table-large);
+    height: var(--table-small);
+}
+.table.horizontal {
+    width: var(--table-small);
+    height: var(--table-large);
+}
+.table.bottom {
+    margin-top: var(--table-small);
+}
+
+.cluster.border{
+    border: var(--ios-fg) solid 2px;
+}
+.cluster-body {
+    height: max-content;
+    padding-top: 1.1rem;
+}
+
+.cluster {
+    position: relative;
+    display: grid;
+    width: max-content;
+    grid-template-columns: repeat(4, max-content);
+    border: var(--ios-bg) solid 1px;
+    row-gap: var(--table-small-gap);
+}
+
+.cluster-tag {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.clusters.middle-top {
+    grid-template-columns: repeat(4, max-content);
+    grid-auto-flow: row;
+    row-gap: var(--table-small-gap);
+    column-gap: var(--table-small);
+}
+.clusters.middle {
+    grid-template-rows: repeat(3, max-content);
+    grid-auto-flow: column;
+}
+.clusters.upper {
+    grid-template-columns: repeat(5, max-content);
+    grid-auto-flow: row;
+    column-gap: var(--table-small);
+    row-gap: var(--table-small-gap);
+}
+.clusters.lower {
+    grid-template-columns: repeat(3, max-content);
+    grid-auto-flow: row;
+}
+.clusters{
+    display: grid;
+    width: fit-content;
+    row-gap: var(--table-small);
+    column-gap: var(--table-small);
+    margin-bottom: var(--table-small);
 }
 
 .sidebar .tabbar--material {
@@ -113,10 +330,6 @@ a, .btn-link {
     color: #fff;
     background-color: #1b6ec2;
     border-color: #1861ac;
-}
-
-.content {
-    padding-top: 1.1rem;
 }
 
 .valid.modified:not([type=checkbox]) {
@@ -143,12 +356,12 @@ a, .btn-link {
     z-index: 1000;
 }
 
-    #blazor-error-ui .dismiss {
-        cursor: pointer;
-        position: absolute;
-        right: 0.75rem;
-        top: 0.5rem;
-    }
+#blazor-error-ui .dismiss {
+    cursor: pointer;
+    position: absolute;
+    right: 0.75rem;
+    top: 0.5rem;
+}
 
 
 /* TopBar - To make navbar transparent so it match sidebar color*/
@@ -231,7 +444,7 @@ a, .btn-link {
 .reservation__payment-status {
     padding: 4px 10px;
     border-radius: 3px;
-    flex-basis: 78px;
+    flex-basis: 90px;
     box-sizing: border-box;
     text-align: center;
 }
@@ -269,6 +482,12 @@ a, .btn-link {
 .blue {
     background-color: var(--ios-blue);
 }
+
+.scroll {
+    overflow-y: scroll;
+    height: 100%;
+}
+
 
 .date {
     font-weight: bold;

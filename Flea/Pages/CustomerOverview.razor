@@ -9,7 +9,7 @@
 
 <HeaderTitle Value="Lopper"/>
 
-<div>
+<div class="padded-content">
     <div class="view-head">
         <input class="search-input" type="search" value="" placeholder="Søg efter loppe..." @oninput="Search">
         <Modal ButtonCSS="button c-blue float-right" ButtonName="Opret ny loppe" @ref="_child">
@@ -18,10 +18,13 @@
     </div>
     @if (_shownCustomers is not null && _shownCustomers.Any())
     {
-        @foreach (var customer in _shownCustomers)
-        {
-            <CustomerUserListItem Customer="@customer" OnEdit="@UpdateCustomer" OnDelete="@DeleteCustomer"/>
-        }
+        <div class="scrollable">
+            @foreach (var customer in _shownCustomers)
+            {
+                
+                    <CustomerUserListItem Customer="@customer" OnEdit="@UpdateCustomer" OnDelete="@DeleteCustomer"/>
+            }
+        </div>
         <div style="display: inline-block"></div>
     }
     else

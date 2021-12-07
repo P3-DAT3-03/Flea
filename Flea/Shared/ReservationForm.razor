@@ -1,9 +1,11 @@
-@using Flea.Models
+﻿@using Flea.Models
 @using Flea.Utility
 @using Microsoft.EntityFrameworkCore
 @using System.Text.Json
 @using System.Diagnostics
 @inject IDbContextFactory<BingoContext> _dbFactory
+@using Table = Flea.Models.Table
+@using Cluster = Flea.Models.Cluster
 
 <EditForm Model="Reservation" OnValidSubmit="OnSubmit">
     <DataAnnotationsValidator/>
@@ -49,29 +51,35 @@
             {
                 <div>
                     <div>Loppe:</div>
-                    <InputText class="search-input search-no-icon" disabled=""
+                    <InputText class="search-input" disabled=""
                                @bind-Value="Reservation.ReservationOwner.Name"/>
                 </div>
             }
-            <div>
-                <div>Antal stande: </div>
-                <InputNumber class="search-input search-no-icon" placeholder="Eks. 3"
-                             @bind-Value="Reservation.TableCount">
-                </InputNumber>
-            </div>
-            <div>
-                <div>Betalings status: </div>
-                <label class="checkbox">
-                    <InputCheckbox type="checkbox" class="checkbox__input"
-                                   @bind-Value="Reservation.Paid">
-                    </InputCheckbox>
-                    <div class="checkbox__checkmark"></div>
-                    <div>@(Reservation.Paid ? "Betalt" : "Ej betalt")</div>
-                </label>
-            </div>
-            <div>
-                <div>Bemærkninger: </div>
-                <textarea   class="search-input search-no-icon text-area"
+            <div class="edit-form-div">
+            <div>Antal stande: </div>
+            <InputNumber class="search-input search-no-icon" min-value="1" max-value="8"
+                         @bind-Value="Reservation.TableCount">
+            </InputNumber>
+        </div>
+        <div class="edit-form-div">
+            <div>Antal tomme stande: </div>
+            <InputNumber class="search-input search-no-icon" min-value="0" max-value="8"
+                         @bind-Value="Reservation.EmptyTableCount">
+            </InputNumber>
+        </div>
+        <div class="edit-form-div">
+            <div>Betalings status: </div>
+            <label class="checkbox">
+                <InputSelect @bind-Value="Reservation.PaymentStatus" class="select-input  select-input--underbar">
+                            <option value="@PaymentStatus.NotPaid">Ej betalt</option>
+                            <option value="@PaymentStatus.Paid">Betalt</option>
+                            <option value="@PaymentStatus.Other">Aftale</option>
+                </InputSelect>
+            </label>
+        </div>
+        <div class="edit-form-div">
+            <div>Bemærkninger: </div>
+            <textarea   class="search-input search-no-icon text-area"
                         placeholder="Eks. Handicap, tæt på rygerrum mm."
                         @bind="Reservation.Comments">
             </textarea>

@@ -79,11 +79,11 @@
 
 @code {
 
-    private string titleHeader = "Standard Indstillinger til nye Loppemarkeder";
+    private readonly string _titleHeader = "Standard Indstillinger til nye Loppemarkeder";
 
     private void UpdateTitleHeader()
     {
-        MainLayout.HeaderTitle = titleHeader;
+        MainLayout.HeaderTitle = _titleHeader;
     }
 
     protected override async Task OnInitializedAsync()

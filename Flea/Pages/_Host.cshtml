@@ -1,15 +1,12 @@
 @page "/"
 @namespace Flea.Pages
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
-@{
-    Layout = null;
-}
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1">
     <title>Flea</title>
     <base href="~/"/>
     <link href="OnsenUI/onsenui.min.css" rel="stylesheet"/>
@@ -18,7 +15,18 @@
     <link href="css/app.css" rel="stylesheet"/>
     <link href="css/core.css" rel="stylesheet">
     <link href="Flea.styles.css" rel="stylesheet"/>
-    <link rel="stylesheet" href="search-select.css">
+    <link rel="manifest" href="/manifest.json">
+    @*icon only shows up if it is not from a local ip i guess*@
+    <link rel="apple-touch-icon" href="https://i.imgur.com/O2NYW1i.png">
+    <script>
+        if ('serviceWorker' in navigator) {
+          navigator.serviceWorker.register('/service-worker.js').then(function(registration) {
+            console.log('ServiceWorker registration successful!');
+          }).catch(function(err) {
+            console.log('ServiceWorker registration failed: ', err);
+          });
+        }
+    </script>
 </head>
 <body>
 <component type="typeof(App)" render-mode="ServerPrerendered"/>

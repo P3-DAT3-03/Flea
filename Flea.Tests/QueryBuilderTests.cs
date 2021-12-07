@@ -105,8 +105,8 @@ namespace Flea.Tests
             var @event = new Event(DateTime.Today);
             var customerA = new Customer("Test customer A", "12345678");
             var customerB = new Customer("Test customer B", "12345678");
-            var reservationA = new Reservation(1, 2, false, "comment", customerA, @event);
-            var reservationB = new Reservation(1, 2, true, "comment2", customerB, @event);
+            var reservationA = new Reservation(1, 2, PaymentStatus.NotPaid, "comment", customerA, @event);
+            var reservationB = new Reservation(1, 2, PaymentStatus.Paid, "comment2", customerB, @event);
 
             await Factory.Update()
                 .New(@event)
@@ -152,8 +152,8 @@ namespace Flea.Tests
             var @event = new Event(DateTime.Today);
             var customerA = new Customer("Test customer A", "12345678");
             var customerB = new Customer("Test customer B", "12345678");
-            var reservationA = new Reservation(1, 2, false, "comment", customerA, @event);
-            var reservationB = new Reservation(1, 2, true, "comment2", customerB, @event);
+            var reservationA = new Reservation(1, 2, PaymentStatus.NotPaid, "comment", customerA, @event);
+            var reservationB = new Reservation(1, 2, PaymentStatus.Paid, "comment2", customerB, @event);
 
             await Factory.Update()
                 .New(@event)

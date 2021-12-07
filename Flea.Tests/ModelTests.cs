@@ -14,10 +14,11 @@ namespace Flea.Tests
         [Test]
         public void EventTests()
         {
-            Event hello = new Event(DateTime.Now);
-            Assert.True(13 == hello.Clusters.Count, "There should always be 13 clusters");
+            Event @event = new Event(DateTime.Now);
+            // real world is fucked so there is more than 13
+            Assert.True(23 == @event.Clusters.Count, "There should always be 23 clusters");
 
-            Assert.AreEqual(108, hello.ComputeRemainingTables);
+            Assert.AreEqual(130, @event.ComputeRemainingTables);
 
 
         }
@@ -36,12 +37,12 @@ namespace Flea.Tests
         {
             const int priority = 1;
             const int tableCount = 4;
-            const bool paid = false;
+            const PaymentStatus status = PaymentStatus.NotPaid;
             const string comment = "Ole er meget gammel og grim";
             const string name = "Ole";
             const string number = "88888888";
             Customer Ole = new Customer(name, number);
-            Reservation OleReservation = new Reservation(priority, tableCount, paid, comment, Ole, null!);
+            Reservation OleReservation = new Reservation(priority, tableCount, status, comment, Ole, null!);
             OleReservation.Tables.Add(new Table());
             Assert.AreEqual(OleReservation.TableCount, tableCount, "reservation does not have the right tablecount based on input");
         }
@@ -50,7 +51,7 @@ namespace Flea.Tests
         public void TableTests()
         {
             Table m1 = new Table();
-            Assert.AreEqual(m1.Type, Table.TableType.Table);
+            Assert.AreEqual(m1.Type, TableType.Table);
         }
 
         [Test]
@@ -59,13 +60,13 @@ namespace Flea.Tests
             const int tableAmount = 8;
             const int priority = 1;
             const int reservedTableCount = 4;
-            const bool paid = false;
+            const PaymentStatus status = PaymentStatus.NotPaid;
             const string comment = "Ole er meget gammel og grim";
             const string name = "Ole";
             const string number = "88888888";
             Customer Ole = new Customer(name, number);
-            Reservation OleReservation = new Reservation(priority, reservedTableCount, paid, comment, Ole, null!);
-            Cluster m = new Cluster("m", 4, tableAmount);
+            Reservation OleReservation = new Reservation(priority, reservedTableCount, status, comment, Ole, null!);
+            Cluster m = new Cluster("m", 4, tableAmount, ClusterType.Vertical);
             Assert.AreEqual(m.CustomerCount, 4);
 
             m.Tables[tableAmount - 1].Reservation = OleReservation;

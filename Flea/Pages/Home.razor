@@ -4,13 +4,15 @@
 @inject IDbContextFactory<BingoContext> _dbFactory
 
 @using Event = Flea.Models.Event;
+@using Cluster = Flea.Models.Cluster;
+@using Table = Flea.Models.Table;
 @using Flea.Models
 @using Flea.Utility
 @using Microsoft.EntityFrameworkCore
 
 <HeaderTitle Value="Loppemarkeder"/>
 
-<div>
+<div class="padded-content">
     <div class="view-head">
         <input class="search-input" type="search" value="" @oninput="Search" placeholder="Søg efter loppemarked..."/>
         <Modal ButtonCSS="button c-blue create-button" ButtonName="Tilføj nyt loppemarked" @ref="_modal">

@@ -36,6 +36,9 @@ namespace Flea.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<int>("Type")
+                        .HasColumnType("integer");
+
                     b.HasKey("Id");
 
                     b.HasIndex("EventId");
@@ -105,11 +108,14 @@ namespace Flea.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<int>("EmptyTableCount")
+                        .HasColumnType("integer");
+
                     b.Property<int>("EventId")
                         .HasColumnType("integer");
 
-                    b.Property<bool>("Paid")
-                        .HasColumnType("boolean");
+                    b.Property<int>("PaymentStatus")
+                        .HasColumnType("integer");
 
                     b.Property<int>("Priority")
                         .HasColumnType("integer");

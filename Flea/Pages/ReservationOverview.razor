@@ -17,7 +17,7 @@
     }
 }
 
-<div>
+<div class="padded-content">
     <div class="view-head">
         <input class="search-input" type="search" value="" placeholder="Søg efter booking" @oninput="Search">
         <Modal ButtonCSS="button float-right c-blue" ButtonName="Opret ny booking"  @ref="_child">
@@ -44,7 +44,7 @@
 
 @code
 {
-    private string? TitleDate => Event?.DateTime.ToString("d. MMMM, yyyy", CultureInfo.CreateSpecificCulture("da-DK"));
+    private string TitleDate => Event?.DateTime.ToString("d. MMMM, yyyy", CultureInfo.CreateSpecificCulture("da-DK"));
     
     [Parameter]
     public int EventId { get; set; }
@@ -73,7 +73,7 @@
             .With(_temp.ReservationOwner)
             .New(_temp)
             .Save();
-        _temp = new Reservation(1, 1, false, "", new Customer("", ""), Event!);
+        _temp = new Reservation(1, 1, PaymentStatus.NotPaid, "", new Customer("", ""), Event);
         _child.Close();
         await UpdateReservationList();
     }
@@ -103,12 +103,24 @@
                 where c.TableCount.ToString().Contains(searchTerm)
                 select c;
         }
-        else if (searchTerm.Contains("betalt"))
-        {   // Finds by betalt or ej betalt
-            _shownReservation = from c
+        else if (searchTerm.Contains("ej betalt"))
+        {   // Finds by ej betalt
+            _shownReservation = from r
                 in _reservations
-                where c.Paid != searchTerm.Contains("ej")
-                select c;
+                where r.PaymentStatus == PaymentStatus.NotPaid
+                select r;
+        }else if (searchTerm.Contains("betalt"))
+        {   // Finds by betalt
+            _shownReservation = from r
+                in _reservations
+                where r.PaymentStatus == PaymentStatus.Paid
+                select r;
+        }else if (searchTerm.Contains("aftale"))
+        {   // Finds by aftale
+            _shownReservation = from r
+                in _reservations
+                where r.PaymentStatus == PaymentStatus.Other
+                select r;
         }
         else
         {// Finds by name
@@ -135,8 +147,8 @@
             .First(e => e.Id == EventId);
         
         Event = e ?? throw new Exception("TODO create good error for user");
-        _temp = new Reservation(1, 1, false, "", new Customer("", ""), Event);
-
+        NavMenu.EventId = Event.Id;
+        _temp = new Reservation(1, 1, PaymentStatus.NotPaid, "", new Customer("", ""), Event);
         await UpdateReservationList();
         await base.OnInitializedAsync();
     }
