@@ -33,7 +33,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Flea.Migrations.various_changes.html",
-          "hash": "qaZl31NBY0vVicVHkwT0fLVxFBYa29w5Z+F53bjZB/0="
+          "hash": "bl3rowLH98GsCsPgvtAWFXfhegpU/8W30+HoqwUfvc4="
         }
       },
       "is_incremental": false,
@@ -69,7 +69,19 @@
       "output": {
         ".html": {
           "relative_path": "api/Flea.Models.Cluster.html",
-          "hash": "v8jVxBhiFi2qgz0B3GEgPyrbXeDkrEjdE/8ylPN+cvY="
+          "hash": "7xqi4Gf384xRbr2DVpk66TqwqUb5UlZjf/+zqDqyRmA="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Flea.Models.ClusterType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Flea.Models.ClusterType.html",
+          "hash": "PUZ8FJy9R2WvMfBy1G/g9t7Gl6/83cewQDXsuwEVKMk="
         }
       },
       "is_incremental": false,
@@ -93,7 +105,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Flea.Models.Event.html",
-          "hash": "JWW4/BjKhQEeggkObXbnAzJvYPmx1OKpGIS4r9Bo1jk="
+          "hash": "nbA5kxhD9cDEjy4ZN0NIAOmjj9khK9nu79XES6tongs="
         }
       },
       "is_incremental": false,
@@ -113,11 +125,11 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/Flea.Models.Reservation.yml",
+      "source_relative_path": "api/Flea.Models.PaymentStatus.yml",
       "output": {
         ".html": {
-          "relative_path": "api/Flea.Models.Reservation.html",
-          "hash": "k20sXmiavccm+HUvXueFdkdwU0ge6PIeGRO3v067VBc="
+          "relative_path": "api/Flea.Models.PaymentStatus.html",
+          "hash": "VETV9GwnBcElrGrC/0KcGYoEn53395ZsPZZhISmlKVo="
         }
       },
       "is_incremental": false,
@@ -125,11 +137,11 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/Flea.Models.Table.TableType.yml",
+      "source_relative_path": "api/Flea.Models.Reservation.yml",
       "output": {
         ".html": {
-          "relative_path": "api/Flea.Models.Table.TableType.html",
-          "hash": "Pydj28GKg+nrlXzMV8ihIXiRihiGyklduTzWG498ryE="
+          "relative_path": "api/Flea.Models.Reservation.html",
+          "hash": "KaCqXBqrXUf5R8hlpiTiFlvgQie2oX3pVs5UcTr6qhY="
         }
       },
       "is_incremental": false,
@@ -141,7 +153,19 @@
       "output": {
         ".html": {
           "relative_path": "api/Flea.Models.Table.html",
-          "hash": "VFgKSI26Vea8iesyE3HzKVo8sVh8aVyhM3zvm61kQbQ="
+          "hash": "4WOSV9VJi7lijnvy0Rra9Wuyg3/DlrkMEId9C6I5ksg="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Flea.Models.TableType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Flea.Models.TableType.html",
+          "hash": "iiMcMhsOCOeUe4tW9yQzDbEp58CvhPr8c3QrP+wdy30="
         }
       },
       "is_incremental": false,
@@ -165,7 +189,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Flea.Models.html",
-          "hash": "SPkbTh17NR1xjSQBXlJFY7yIfCxOvR9f1MRlnhMvjC4="
+          "hash": "9yUMMvcn79eie7x2zrc1fmGM2UnLO3/Zh57ou5TaNtc="
         }
       },
       "is_incremental": false,
@@ -357,7 +381,7 @@
       "output": {
         ".html": {
           "relative_path": "api/toc.html",
-          "hash": "MYMiWqN3lT9d3x5K5LiyP8oz9feTAMpTySlNhlxmHiQ="
+          "hash": "Exsie2UT5X/oKg7d4K8SUiM9kzE7abAzDqwbKSIZdJk="
         }
       },
       "is_incremental": false,
@@ -444,7 +468,7 @@
         "ManagedReferenceDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build",
-          "total_file_count": 28,
+          "total_file_count": 30,
           "skipped_file_count": 0
         },
         "TocDocumentProcessor": {

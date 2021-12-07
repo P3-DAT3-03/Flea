@@ -234,18 +234,24 @@ references:
   commentId: T:Flea.Models.Cluster
   fullName: Flea.Models.Cluster
   nameWithType: Cluster
+- uid: Flea.Models.Cluster.#ctor
+  name: Cluster()
+  href: api/Flea.Models.Cluster.html#Flea_Models_Cluster__ctor
+  commentId: M:Flea.Models.Cluster.#ctor
+  fullName: Flea.Models.Cluster.Cluster()
+  nameWithType: Cluster.Cluster()
 - uid: Flea.Models.Cluster.#ctor(System.String,System.Int32)
   name: Cluster(String, Int32)
   href: api/Flea.Models.Cluster.html#Flea_Models_Cluster__ctor_System_String_System_Int32_
   commentId: M:Flea.Models.Cluster.#ctor(System.String,System.Int32)
   fullName: Flea.Models.Cluster.Cluster(System.String, System.Int32)
   nameWithType: Cluster.Cluster(String, Int32)
-- uid: Flea.Models.Cluster.#ctor(System.String,System.Int32,System.Int32)
-  name: Cluster(String, Int32, Int32)
-  href: api/Flea.Models.Cluster.html#Flea_Models_Cluster__ctor_System_String_System_Int32_System_Int32_
-  commentId: M:Flea.Models.Cluster.#ctor(System.String,System.Int32,System.Int32)
-  fullName: Flea.Models.Cluster.Cluster(System.String, System.Int32, System.Int32)
-  nameWithType: Cluster.Cluster(String, Int32, Int32)
+- uid: Flea.Models.Cluster.#ctor(System.String,System.Int32,System.Int32,Flea.Models.ClusterType)
+  name: Cluster(String, Int32, Int32, ClusterType)
+  href: api/Flea.Models.Cluster.html#Flea_Models_Cluster__ctor_System_String_System_Int32_System_Int32_Flea_Models_ClusterType_
+  commentId: M:Flea.Models.Cluster.#ctor(System.String,System.Int32,System.Int32,Flea.Models.ClusterType)
+  fullName: Flea.Models.Cluster.Cluster(System.String, System.Int32, System.Int32, Flea.Models.ClusterType)
+  nameWithType: Cluster.Cluster(String, Int32, Int32, ClusterType)
 - uid: Flea.Models.Cluster.#ctor*
   name: Cluster
   href: api/Flea.Models.Cluster.html#Flea_Models_Cluster__ctor_
@@ -344,6 +350,19 @@ references:
   isSpec: "True"
   fullName: Flea.Models.Cluster.TablesNotPlaced
   nameWithType: Cluster.TablesNotPlaced
+- uid: Flea.Models.Cluster.Type
+  name: Type
+  href: api/Flea.Models.Cluster.html#Flea_Models_Cluster_Type
+  commentId: P:Flea.Models.Cluster.Type
+  fullName: Flea.Models.Cluster.Type
+  nameWithType: Cluster.Type
+- uid: Flea.Models.Cluster.Type*
+  name: Type
+  href: api/Flea.Models.Cluster.html#Flea_Models_Cluster_Type_
+  commentId: Overload:Flea.Models.Cluster.Type
+  isSpec: "True"
+  fullName: Flea.Models.Cluster.Type
+  nameWithType: Cluster.Type
 - uid: Flea.Models.Cluster.VerifyPlacements
   name: VerifyPlacements
   href: api/Flea.Models.Cluster.html#Flea_Models_Cluster_VerifyPlacements
@@ -357,6 +376,30 @@ references:
   isSpec: "True"
   fullName: Flea.Models.Cluster.VerifyPlacements
   nameWithType: Cluster.VerifyPlacements
+- uid: Flea.Models.ClusterType
+  name: ClusterType
+  href: api/Flea.Models.ClusterType.html
+  commentId: T:Flea.Models.ClusterType
+  fullName: Flea.Models.ClusterType
+  nameWithType: ClusterType
+- uid: Flea.Models.ClusterType.Horizontal
+  name: Horizontal
+  href: api/Flea.Models.ClusterType.html#Flea_Models_ClusterType_Horizontal
+  commentId: F:Flea.Models.ClusterType.Horizontal
+  fullName: Flea.Models.ClusterType.Horizontal
+  nameWithType: ClusterType.Horizontal
+- uid: Flea.Models.ClusterType.Round
+  name: Round
+  href: api/Flea.Models.ClusterType.html#Flea_Models_ClusterType_Round
+  commentId: F:Flea.Models.ClusterType.Round
+  fullName: Flea.Models.ClusterType.Round
+  nameWithType: ClusterType.Round
+- uid: Flea.Models.ClusterType.Vertical
+  name: Vertical
+  href: api/Flea.Models.ClusterType.html#Flea_Models_ClusterType_Vertical
+  commentId: F:Flea.Models.ClusterType.Vertical
+  fullName: Flea.Models.ClusterType.Vertical
+  nameWithType: ClusterType.Vertical
 - uid: Flea.Models.Customer
   name: Customer
   href: api/Flea.Models.Customer.html
@@ -562,19 +605,25 @@ references:
   isSpec: "True"
   fullName: Flea.Models.Event.DateTime
   nameWithType: Event.DateTime
-- uid: Flea.Models.Event.GetDbSet(Flea.Models.BingoContext)
-  name: GetDbSet(BingoContext)
-  href: api/Flea.Models.Event.html#Flea_Models_Event_GetDbSet_Flea_Models_BingoContext_
-  commentId: M:Flea.Models.Event.GetDbSet(Flea.Models.BingoContext)
-  fullName: Flea.Models.Event.GetDbSet(Flea.Models.BingoContext)
-  nameWithType: Event.GetDbSet(BingoContext)
-- uid: Flea.Models.Event.GetDbSet*
-  name: GetDbSet
-  href: api/Flea.Models.Event.html#Flea_Models_Event_GetDbSet_
-  commentId: Overload:Flea.Models.Event.GetDbSet
+- uid: Flea.Models.Event.Flea#Models#IModelEntity{Flea#Models#Event,Flea#Models#BingoContext}#GetDbSet(Flea.Models.BingoContext)
+  name: IModelEntity<Event, BingoContext>.GetDbSet(BingoContext)
+  href: api/Flea.Models.Event.html#Flea_Models_Event_Flea_Models_IModelEntity_Flea_Models_Event_Flea_Models_BingoContext__GetDbSet_Flea_Models_BingoContext_
+  commentId: M:Flea.Models.Event.Flea#Models#IModelEntity{Flea#Models#Event,Flea#Models#BingoContext}#GetDbSet(Flea.Models.BingoContext)
+  name.vb: Flea.Models.IModelEntity<Flea.Models.Event,Flea.Models.BingoContext>.GetDbSet(BingoContext)
+  fullName: Flea.Models.Event.Flea.Models.IModelEntity<Flea.Models.Event, Flea.Models.BingoContext>.GetDbSet(Flea.Models.BingoContext)
+  fullName.vb: Flea.Models.Event.Flea.Models.IModelEntity<Flea.Models.Event,Flea.Models.BingoContext>.GetDbSet(Flea.Models.BingoContext)
+  nameWithType: Event.IModelEntity<Event, BingoContext>.GetDbSet(BingoContext)
+  nameWithType.vb: Event.Flea.Models.IModelEntity<Flea.Models.Event,Flea.Models.BingoContext>.GetDbSet(BingoContext)
+- uid: Flea.Models.Event.Flea#Models#IModelEntity{Flea#Models#Event,Flea#Models#BingoContext}#GetDbSet*
+  name: IModelEntity<Event, BingoContext>.GetDbSet
+  href: api/Flea.Models.Event.html#Flea_Models_Event_Flea_Models_IModelEntity_Flea_Models_Event_Flea_Models_BingoContext__GetDbSet_
+  commentId: Overload:Flea.Models.Event.Flea#Models#IModelEntity{Flea#Models#Event,Flea#Models#BingoContext}#GetDbSet
   isSpec: "True"
-  fullName: Flea.Models.Event.GetDbSet
-  nameWithType: Event.GetDbSet
+  name.vb: Flea.Models.IModelEntity<Flea.Models.Event,Flea.Models.BingoContext>.GetDbSet
+  fullName: Flea.Models.Event.Flea.Models.IModelEntity<Flea.Models.Event, Flea.Models.BingoContext>.GetDbSet
+  fullName.vb: Flea.Models.Event.Flea.Models.IModelEntity<Flea.Models.Event,Flea.Models.BingoContext>.GetDbSet
+  nameWithType: Event.IModelEntity<Event, BingoContext>.GetDbSet
+  nameWithType.vb: Event.Flea.Models.IModelEntity<Flea.Models.Event,Flea.Models.BingoContext>.GetDbSet
 - uid: Flea.Models.Event.Id
   name: Id
   href: api/Flea.Models.Event.html#Flea_Models_Event_Id
@@ -683,6 +732,30 @@ references:
   fullName.vb: Flea.Models.IModelEntity(Of TEntity, TContext).GetDbSetStatic
   nameWithType: IModelEntity<TEntity, TContext>.GetDbSetStatic
   nameWithType.vb: IModelEntity(Of TEntity, TContext).GetDbSetStatic
+- uid: Flea.Models.PaymentStatus
+  name: PaymentStatus
+  href: api/Flea.Models.PaymentStatus.html
+  commentId: T:Flea.Models.PaymentStatus
+  fullName: Flea.Models.PaymentStatus
+  nameWithType: PaymentStatus
+- uid: Flea.Models.PaymentStatus.NotPaid
+  name: NotPaid
+  href: api/Flea.Models.PaymentStatus.html#Flea_Models_PaymentStatus_NotPaid
+  commentId: F:Flea.Models.PaymentStatus.NotPaid
+  fullName: Flea.Models.PaymentStatus.NotPaid
+  nameWithType: PaymentStatus.NotPaid
+- uid: Flea.Models.PaymentStatus.Other
+  name: Other
+  href: api/Flea.Models.PaymentStatus.html#Flea_Models_PaymentStatus_Other
+  commentId: F:Flea.Models.PaymentStatus.Other
+  fullName: Flea.Models.PaymentStatus.Other
+  nameWithType: PaymentStatus.Other
+- uid: Flea.Models.PaymentStatus.Paid
+  name: Paid
+  href: api/Flea.Models.PaymentStatus.html#Flea_Models_PaymentStatus_Paid
+  commentId: F:Flea.Models.PaymentStatus.Paid
+  fullName: Flea.Models.PaymentStatus.Paid
+  nameWithType: PaymentStatus.Paid
 - uid: Flea.Models.Reservation
   name: Reservation
   href: api/Flea.Models.Reservation.html
@@ -695,18 +768,18 @@ references:
   commentId: M:Flea.Models.Reservation.#ctor
   fullName: Flea.Models.Reservation.Reservation()
   nameWithType: Reservation.Reservation()
-- uid: Flea.Models.Reservation.#ctor(System.Int32,System.Int32,System.Boolean,System.String)
-  name: Reservation(Int32, Int32, Boolean, String)
-  href: api/Flea.Models.Reservation.html#Flea_Models_Reservation__ctor_System_Int32_System_Int32_System_Boolean_System_String_
-  commentId: M:Flea.Models.Reservation.#ctor(System.Int32,System.Int32,System.Boolean,System.String)
-  fullName: Flea.Models.Reservation.Reservation(System.Int32, System.Int32, System.Boolean, System.String)
-  nameWithType: Reservation.Reservation(Int32, Int32, Boolean, String)
-- uid: Flea.Models.Reservation.#ctor(System.Int32,System.Int32,System.Boolean,System.String,Flea.Models.Customer,Flea.Models.Event)
-  name: Reservation(Int32, Int32, Boolean, String, Customer, Event)
-  href: api/Flea.Models.Reservation.html#Flea_Models_Reservation__ctor_System_Int32_System_Int32_System_Boolean_System_String_Flea_Models_Customer_Flea_Models_Event_
-  commentId: M:Flea.Models.Reservation.#ctor(System.Int32,System.Int32,System.Boolean,System.String,Flea.Models.Customer,Flea.Models.Event)
-  fullName: Flea.Models.Reservation.Reservation(System.Int32, System.Int32, System.Boolean, System.String, Flea.Models.Customer, Flea.Models.Event)
-  nameWithType: Reservation.Reservation(Int32, Int32, Boolean, String, Customer, Event)
+- uid: Flea.Models.Reservation.#ctor(System.Int32,System.Int32,Flea.Models.PaymentStatus,System.String)
+  name: Reservation(Int32, Int32, PaymentStatus, String)
+  href: api/Flea.Models.Reservation.html#Flea_Models_Reservation__ctor_System_Int32_System_Int32_Flea_Models_PaymentStatus_System_String_
+  commentId: M:Flea.Models.Reservation.#ctor(System.Int32,System.Int32,Flea.Models.PaymentStatus,System.String)
+  fullName: Flea.Models.Reservation.Reservation(System.Int32, System.Int32, Flea.Models.PaymentStatus, System.String)
+  nameWithType: Reservation.Reservation(Int32, Int32, PaymentStatus, String)
+- uid: Flea.Models.Reservation.#ctor(System.Int32,System.Int32,Flea.Models.PaymentStatus,System.String,Flea.Models.Customer,Flea.Models.Event)
+  name: Reservation(Int32, Int32, PaymentStatus, String, Customer, Event)
+  href: api/Flea.Models.Reservation.html#Flea_Models_Reservation__ctor_System_Int32_System_Int32_Flea_Models_PaymentStatus_System_String_Flea_Models_Customer_Flea_Models_Event_
+  commentId: M:Flea.Models.Reservation.#ctor(System.Int32,System.Int32,Flea.Models.PaymentStatus,System.String,Flea.Models.Customer,Flea.Models.Event)
+  fullName: Flea.Models.Reservation.Reservation(System.Int32, System.Int32, Flea.Models.PaymentStatus, System.String, Flea.Models.Customer, Flea.Models.Event)
+  nameWithType: Reservation.Reservation(Int32, Int32, PaymentStatus, String, Customer, Event)
 - uid: Flea.Models.Reservation.#ctor*
   name: Reservation
   href: api/Flea.Models.Reservation.html#Flea_Models_Reservation__ctor_
@@ -740,6 +813,19 @@ references:
   isSpec: "True"
   fullName: Flea.Models.Reservation.Comments
   nameWithType: Reservation.Comments
+- uid: Flea.Models.Reservation.EmptyTableCount
+  name: EmptyTableCount
+  href: api/Flea.Models.Reservation.html#Flea_Models_Reservation_EmptyTableCount
+  commentId: P:Flea.Models.Reservation.EmptyTableCount
+  fullName: Flea.Models.Reservation.EmptyTableCount
+  nameWithType: Reservation.EmptyTableCount
+- uid: Flea.Models.Reservation.EmptyTableCount*
+  name: EmptyTableCount
+  href: api/Flea.Models.Reservation.html#Flea_Models_Reservation_EmptyTableCount_
+  commentId: Overload:Flea.Models.Reservation.EmptyTableCount
+  isSpec: "True"
+  fullName: Flea.Models.Reservation.EmptyTableCount
+  nameWithType: Reservation.EmptyTableCount
 - uid: Flea.Models.Reservation.Event
   name: Event
   href: api/Flea.Models.Reservation.html#Flea_Models_Reservation_Event
@@ -779,19 +865,19 @@ references:
   isSpec: "True"
   fullName: Flea.Models.Reservation.Id
   nameWithType: Reservation.Id
-- uid: Flea.Models.Reservation.Paid
-  name: Paid
-  href: api/Flea.Models.Reservation.html#Flea_Models_Reservation_Paid
-  commentId: P:Flea.Models.Reservation.Paid
-  fullName: Flea.Models.Reservation.Paid
-  nameWithType: Reservation.Paid
-- uid: Flea.Models.Reservation.Paid*
-  name: Paid
-  href: api/Flea.Models.Reservation.html#Flea_Models_Reservation_Paid_
-  commentId: Overload:Flea.Models.Reservation.Paid
+- uid: Flea.Models.Reservation.PaymentStatus
+  name: PaymentStatus
+  href: api/Flea.Models.Reservation.html#Flea_Models_Reservation_PaymentStatus
+  commentId: P:Flea.Models.Reservation.PaymentStatus
+  fullName: Flea.Models.Reservation.PaymentStatus
+  nameWithType: Reservation.PaymentStatus
+- uid: Flea.Models.Reservation.PaymentStatus*
+  name: PaymentStatus
+  href: api/Flea.Models.Reservation.html#Flea_Models_Reservation_PaymentStatus_
+  commentId: Overload:Flea.Models.Reservation.PaymentStatus
   isSpec: "True"
-  fullName: Flea.Models.Reservation.Paid
-  nameWithType: Reservation.Paid
+  fullName: Flea.Models.Reservation.PaymentStatus
+  nameWithType: Reservation.PaymentStatus
 - uid: Flea.Models.Reservation.Priority
   name: Priority
   href: api/Flea.Models.Reservation.html#Flea_Models_Reservation_Priority
@@ -844,24 +930,43 @@ references:
   isSpec: "True"
   fullName: Flea.Models.Reservation.Tables
   nameWithType: Reservation.Tables
+- uid: Flea.Models.Reservation.Validate(System.ComponentModel.DataAnnotations.ValidationContext)
+  name: Validate(ValidationContext)
+  href: api/Flea.Models.Reservation.html#Flea_Models_Reservation_Validate_System_ComponentModel_DataAnnotations_ValidationContext_
+  commentId: M:Flea.Models.Reservation.Validate(System.ComponentModel.DataAnnotations.ValidationContext)
+  fullName: Flea.Models.Reservation.Validate(System.ComponentModel.DataAnnotations.ValidationContext)
+  nameWithType: Reservation.Validate(ValidationContext)
+- uid: Flea.Models.Reservation.Validate*
+  name: Validate
+  href: api/Flea.Models.Reservation.html#Flea_Models_Reservation_Validate_
+  commentId: Overload:Flea.Models.Reservation.Validate
+  isSpec: "True"
+  fullName: Flea.Models.Reservation.Validate
+  nameWithType: Reservation.Validate
 - uid: Flea.Models.Table
   name: Table
   href: api/Flea.Models.Table.html
   commentId: T:Flea.Models.Table
   fullName: Flea.Models.Table
   nameWithType: Table
-- uid: Flea.Models.Table.#ctor(Flea.Models.Table.TableType)
-  name: Table(Table.TableType)
-  href: api/Flea.Models.Table.html#Flea_Models_Table__ctor_Flea_Models_Table_TableType_
-  commentId: M:Flea.Models.Table.#ctor(Flea.Models.Table.TableType)
-  fullName: Flea.Models.Table.Table(Flea.Models.Table.TableType)
-  nameWithType: Table.Table(Table.TableType)
-- uid: Flea.Models.Table.#ctor(Flea.Models.Table.TableType,Flea.Models.Reservation)
-  name: Table(Table.TableType, Reservation)
-  href: api/Flea.Models.Table.html#Flea_Models_Table__ctor_Flea_Models_Table_TableType_Flea_Models_Reservation_
-  commentId: M:Flea.Models.Table.#ctor(Flea.Models.Table.TableType,Flea.Models.Reservation)
-  fullName: Flea.Models.Table.Table(Flea.Models.Table.TableType, Flea.Models.Reservation)
-  nameWithType: Table.Table(Table.TableType, Reservation)
+- uid: Flea.Models.Table.#ctor
+  name: Table()
+  href: api/Flea.Models.Table.html#Flea_Models_Table__ctor
+  commentId: M:Flea.Models.Table.#ctor
+  fullName: Flea.Models.Table.Table()
+  nameWithType: Table.Table()
+- uid: Flea.Models.Table.#ctor(Flea.Models.TableType)
+  name: Table(TableType)
+  href: api/Flea.Models.Table.html#Flea_Models_Table__ctor_Flea_Models_TableType_
+  commentId: M:Flea.Models.Table.#ctor(Flea.Models.TableType)
+  fullName: Flea.Models.Table.Table(Flea.Models.TableType)
+  nameWithType: Table.Table(TableType)
+- uid: Flea.Models.Table.#ctor(Flea.Models.TableType,Flea.Models.Reservation)
+  name: Table(TableType, Reservation)
+  href: api/Flea.Models.Table.html#Flea_Models_Table__ctor_Flea_Models_TableType_Flea_Models_Reservation_
+  commentId: M:Flea.Models.Table.#ctor(Flea.Models.TableType,Flea.Models.Reservation)
+  fullName: Flea.Models.Table.Table(Flea.Models.TableType, Flea.Models.Reservation)
+  nameWithType: Table.Table(TableType, Reservation)
 - uid: Flea.Models.Table.#ctor*
   name: Table
   href: api/Flea.Models.Table.html#Flea_Models_Table__ctor_
@@ -882,6 +987,25 @@ references:
   isSpec: "True"
   fullName: Flea.Models.Table.Cluster
   nameWithType: Table.Cluster
+- uid: Flea.Models.Table.Flea#Models#IModelEntity{Flea#Models#Table,Flea#Models#BingoContext}#GetDbSet(Flea.Models.BingoContext)
+  name: IModelEntity<Table, BingoContext>.GetDbSet(BingoContext)
+  href: api/Flea.Models.Table.html#Flea_Models_Table_Flea_Models_IModelEntity_Flea_Models_Table_Flea_Models_BingoContext__GetDbSet_Flea_Models_BingoContext_
+  commentId: M:Flea.Models.Table.Flea#Models#IModelEntity{Flea#Models#Table,Flea#Models#BingoContext}#GetDbSet(Flea.Models.BingoContext)
+  name.vb: Flea.Models.IModelEntity<Flea.Models.Table,Flea.Models.BingoContext>.GetDbSet(BingoContext)
+  fullName: Flea.Models.Table.Flea.Models.IModelEntity<Flea.Models.Table, Flea.Models.BingoContext>.GetDbSet(Flea.Models.BingoContext)
+  fullName.vb: Flea.Models.Table.Flea.Models.IModelEntity<Flea.Models.Table,Flea.Models.BingoContext>.GetDbSet(Flea.Models.BingoContext)
+  nameWithType: Table.IModelEntity<Table, BingoContext>.GetDbSet(BingoContext)
+  nameWithType.vb: Table.Flea.Models.IModelEntity<Flea.Models.Table,Flea.Models.BingoContext>.GetDbSet(BingoContext)
+- uid: Flea.Models.Table.Flea#Models#IModelEntity{Flea#Models#Table,Flea#Models#BingoContext}#GetDbSet*
+  name: IModelEntity<Table, BingoContext>.GetDbSet
+  href: api/Flea.Models.Table.html#Flea_Models_Table_Flea_Models_IModelEntity_Flea_Models_Table_Flea_Models_BingoContext__GetDbSet_
+  commentId: Overload:Flea.Models.Table.Flea#Models#IModelEntity{Flea#Models#Table,Flea#Models#BingoContext}#GetDbSet
+  isSpec: "True"
+  name.vb: Flea.Models.IModelEntity<Flea.Models.Table,Flea.Models.BingoContext>.GetDbSet
+  fullName: Flea.Models.Table.Flea.Models.IModelEntity<Flea.Models.Table, Flea.Models.BingoContext>.GetDbSet
+  fullName.vb: Flea.Models.Table.Flea.Models.IModelEntity<Flea.Models.Table,Flea.Models.BingoContext>.GetDbSet
+  nameWithType: Table.IModelEntity<Table, BingoContext>.GetDbSet
+  nameWithType.vb: Table.Flea.Models.IModelEntity<Flea.Models.Table,Flea.Models.BingoContext>.GetDbSet
 - uid: Flea.Models.Table.Id
   name: Id
   href: api/Flea.Models.Table.html#Flea_Models_Table_Id
@@ -908,30 +1032,6 @@ references:
   isSpec: "True"
   fullName: Flea.Models.Table.Reservation
   nameWithType: Table.Reservation
-- uid: Flea.Models.Table.TableType
-  name: Table.TableType
-  href: api/Flea.Models.Table.TableType.html
-  commentId: T:Flea.Models.Table.TableType
-  fullName: Flea.Models.Table.TableType
-  nameWithType: Table.TableType
-- uid: Flea.Models.Table.TableType.Empty
-  name: Empty
-  href: api/Flea.Models.Table.TableType.html#Flea_Models_Table_TableType_Empty
-  commentId: F:Flea.Models.Table.TableType.Empty
-  fullName: Flea.Models.Table.TableType.Empty
-  nameWithType: Table.TableType.Empty
-- uid: Flea.Models.Table.TableType.Rack
-  name: Rack
-  href: api/Flea.Models.Table.TableType.html#Flea_Models_Table_TableType_Rack
-  commentId: F:Flea.Models.Table.TableType.Rack
-  fullName: Flea.Models.Table.TableType.Rack
-  nameWithType: Table.TableType.Rack
-- uid: Flea.Models.Table.TableType.Table
-  name: Table
-  href: api/Flea.Models.Table.TableType.html#Flea_Models_Table_TableType_Table
-  commentId: F:Flea.Models.Table.TableType.Table
-  fullName: Flea.Models.Table.TableType.Table
-  nameWithType: Table.TableType.Table
 - uid: Flea.Models.Table.Type
   name: Type
   href: api/Flea.Models.Table.html#Flea_Models_Table_Type
@@ -945,6 +1045,30 @@ references:
   isSpec: "True"
   fullName: Flea.Models.Table.Type
   nameWithType: Table.Type
+- uid: Flea.Models.TableType
+  name: TableType
+  href: api/Flea.Models.TableType.html
+  commentId: T:Flea.Models.TableType
+  fullName: Flea.Models.TableType
+  nameWithType: TableType
+- uid: Flea.Models.TableType.Empty
+  name: Empty
+  href: api/Flea.Models.TableType.html#Flea_Models_TableType_Empty
+  commentId: F:Flea.Models.TableType.Empty
+  fullName: Flea.Models.TableType.Empty
+  nameWithType: TableType.Empty
+- uid: Flea.Models.TableType.Rack
+  name: Rack
+  href: api/Flea.Models.TableType.html#Flea_Models_TableType_Rack
+  commentId: F:Flea.Models.TableType.Rack
+  fullName: Flea.Models.TableType.Rack
+  nameWithType: TableType.Rack
+- uid: Flea.Models.TableType.Table
+  name: Table
+  href: api/Flea.Models.TableType.html#Flea_Models_TableType_Table
+  commentId: F:Flea.Models.TableType.Table
+  fullName: Flea.Models.TableType.Table
+  nameWithType: TableType.Table
 - uid: Flea.Models.ValidCustomer
   name: ValidCustomer
   href: api/Flea.Models.ValidCustomer.html

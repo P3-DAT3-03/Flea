@@ -83,6 +83,7 @@
   <div classs="implements">
     <h5>Implements</h5>
     <div><a class="xref" href="Flea.Models.IModelEntity-2.html">IModelEntity</a>&lt;<a class="xref" href="Flea.Models.Reservation.html">Reservation</a>, <a class="xref" href="Flea.Models.BingoContext.html">BingoContext</a>&gt;</div>
+    <div><span class="xref">System.ComponentModel.DataAnnotations.IValidatableObject</span></div>
   </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
@@ -112,7 +113,7 @@
   <h6><strong>Assembly</strong>: Flea.dll</h6>
   <h5 id="Flea_Models_Reservation_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class Reservation : IModelEntity&lt;Reservation, BingoContext&gt;</code></pre>
+    <pre><code class="lang-csharp hljs">public class Reservation : IModelEntity&lt;Reservation, BingoContext&gt;, IValidatableObject</code></pre>
   </div>
   <h3 id="constructors">Constructors
   </h3>
@@ -121,7 +122,7 @@
     <a href="https://github.com/P3-DAT3-03/Flea/new/main/apiSpec/new?filename=Flea_Models_Reservation__ctor.md&amp;value=---%0Auid%3A%20Flea.Models.Reservation.%23ctor%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/P3-DAT3-03/Flea/blob/main/Flea/Models/Reservation.cs/#L36">View Source</a>
+    <a href="https://github.com/P3-DAT3-03/Flea/blob/main/Flea/Models/Reservation.cs/#L43">View Source</a>
   </span>
   <a id="Flea_Models_Reservation__ctor_" data-uid="Flea.Models.Reservation.#ctor*"></a>
   <h4 id="Flea_Models_Reservation__ctor" data-uid="Flea.Models.Reservation.#ctor">Reservation()</h4>
@@ -133,13 +134,13 @@
   </div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/P3-DAT3-03/Flea/new/main/apiSpec/new?filename=Flea_Models_Reservation__ctor_System_Int32_System_Int32_System_Boolean_System_String_.md&amp;value=---%0Auid%3A%20Flea.Models.Reservation.%23ctor(System.Int32%2CSystem.Int32%2CSystem.Boolean%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/P3-DAT3-03/Flea/new/main/apiSpec/new?filename=Flea_Models_Reservation__ctor_System_Int32_System_Int32_Flea_Models_PaymentStatus_System_String_.md&amp;value=---%0Auid%3A%20Flea.Models.Reservation.%23ctor(System.Int32%2CSystem.Int32%2CFlea.Models.PaymentStatus%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/P3-DAT3-03/Flea/blob/main/Flea/Models/Reservation.cs/#L61">View Source</a>
+    <a href="https://github.com/P3-DAT3-03/Flea/blob/main/Flea/Models/Reservation.cs/#L69">View Source</a>
   </span>
   <a id="Flea_Models_Reservation__ctor_" data-uid="Flea.Models.Reservation.#ctor*"></a>
-  <h4 id="Flea_Models_Reservation__ctor_System_Int32_System_Int32_System_Boolean_System_String_" data-uid="Flea.Models.Reservation.#ctor(System.Int32,System.Int32,System.Boolean,System.String)">Reservation(Int32, Int32, Boolean, String)</h4>
+  <h4 id="Flea_Models_Reservation__ctor_System_Int32_System_Int32_Flea_Models_PaymentStatus_System_String_" data-uid="Flea.Models.Reservation.#ctor(System.Int32,System.Int32,Flea.Models.PaymentStatus,System.String)">Reservation(Int32, Int32, PaymentStatus, String)</h4>
   <div class="markdown level1 summary"><p>Constructor for use by the entity framework.
 This function should never be called.</p>
 </div>
@@ -147,7 +148,7 @@ This function should never be called.</p>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[Obsolete(&quot;This constructor should never be called manually. Intended only for EF use.&quot;)]
-public Reservation(int priority, int tableCount, bool paid, string comments)</code></pre>
+public Reservation(int priority, int tableCount, PaymentStatus status, string comments)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -170,8 +171,8 @@ public Reservation(int priority, int tableCount, bool paid, string comments)</co
         <td></td>
       </tr>
       <tr>
-        <td><span class="xref">System.Boolean</span></td>
-        <td><span class="parametername">paid</span></td>
+        <td><a class="xref" href="Flea.Models.PaymentStatus.html">PaymentStatus</a></td>
+        <td><span class="parametername">status</span></td>
         <td></td>
       </tr>
       <tr>
@@ -183,18 +184,18 @@ public Reservation(int priority, int tableCount, bool paid, string comments)</co
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/P3-DAT3-03/Flea/new/main/apiSpec/new?filename=Flea_Models_Reservation__ctor_System_Int32_System_Int32_System_Boolean_System_String_Flea_Models_Customer_Flea_Models_Event_.md&amp;value=---%0Auid%3A%20Flea.Models.Reservation.%23ctor(System.Int32%2CSystem.Int32%2CSystem.Boolean%2CSystem.String%2CFlea.Models.Customer%2CFlea.Models.Event)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/P3-DAT3-03/Flea/new/main/apiSpec/new?filename=Flea_Models_Reservation__ctor_System_Int32_System_Int32_Flea_Models_PaymentStatus_System_String_Flea_Models_Customer_Flea_Models_Event_.md&amp;value=---%0Auid%3A%20Flea.Models.Reservation.%23ctor(System.Int32%2CSystem.Int32%2CFlea.Models.PaymentStatus%2CSystem.String%2CFlea.Models.Customer%2CFlea.Models.Event)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/P3-DAT3-03/Flea/blob/main/Flea/Models/Reservation.cs/#L47">View Source</a>
+    <a href="https://github.com/P3-DAT3-03/Flea/blob/main/Flea/Models/Reservation.cs/#L55">View Source</a>
   </span>
   <a id="Flea_Models_Reservation__ctor_" data-uid="Flea.Models.Reservation.#ctor*"></a>
-  <h4 id="Flea_Models_Reservation__ctor_System_Int32_System_Int32_System_Boolean_System_String_Flea_Models_Customer_Flea_Models_Event_" data-uid="Flea.Models.Reservation.#ctor(System.Int32,System.Int32,System.Boolean,System.String,Flea.Models.Customer,Flea.Models.Event)">Reservation(Int32, Int32, Boolean, String, Customer, Event)</h4>
+  <h4 id="Flea_Models_Reservation__ctor_System_Int32_System_Int32_Flea_Models_PaymentStatus_System_String_Flea_Models_Customer_Flea_Models_Event_" data-uid="Flea.Models.Reservation.#ctor(System.Int32,System.Int32,Flea.Models.PaymentStatus,System.String,Flea.Models.Customer,Flea.Models.Event)">Reservation(Int32, Int32, PaymentStatus, String, Customer, Event)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Reservation(int priority, int tableCount, bool paid, string comments, Customer reservationOwner, Event event)</code></pre>
+    <pre><code class="lang-csharp hljs">public Reservation(int priority, int tableCount, PaymentStatus status, string comments, Customer reservationOwner, Event event)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -217,8 +218,8 @@ public Reservation(int priority, int tableCount, bool paid, string comments)</co
         <td></td>
       </tr>
       <tr>
-        <td><span class="xref">System.Boolean</span></td>
-        <td><span class="parametername">paid</span></td>
+        <td><a class="xref" href="Flea.Models.PaymentStatus.html">PaymentStatus</a></td>
+        <td><span class="parametername">status</span></td>
         <td></td>
       </tr>
       <tr>
@@ -245,7 +246,7 @@ public Reservation(int priority, int tableCount, bool paid, string comments)</co
     <a href="https://github.com/P3-DAT3-03/Flea/new/main/apiSpec/new?filename=Flea_Models_Reservation_Comments.md&amp;value=---%0Auid%3A%20Flea.Models.Reservation.Comments%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/P3-DAT3-03/Flea/blob/main/Flea/Models/Reservation.cs/#L27">View Source</a>
+    <a href="https://github.com/P3-DAT3-03/Flea/blob/main/Flea/Models/Reservation.cs/#L35">View Source</a>
   </span>
   <a id="Flea_Models_Reservation_Comments_" data-uid="Flea.Models.Reservation.Comments*"></a>
   <h4 id="Flea_Models_Reservation_Comments" data-uid="Flea.Models.Reservation.Comments">Comments</h4>
@@ -272,10 +273,41 @@ public Reservation(int priority, int tableCount, bool paid, string comments)</co
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/P3-DAT3-03/Flea/new/main/apiSpec/new?filename=Flea_Models_Reservation_Event.md&amp;value=---%0Auid%3A%20Flea.Models.Reservation.Event%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/P3-DAT3-03/Flea/new/main/apiSpec/new?filename=Flea_Models_Reservation_EmptyTableCount.md&amp;value=---%0Auid%3A%20Flea.Models.Reservation.EmptyTableCount%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/P3-DAT3-03/Flea/blob/main/Flea/Models/Reservation.cs/#L30">View Source</a>
+  </span>
+  <a id="Flea_Models_Reservation_EmptyTableCount_" data-uid="Flea.Models.Reservation.EmptyTableCount*"></a>
+  <h4 id="Flea_Models_Reservation_EmptyTableCount" data-uid="Flea.Models.Reservation.EmptyTableCount">EmptyTableCount</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Required(ErrorMessage = &quot;En reservation skal have et antal tomme stande.&quot;)]
+public int EmptyTableCount { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/P3-DAT3-03/Flea/new/main/apiSpec/new?filename=Flea_Models_Reservation_Event.md&amp;value=---%0Auid%3A%20Flea.Models.Reservation.Event%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/P3-DAT3-03/Flea/blob/main/Flea/Models/Reservation.cs/#L38">View Source</a>
   </span>
   <a id="Flea_Models_Reservation_Event_" data-uid="Flea.Models.Reservation.Event*"></a>
   <h4 id="Flea_Models_Reservation_Event" data-uid="Flea.Models.Reservation.Event">Event</h4>
@@ -305,7 +337,7 @@ public Reservation(int priority, int tableCount, bool paid, string comments)</co
     <a href="https://github.com/P3-DAT3-03/Flea/new/main/apiSpec/new?filename=Flea_Models_Reservation_Id.md&amp;value=---%0Auid%3A%20Flea.Models.Reservation.Id%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/P3-DAT3-03/Flea/blob/main/Flea/Models/Reservation.cs/#L15">View Source</a>
+    <a href="https://github.com/P3-DAT3-03/Flea/blob/main/Flea/Models/Reservation.cs/#L21">View Source</a>
   </span>
   <a id="Flea_Models_Reservation_Id_" data-uid="Flea.Models.Reservation.Id*"></a>
   <h4 id="Flea_Models_Reservation_Id" data-uid="Flea.Models.Reservation.Id">Id</h4>
@@ -332,19 +364,19 @@ public Reservation(int priority, int tableCount, bool paid, string comments)</co
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/P3-DAT3-03/Flea/new/main/apiSpec/new?filename=Flea_Models_Reservation_Paid.md&amp;value=---%0Auid%3A%20Flea.Models.Reservation.Paid%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/P3-DAT3-03/Flea/new/main/apiSpec/new?filename=Flea_Models_Reservation_PaymentStatus.md&amp;value=---%0Auid%3A%20Flea.Models.Reservation.PaymentStatus%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/P3-DAT3-03/Flea/blob/main/Flea/Models/Reservation.cs/#L25">View Source</a>
+    <a href="https://github.com/P3-DAT3-03/Flea/blob/main/Flea/Models/Reservation.cs/#L33">View Source</a>
   </span>
-  <a id="Flea_Models_Reservation_Paid_" data-uid="Flea.Models.Reservation.Paid*"></a>
-  <h4 id="Flea_Models_Reservation_Paid" data-uid="Flea.Models.Reservation.Paid">Paid</h4>
+  <a id="Flea_Models_Reservation_PaymentStatus_" data-uid="Flea.Models.Reservation.PaymentStatus*"></a>
+  <h4 id="Flea_Models_Reservation_PaymentStatus" data-uid="Flea.Models.Reservation.PaymentStatus">PaymentStatus</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[Required(ErrorMessage = &quot;En reservation skal have en betalings status.&quot;)]
-public bool Paid { get; set; }</code></pre>
+public PaymentStatus PaymentStatus { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -356,7 +388,7 @@ public bool Paid { get; set; }</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Boolean</span></td>
+        <td><a class="xref" href="Flea.Models.PaymentStatus.html">PaymentStatus</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -366,7 +398,7 @@ public bool Paid { get; set; }</code></pre>
     <a href="https://github.com/P3-DAT3-03/Flea/new/main/apiSpec/new?filename=Flea_Models_Reservation_Priority.md&amp;value=---%0Auid%3A%20Flea.Models.Reservation.Priority%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/P3-DAT3-03/Flea/blob/main/Flea/Models/Reservation.cs/#L17">View Source</a>
+    <a href="https://github.com/P3-DAT3-03/Flea/blob/main/Flea/Models/Reservation.cs/#L23">View Source</a>
   </span>
   <a id="Flea_Models_Reservation_Priority_" data-uid="Flea.Models.Reservation.Priority*"></a>
   <h4 id="Flea_Models_Reservation_Priority" data-uid="Flea.Models.Reservation.Priority">Priority</h4>
@@ -374,7 +406,7 @@ public bool Paid { get; set; }</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Required(ErrorMessage = &quot;En reservation skal have et antal borde.&quot;)]
+    <pre><code class="lang-csharp hljs">[Required(ErrorMessage = &quot;En reservation skal have et antal stande.&quot;)]
 [Range(1, 3, ErrorMessage = &quot;Prioteten skal v&#230;re mellem {1} og {2}.&quot;)]
 public int Priority { get; set; }</code></pre>
   </div>
@@ -398,7 +430,7 @@ public int Priority { get; set; }</code></pre>
     <a href="https://github.com/P3-DAT3-03/Flea/new/main/apiSpec/new?filename=Flea_Models_Reservation_ReservationOwner.md&amp;value=---%0Auid%3A%20Flea.Models.Reservation.ReservationOwner%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/P3-DAT3-03/Flea/blob/main/Flea/Models/Reservation.cs/#L32">View Source</a>
+    <a href="https://github.com/P3-DAT3-03/Flea/blob/main/Flea/Models/Reservation.cs/#L40">View Source</a>
   </span>
   <a id="Flea_Models_Reservation_ReservationOwner_" data-uid="Flea.Models.Reservation.ReservationOwner*"></a>
   <h4 id="Flea_Models_Reservation_ReservationOwner" data-uid="Flea.Models.Reservation.ReservationOwner">ReservationOwner</h4>
@@ -406,8 +438,7 @@ public int Priority { get; set; }</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Required(ErrorMessage = &quot;En reservation skal have en kunde.&quot;)]
-public Customer ReservationOwner { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public Customer ReservationOwner { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -429,7 +460,7 @@ public Customer ReservationOwner { get; set; }</code></pre>
     <a href="https://github.com/P3-DAT3-03/Flea/new/main/apiSpec/new?filename=Flea_Models_Reservation_TableCount.md&amp;value=---%0Auid%3A%20Flea.Models.Reservation.TableCount%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/P3-DAT3-03/Flea/blob/main/Flea/Models/Reservation.cs/#L21">View Source</a>
+    <a href="https://github.com/P3-DAT3-03/Flea/blob/main/Flea/Models/Reservation.cs/#L27">View Source</a>
   </span>
   <a id="Flea_Models_Reservation_TableCount_" data-uid="Flea.Models.Reservation.TableCount*"></a>
   <h4 id="Flea_Models_Reservation_TableCount" data-uid="Flea.Models.Reservation.TableCount">TableCount</h4>
@@ -437,8 +468,8 @@ public Customer ReservationOwner { get; set; }</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Required(ErrorMessage = &quot;En reservation skal have et antal borde.&quot;)]
-[Range(1, 8, ErrorMessage = &quot;Antal border skal v&#230;re mellem {1} og {2}.&quot;)]
+    <pre><code class="lang-csharp hljs">[Required(ErrorMessage = &quot;En reservation skal have et antal stande.&quot;)]
+[Range(1, 8, ErrorMessage = &quot;Antal stande skal v&#230;re mellem {1} og {2}.&quot;)]
 public int TableCount { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
@@ -461,7 +492,7 @@ public int TableCount { get; set; }</code></pre>
     <a href="https://github.com/P3-DAT3-03/Flea/new/main/apiSpec/new?filename=Flea_Models_Reservation_Tables.md&amp;value=---%0Auid%3A%20Flea.Models.Reservation.Tables%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/P3-DAT3-03/Flea/blob/main/Flea/Models/Reservation.cs/#L28">View Source</a>
+    <a href="https://github.com/P3-DAT3-03/Flea/blob/main/Flea/Models/Reservation.cs/#L36">View Source</a>
   </span>
   <a id="Flea_Models_Reservation_Tables_" data-uid="Flea.Models.Reservation.Tables*"></a>
   <h4 id="Flea_Models_Reservation_Tables" data-uid="Flea.Models.Reservation.Tables">Tables</h4>
@@ -493,7 +524,7 @@ public int TableCount { get; set; }</code></pre>
     <a href="https://github.com/P3-DAT3-03/Flea/new/main/apiSpec/new?filename=Flea_Models_Reservation_Clone.md&amp;value=---%0Auid%3A%20Flea.Models.Reservation.Clone%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/P3-DAT3-03/Flea/blob/main/Flea/Models/Reservation.cs/#L74">View Source</a>
+    <a href="https://github.com/P3-DAT3-03/Flea/blob/main/Flea/Models/Reservation.cs/#L82">View Source</a>
   </span>
   <a id="Flea_Models_Reservation_Clone_" data-uid="Flea.Models.Reservation.Clone*"></a>
   <h4 id="Flea_Models_Reservation_Clone" data-uid="Flea.Models.Reservation.Clone">Clone()</h4>
@@ -523,7 +554,7 @@ public int TableCount { get; set; }</code></pre>
     <a href="https://github.com/P3-DAT3-03/Flea/new/main/apiSpec/new?filename=Flea_Models_Reservation_GetDbSet_Flea_Models_BingoContext_.md&amp;value=---%0Auid%3A%20Flea.Models.Reservation.GetDbSet(Flea.Models.BingoContext)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/P3-DAT3-03/Flea/blob/main/Flea/Models/Reservation.cs/#L75">View Source</a>
+    <a href="https://github.com/P3-DAT3-03/Flea/blob/main/Flea/Models/Reservation.cs/#L83">View Source</a>
   </span>
   <a id="Flea_Models_Reservation_GetDbSet_" data-uid="Flea.Models.Reservation.GetDbSet*"></a>
   <h4 id="Flea_Models_Reservation_GetDbSet_Flea_Models_BingoContext_" data-uid="Flea.Models.Reservation.GetDbSet(Flea.Models.BingoContext)">GetDbSet(BingoContext)</h4>
@@ -565,9 +596,75 @@ public int TableCount { get; set; }</code></pre>
       </tr>
     </tbody>
   </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/P3-DAT3-03/Flea/new/main/apiSpec/new?filename=Flea_Models_Reservation_Validate_System_ComponentModel_DataAnnotations_ValidationContext_.md&amp;value=---%0Auid%3A%20Flea.Models.Reservation.Validate(System.ComponentModel.DataAnnotations.ValidationContext)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/P3-DAT3-03/Flea/blob/main/Flea/Models/Reservation.cs/#L90">View Source</a>
+  </span>
+  <a id="Flea_Models_Reservation_Validate_" data-uid="Flea.Models.Reservation.Validate*"></a>
+  <h4 id="Flea_Models_Reservation_Validate_System_ComponentModel_DataAnnotations_ValidationContext_" data-uid="Flea.Models.Reservation.Validate(System.ComponentModel.DataAnnotations.ValidationContext)">Validate(ValidationContext)</h4>
+  <div class="markdown level1 summary"><p>Used to validate fields that are dependent on each other</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IEnumerable&lt;ValidationResult&gt; Validate(ValidationContext validationContext)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ComponentModel.DataAnnotations.ValidationContext</span></td>
+        <td><span class="parametername">validationContext</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IEnumerable</span>&lt;<span class="xref">System.ComponentModel.DataAnnotations.ValidationResult</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotImplementedException</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   <h3 id="implements">Implements</h3>
   <div>
       <a class="xref" href="Flea.Models.IModelEntity-2.html">IModelEntity&lt;TEntity, TContext&gt;</a>
+  </div>
+  <div>
+      <span class="xref">System.ComponentModel.DataAnnotations.IValidatableObject</span>
   </div>
 </article>
           </div>
@@ -580,7 +677,7 @@ public int TableCount { get; set; }</code></pre>
                     <a href="https://github.com/P3-DAT3-03/Flea/new/main/apiSpec/new?filename=Flea_Models_Reservation.md&amp;value=---%0Auid%3A%20Flea.Models.Reservation%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/P3-DAT3-03/Flea/blob/main/Flea/Models/Reservation.cs/#L8" class="contribution-link">View Source</a>
+                    <a href="https://github.com/P3-DAT3-03/Flea/blob/main/Flea/Models/Reservation.cs/#L14" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>
