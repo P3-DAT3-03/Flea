@@ -12,7 +12,7 @@
 <div class="padded-content">
     <div class="view-head">
         <input class="search-input" type="search" value="" placeholder="Søg efter loppe..." @oninput="Search">
-        <Modal ButtonCSS="button c-blue float-right" ButtonName="Opret ny loppe" @ref="_child">
+        <Modal ButtonCss="button c-blue float-right" ButtonName="Opret ny loppe" @ref="_child">
             <CustomerForm Customer="_temp" OnValidSubmit="CreateCustomer" Modal="_child"></CustomerForm>
         </Modal>
     </div>
@@ -21,8 +21,7 @@
         <div class="scrollable">
             @foreach (var customer in _shownCustomers)
             {
-                
-                    <CustomerUserListItem Customer="@customer" OnEdit="@UpdateCustomer" OnDelete="@DeleteCustomer"/>
+                <CustomerUserListItem Customer="@customer" OnEdit="@UpdateCustomer" OnDelete="@DeleteCustomer"/>
             }
         </div>
         <div style="display: inline-block"></div>

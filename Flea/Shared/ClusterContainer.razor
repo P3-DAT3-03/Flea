@@ -1,74 +1,81 @@
 ﻿@using Flea.Models
 <div class="cluster-container">
-    @{
+    @if (Clusters is not null)
+    {
         var top = Clusters.Where(c =>
             char.IsDigit(c.Name[0]) && int.Parse(c.Name) < 5);
-    
+
         var topMiddle = Clusters.Where(c =>
             char.IsLetter(c.Name[0]) && c.Name[0] >= 'M' && c.Name[0] <= 'P');
-    
+
         var middle = Clusters.Where(c =>
             char.IsLetter(c.Name[0]) && c.Name[0] >= 'A' && c.Name[0] <= 'L');
-    
+
         var bottom = Clusters.Where(c =>
-            char.IsDigit(c.Name[0]) && int.Parse(c.Name) >= 5);
-    }
-    @* 2 clusters(2,4) opråber 2 clusters(4,2) *@
-    <div class="clusters upper center">
-        @{ var i = 0;}
-        @foreach (var cluster in top)
-        {
-            <Cluster
-                Inner="@cluster"
-                SetColor="@SetColor"
-                SetValue="@SetValue"
-                OnTableSelect="@(p=> OnTableSelect.InvokeAsync(p))"/>
-            if (i++ == 1)
-            {<div class="rando">Oplæser</div>}
-        }
-    </div>
-    <div class="clusters middle-top center">
-        @foreach (var cluster in topMiddle)
-        {
-            <Cluster
-                Inner="@cluster"
-                SetColor="@SetColor"
-                SetValue="@SetValue"
-                OnTableSelect="@(p=> OnTableSelect.InvokeAsync(p))"/>
-        }
-    </div>
-    <div class="clusters middle center">
-        @foreach (var cluster in middle)
-        {
-            <Cluster
-                Inner="@cluster"
-                SetColor="@SetColor"
-                SetValue="@SetValue"
-                OnTableSelect="@(p=> OnTableSelect.InvokeAsync(p))"/>
-        }
-    </div>
+            char.IsDigit(c.Name[0]) && int.Parse(c.Name) >= 5); 
+            
+        @* 2 clusters(2,4) opråber 2 clusters(4,2) *@
+        <div class="clusters upper center">
+            @{ var i = 0;}
+            @foreach (var cluster in top)
+            {
+                <Cluster
+                    Inner="@cluster"
+                    SetColor="@SetColor"
+                    SetValue="@SetValue"
+                    OnTableSelect="@(p => OnTableSelect.InvokeAsync(p))"/>
+                if (i++ == 1)
+                {<div class="rando">Oplæser</div>}
+            }
+        </div>
+        <div class="clusters middle-top center">
+            @foreach (var cluster in topMiddle)
+            {
+                <Cluster
+                    Inner="@cluster"
+                    SetColor="@SetColor"
+                    SetValue="@SetValue"
+                    SetTableInner="@SetTableContent"
+                    OnTableSelect="@(p => OnTableSelect.InvokeAsync(p))"/>
+            }
+        </div>
+        <div class="clusters middle center">
+            @foreach (var cluster in middle)
+            {
+                <Cluster
+                    Inner="@cluster"
+                    SetColor="@SetColor"
+                    SetValue="@SetValue"
+                    SetTableInner="@SetTableContent"
+                    OnTableSelect="@(p => OnTableSelect.InvokeAsync(p))"/>
+            }
+        </div>
     @* 3 clusters(4,3,3) *@
-    <div class="clusters lower center">
-        @foreach (var cluster in bottom)
-        {
-            <Cluster
-                Inner="@cluster"
-                SetColor="@SetColor"
-                SetValue="@SetValue"
-                OnTableSelect="@(p=> OnTableSelect.InvokeAsync(p))"/>
-        }
-    </div>
+        <div class="clusters lower center">
+            @foreach (var cluster in bottom)
+            {
+                <Cluster
+                    Inner="@cluster"
+                    SetColor="@SetColor"
+                    SetValue="@SetValue"
+                    SetTableInner="@SetTableContent"
+                    OnTableSelect="@(p => OnTableSelect.InvokeAsync(p))"/>
+            }
+        </div>
     @* tilgængelig, reseveret, start node, mulig sti *@
+    }
 </div>
 
 @code {
     [Parameter]
-    public  Cluster.SelectColor SetColor { get; set; }
+    public  Cluster.SelectColor? SetColor { get; set; }
     [Parameter]
-    public  Cluster.SelectValue SetValue { get; set; }
+    public  Cluster.SelectValue? SetValue { get; set; }
+    [Parameter]
+    public  Cluster.SetTableContent? SetTableContent { get; set; }
     [Parameter]
     public EventCallback<(Table, Models.Cluster,int)> OnTableSelect { get; set; }
 
     [Parameter] 
-    public IEnumerable<Models.Cluster> Clusters { get; set; }
+    public IEnumerable<Models.Cluster>? Clusters { get; set; }
 }

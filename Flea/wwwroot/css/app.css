@@ -99,6 +99,8 @@
     --ios-purple: rgb(191, 90, 242);
     --ios-pink: rgb(255, 55, 95);
     --ios-brown: rgb(172, 142, 104);
+
+    --ios-orange-raw: 255, 159, 10;
     
     --table-large: 2.50em;
     --table-small: 1.25em;
@@ -224,6 +226,7 @@ body, html {
     font-size: x-large;
     font-weight: bolder;
 }
+
 .side-panel .container {
     display: flex;
     flex-direction: row;
@@ -493,8 +496,35 @@ a, .btn-link {
     font-weight: bold;
     color: var(--ios-blue);
 }
+.animation-container{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+.animation-container img {
+    -moz-animation: swing 5s infinite;
+    -webkit-animation: swing 5s infinite;
+    -o-animation: swing 5s infinite;
+    animation: swing 5s infinite;
+    width: 60%;
+}
 
+@-webkit-keyframes swing {
+    20% { -webkit-transform: rotate(15deg); }
+    40% { -webkit-transform: rotate(-15deg); }
+    60% { -webkit-transform: rotate(15deg); }
+    80% { -webkit-transform: rotate(-15deg); }
+    100% { -webkit-transform: rotate(0deg); }
+}
 
+@keyframes swing {
+    20% { transform: rotate(15deg); }
+    40% { transform: rotate(-15deg); }
+    60% { transform: rotate(15deg); }
+    80% { transform: rotate(-15deg); }
+    100% { transform: rotate(0deg); }
+}
 
 
 

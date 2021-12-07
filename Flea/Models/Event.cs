@@ -1,7 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
@@ -23,53 +21,51 @@ namespace Flea.Models
         /// The date at which the event will be held.
         /// </summary>
         public DateTime DateTime { get; set; }
-        public string Name { get; set; }
-        
-        
-        public List<Cluster> Clusters { get; set; }
+        public string Name { get; set; } = null!;
+
+
+        public List<Cluster> Clusters { get; set; } = null!;
         public List<Reservation> Reservations { get; set; }= new();
-        public Event PreviousEvent { get; set; }
 
 
         /* the constructor creates the event and all the needed clusters in the bingo fleamarket formet*/
+        [Obsolete("This constructor should never be called manually. Intended only for EF use.")]
         public Event() {}
         public Event(DateTime dateTime)
         {
             DateTime = dateTime;
             UpdateName();
 
-            Clusters = new List<Cluster>();
-            // Top
-            Clusters.Add(new Cluster("1", 2, 2, ClusterType.Vertical));
-            Clusters.Add(new Cluster("2", 4, 4, ClusterType.Vertical));
-            Clusters.Add(new Cluster("3", 4, 4, ClusterType.Vertical));
-            Clusters.Add(new Cluster("4", 2, 2, ClusterType.Vertical));
-            // Middle
-
-            Clusters.Add(new Cluster("A", 4, 8, ClusterType.Round));
-            Clusters.Add(new Cluster("D", 4, 8, ClusterType.Round));
-            Clusters.Add(new Cluster("G", 4, 8, ClusterType.Round));
-            Clusters.Add(new Cluster("J", 4, 8, ClusterType.Round));
-
-            Clusters.Add(new Cluster("B", 4, 8, ClusterType.Round));
-            Clusters.Add(new Cluster("E", 4, 8, ClusterType.Round));
-            Clusters.Add(new Cluster("H", 4, 8, ClusterType.Round));
-            Clusters.Add(new Cluster("K", 4, 8, ClusterType.Round));
-            
-            Clusters.Add(new Cluster("C", 4, 8, ClusterType.Round));
-            Clusters.Add(new Cluster("F", 4, 8, ClusterType.Round));
-            Clusters.Add(new Cluster("I", 4, 8, ClusterType.Round));
-            Clusters.Add(new Cluster("L", 4, 8, ClusterType.Round));
-            
-            Clusters.Add(new Cluster("M", 3, 3, ClusterType.Vertical));
-            Clusters.Add(new Cluster("N", 3, 3, ClusterType.Vertical));
-            Clusters.Add(new Cluster("O", 3, 3, ClusterType.Vertical));
-            Clusters.Add(new Cluster("P", 3, 3, ClusterType.Vertical));
-
-            //Bottom
-            Clusters.Add(new Cluster("5", 4, 4, ClusterType.Vertical));
-            Clusters.Add(new Cluster("6", 3, 3, ClusterType.Vertical));
-            Clusters.Add(new Cluster("7", 3, 3, ClusterType.Vertical));
+            Clusters = new List<Cluster>
+            {
+                // Top
+                new ("1", 2, 2, ClusterType.Vertical),
+                new ("2", 4, 4, ClusterType.Vertical),
+                new ("3", 4, 4, ClusterType.Vertical),
+                new ("4", 2, 2, ClusterType.Vertical),
+                // Top Middle
+                new ("M", 3, 3, ClusterType.Vertical),
+                new ("N", 3, 3, ClusterType.Vertical),
+                new ("O", 3, 3, ClusterType.Vertical),
+                new ("P", 3, 3, ClusterType.Vertical),
+                // Middle
+                new ("A", 4, 8, ClusterType.Round),
+                new ("D", 4, 8, ClusterType.Round),
+                new ("G", 4, 8, ClusterType.Round),
+                new ("J", 4, 8, ClusterType.Round),
+                new ("B", 4, 8, ClusterType.Round),
+                new ("E", 4, 8, ClusterType.Round),
+                new ("H", 4, 8, ClusterType.Round),
+                new ("K", 4, 8, ClusterType.Round),
+                new ("C", 4, 8, ClusterType.Round),
+                new ("F", 4, 8, ClusterType.Round),
+                new ("I", 4, 8, ClusterType.Round),
+                new ("L", 4, 8, ClusterType.Round),
+                //Bottom
+                new ("5", 4, 4, ClusterType.Vertical),
+                new ("6", 3, 3, ClusterType.Vertical),
+                new ("7", 3, 3, ClusterType.Vertical)
+            };
         }
 
         public void UpdateName()
@@ -80,9 +76,24 @@ namespace Flea.Models
         public Event Clone() => (Event) MemberwiseClone();
 
         public int ComputeMissingPayments => 
-            Reservations.Aggregate(0, (acc, reservation) => reservation.PaymentStatus == PaymentStatus.Paid ? acc : acc + 1);
+            Reservations.Aggregate(0, (acc, reservation) => reservation.PaymentStatus == PaymentStatus.NotPaid ? acc + 1 : acc);
+        
+        public int ComputeArrived => 
+            Reservations.Aggregate(0, (acc, reservation) => reservation.Arrived ? acc + 1 : acc);
+        public int ComputeReservationCount => 
+            Reservations.Aggregate(0, (acc, _) =>  acc + 1);
 
         public int ComputeRemainingTables => Clusters.Aggregate(0, (acc, cluster) => acc + cluster.TablesNotPlaced);
-        DbSet<Event> IModelEntity<Event, BingoContext>.GetDbSet(BingoContext ctx) => ctx.Events;
+        
+        public int ComputeTableCount => Clusters.Aggregate(0, (acc, cluster) => acc + cluster.Tables.Count);
+        public int ComputeEmptyTableCount => Clusters.Aggregate(0, (acc, cluster) => acc + cluster.EmptyTableCount);
+
+        public IEnumerable<Table> AssignReservation(Cluster cluster, int[] tableIds, Reservation r)
+        {
+            var tables = cluster.Tables.FindAll(t => tableIds.Contains(t.Id));
+            tables.ForEach(t=> t.Reservation = r);
+            return tables;
+        }
+        DbSet<Event> IModelEntity<Event, BingoContext>.GetDbSet(BingoContext ctx) => ctx.Events!;
     }
 }

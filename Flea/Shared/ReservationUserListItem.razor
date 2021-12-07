@@ -16,7 +16,7 @@
     </div>
     <div class="reservation__actions">
         <button class="button c-red" @onclick="Delete">Slet</button>
-        <Modal ButtonCSS="button c-g2" ButtonName="Rediger" @ref="_child">
+        <Modal ButtonCss="button c-g2" ButtonName="Rediger" @ref="_child">
             <ReservationForm Reservation="_temp" OnValidSubmit="OnSubmit" Modal="_child"></ReservationForm>
         </Modal>
     </div>

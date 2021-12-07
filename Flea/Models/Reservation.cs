@@ -32,14 +32,17 @@ namespace Flea.Models
         
         [Required(ErrorMessage = "En reservation skal have en betalings status.")]
         public PaymentStatus PaymentStatus { get; set; }
-        public string Comments { get; set; }
+        
+        public bool Arrived { get; set; }
+        public string Comments { get; set; } = null!;
         public List<Table> Tables { get; set; } = new();
         
-        public Event Event { get; set; }
-        
-        [ValidCustomer(ErrorMessage = "En reservation skal have en kunde.")]
-        public Customer ReservationOwner { get; set; }
+        public Event Event { get; set; } = null!;
 
+        [ValidCustomer(ErrorMessage = "En reservation skal have en kunde.")]
+        public Customer ReservationOwner { get; set; } = null!;
+
+        [Obsolete("This constructor should never be called manually. Intended only for EF use.")]
         public Reservation() {}
 
         /// <summary>
@@ -47,7 +50,6 @@ namespace Flea.Models
         /// </summary>
         /// <param name="priority"></param>
         /// <param name="tableCount"></param>
-        /// <param name="emptyTableCount"></param>
         /// <param name="status"></param>
         /// <param name="comments"></param>
         /// <param name="reservationOwner"></param>
@@ -67,7 +69,6 @@ namespace Flea.Models
         /// This function should never be called.
         /// </summary>
         [Obsolete("This constructor should never be called manually. Intended only for EF use.")]
-        // ReSharper disable once UnusedMember.Global
         public Reservation(int priority, int tableCount, PaymentStatus status, string comments)
         {
             Priority = priority;

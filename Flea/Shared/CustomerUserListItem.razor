@@ -8,7 +8,7 @@
     <div class="customer__phone">+45 @Customer.PhoneNumber</div>
     <div class="flex-end" style="gap: 12px">
         <button class="button c-red" @onclick="Delete">Slet</button>
-        <Modal ButtonCSS="button c-g2" ButtonName="Rediger" @ref="_modal">
+        <Modal ButtonCss="button c-g2" ButtonName="Rediger" @ref="_modal">
             <CustomerForm Customer="_temp" OnValidSubmit="OnSubmit" Modal="_modal"></CustomerForm>
         </Modal>
     </div>

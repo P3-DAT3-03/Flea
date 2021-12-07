@@ -14,11 +14,11 @@
                 ClusterType.Horizontal => "horizontal",
                 _ => "vertical"
             };
-            tableClass += SetColor!(Inner, Inner.Tables[i]);
-            var value = SetValue!(Inner, Inner.Tables[i]);
+            tableClass += SetColor?.Invoke(Inner, Inner.Tables[i]) ?? " white";
+            var value = SetValue?.Invoke(Inner, Inner.Tables[i]) ?? - 1;
             var pathId = i;
             <div class="table @tableClass" value="@value" @onclick="()=>OnTableClicked(Inner.Tables[pathId], value)">
-                @i
+                @(SetTableInner?.Invoke(Inner, Inner.Tables[i]))
             </div>
         }
         @if (Inner.Type == ClusterType.Round)
@@ -36,6 +36,9 @@
     
     [Parameter]
     public SelectValue? SetValue { get; set; }
+    
+    [Parameter]
+    public SetTableContent? SetTableInner { get; set; }
 
     [Parameter]
     public EventCallback<(Table,Models.Cluster,int)> OnTableSelect { get; set; }
@@ -45,6 +48,8 @@
     public delegate int SelectValue(Models.Cluster cluster, Table table);
 
     public delegate string SelectColor(Models.Cluster cluster, Table table);
+    
+    public delegate string SetTableContent(Models.Cluster cluster, Table table);
     
     private async Task OnTableClicked(Table table, int pathId)
     {

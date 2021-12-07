@@ -1,0 +1,110 @@
+﻿@page "/Event/{EventId:int}/Floorplan"
+@inject IDbContextFactory<BingoContext> _dbFactory
+@using Flea.Models
+@using Microsoft.EntityFrameworkCore
+@using Cluster = Flea.Models.Cluster
+@using System.Globalization
+@if (TitleDate is not null)
+{
+    <HeaderTitle Value="@($"Gulv Plan til den <span class='date'>{TitleDate}</span>")"/>
+}
+<div class="container event-placement">
+    @if (Event?.Clusters != null)
+    {
+        <div class="cluster-body">
+            <ClusterContainer 
+                SetColor="@SetColor"
+                SetValue="@( (_,_) => -1)"
+                OnTableSelect="@(_ =>{})"
+                SetTableContent="@((_,_)=>"")"
+                Clusters="@Event?.Clusters"/>
+            <div class="guides center">
+                <div class="guide">
+                    <div class="ball red"></div>
+                    <p>Ikke betalt</p>
+                </div>
+                <div class="guide">
+                    <div class="ball blue"></div>
+                    <p>Betalings aftale</p>
+                </div>
+                <div class="guide">
+                    <div class="ball green"></div>
+                    <p>Ankommet</p>
+                </div>
+                <div class="guide">
+                    <div class="ball white"></div>
+                    <p>Ikke Ankommet</p>
+                </div>
+            </div>
+        </div>
+        <div class="side-panel">
+            <h3>Oversigt over Gulv Plan</h3>
+            <h3 style="color: var(--ios-green)">@Event.ComputeRemainingTables/@Event.ComputeTableCount</h3>
+            <p>Stande er blevet udlejet</p>
+            <br/>
+            <h3 style="color: var(--ios-red)">@Event.ComputeArrived/@Event.ComputeReservationCount</h3>
+            <p>Lopper der er ankommet</p>
+            <br/>
+            <h3 style="color: var(--ios-orange)">@Event.ComputeMissingPayments/@Event.ComputeReservationCount</h3>
+            <p>Lopper der har betalt</p>
+            <br/>
+            <div class="buttons">
+                <br/>
+                <a class="button--large--cta large-button grey2" href="@($"Event/{EventId}/Market")">Gå Til Markede</a>
+                <br/>
+                <a class="button--large--cta large-button blue" href="@($"Event/{EventId}/Tableplan")">Se Bord Plan</a>
+            </div>
+        </div>
+    }
+</div>
+
+
+@code {
+
+    [Parameter]
+    public int EventId { get; set; }
+    
+    private string? TitleDate => Event?.DateTime.ToString("d. MMMM, yyyy", CultureInfo.CreateSpecificCulture("da-DK"));
+
+    public Event? Event;
+
+    private string SetColor(Cluster cluster, Table table)
+    {
+        return table.Reservation switch {
+            {PaymentStatus: PaymentStatus.NotPaid } => " red",
+            {PaymentStatus: PaymentStatus.Other } => " blue",
+            {Arrived: true } => " green",
+            _ => " white"
+        };
+    }
+
+    private async Task<Event?> GetEvent()
+    {
+        await using var context = _dbFactory.CreateDbContext();
+        if (context.Events != null)
+            return await context.Events
+                .Include("Clusters.Tables.Reservation.ReservationOwner")
+                .Include("Clusters.Tables.Reservation.Tables")
+                .AsSplitQuery()
+                .OrderBy(e => e.Id)
+                .FirstOrDefaultAsync(e => e.Id == EventId);
+        return null;
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        NavMenu.EventId = EventId;
+        Event = await GetEvent();
+        if (Event != null)
+        {
+            Event.Clusters.Sort((a, b) => a.Name[0] - b.Name[0]);
+            Event.Clusters.Reverse();
+            foreach (var cluster in Event.Clusters)
+            {
+                cluster.Tables.Sort((a, b) => a.Id - b.Id);
+            }
+        }
+        await base.OnInitializedAsync();
+    }
+
+}
