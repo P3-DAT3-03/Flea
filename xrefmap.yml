@@ -103,6 +103,51 @@ references:
   isSpec: "True"
   fullName: Flea.Migrations.phonenumber_to_string.Up
   nameWithType: phonenumber_to_string.Up
+- uid: Flea.Migrations.reservation_arrived
+  name: reservation_arrived
+  href: api/Flea.Migrations.reservation_arrived.html
+  commentId: T:Flea.Migrations.reservation_arrived
+  fullName: Flea.Migrations.reservation_arrived
+  nameWithType: reservation_arrived
+- uid: Flea.Migrations.reservation_arrived.BuildTargetModel(ModelBuilder)
+  name: BuildTargetModel(ModelBuilder)
+  href: api/Flea.Migrations.reservation_arrived.html#Flea_Migrations_reservation_arrived_BuildTargetModel_ModelBuilder_
+  commentId: M:Flea.Migrations.reservation_arrived.BuildTargetModel(ModelBuilder)
+  fullName: Flea.Migrations.reservation_arrived.BuildTargetModel(ModelBuilder)
+  nameWithType: reservation_arrived.BuildTargetModel(ModelBuilder)
+- uid: Flea.Migrations.reservation_arrived.BuildTargetModel*
+  name: BuildTargetModel
+  href: api/Flea.Migrations.reservation_arrived.html#Flea_Migrations_reservation_arrived_BuildTargetModel_
+  commentId: Overload:Flea.Migrations.reservation_arrived.BuildTargetModel
+  isSpec: "True"
+  fullName: Flea.Migrations.reservation_arrived.BuildTargetModel
+  nameWithType: reservation_arrived.BuildTargetModel
+- uid: Flea.Migrations.reservation_arrived.Down(MigrationBuilder)
+  name: Down(MigrationBuilder)
+  href: api/Flea.Migrations.reservation_arrived.html#Flea_Migrations_reservation_arrived_Down_MigrationBuilder_
+  commentId: M:Flea.Migrations.reservation_arrived.Down(MigrationBuilder)
+  fullName: Flea.Migrations.reservation_arrived.Down(MigrationBuilder)
+  nameWithType: reservation_arrived.Down(MigrationBuilder)
+- uid: Flea.Migrations.reservation_arrived.Down*
+  name: Down
+  href: api/Flea.Migrations.reservation_arrived.html#Flea_Migrations_reservation_arrived_Down_
+  commentId: Overload:Flea.Migrations.reservation_arrived.Down
+  isSpec: "True"
+  fullName: Flea.Migrations.reservation_arrived.Down
+  nameWithType: reservation_arrived.Down
+- uid: Flea.Migrations.reservation_arrived.Up(MigrationBuilder)
+  name: Up(MigrationBuilder)
+  href: api/Flea.Migrations.reservation_arrived.html#Flea_Migrations_reservation_arrived_Up_MigrationBuilder_
+  commentId: M:Flea.Migrations.reservation_arrived.Up(MigrationBuilder)
+  fullName: Flea.Migrations.reservation_arrived.Up(MigrationBuilder)
+  nameWithType: reservation_arrived.Up(MigrationBuilder)
+- uid: Flea.Migrations.reservation_arrived.Up*
+  name: Up
+  href: api/Flea.Migrations.reservation_arrived.html#Flea_Migrations_reservation_arrived_Up_
+  commentId: Overload:Flea.Migrations.reservation_arrived.Up
+  isSpec: "True"
+  fullName: Flea.Migrations.reservation_arrived.Up
+  nameWithType: reservation_arrived.Up
 - uid: Flea.Migrations.various_changes
   name: various_changes
   href: api/Flea.Migrations.various_changes.html
@@ -234,12 +279,6 @@ references:
   commentId: T:Flea.Models.Cluster
   fullName: Flea.Models.Cluster
   nameWithType: Cluster
-- uid: Flea.Models.Cluster.#ctor
-  name: Cluster()
-  href: api/Flea.Models.Cluster.html#Flea_Models_Cluster__ctor
-  commentId: M:Flea.Models.Cluster.#ctor
-  fullName: Flea.Models.Cluster.Cluster()
-  nameWithType: Cluster.Cluster()
 - uid: Flea.Models.Cluster.#ctor(System.String,System.Int32)
   name: Cluster(String, Int32)
   href: api/Flea.Models.Cluster.html#Flea_Models_Cluster__ctor_System_String_System_Int32_
@@ -259,19 +298,6 @@ references:
   isSpec: "True"
   fullName: Flea.Models.Cluster.Cluster
   nameWithType: Cluster.Cluster
-- uid: Flea.Models.Cluster.AssignReservationToTables
-  name: AssignReservationToTables
-  href: api/Flea.Models.Cluster.html#Flea_Models_Cluster_AssignReservationToTables
-  commentId: P:Flea.Models.Cluster.AssignReservationToTables
-  fullName: Flea.Models.Cluster.AssignReservationToTables
-  nameWithType: Cluster.AssignReservationToTables
-- uid: Flea.Models.Cluster.AssignReservationToTables*
-  name: AssignReservationToTables
-  href: api/Flea.Models.Cluster.html#Flea_Models_Cluster_AssignReservationToTables_
-  commentId: Overload:Flea.Models.Cluster.AssignReservationToTables
-  isSpec: "True"
-  fullName: Flea.Models.Cluster.AssignReservationToTables
-  nameWithType: Cluster.AssignReservationToTables
 - uid: Flea.Models.Cluster.CustomerCount
   name: CustomerCount
   href: api/Flea.Models.Cluster.html#Flea_Models_Cluster_CustomerCount
@@ -285,6 +311,19 @@ references:
   isSpec: "True"
   fullName: Flea.Models.Cluster.CustomerCount
   nameWithType: Cluster.CustomerCount
+- uid: Flea.Models.Cluster.EmptyTableCount
+  name: EmptyTableCount
+  href: api/Flea.Models.Cluster.html#Flea_Models_Cluster_EmptyTableCount
+  commentId: P:Flea.Models.Cluster.EmptyTableCount
+  fullName: Flea.Models.Cluster.EmptyTableCount
+  nameWithType: Cluster.EmptyTableCount
+- uid: Flea.Models.Cluster.EmptyTableCount*
+  name: EmptyTableCount
+  href: api/Flea.Models.Cluster.html#Flea_Models_Cluster_EmptyTableCount_
+  commentId: Overload:Flea.Models.Cluster.EmptyTableCount
+  isSpec: "True"
+  fullName: Flea.Models.Cluster.EmptyTableCount
+  nameWithType: Cluster.EmptyTableCount
 - uid: Flea.Models.Cluster.Id
   name: Id
   href: api/Flea.Models.Cluster.html#Flea_Models_Cluster_Id
@@ -540,6 +579,22 @@ references:
   isSpec: "True"
   fullName: Flea.Models.Event.Event
   nameWithType: Event.Event
+- uid: Flea.Models.Event.AssignReservation(Flea.Models.Cluster,System.Int32[],Flea.Models.Reservation)
+  name: AssignReservation(Cluster, Int32[], Reservation)
+  href: api/Flea.Models.Event.html#Flea_Models_Event_AssignReservation_Flea_Models_Cluster_System_Int32___Flea_Models_Reservation_
+  commentId: M:Flea.Models.Event.AssignReservation(Flea.Models.Cluster,System.Int32[],Flea.Models.Reservation)
+  name.vb: AssignReservation(Cluster, Int32(), Reservation)
+  fullName: Flea.Models.Event.AssignReservation(Flea.Models.Cluster, System.Int32[], Flea.Models.Reservation)
+  fullName.vb: Flea.Models.Event.AssignReservation(Flea.Models.Cluster, System.Int32(), Flea.Models.Reservation)
+  nameWithType: Event.AssignReservation(Cluster, Int32[], Reservation)
+  nameWithType.vb: Event.AssignReservation(Cluster, Int32(), Reservation)
+- uid: Flea.Models.Event.AssignReservation*
+  name: AssignReservation
+  href: api/Flea.Models.Event.html#Flea_Models_Event_AssignReservation_
+  commentId: Overload:Flea.Models.Event.AssignReservation
+  isSpec: "True"
+  fullName: Flea.Models.Event.AssignReservation
+  nameWithType: Event.AssignReservation
 - uid: Flea.Models.Event.Clone
   name: Clone()
   href: api/Flea.Models.Event.html#Flea_Models_Event_Clone
@@ -566,6 +621,32 @@ references:
   isSpec: "True"
   fullName: Flea.Models.Event.Clusters
   nameWithType: Event.Clusters
+- uid: Flea.Models.Event.ComputeArrived
+  name: ComputeArrived
+  href: api/Flea.Models.Event.html#Flea_Models_Event_ComputeArrived
+  commentId: P:Flea.Models.Event.ComputeArrived
+  fullName: Flea.Models.Event.ComputeArrived
+  nameWithType: Event.ComputeArrived
+- uid: Flea.Models.Event.ComputeArrived*
+  name: ComputeArrived
+  href: api/Flea.Models.Event.html#Flea_Models_Event_ComputeArrived_
+  commentId: Overload:Flea.Models.Event.ComputeArrived
+  isSpec: "True"
+  fullName: Flea.Models.Event.ComputeArrived
+  nameWithType: Event.ComputeArrived
+- uid: Flea.Models.Event.ComputeEmptyTableCount
+  name: ComputeEmptyTableCount
+  href: api/Flea.Models.Event.html#Flea_Models_Event_ComputeEmptyTableCount
+  commentId: P:Flea.Models.Event.ComputeEmptyTableCount
+  fullName: Flea.Models.Event.ComputeEmptyTableCount
+  nameWithType: Event.ComputeEmptyTableCount
+- uid: Flea.Models.Event.ComputeEmptyTableCount*
+  name: ComputeEmptyTableCount
+  href: api/Flea.Models.Event.html#Flea_Models_Event_ComputeEmptyTableCount_
+  commentId: Overload:Flea.Models.Event.ComputeEmptyTableCount
+  isSpec: "True"
+  fullName: Flea.Models.Event.ComputeEmptyTableCount
+  nameWithType: Event.ComputeEmptyTableCount
 - uid: Flea.Models.Event.ComputeMissingPayments
   name: ComputeMissingPayments
   href: api/Flea.Models.Event.html#Flea_Models_Event_ComputeMissingPayments
@@ -592,6 +673,32 @@ references:
   isSpec: "True"
   fullName: Flea.Models.Event.ComputeRemainingTables
   nameWithType: Event.ComputeRemainingTables
+- uid: Flea.Models.Event.ComputeReservationCount
+  name: ComputeReservationCount
+  href: api/Flea.Models.Event.html#Flea_Models_Event_ComputeReservationCount
+  commentId: P:Flea.Models.Event.ComputeReservationCount
+  fullName: Flea.Models.Event.ComputeReservationCount
+  nameWithType: Event.ComputeReservationCount
+- uid: Flea.Models.Event.ComputeReservationCount*
+  name: ComputeReservationCount
+  href: api/Flea.Models.Event.html#Flea_Models_Event_ComputeReservationCount_
+  commentId: Overload:Flea.Models.Event.ComputeReservationCount
+  isSpec: "True"
+  fullName: Flea.Models.Event.ComputeReservationCount
+  nameWithType: Event.ComputeReservationCount
+- uid: Flea.Models.Event.ComputeTableCount
+  name: ComputeTableCount
+  href: api/Flea.Models.Event.html#Flea_Models_Event_ComputeTableCount
+  commentId: P:Flea.Models.Event.ComputeTableCount
+  fullName: Flea.Models.Event.ComputeTableCount
+  nameWithType: Event.ComputeTableCount
+- uid: Flea.Models.Event.ComputeTableCount*
+  name: ComputeTableCount
+  href: api/Flea.Models.Event.html#Flea_Models_Event_ComputeTableCount_
+  commentId: Overload:Flea.Models.Event.ComputeTableCount
+  isSpec: "True"
+  fullName: Flea.Models.Event.ComputeTableCount
+  nameWithType: Event.ComputeTableCount
 - uid: Flea.Models.Event.DateTime
   name: DateTime
   href: api/Flea.Models.Event.html#Flea_Models_Event_DateTime
@@ -650,19 +757,6 @@ references:
   isSpec: "True"
   fullName: Flea.Models.Event.Name
   nameWithType: Event.Name
-- uid: Flea.Models.Event.PreviousEvent
-  name: PreviousEvent
-  href: api/Flea.Models.Event.html#Flea_Models_Event_PreviousEvent
-  commentId: P:Flea.Models.Event.PreviousEvent
-  fullName: Flea.Models.Event.PreviousEvent
-  nameWithType: Event.PreviousEvent
-- uid: Flea.Models.Event.PreviousEvent*
-  name: PreviousEvent
-  href: api/Flea.Models.Event.html#Flea_Models_Event_PreviousEvent_
-  commentId: Overload:Flea.Models.Event.PreviousEvent
-  isSpec: "True"
-  fullName: Flea.Models.Event.PreviousEvent
-  nameWithType: Event.PreviousEvent
 - uid: Flea.Models.Event.Reservations
   name: Reservations
   href: api/Flea.Models.Event.html#Flea_Models_Event_Reservations
@@ -787,6 +881,19 @@ references:
   isSpec: "True"
   fullName: Flea.Models.Reservation.Reservation
   nameWithType: Reservation.Reservation
+- uid: Flea.Models.Reservation.Arrived
+  name: Arrived
+  href: api/Flea.Models.Reservation.html#Flea_Models_Reservation_Arrived
+  commentId: P:Flea.Models.Reservation.Arrived
+  fullName: Flea.Models.Reservation.Arrived
+  nameWithType: Reservation.Arrived
+- uid: Flea.Models.Reservation.Arrived*
+  name: Arrived
+  href: api/Flea.Models.Reservation.html#Flea_Models_Reservation_Arrived_
+  commentId: Overload:Flea.Models.Reservation.Arrived
+  isSpec: "True"
+  fullName: Flea.Models.Reservation.Arrived
+  nameWithType: Reservation.Arrived
 - uid: Flea.Models.Reservation.Clone
   name: Clone()
   href: api/Flea.Models.Reservation.html#Flea_Models_Reservation_Clone
@@ -955,12 +1062,6 @@ references:
   commentId: M:Flea.Models.Table.#ctor
   fullName: Flea.Models.Table.Table()
   nameWithType: Table.Table()
-- uid: Flea.Models.Table.#ctor(Flea.Models.TableType)
-  name: Table(TableType)
-  href: api/Flea.Models.Table.html#Flea_Models_Table__ctor_Flea_Models_TableType_
-  commentId: M:Flea.Models.Table.#ctor(Flea.Models.TableType)
-  fullName: Flea.Models.Table.Table(Flea.Models.TableType)
-  nameWithType: Table.Table(TableType)
 - uid: Flea.Models.Table.#ctor(Flea.Models.TableType,Flea.Models.Reservation)
   name: Table(TableType, Reservation)
   href: api/Flea.Models.Table.html#Flea_Models_Table__ctor_Flea_Models_TableType_Flea_Models_Reservation_
