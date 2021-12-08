@@ -174,14 +174,13 @@
         _validator.ClearErrors();
 
         var errors = new Dictionary<string, List<string>>();
-
-        Console.WriteLine($"Selected customer: {_selectedCustomer?.Id}");
-        if (_selectedCustomer == null)
+        
+        if (Reservation.Id == 0 && _selectedCustomer == null)
         {
             _customerValidationClass = "invalid";
             errors.Add(
                 nameof(Reservation.ReservationOwner),
-                new() {"Der skal vælges en loppe før bookingen kan oprettes."}
+                new List<string> {"Der skal vælges en loppe før bookingen kan oprettes."}
                 );
         }
 
