@@ -83,8 +83,11 @@
                      {
                          <button class="button--large--cta large-button red" @onclick="DeselectReservation">Annuler Placering</button>
                          <br/>
-                         <button class="button--large--cta large-button orange" @onclick="()=> EditTypeMode = !EditTypeMode">Tom Plads</button>
-                         <br/>
+                         if (SelectedReservation?.EmptyTableCount > 0)
+                         {
+                             <button class="button--large--cta large-button orange" @onclick="()=> EditTypeMode = !EditTypeMode">Placer Tomme Pladser</button>
+                             <br/>
+                         }
                          <button class="button--large--cta large-button blue" @onclick="ConfirmSelection">Gem Placering</button>
                      }
                 </div>
@@ -103,11 +106,11 @@
                     <br/>
                     @if (EditMode)
                     {
-                        <button class="button--large--cta grey2 large-button" @onclick="() => EditMode = false">Indsæt</button>
+                        <button class="button--large--cta grey2 large-button" @onclick="() => EditMode = false">Placer Reservationer</button>
                     }
                     else
                     {
-                        <button class="button--large--cta grey2 large-button" @onclick="() => EditMode = true">Rediger</button>
+                        <button class="button--large--cta grey2 large-button" @onclick="() => EditMode = true">Rediger Placeringer</button>
                     }
                         
                     <br/>
@@ -172,8 +175,12 @@
     
     private void DeselectReservation()
     {
+        var tables = SelectedCluster?.Tables.FindAll(t => 
+            t.Type == TableType.Empty && Paths[SelectedPath].Contains(t.Id));
+        tables?.ForEach(t => t.Type = TableType.Table);
         SelectedPath = -1;
         SelectedReservation = null;
+        SelectedCluster = null;
         Paths.Clear();
         StartNode = null;
     }
@@ -185,6 +192,11 @@
         if (EditTypeMode && SelectedPath != -1)
         {
             if (!Paths[SelectedPath].Contains(table.Id)) return;
+            var emptyTableCount = cluster.Tables.Aggregate(0, 
+                (acc, t) => 
+                    Paths[SelectedPath].Contains(t.Id) && t.Type == TableType.Empty ? acc + 1 : acc);
+            Console.WriteLine(emptyTableCount);
+            if(emptyTableCount >= SelectedReservation?.EmptyTableCount && table.Type == TableType.Table) return;
             table.Type = table.Type == TableType.Table ? 
                 TableType.Empty : 
                 TableType.Table;
