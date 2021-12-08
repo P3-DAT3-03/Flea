@@ -52,7 +52,6 @@
     public async Task OnSubmit(EditContext context)
     {
         _child.Close();
-        
         _reservation.TableCount = _temp.TableCount;
         _reservation.PaymentStatus = _temp.PaymentStatus;
         _reservation.Comments = _temp.Comments;

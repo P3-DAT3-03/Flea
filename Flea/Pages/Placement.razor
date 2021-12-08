@@ -38,7 +38,7 @@
                     </div>
                     <div class="guide">
                         <div class="ball orange"></div>
-                        <p>Valgt Plads</p>
+                        <p>Tom Plads</p>
                     </div>
                 }
             </div>
@@ -146,13 +146,13 @@
         if (SelectedPath != -1 && SelectedPath < Paths.Count)
         {
             if (EditTypeMode && Paths[SelectedPath].Contains(table.Id) && table.Type == TableType.Empty)
-                return " blue";
-            return Paths[SelectedPath].Contains(table.Id) ? " orange" : " white";
+                return " orange";
+            return Paths[SelectedPath].Contains(table.Id) ? " blue" : " white";
         }
         // In case we have not chosen a path yet
         if (Paths.Count <= 0) return " white";
         if (StartNode?.Id == table.Id) return " blue";
-        if (Paths.Any(path => path.Contains(table.Id))) return " orange";
+        if (Paths.Any(path => path.Contains(table.Id))) return " path";
         return " white";
     }
 
@@ -172,6 +172,7 @@
     
     private void DeselectReservation()
     {
+        SelectedPath = -1;
         SelectedReservation = null;
         Paths.Clear();
         StartNode = null;
@@ -189,7 +190,13 @@
                 TableType.Table;
             return;
         }
-        
+        if (SelectedPath != -1)
+        {
+            SelectedPath = -1;
+            pathId = -1;
+            SelectedCluster = cluster;
+        }
+
         SelectedReservation ??= table.Reservation;
         
         if (table.Reservation != null)
@@ -205,6 +212,7 @@
             Console.WriteLine("[Error Popup] No reservation has been selected");
             return;
         }
+        
         if (Clusters != null && !Clusters.Contains(cluster))
         {
             Console.WriteLine("[Error Popup] The selected cluster does not exist!");
@@ -237,20 +245,25 @@
             Paths.Add(new[] {table.Id});
             return;
         }
-        var offset = SelectedCluster.Tables.IndexOf(table);
-        var endNode1 = SelectedPaths(SelectedCluster, offset, 1);
+        SetPaths(table, cluster);
+    }
+
+    private void SetPaths(Table table, Cluster cluster)
+    {
+        var offset = cluster.Tables.IndexOf(table);
+        var endNode1 = SelectedPaths(cluster, offset, 1);
         if (endNode1 != null)
         {
             Paths.Add(endNode1);
             StartNode = table;
         }
-        if (SelectedCluster.Type != ClusterType.Round)
+        if (cluster.Type != ClusterType.Round)
         {
             if (endNode1 == null)
                 Console.WriteLine("[Error Popup] Unable to create a path using the selected start node");
             return;
         }
-        var endNode2 = SelectedPaths(SelectedCluster, offset, -1);
+        var endNode2 = SelectedPaths(cluster, offset, -1);
         if (endNode2 == null)
         {
             if (endNode1 == null)
@@ -333,10 +346,10 @@
     
     protected override async Task OnInitializedAsync()
     {
+        NavMenu.EventId = EventId;
         Event = await GetEvent();
         if (Event != null)
         {
-            NavMenu.EventId = Event.Id;
             Event.Clusters.Sort((a, b) => a.Name[0] - b.Name[0]);
             Event.Clusters.Reverse();
             foreach (var cluster in Event.Clusters)

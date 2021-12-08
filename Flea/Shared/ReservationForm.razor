@@ -146,7 +146,6 @@
         {
             _display = "display";
         }
-    // If no input hide everything
         if (searchTerm == "")
         {
             _close = "close-hidden";
@@ -155,7 +154,6 @@
         }
         else
         {
-    // Finds by name
             _shownCustomers = from c
                 in _customers
                 where c.Name.ToLower().Contains(searchTerm)

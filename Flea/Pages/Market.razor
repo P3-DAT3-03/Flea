@@ -93,7 +93,7 @@
     private async Task UpdateReservationList()
     {
         _reservations = await _dbFactory.Get<BingoContext, Reservation>()
-            .Where(reservation => reservation.Event.Id == EventId)
+            .Where(reservation => reservation.Event.Id == EventId && reservation.Tables.Count > 0)
             .Include(reservation => reservation.ReservationOwner)
             .All();
         Search(_lastSearchTerm);

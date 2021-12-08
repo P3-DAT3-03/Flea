@@ -496,6 +496,12 @@ a, .btn-link {
     font-weight: bold;
     color: var(--ios-blue);
 }
+
+.table.path {
+    background-color: var(--ios-blue);
+    opacity: 50%;
+}
+
 .animation-container{
     display: flex;
     justify-content: center;
