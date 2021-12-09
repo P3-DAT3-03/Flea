@@ -255,6 +255,7 @@
         if (SelectedReservation.TableCount == 1)
         {
             Paths.Add(new[] {table.Id});
+            SelectedPath = 0;
             return;
         }
         SetPaths(table, cluster);
@@ -298,16 +299,20 @@
     private async void RemoveTablesFromReservation()
     {
         if (SelectedReservation == null) return;
-        Console.WriteLine("Delete Reservation");
+        Console.WriteLine("Delete Reservation: " + SelectedReservation.ReservationOwner.Name);
         await using var context = _dbFactory.CreateDbContext();
-        foreach (var table in SelectedReservation.Tables)
+        var parent = context.Reservations?.Include(p => p.Tables)
+            .SingleOrDefault(r => r.Id == SelectedReservation.Id);
+
+        foreach (var child in parent?.Tables.ToList()!)
         {
-            table.Reservation = null;
-            context.Tables?.Update(table);
+            child.Reservation = null;
+            context.Tables?.Update(child);
         }
+        await context.SaveChangesAsync(true);
+        // Update locally
+        SelectedReservation.Tables.ForEach(t => t.Reservation = null);
         SelectedReservation.Tables.Clear();
-        context.Reservations?.Update(SelectedReservation);
-        await context.SaveChangesAsync();
         SelectedReservation = null;
         StateHasChanged();
     }
@@ -355,7 +360,7 @@
                 .FirstOrDefaultAsync(e => e.Id == EventId);
         return null;
     }
-    
+
     protected override async Task OnInitializedAsync()
     {
         NavMenu.EventId = EventId;
