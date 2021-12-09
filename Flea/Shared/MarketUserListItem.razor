@@ -14,6 +14,9 @@
     <div class="reservation__payment-status bg-primary @(status.Item1)">
         @(status.Item2)
     </div>
+    <div class="reservation__arrived-status bg-primary @(Reservation.Arrived ? "c-green" : "c-red")">
+            @(Reservation.Arrived ? "Arrived" : "Not Arrived")
+        </div>
     <div class="reservation__table-names">Loppes stande</div>@*Loppens valgte borde skal vises her*@
     <a class="arrow" href="/Event/@EventId/Checkin/@Reservation.Id"></a>
 </div>

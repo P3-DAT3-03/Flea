@@ -30,16 +30,18 @@
             </div>
         </div>
         <div class="side-panel">
-            <h3>Oversigt over Bord Plan</h3>
-            <h3>@(Event.ComputeTableCount-Event.ComputeRemainingTables)</h3>
-            <p>Stande er blevet udlejet</p>
-            <h3>@Event.ComputeReservationCount</h3>
-            <p>Lopper til dette marked</p>
-            <h3>@(Event.ComputeTableCount-Event.ComputeEmptyTableCount)</h3>
-            <p>Stande <span style="color: var(--ios-green)">med</span> borde</p>
-            <h3>@Event.ComputeEmptyTableCount</h3>
-            <p>Stande <span style="color: var(--ios-red)">uden</span> borde</p>
-            <br/>
+            <div style="height: 100%;">
+                <h3>Oversigt over Bord Plan</h3>
+                <h3>@(Event.ComputeTableCount - Event.ComputeRemainingTables)</h3>
+                <p>Stande er blevet udlejet</p>
+                <h3>@Event.ComputeReservationCount</h3>
+                <p>Lopper til dette marked</p>
+                <h3>@(Event.ComputeTableCount - Event.ComputeEmptyTableCount)</h3>
+                <p>Stande <span style="color: var(--ios-green)">med</span> borde</p>
+                <h3>@Event.ComputeEmptyTableCount</h3>
+                <p>Stande <span style="color: var(--ios-red)">uden</span> borde</p>
+                <br/>
+            </div>
             <div class="buttons">
                 <br/>
                 <a class="button--large--cta large-button grey2" href="@($"Event/{EventId}/Market")">Gå Til Markedet</a>

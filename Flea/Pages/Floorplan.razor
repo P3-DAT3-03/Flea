@@ -38,16 +38,18 @@
             </div>
         </div>
         <div class="side-panel">
-            <h3>Oversigt over Gulv Plan</h3>
-            <h3 style="color: var(--ios-green)">@Event.ComputeRemainingTables/@Event.ComputeTableCount</h3>
-            <p>Stande er blevet udlejet</p>
-            <br/>
-            <h3 style="color: var(--ios-red)">@Event.ComputeArrived/@Event.ComputeReservationCount</h3>
-            <p>Lopper der er ankommet</p>
-            <br/>
-            <h3 style="color: var(--ios-orange)">@(Event.ComputeReservationCount-Event.ComputeMissingPayments)/@Event.ComputeReservationCount</h3>
-            <p>Lopper der har betalt</p>
-            <br/>
+            <div style="height: 100%;">
+                <h3>Oversigt over Gulv Plan</h3>
+                <h3 style="color: var(--ios-green)">@Event.ComputeRemainingTables/@Event.ComputeTableCount</h3>
+                <p>Stande er blevet udlejet</p>
+                <br/>
+                <h3 style="color: var(--ios-red)">@Event.ComputeArrived/@Event.ComputeReservationCount</h3>
+                <p>Lopper der er ankommet</p>
+                <br/>
+                <h3 style="color: var(--ios-orange)">@(Event.ComputeReservationCount-Event.ComputeMissingPayments)/@Event.ComputeReservationCount</h3>
+                <p>Lopper der har betalt</p>
+                <br/>
+            </div>
             <div class="buttons">
                 <br/>
                 <a class="button--large--cta large-button grey2" href="@($"Event/{EventId}/Market")">Gå Til Markedet</a>

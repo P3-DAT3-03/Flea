@@ -16,7 +16,7 @@
         <div class="cluster-body">
             <ClusterContainer 
                 SetColor="@SetColor"
-                SetValue="@( (_,_) => -1)"
+                SetValue="@( (_,t) => t.Id)"
                 SetTableContent="@SetTableContent"
                 OnTableSelect="@(_ => {})"
                 Clusters="@Event?.Clusters"/>
@@ -40,29 +40,40 @@
             </div>
         </div>
         <div class="side-panel">
-            <h3>Welkommen</h3>
-            @if (ReservationId > 0)
-            {
-                <h4>@_customer?.Name</h4>
-                var paid = _reservation?.PaymentStatus switch {
-                    PaymentStatus.NotPaid => ("orange", "Ej betalt"),
-                    PaymentStatus.Paid => ("green", "Har betalt"),
-                    _ => ("blue", "Aftale")
-                };
-                <br/>
-                <div class="container">
-                    <label for="payment-status">Betalings status:</label>
-                    <div id="payment-status" class="status @(paid.Item1) bold">@(paid.Item2)</div>
-                </div>
-                <br/>
-                <h4>Bemærkninger</h4>
-                <div class="comments">@_reservation?.Comments</div>
-            }
+            <div style="height: 100%;">
+                <h3>Welkommen</h3>
+                @if (ReservationId > 0)
+                {
+                    <h4>@_customer?.Name</h4>
+                    var paid = _reservation?.PaymentStatus switch {
+                        PaymentStatus.NotPaid => ("orange", "Ej betalt"),
+                        PaymentStatus.Paid => ("green", "Har betalt"),
+                        _ => ("blue", "Aftale")
+                        };
+                    <br/>
+                    <div class="container">
+                        <label for="payment-status">Betalings status:</label>
+                        <div id="payment-status" class="status @(paid.Item1) bold">@(paid.Item2)</div>
+                    </div>
+                    <span>Plads:
+                        @if (_reservation?.Tables != null)
+                        {
+                            foreach (var table in _reservation.Tables)
+                            {
+                                <span class="table-position">@(" "+table.Cluster.Name+GetTableNumber(table.Cluster, table)) </span>
+                            }
+                        }
+                    </span>
+                    <br/>
+                    <h4>Bemærkninger</h4>
+                    <div class="comments">@_reservation?.Comments</div>
+                }
+            </div>
             <div class="buttons">
                 <br/>
                 <button class="button--large--cta large-button red" @onclick="DeleteReservation">Fjern Booking</button>
                 <br/>
-                <button class="button--large--cta large-button blue" @onclick="CheckinCustomer">Check Loppe Ind</button>
+                <button class="button--large--cta large-button blue" @onclick="CheckinCustomer">@(_reservation is {Arrived: true } ? "Check Loppe Ud" : "Check Loppe Ind")</button>
             </div>
         </div>
     }
@@ -85,6 +96,8 @@
 
     private Reservation? _reservation;
     private Customer? _customer;
+    private int _tabelNumber;
+    private Cluster? _cluster;
 
     public Event? Event;
 
@@ -97,8 +110,33 @@
     private string SetTableContent(Cluster cluster, Table table)
     {
         if (table.Reservation == null || ReservationId != table.Reservation.Id) return "";
-        return table.Id.ToString(); // TODO: Replace with cluster index.
+        return GetTableNumber(cluster, table).ToString();
     }
+
+    private int GetTableNumber(Cluster cluster, Table table)
+    {
+        if (_cluster == null || _cluster.Name != cluster.Name)
+        {
+            _cluster = cluster;
+            _tabelNumber = 0;
+        }
+        if (cluster.Type == ClusterType.Round)
+        {
+            if (table.Reservation == null) return -1;
+            var index = table.Reservation.Tables.IndexOf(table);
+            _tabelNumber = index switch {
+                4 => 1,
+                0 => 5,
+                _ => _tabelNumber+1
+            };
+        }
+        else
+        {
+            _tabelNumber++;
+        }
+        return _tabelNumber;
+    }
+
     private async Task DeleteReservation()
     {
         if(_reservation == null) return;
@@ -109,11 +147,10 @@
     private async Task CheckinCustomer()
     {
         if(_reservation == null) return;
-        _reservation.Arrived = true;
+        _reservation.Arrived = !_reservation.Arrived;
         await _dbFactory.Update()
             .Update(_reservation)
             .Save();
-        _navManager.NavigateTo("/Event/"+EventId+"/Market");
     }
 
     private async Task<Event?> GetEvent()

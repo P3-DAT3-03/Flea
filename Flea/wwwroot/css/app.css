@@ -219,6 +219,10 @@ body, html {
     width: fill-available;
     margin: 0 0 16px;
 }
+.side-panel .table-position {
+    color: var(--ios-blue);
+    font-weight: bold;
+}
 
 .side-panel .buttons {
     margin-top: 2em;
@@ -454,6 +458,14 @@ a, .btn-link {
     padding: 4px 10px;
     border-radius: 3px;
     flex-basis: 90px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.reservation__arrived-status {
+    padding: 4px 10px;
+    border-radius: 3px;
+    flex-basis: 110px;
     box-sizing: border-box;
     text-align: center;
 }
