@@ -532,6 +532,19 @@ a, .btn-link {
     100% { transform: rotate(0deg); }
 }
 
+select:focus {
+    background: var(--ios-bg);
+}
+select option {
+    background: var(--ios-bg);
+    color: var(--ios-fg);
+}
+
+select option:hover {
+    background: var(--ios-g1);
+    color: var(--ios-fg);
+}
+
 
 
 
