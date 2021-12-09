@@ -45,7 +45,7 @@
             <h3 style="color: var(--ios-red)">@Event.ComputeArrived/@Event.ComputeReservationCount</h3>
             <p>Lopper der er ankommet</p>
             <br/>
-            <h3 style="color: var(--ios-orange)">@Event.ComputeMissingPayments/@Event.ComputeReservationCount</h3>
+            <h3 style="color: var(--ios-orange)">@(Event.ComputeReservationCount-Event.ComputeMissingPayments)/@Event.ComputeReservationCount</h3>
             <p>Lopper der har betalt</p>
             <br/>
             <div class="buttons">

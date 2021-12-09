@@ -95,9 +95,9 @@
                 <br/>
                 IEnumerable<Reservation> reservations;
                 if(EditMode)
-                    reservations = Event?.Reservations.Where(r => r.Comments.Length > 0 && r.Tables.Count > 0) ?? new List<Reservation>();
+                    reservations = Event?.Reservations.Where(r => r.Tables.Count > 0) ?? new List<Reservation>();
                 else
-                    reservations = Event?.Reservations.Where(r => r.Comments.Length > 0 && r.Tables.Count == 0) ?? new List<Reservation>();
+                    reservations = Event?.Reservations.Where(r => r.Tables.Count == 0) ?? new List<Reservation>();
                 foreach (var reservation in reservations)
                 {
                     <ReservationListItem Reservation="@reservation" ReservationSelected="@ShowReservation"></ReservationListItem>
