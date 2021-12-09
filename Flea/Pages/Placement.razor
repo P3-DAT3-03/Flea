@@ -98,10 +98,12 @@
                     reservations = Event?.Reservations.Where(r => r.Tables.Count > 0) ?? new List<Reservation>();
                 else
                     reservations = Event?.Reservations.Where(r => r.Tables.Count == 0) ?? new List<Reservation>();
-                foreach (var reservation in reservations)
-                {
-                    <ReservationListItem Reservation="@reservation" ReservationSelected="@ShowReservation"></ReservationListItem>
-                }
+                <div class="scrollable">
+                    @foreach (var reservation in reservations)
+                    {
+                        <ReservationListItem Reservation="@reservation" ReservationSelected="@ShowReservation"></ReservationListItem>
+                    }
+                </div>
                 <div class="buttons">
                     <br/>
                     @if (EditMode)

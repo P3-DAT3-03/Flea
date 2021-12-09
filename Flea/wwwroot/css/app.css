@@ -109,6 +109,13 @@
     background: var(--ios-bg);
     color: var(--ios-fg);
     height: 50vh;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+}
+
+::-webkit-scrollbar{
+    width: 0;
+    height: 0;
 }
 
 .red {
@@ -142,7 +149,7 @@
 
 .large-button {
     margin: 0 auto;
-    width: calc(100% - 1em);
+    width: 100%;
 }
 
 .padded-content {
@@ -196,13 +203,14 @@ body, html {
     margin: 0;
 }
 .side-panel {
+    display: flex;
+    flex-direction: column;
     position: relative;
-    height: calc(100% - 2em);
     z-index: 2;
     float: left;
-    transition: 4s;
     padding: 1em;
     background-color: var(--ios-g1);
+    height: calc(100vh - 65.75px - 2em);
 }
 
 .side-panel .card {
@@ -213,13 +221,11 @@ body, html {
 }
 
 .side-panel .buttons {
-    position: absolute;
-    bottom: 2em;
-    padding: 0 0.5em;
+    margin-top: 2em;
     width: -moz-available;          /* WebKit-based browsers will ignore this. */
     width: -webkit-fill-available;  /* Mozilla-based browsers will ignore this. */
     width: fill-available;
-    left: 0;
+    height: 20%;
 }
 
 .side-panel .name {
