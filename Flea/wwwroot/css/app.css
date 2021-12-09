@@ -102,8 +102,8 @@
 
     --ios-orange-raw: 255, 159, 10;
     
-    --table-large: 2.50em;
-    --table-small: 1.25em;
+    --table-large: calc((80vw - 82px)/21);
+    --table-small: calc(var(--table-large)/2);
     --table-small-gap: 0.625em;
     
     background: var(--ios-bg);
