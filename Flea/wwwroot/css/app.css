@@ -264,6 +264,18 @@ body, html {
     border: 1px solid var(--ios-bg);
     color: var(--ios-bg);
 }
+.o1{
+    opacity: 100%;
+}
+.o2{
+    opacity: 70%;
+}
+.o3{
+    opacity: 50%;
+}
+.o4{
+    opacity: 30%;
+}
 .table.vertical {
     width: var(--table-large);
     height: var(--table-small);
@@ -448,7 +460,10 @@ a, .btn-link {
     flex-grow: 0;
     flex-shrink: 1;
 }
-
+.reservation {
+    text-decoration: none;
+    color: var(--ios-fg);
+}
 .reservation__name {
     flex-basis: auto;
     flex-grow: 1;

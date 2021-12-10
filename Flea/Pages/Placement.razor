@@ -98,6 +98,9 @@
                     reservations = Event?.Reservations.Where(r => r.Tables.Count > 0) ?? new List<Reservation>();
                 else
                     reservations = Event?.Reservations.Where(r => r.Tables.Count == 0) ?? new List<Reservation>();
+                if (!FillMode)
+                    reservations = reservations.Where(r => r.Comments.Length > 0);
+                reservations = reservations.OrderBy(r=> r.Priority).Reverse();
                 <div class="scrollable">
                     @foreach (var reservation in reservations)
                     {
@@ -116,7 +119,9 @@
                     }
                         
                     <br/>
-                    <button class="button--large--cta blue large-button" >Udfyld Resten</button>
+                    <button class="button--large--cta blue large-button" disabled=@(reservations.Any() && !FillMode) @onclick="() => FillMode = !FillMode">
+                        @(FillMode ? "Placer Bemærkninger" : "Placer Uden Bemærkninger")
+                    </button>
                 </div>
             }
         </div>
@@ -142,10 +147,25 @@
     public Cluster? SelectedCluster { get; set; }
     public bool EditMode { get; set; }
     public bool EditTypeMode { get; set; }
+    public bool FillMode { get; set; }
+    public int InternalReservationCount { get; set; }
+    public int PreviousReservationId { get; set; }
+    public int PreviousClusterId { get; set; }
 
     private string SetColor(Cluster cluster, Table table)
     {
-        if (table.Reservation != null) return " red";
+        if (PreviousClusterId != table.Cluster.Id)
+        {
+            InternalReservationCount = 0;
+            PreviousClusterId = table.Cluster.Id;
+        }
+        if (table.Reservation != null)
+        {
+            if (PreviousReservationId == table.Reservation.Id) return " bg-red o" + InternalReservationCount;
+            InternalReservationCount++;
+            PreviousReservationId = table.Reservation.Id;
+            return " bg-red o" + InternalReservationCount;
+        }
 
         // In case we have selected a path
         if (SelectedPath != -1 && SelectedPath < Paths.Count)
@@ -210,7 +230,7 @@
             pathId = -1;
             SelectedCluster = cluster;
         }
-
+        if(cluster.ReservationCount > cluster.CustomerCount && table.Reservation != null) return; // Invalid amount of customers
         SelectedReservation ??= table.Reservation;
         
         if (table.Reservation != null)
@@ -252,8 +272,9 @@
             return;
         }
         Paths.Clear();
-
+            
         StartNode = null;
+        if (EditMode)return;
         if (SelectedReservation.TableCount == 1)
         {
             Paths.Add(new[] {table.Id});

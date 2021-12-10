@@ -40,7 +40,7 @@ namespace Flea.Models
         }
 
         public int ReservationCount =>
-            Tables.Aggregate(0, (acc, table) => table.Reservation != null ? acc + 1 : acc);
+            Tables.GroupBy(t => t.Reservation).Select(g => g.First()).Count()-1;
         
         public int EmptyTableCount =>
             Tables.Aggregate(0, (acc, table) => table.Type == TableType.Empty ? acc + 1 : acc);
@@ -49,6 +49,6 @@ namespace Flea.Models
 
         /*TODO need to implement a function that checks if a placement is possible based on the cluster criterea,
          * fx if it sould cause too many customers to be seated*/
-        public bool VerifyPlacements =>  throw new NotImplementedException();
+        public bool VerifyPlacements =>  ReservationCount <= CustomerCount;
     }
 }

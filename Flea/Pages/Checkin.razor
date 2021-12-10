@@ -60,7 +60,7 @@
                         {
                             foreach (var table in _reservation.Tables)
                             {
-                                <span class="table-position">@(" "+table.Cluster.Name+GetTableNumber(table.Cluster, table)) </span>
+                                <span class="table-position">@(" "+table.Cluster.Name+GetTableNumber(table)) </span>
                             }
                         }
                     </span>
@@ -110,31 +110,22 @@
     private string SetTableContent(Cluster cluster, Table table)
     {
         if (table.Reservation == null || ReservationId != table.Reservation.Id) return "";
-        return GetTableNumber(cluster, table).ToString();
+        return GetTableNumber(table).ToString();
     }
 
-    private int GetTableNumber(Cluster cluster, Table table)
+    public int GetTableNumber(Table table)
     {
-        if (_cluster == null || _cluster.Name != cluster.Name)
+        if (table.Reservation == null) return -1;
+        var index = table.Cluster.Tables.IndexOf(table);
+        var offset = 0;
+        if (table.Cluster.Type == ClusterType.Round)
         {
-            _cluster = cluster;
-            _tabelNumber = 0;
-        }
-        if (cluster.Type == ClusterType.Round)
-        {
-            if (table.Reservation == null) return -1;
-            var index = table.Reservation.Tables.IndexOf(table);
-            _tabelNumber = index switch {
-                4 => 1,
-                0 => 5,
-                _ => _tabelNumber+1
+            offset = index switch {
+                >= 4 => -3,
+                < 4 => 5
             };
         }
-        else
-        {
-            _tabelNumber++;
-        }
-        return _tabelNumber;
+        return index + offset;
     }
 
     private async Task DeleteReservation()
