@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1194" height="834" viewBox="0 0 1194 834">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#48484a"/>
+      <stop offset="1" stop-color="#0e0e0f"/>
+    </linearGradient>
+    <clipPath id="clip-Splash">
+      <rect width="1194" height="834"/>
+    </clipPath>
+  </defs>
+  <g id="Splash" clip-path="url(#clip-Splash)">
+    <rect width="1194" height="834" fill="url(#linear-gradient)"/>
+    <g id="Shadow" transform="translate(-2379 -16044)">
+      <g id="Ellipse_23" data-name="Ellipse 23" transform="translate(2471 15893)" fill="#fff" stroke="#1d84de" stroke-width="2" opacity="0.047">
+        <circle cx="505" cy="505" r="505" stroke="none"/>
+        <circle cx="505" cy="505" r="504" fill="none"/>
+      </g>
+      <g id="Ellipse_24" data-name="Ellipse 24" transform="translate(2664 16086)" fill="#fff" stroke="#1d84de" stroke-width="2" opacity="0.049">
+        <circle cx="312" cy="312" r="312" stroke="none"/>
+        <circle cx="312" cy="312" r="311" fill="none"/>
+      </g>
+      <g id="Ellipse_25" data-name="Ellipse 25" transform="translate(2758 16180)" fill="#fff" stroke="#1d84de" stroke-width="2" opacity="0.051">
+        <circle cx="218" cy="218" r="218" stroke="none"/>
+        <circle cx="218" cy="218" r="217" fill="none"/>
+      </g>
+    </g>
+    <g id="logo" transform="translate(-4574.184 -291.387)">
+      <ellipse id="Ellipse_10" data-name="Ellipse 10" cx="103.185" cy="70.166" rx="103.185" ry="70.166" transform="translate(5068 594.156)" fill="#fff"/>
+      <g id="Ellipse_11" data-name="Ellipse 11" transform="translate(5117.528 627.176)" stroke="#2f7cf6" stroke-width="8">
+        <circle cx="24.764" cy="24.764" r="24.764" stroke="none"/>
+        <circle cx="24.764" cy="24.764" r="28.764" fill="none"/>
+      </g>
+      <path id="Path_25" data-name="Path 25" d="M5044.322,608.152V582.323l2.434-18.185,1.989-11.686,2.188-8.909,2.109-6.276,2.161-7.688,3.308-6.918,6.674-9.723,16.756-16.6" transform="translate(68.861 1.582)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="8"/>
+      <path id="Path_26" data-name="Path 26" d="M5044.322,588.217v-22.6l1.324-12.517,1.2-9.865,2.638-8.152,3.382-8.487,3.994-6.667,5.551-9.132,11.572-8.991,13.823-4.669" transform="translate(99.391 23.881)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="8"/>
+      <path id="Path_27" data-name="Path 27" d="M5062.665,520.783l5.621,5.56,2.4,5.194v4.351" transform="translate(184.179 187.849)" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="10"/>
+      <path id="Path_28" data-name="Path 28" d="M5062.665,520.783l5.621,5.56,2.4,5.194v4.351" transform="translate(167.67 197.189)" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="10"/>
+      <path id="Path_29" data-name="Path 29" d="M0,0,5.618,5.56l2.4,5.194V15.1" transform="matrix(-0.616, -0.788, 0.788, -0.616, 5097.096, 728.757)" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="10"/>
+      <path id="Path_30" data-name="Path 30" d="M0,0,5.618,5.56l2.4,5.194V15.1" transform="matrix(-0.616, -0.788, 0.788, -0.616, 5114.046, 736.565)" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="10"/>
+      <rect id="Rectangle_79" data-name="Rectangle 79" width="44.673" height="8.255" rx="4.127" transform="translate(5121.331 494.986) rotate(34)" fill="#fff"/>
+      <rect id="Rectangle_80" data-name="Rectangle 80" width="44.673" height="8.255" rx="4.127" transform="translate(5109.736 510.899) rotate(34)" fill="#fff"/>
+      <rect id="Rectangle_81" data-name="Rectangle 81" width="33.696" height="8.255" rx="4.127" transform="matrix(0.545, 0.839, -0.839, 0.545, 5152.651, 526.345)" fill="#fff"/>
+      <rect id="Rectangle_82" data-name="Rectangle 82" width="33.696" height="8.255" rx="4.127" transform="translate(5173.499 510.899) rotate(77)" fill="#fff"/>
+      <circle id="Ellipse_12" data-name="Ellipse 12" cx="8.255" cy="8.255" r="8.255" transform="translate(5142.292 635.43)" fill="#fff"/>
+    </g>
+    <g id="Group_326" data-name="Group 326" transform="translate(0 -1.662)">
+      <text id="title" transform="translate(597 575)" fill="#fff" font-size="100" font-family="Poppins-Regular, Poppins"><tspan x="-338.4" y="0">Banko Lopper</tspan></text>
+    </g>
+    <text id="title-2" data-name="title" transform="translate(597 655)" fill="#fff" font-size="25" font-family="Poppins-Regular, Poppins"><tspan x="-260.587" y="0">I samarbejde med BankoCenter Danmark</tspan></text>
+  </g>
+</svg>
