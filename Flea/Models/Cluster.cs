@@ -41,11 +41,13 @@ namespace Flea.Models
 
         public int ReservationCount =>
             Tables.GroupBy(t => t.Reservation).Select(g => g.First()).Count()-1;
+
+        public int ReservedTableCount => Tables.Aggregate(0, (i, table) => table.Reservation != null ? i + 1 : i);
         
         public int EmptyTableCount =>
             Tables.Aggregate(0, (acc, table) => table.Type == TableType.Empty ? acc + 1 : acc);
 
-        public int TablesNotPlaced => Tables.Count - ReservationCount;
+        public int TablesNotPlaced => Tables.Count - ReservedTableCount;
 
         /*TODO need to implement a function that checks if a placement is possible based on the cluster criterea,
          * fx if it sould cause too many customers to be seated*/
