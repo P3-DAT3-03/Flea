@@ -58,18 +58,28 @@
     // Delete the reservation
     private async Task DeleteReservation(Reservation reservation)
     {
-        await _dbFactory.Delete(reservation);
+        var exists = await _dbFactory.Get<BingoContext, Reservation>()
+            .Where(r => r.ReservationOwner.Id == reservation.Id && r.Event.Id == EventId).All();
+        if (exists.Count > 0)
+        {
+            await _dbFactory.Delete(reservation);
+        }
         await UpdateReservationList();
     }
     
     // Create new reservation
     private async Task CreateReservation(EditContext editContext)
     {
-        await _dbFactory.Update()
-            .With(Event!)
-            .With(_temp.ReservationOwner)
-            .New(_temp)
-            .Save();
+        var exists = await _dbFactory.Get<BingoContext, Reservation>()
+                .Where(r => r.ReservationOwner.Id == _temp.ReservationOwner.Id && r.Event.Id == EventId).All();
+        if (exists.Count == 0)
+        {
+            await _dbFactory.Update()
+                .With(Event!)
+                .With(_temp.ReservationOwner)
+                .New(_temp)
+                .Save();
+        }
         _temp = new Reservation(1, 1, PaymentStatus.NotPaid, "", new Customer("", ""), Event!);
         _child.Close();
         await UpdateReservationList();
