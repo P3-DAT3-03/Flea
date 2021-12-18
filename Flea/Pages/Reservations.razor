@@ -58,9 +58,10 @@
     // Delete the reservation
     private async Task DeleteReservation(Reservation reservation)
     {
-        var exists = await _dbFactory.Get<BingoContext, Reservation>()
-            .Where(r => r.ReservationOwner.Id == reservation.Id && r.Event.Id == EventId).All();
-        if (exists.Count > 0)
+        var reservationDb = await _dbFactory.Get<BingoContext, Reservation>()
+            .Where(r => r.ReservationOwner.Id == reservation.Id && r.Event.Id == EventId)
+            .First();
+        if (reservationDb != null)
         {
             await _dbFactory.Delete(reservation);
         }
@@ -70,9 +71,10 @@
     // Create new reservation
     private async Task CreateReservation(EditContext editContext)
     {
-        var exists = await _dbFactory.Get<BingoContext, Reservation>()
-                .Where(r => r.ReservationOwner.Id == _temp.ReservationOwner.Id && r.Event.Id == EventId).All();
-        if (exists.Count == 0)
+        var reservation = await _dbFactory.Get<BingoContext, Reservation>()
+            .Where(r => r.ReservationOwner.Id == _temp.ReservationOwner.Id && r.Event.Id == EventId)
+            .First();
+        if (reservation == null)
         {
             await _dbFactory.Update()
                 .With(Event!)

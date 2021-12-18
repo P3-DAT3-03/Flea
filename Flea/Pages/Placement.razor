@@ -331,25 +331,22 @@
     {
         if (SelectedReservation != null)
         {
-            var existingReservations = await _dbFactory.Get<BingoContext, Reservation>()
+            var reservation = await _dbFactory.Get<BingoContext, Reservation>()
                 .Include("Tables")
                 .Where(r => r.ReservationOwner.Id == SelectedReservation.ReservationOwner.Id && r.Event.Id == EventId)
-                .All();
-            var existingTables = await _dbFactory.Get<BingoContext, Table>()
+                .First();
+            var blockingTable = await _dbFactory.Get<BingoContext, Table>()
                 .Include("Reservation")
-                .Where(t => Paths[SelectedPath].Contains(t.Id)).All();
-            if (existingReservations.Count > 0 && existingTables.Count > 0)
+                .Where(t => Paths[SelectedPath].Contains(t.Id) && t.Reservation != null)
+                .First();
+            if (reservation != null && blockingTable == null)
             {
-                var reservedTableCount = existingTables.Aggregate(0, (i, table) => table.Reservation is {Id: > 0 } ? i + 1 : i);
-                if (reservedTableCount == 0)
-                {
-                    if (SelectedCluster == null || SelectedReservation == null) return;
+                if (SelectedCluster == null || SelectedReservation == null) return;
                     var tables = Event?.AssignReservation(SelectedCluster, Paths[SelectedPath], SelectedReservation);
-                    if (tables != null)
-                        foreach (var table in tables)
-                            await _dbFactory.Save(table);
-                        return;
-                }
+                    if (tables == null) return;
+                    foreach (var table in tables)
+                        await _dbFactory.Save(table);
+                    return;
             }
             await OnInitializedAsync();
             EditMode = false;
