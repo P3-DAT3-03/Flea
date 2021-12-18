@@ -339,7 +339,7 @@
                 .Include("Reservation")
                 .Where(t => Paths[SelectedPath].Contains(t.Id) && t.Reservation != null)
                 .First();
-            if (reservation != null && blockingTable == null)
+            if (reservation != null && reservation.Tables.Count == 0 && blockingTable == null)
             {
                 if (SelectedCluster == null || SelectedReservation == null) return;
                     var tables = Event?.AssignReservation(SelectedCluster, Paths[SelectedPath], SelectedReservation);
