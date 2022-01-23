@@ -363,6 +363,19 @@ references:
   isSpec: "True"
   fullName: Flea.Models.Cluster.ReservationCount
   nameWithType: Cluster.ReservationCount
+- uid: Flea.Models.Cluster.ReservedTableCount
+  name: ReservedTableCount
+  href: api/Flea.Models.Cluster.html#Flea_Models_Cluster_ReservedTableCount
+  commentId: P:Flea.Models.Cluster.ReservedTableCount
+  fullName: Flea.Models.Cluster.ReservedTableCount
+  nameWithType: Cluster.ReservedTableCount
+- uid: Flea.Models.Cluster.ReservedTableCount*
+  name: ReservedTableCount
+  href: api/Flea.Models.Cluster.html#Flea_Models_Cluster_ReservedTableCount_
+  commentId: Overload:Flea.Models.Cluster.ReservedTableCount
+  isSpec: "True"
+  fullName: Flea.Models.Cluster.ReservedTableCount
+  nameWithType: Cluster.ReservedTableCount
 - uid: Flea.Models.Cluster.Tables
   name: Tables
   href: api/Flea.Models.Cluster.html#Flea_Models_Cluster_Tables
