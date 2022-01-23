@@ -15,8 +15,8 @@ namespace Flea.Tests
         [Test]
         public void EventTests()
         {
-            Event @event = new Event(DateTime.Now);
-            // real world is fucked so there is more than 13
+            var @event = new Event(DateTime.Now);
+            // There are 20 real clusters but 23 logical clusters
             Assert.True(23 == @event.Clusters.Count, "There should always be 23 clusters");
             const string name = "Ole";
             const string number = "88888888";
@@ -24,8 +24,8 @@ namespace Flea.Tests
             const int tableCount = 8;
             const PaymentStatus status = PaymentStatus.NotPaid;
             const string comment = "Ole er meget gammel og grim";
-            Customer customer = new Customer(name, number);
-            Reservation reservation = new Reservation(priority, tableCount, status, comment, customer, @event);
+            var customer = new Customer(name, number);
+            var reservation = new Reservation(priority, tableCount, status, comment, customer, @event);
             reservation.Arrived = true;
             @event.Reservations.Add(reservation);
 
