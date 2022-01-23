@@ -52,7 +52,7 @@
                     PaymentStatus.NotPaid => ("orange", "Ej betalt"),
                     PaymentStatus.Paid => ("green", "Har betalt"),
                     _ => ("blue", "Aftale")
-                    };
+                };
                 <br/>
                 <div class="container">
                     <div class="phone">+45 @customer?.PhoneNumber</div>
@@ -161,7 +161,8 @@
         }
         if (table.Reservation != null)
         {
-            if (PreviousReservationId == table.Reservation.Id) return " bg-red o" + InternalReservationCount;
+            if (PreviousReservationId == table.Reservation.Id)
+                return " bg-red o" + InternalReservationCount;
             InternalReservationCount++;
             PreviousReservationId = table.Reservation.Id;
             return " bg-red o" + InternalReservationCount;
@@ -177,8 +178,7 @@
         // In case we have not chosen a path yet
         if (Paths.Count <= 0) return " white";
         if (StartNode?.Id == table.Id) return " blue";
-        if (Paths.Any(path => path.Contains(table.Id))) return " path";
-        return " white";
+        return Paths.Any(path => path.Contains(table.Id)) ? " path" : " white";
     }
 
     private int SetValue(Cluster cluster, Table table)
