@@ -102,13 +102,20 @@
 
     --ios-orange-raw: 255, 159, 10;
     
-    --table-large: 2.50em;
-    --table-small: 1.25em;
+    --table-large: calc((80vw - 82px)/21);
+    --table-small: calc(var(--table-large)/2);
     --table-small-gap: 0.625em;
     
     background: var(--ios-bg);
     color: var(--ios-fg);
     height: 50vh;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+}
+
+::-webkit-scrollbar{
+    width: 0;
+    height: 0;
 }
 
 .red {
@@ -142,7 +149,7 @@
 
 .large-button {
     margin: 0 auto;
-    width: calc(100% - 1em);
+    width: 100%;
 }
 
 .padded-content {
@@ -196,13 +203,14 @@ body, html {
     margin: 0;
 }
 .side-panel {
+    display: flex;
+    flex-direction: column;
     position: relative;
-    height: calc(100% - 2em);
     z-index: 2;
     float: left;
-    transition: 4s;
     padding: 1em;
     background-color: var(--ios-g1);
+    height: calc(100vh - 65.75px - 2em);
 }
 
 .side-panel .card {
@@ -211,15 +219,17 @@ body, html {
     width: fill-available;
     margin: 0 0 16px;
 }
+.side-panel .table-position {
+    color: var(--ios-blue);
+    font-weight: bold;
+}
 
 .side-panel .buttons {
-    position: absolute;
-    bottom: 2em;
-    padding: 0 0.5em;
+    margin-top: 2em;
     width: -moz-available;          /* WebKit-based browsers will ignore this. */
     width: -webkit-fill-available;  /* Mozilla-based browsers will ignore this. */
     width: fill-available;
-    left: 0;
+    height: 20%;
 }
 
 .side-panel .name {
@@ -253,6 +263,18 @@ body, html {
     justify-content: center;
     border: 1px solid var(--ios-bg);
     color: var(--ios-bg);
+}
+.o1{
+    opacity: 100%;
+}
+.o2{
+    opacity: 70%;
+}
+.o3{
+    opacity: 50%;
+}
+.o4{
+    opacity: 30%;
 }
 .table.vertical {
     width: var(--table-large);
@@ -438,7 +460,10 @@ a, .btn-link {
     flex-grow: 0;
     flex-shrink: 1;
 }
-
+.reservation {
+    text-decoration: none;
+    color: var(--ios-fg);
+}
 .reservation__name {
     flex-basis: auto;
     flex-grow: 1;
@@ -448,6 +473,14 @@ a, .btn-link {
     padding: 4px 10px;
     border-radius: 3px;
     flex-basis: 90px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.reservation__arrived-status {
+    padding: 4px 10px;
+    border-radius: 3px;
+    flex-basis: 110px;
     box-sizing: border-box;
     text-align: center;
 }
@@ -496,6 +529,12 @@ a, .btn-link {
     font-weight: bold;
     color: var(--ios-blue);
 }
+
+.table.path {
+    background-color: var(--ios-blue);
+    opacity: 50%;
+}
+
 .animation-container{
     display: flex;
     justify-content: center;
@@ -524,6 +563,19 @@ a, .btn-link {
     60% { transform: rotate(15deg); }
     80% { transform: rotate(-15deg); }
     100% { transform: rotate(0deg); }
+}
+
+select:focus {
+    background: var(--ios-bg);
+}
+select option {
+    background: var(--ios-bg);
+    color: var(--ios-fg);
+}
+
+select option:hover {
+    background: var(--ios-g1);
+    color: var(--ios-fg);
 }
 
 

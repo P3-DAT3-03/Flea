@@ -56,27 +56,39 @@
     private IEnumerable<Reservation>? _shownReservation;
     
     // Delete the reservation
-    public async Task DeleteReservation(Reservation reservation)
+    private async Task DeleteReservation(Reservation reservation)
     {
-        await _dbFactory.Delete(reservation);
+        var reservationDb = await _dbFactory.Get<BingoContext, Reservation>()
+            .Where(r => r.ReservationOwner.Id == reservation.Id && r.Event.Id == EventId)
+            .First();
+        if (reservationDb != null)
+        {
+            await _dbFactory.Delete(reservation);
+        }
         await UpdateReservationList();
     }
     
     // Create new reservation
-    public async Task CreateReservation(EditContext editContext)
+    private async Task CreateReservation(EditContext editContext)
     {
-        await _dbFactory.Update()
-            .With(Event!)
-            .With(_temp.ReservationOwner)
-            .New(_temp)
-            .Save();
+        var reservation = await _dbFactory.Get<BingoContext, Reservation>()
+            .Where(r => r.ReservationOwner.Id == _temp.ReservationOwner.Id && r.Event.Id == EventId)
+            .First();
+        if (reservation == null)
+        {
+            await _dbFactory.Update()
+                .With(Event!)
+                .With(_temp.ReservationOwner)
+                .New(_temp)
+                .Save();
+        }
         _temp = new Reservation(1, 1, PaymentStatus.NotPaid, "", new Customer("", ""), Event!);
         _child.Close();
         await UpdateReservationList();
     }
     
     // Edits the reservation
-    public async Task EditReservation(EditContext editContext)
+    private async Task EditReservation(EditContext editContext)
     {
         await _dbFactory.Save((Reservation) editContext.Model);
         _child.Close();
@@ -84,43 +96,42 @@
     }
 
     // Searchbar function
-    public void Search(ChangeEventArgs e) => Search(e.Value?.ToString()!.ToLower() ?? "");
-    
-    public void Search(string searchTerm)
+    private void Search(ChangeEventArgs e) => Search(e.Value?.ToString()!.ToLower() ?? "");
+
+    private void Search(string searchTerm)
     {
-        // If no input show everything
         if (searchTerm == "")
         {
             _shownReservation = _reservations;
         }
         else if (char.IsDigit(searchTerm[0]))
-        {   // Finds by Booths
+        {
             _shownReservation = from c
                 in _reservations
                 where c.TableCount.ToString().Contains(searchTerm)
                 select c;
         }
         else if (searchTerm.Contains("ej betalt"))
-        {   // Finds by ej betalt
+        {
             _shownReservation = from r
                 in _reservations
                 where r.PaymentStatus == PaymentStatus.NotPaid
                 select r;
         }else if (searchTerm.Contains("betalt"))
-        {   // Finds by betalt
+        {
             _shownReservation = from r
                 in _reservations
                 where r.PaymentStatus == PaymentStatus.Paid
                 select r;
         }else if (searchTerm.Contains("aftale"))
-        {   // Finds by aftale
+        {
             _shownReservation = from r
                 in _reservations
                 where r.PaymentStatus == PaymentStatus.Other
                 select r;
         }
         else
-        {// Finds by name
+        {
             _shownReservation = from c
                 in _reservations
                 where c.ReservationOwner.Name.ToLower().Contains(searchTerm)

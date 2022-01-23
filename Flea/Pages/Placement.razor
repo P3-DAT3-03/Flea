@@ -38,7 +38,7 @@
                     </div>
                     <div class="guide">
                         <div class="ball orange"></div>
-                        <p>Valgt Plads</p>
+                        <p>Tom Plads</p>
                     </div>
                 }
             </div>
@@ -83,8 +83,11 @@
                      {
                          <button class="button--large--cta large-button red" @onclick="DeselectReservation">Annuler Placering</button>
                          <br/>
-                         <button class="button--large--cta large-button orange" @onclick="()=> EditTypeMode = !EditTypeMode">Tom Plads</button>
-                         <br/>
+                         if (SelectedReservation?.EmptyTableCount > 0)
+                         {
+                             <button class="button--large--cta large-button orange" @onclick="()=> EditTypeMode = !EditTypeMode">Placer Tomme Pladser</button>
+                             <br/>
+                         }
                          <button class="button--large--cta large-button blue" @onclick="ConfirmSelection">Gem Placering</button>
                      }
                 </div>
@@ -92,26 +95,33 @@
                 <br/>
                 IEnumerable<Reservation> reservations;
                 if(EditMode)
-                    reservations = Event?.Reservations.Where(r => r.Comments.Length > 0 && r.Tables.Count > 0) ?? new List<Reservation>();
+                    reservations = Event?.Reservations.Where(r => r.Tables.Count > 0) ?? new List<Reservation>();
                 else
-                    reservations = Event?.Reservations.Where(r => r.Comments.Length > 0 && r.Tables.Count == 0) ?? new List<Reservation>();
-                foreach (var reservation in reservations)
-                {
-                    <ReservationListItem Reservation="@reservation" ReservationSelected="@ShowReservation"></ReservationListItem>
-                }
+                    reservations = Event?.Reservations.Where(r => r.Tables.Count == 0) ?? new List<Reservation>();
+                if (!FillMode)
+                    reservations = reservations.Where(r => r.Comments.Length > 0);
+                reservations = reservations.OrderBy(r=> r.Priority).Reverse();
+                <div class="scrollable">
+                    @foreach (var reservation in reservations)
+                    {
+                        <ReservationListItem Reservation="@reservation" ReservationSelected="@ShowReservation"></ReservationListItem>
+                    }
+                </div>
                 <div class="buttons">
                     <br/>
                     @if (EditMode)
                     {
-                        <button class="button--large--cta grey2 large-button" @onclick="() => EditMode = false">Indsæt</button>
+                        <button class="button--large--cta grey2 large-button" @onclick="() => EditMode = false">Placer Reservationer</button>
                     }
                     else
                     {
-                        <button class="button--large--cta grey2 large-button" @onclick="() => EditMode = true">Rediger</button>
+                        <button class="button--large--cta grey2 large-button" @onclick="() => EditMode = true">Rediger Placeringer</button>
                     }
                         
                     <br/>
-                    <button class="button--large--cta blue large-button" >Udfyld Resten</button>
+                    <button class="button--large--cta blue large-button" disabled=@(reservations.Any() && !FillMode) @onclick="() => FillMode = !FillMode">
+                        @(FillMode ? "Placer Bemærkninger" : "Placer Uden Bemærkninger")
+                    </button>
                 </div>
             }
         </div>
@@ -137,22 +147,37 @@
     public Cluster? SelectedCluster { get; set; }
     public bool EditMode { get; set; }
     public bool EditTypeMode { get; set; }
+    public bool FillMode { get; set; }
+    public int InternalReservationCount { get; set; }
+    public int PreviousReservationId { get; set; }
+    public int PreviousClusterId { get; set; }
 
     private string SetColor(Cluster cluster, Table table)
     {
-        if (table.Reservation != null) return " red";
+        if (PreviousClusterId != table.Cluster.Id)
+        {
+            InternalReservationCount = 0;
+            PreviousClusterId = table.Cluster.Id;
+        }
+        if (table.Reservation != null)
+        {
+            if (PreviousReservationId == table.Reservation.Id) return " bg-red o" + InternalReservationCount;
+            InternalReservationCount++;
+            PreviousReservationId = table.Reservation.Id;
+            return " bg-red o" + InternalReservationCount;
+        }
 
         // In case we have selected a path
         if (SelectedPath != -1 && SelectedPath < Paths.Count)
         {
             if (EditTypeMode && Paths[SelectedPath].Contains(table.Id) && table.Type == TableType.Empty)
-                return " blue";
-            return Paths[SelectedPath].Contains(table.Id) ? " orange" : " white";
+                return " orange";
+            return Paths[SelectedPath].Contains(table.Id) ? " blue" : " white";
         }
         // In case we have not chosen a path yet
         if (Paths.Count <= 0) return " white";
         if (StartNode?.Id == table.Id) return " blue";
-        if (Paths.Any(path => path.Contains(table.Id))) return " orange";
+        if (Paths.Any(path => path.Contains(table.Id))) return " path";
         return " white";
     }
 
@@ -172,7 +197,12 @@
     
     private void DeselectReservation()
     {
+        var tables = SelectedCluster?.Tables.FindAll(t => 
+            t.Type == TableType.Empty && Paths[SelectedPath].Contains(t.Id));
+        tables?.ForEach(t => t.Type = TableType.Table);
+        SelectedPath = -1;
         SelectedReservation = null;
+        SelectedCluster = null;
         Paths.Clear();
         StartNode = null;
     }
@@ -181,35 +211,53 @@
     {
         var (table, cluster, pathId) = id;
         
+        // In case we want to set a table as empty
         if (EditTypeMode && SelectedPath != -1)
         {
             if (!Paths[SelectedPath].Contains(table.Id)) return;
+            var emptyTableCount = cluster.Tables.Aggregate(0, 
+                (acc, t) => 
+                    Paths[SelectedPath].Contains(t.Id) && t.Type == TableType.Empty ? acc + 1 : acc);
+            Console.WriteLine(emptyTableCount);
+            if(emptyTableCount >= SelectedReservation?.EmptyTableCount && table.Type == TableType.Table) return;
             table.Type = table.Type == TableType.Table ? 
                 TableType.Empty : 
                 TableType.Table;
             return;
         }
         
+        // In case we have already selected a path but want to change it.
+        if (SelectedPath != -1)
+        {
+            SelectedPath = -1;
+            pathId = -1;
+            SelectedCluster = cluster;
+        }
+        
+        // In case we have a invalid amount of customers.
+        if(cluster.ReservationCount > cluster.CustomerCount && table.Reservation != null) return;
         SelectedReservation ??= table.Reservation;
         
+        // In case we hit a invalid placement clear vars.
         if (table.Reservation != null)
         {
             StartNode = null;
             Paths.Clear();
             return;
         }
-        
-        
+
         if (SelectedReservation == null)
         {
             Console.WriteLine("[Error Popup] No reservation has been selected");
             return;
         }
+        
         if (Clusters != null && !Clusters.Contains(cluster))
         {
             Console.WriteLine("[Error Popup] The selected cluster does not exist!");
             return;
         }
+        
         SelectedCluster = cluster;
 
         if (!SelectedCluster.Tables.Contains(table))
@@ -217,6 +265,8 @@
             Console.WriteLine("The selected table does not exists");
             return;
         }
+        
+        // In case we want to clear the current selectable paths with out selecting one.
         if (table == StartNode)
         {
             Paths.Clear();
@@ -224,33 +274,49 @@
             return;
         }
         
+        // In case we select a path
         if (pathId != -1)
         {
             SelectedPath = pathId;
             return;
         }
+        
         Paths.Clear();
-
         StartNode = null;
+        
+        // In case we are editing a reservation we dont want to set a new path.
+        if (EditMode) return;
+        
+        // In case we only need to place one table.
         if (SelectedReservation.TableCount == 1)
         {
             Paths.Add(new[] {table.Id});
+            SelectedPath = 0;
             return;
         }
-        var offset = SelectedCluster.Tables.IndexOf(table);
-        var endNode1 = SelectedPaths(SelectedCluster, offset, 1);
+        SetPaths(table, cluster);
+        
+        // In case we only have one path available automatically select it.
+        if (Paths.Count != 1) return;
+        SelectedPath = 0;
+    }
+
+    private void SetPaths(Table table, Cluster cluster)
+    {
+        var offset = cluster.Tables.IndexOf(table);
+        var endNode1 = FindPath(cluster, offset, 1);
         if (endNode1 != null)
         {
             Paths.Add(endNode1);
             StartNode = table;
         }
-        if (SelectedCluster.Type != ClusterType.Round)
+        if (cluster.Type != ClusterType.Round)
         {
             if (endNode1 == null)
                 Console.WriteLine("[Error Popup] Unable to create a path using the selected start node");
             return;
         }
-        var endNode2 = SelectedPaths(SelectedCluster, offset, -1);
+        var endNode2 = FindPath(cluster, offset, -1);
         if (endNode2 == null)
         {
             if (endNode1 == null)
@@ -263,56 +329,80 @@
 
     private async Task ConfirmSelection()
     {
-        if (SelectedCluster == null || SelectedReservation == null) return;
-        var tables = Event?.AssignReservation(SelectedCluster, Paths[SelectedPath], SelectedReservation);
-        if (tables != null)
-            foreach (var table in tables)
-                await _dbFactory.Save(table);
+        if (SelectedReservation != null)
+        {
+            var reservation = await _dbFactory.Get<BingoContext, Reservation>()
+                .Include("Tables")
+                .Where(r => r.ReservationOwner.Id == SelectedReservation.ReservationOwner.Id && r.Event.Id == EventId)
+                .First();
+            var blockingTable = await _dbFactory.Get<BingoContext, Table>()
+                .Include("Reservation")
+                .Where(t => Paths[SelectedPath].Contains(t.Id) && t.Reservation != null)
+                .First();
+            if (reservation != null && reservation.Tables.Count == 0 && blockingTable == null)
+            {
+                if (SelectedCluster == null || SelectedReservation == null) return;
+                    var tables = Event?.AssignReservation(SelectedCluster, Paths[SelectedPath], SelectedReservation);
+                    if (tables == null) return;
+                    foreach (var table in tables)
+                        await _dbFactory.Save(table);
+                    return;
+            }
+            await OnInitializedAsync();
+            EditMode = false;
+            SelectedReservation = null;
+            SelectedPath = -1;
+            Paths.Clear();
+        }
     }
 
     private async void RemoveTablesFromReservation()
     {
         if (SelectedReservation == null) return;
-        Console.WriteLine("Delete Reservation");
+        Console.WriteLine("Delete Reservation: " + SelectedReservation.ReservationOwner.Name);
         await using var context = _dbFactory.CreateDbContext();
-        foreach (var table in SelectedReservation.Tables)
+        var parent = context.Reservations?.Include(p => p.Tables)
+            .SingleOrDefault(r => r.Id == SelectedReservation.Id);
+
+        foreach (var child in parent?.Tables.ToList()!)
         {
-            table.Reservation = null;
-            context.Tables?.Update(table);
+            child.Reservation = null;
+            context.Tables?.Update(child);
         }
+        await context.SaveChangesAsync(true);
+        // Update locally
+        SelectedReservation.Tables.ForEach(t => t.Reservation = null);
         SelectedReservation.Tables.Clear();
-        context.Reservations?.Update(SelectedReservation);
-        await context.SaveChangesAsync();
         SelectedReservation = null;
         StateHasChanged();
     }
     
-    private int[]? SelectedPaths(Cluster cluster,  int offset, int direction)
+    private int[]? FindPath(Cluster cluster,  int index, int direction)
     {
         if (SelectedReservation == null) return null;
         var ids = new int[SelectedReservation.TableCount];
         for (var i = 0; i < SelectedReservation.TableCount; i++)
         {
-            if (offset >= cluster.Tables.Count) return null;
-            if (cluster.Tables[offset].Reservation != null) return null;
+            if (index >= cluster.Tables.Count) return null;
+            if (cluster.Tables[index].Reservation != null) return null;
             
-            ids[i] = cluster.Tables[offset].Id;
+            ids[i] = cluster.Tables[index].Id;
             if (cluster.Type == ClusterType.Round)
-                (offset, direction) = Wrap(offset, direction);
-            offset += direction;
+                (index, direction) = Wrap(index, direction);
+            index += direction;
         }
         return ids;
     }
 
-    private static (int, int) Wrap(int offset, int direction)
+    private static (int, int) Wrap(int index, int direction)
     {
-        return offset switch
+        return index switch
         {
             7 when direction is 1 => (4, -1),
             4 when direction is -1 => (-1, 1),
             0 when direction is -1 => (3, 1),
             3 when direction is 1 => (8, -1),
-            _ => (offset, direction)
+            _ => (index, direction)
         };
     }
 
@@ -330,13 +420,13 @@
                 .FirstOrDefaultAsync(e => e.Id == EventId);
         return null;
     }
-    
+
     protected override async Task OnInitializedAsync()
     {
+        NavMenu.EventId = EventId;
         Event = await GetEvent();
         if (Event != null)
         {
-            NavMenu.EventId = Event.Id;
             Event.Clusters.Sort((a, b) => a.Name[0] - b.Name[0]);
             Event.Clusters.Reverse();
             foreach (var cluster in Event.Clusters)

@@ -46,16 +46,27 @@
     // Delete the customer
     public async Task DeleteCustomer(Customer customer)
     {
-        await _dbFactory.Delete(customer);
+        var customerDb = await _dbFactory.Get<BingoContext, Customer>()
+            .Where(c => c.Id == customer.Id)
+            .First();
+        if (customerDb != null)
+        {
+            await _dbFactory.Delete(customer);
+        }
         await UpdateCustomersList();
-        
     }
 
     // Makes a new Customer
     public async Task CreateCustomer(EditContext editContext)
     {
-        await _dbFactory.Update().New(_temp).Save();
-        _temp = new Customer(0); // reset _temp
+        var customer = await _dbFactory.Get<BingoContext, Customer>()
+            .Where(c => c.Name == _temp.Name && c.PhoneNumber == _temp.PhoneNumber)
+            .First();
+        if (customer == null)
+        {
+            await _dbFactory.Update().New(_temp).Save();
+            _temp = new Customer(0);
+        }
         _child.Close();
         await UpdateCustomersList();
     }

@@ -1,7 +1,7 @@
 ﻿@using Flea.Models
 @using Reservation = Flea.Models.Reservation
 
-<div class="reservation">
+<a href="/Event/@EventId/Checkin/@Reservation.Id" class="reservation">
     <div class="reservation__name">@Reservation.ReservationOwner.Name</div>
     <div class="reservation__tables">@Reservation.TableCount Stande</div>
     @{
@@ -14,24 +14,39 @@
     <div class="reservation__payment-status bg-primary @(status.Item1)">
         @(status.Item2)
     </div>
-    <div class="reservation__table-names">Loppes stande</div>@*Loppens valgte borde skal vises her*@
-    <a class="arrow" href="/Event/@EventId/Checkin/@Reservation.Id"></a>
-</div>
+    <div class="reservation__arrived-status bg-primary @(Reservation.Arrived ? "c-green" : "c-red")">
+            @(Reservation.Arrived ? "Arrived" : "Not Arrived")
+        </div>
+    <span class="reservation__table-names">Pladser:
+        @foreach (var table in Reservation.Tables)
+        {
+            <span>@(" "+table.Cluster.Name+GetTableNumber(table))</span>
+        }
+    </span>
+</a>
 
 @code {
     private Modal _child = null!;
     private Reservation _temp = new(1, 1, PaymentStatus.NotPaid, "", new Customer("", ""), null!);
-    private Reservation _reservation = null!;
+    private string _clusterName;
 
     [Parameter]
-    public Reservation Reservation
+    public Reservation Reservation { get; set; } = null!;
+
+    public int GetTableNumber(Table table)
     {
-        get => _reservation;
-        set
+        if (table.Reservation == null) return -1;
+        table.Cluster.Tables.Sort((a, b) => a.Id - b.Id);
+        var index = table.Cluster.Tables.IndexOf(table);
+        var offset = 0;
+        if (table.Cluster.Type == ClusterType.Round)
         {
-            _reservation = value;
-            _temp = Reservation.Clone();
+            offset = index switch {
+                >= 4 => -3,
+                < 4 => 5
+            };
         }
+        return index + offset;
     }
 
     [Parameter]

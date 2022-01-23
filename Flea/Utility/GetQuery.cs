@@ -119,7 +119,7 @@ namespace Flea.Utility
 			CheckDisposeStatus();
 			try
 			{
-				return await _query.FirstAsync();
+				return await _query.FirstOrDefaultAsync();
 			}
 			finally
 			{
@@ -137,7 +137,7 @@ namespace Flea.Utility
 			CheckDisposeStatus();
 			try
 			{
-				return await _query.FirstAsync(predicate);
+				return await _query.FirstOrDefaultAsync(predicate);
 			}
 			finally
 			{

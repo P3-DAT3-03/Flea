@@ -17,6 +17,7 @@
     </div>
     @if (_shownReservation is not null && _shownReservation.Any())
     {
+        _shownReservation = _shownReservation.OrderBy(r => r.Arrived).ThenByDescending(r => r.PaymentStatus);
         <div class="scrollable">
             @foreach (var reservation in _shownReservation)
             {
@@ -93,8 +94,9 @@
     private async Task UpdateReservationList()
     {
         _reservations = await _dbFactory.Get<BingoContext, Reservation>()
-            .Where(reservation => reservation.Event.Id == EventId)
-            .Include(reservation => reservation.ReservationOwner)
+            .Where(reservation => reservation.Event.Id == EventId && reservation.Tables.Count > 0)
+            .Include("ReservationOwner")
+            .Include("Tables.Cluster.Tables")
             .All();
         Search(_lastSearchTerm);
     }
